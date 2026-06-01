@@ -1,0 +1,73 @@
+{
+  "name": "TNPSC வேட்டை",
+  "short_name": "TNPSC வேட்டை",
+  "description": "TNPSC குரூப் 1, 2, 4 இலவச மாதிரித் தேர்வுகள் மற்றும் கேள்வி வங்கி",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0c4b76",
+  "background_color": "#f4f1eb",
+  "lang": "ta",
+  "dir": "ltr",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "assets/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "TNPSC வழிகாட்டி முகப்பு"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "மாதிரித் தேர்வு",
+      "short_name": "தேர்வு",
+      "description": "விரைவாக ஒரு தேர்வை தொடங்குங்கள்",
+      "url": "/index.html#quiz",
+      "icons": [{ "src": "assets/images/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "நடப்பு நிகழ்வுகள்",
+      "short_name": "நடப்பு",
+      "description": "இன்றைய நடப்பு நிகழ்வுகள்",
+      "url": "/index.html#affairs",
+      "icons": [{ "src": "assets/images/icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
