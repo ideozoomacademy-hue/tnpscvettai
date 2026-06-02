@@ -936,6 +936,257 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
 }
 
 /* ═══════════════════════
+   POLITY / ARTICLES
+═══════════════════════ */
+.subject-nav {
+  display: flex; gap: 8px; overflow-x: auto;
+  padding-bottom: 6px; margin-bottom: 16px;
+  scrollbar-width: none;
+}
+.subject-nav::-webkit-scrollbar { display: none; }
+.subject-pill {
+  flex-shrink: 0; padding: 7px 16px; border-radius: 20px;
+  background: var(--card); border: 1.5px solid var(--border);
+  font-family: var(--font-tamil); font-size: 12px; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  transition: all var(--transition);
+}
+.subject-pill.active {
+  background: var(--primary); border-color: var(--primary);
+  color: white; box-shadow: 0 3px 10px rgba(12,75,118,0.3);
+}
+
+.article-card {
+  background: var(--card); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  padding: 0; overflow: hidden; margin-bottom: 12px; cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+}
+.article-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.article-card:active { transform: scale(0.98); }
+.article-card-stripe {
+  width: 5px; flex-shrink: 0; border-radius: var(--radius) 0 0 var(--radius);
+}
+.article-card-body { padding: 14px 16px 14px 14px; flex: 1; }
+.article-card-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700; padding: 3px 9px;
+  border-radius: 20px; margin-bottom: 8px; letter-spacing: 0.3px;
+}
+.article-card-num {
+  font-size: 10px; color: var(--text-muted); font-weight: 600;
+  margin-bottom: 4px; letter-spacing: 0.5px;
+}
+.article-card-title-en {
+  font-size: 14px; font-weight: 700; color: var(--text);
+  line-height: 1.4; margin-bottom: 3px;
+}
+.article-card-title-ta {
+  font-family: var(--font-serif); font-size: 13px; font-weight: 600;
+  color: var(--primary); margin-bottom: 8px;
+}
+.article-card-meta {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; color: var(--text-muted);
+}
+.article-card-arrow {
+  font-size: 22px; color: var(--text-muted);
+  display: flex; align-items: center; padding-right: 14px;
+}
+
+/* ── ARTICLE READER ── */
+.article-reader { display: none; }
+.article-reader.show { display: block; animation: sectionIn 0.3s ease; }
+
+.article-reader-topbar {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.article-reader-meta {
+  font-size: 11px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.article-reader-meta span {
+  display: flex; align-items: center; gap: 4px;
+}
+
+.art-cover {
+  border-radius: var(--radius); padding: 24px 20px 20px;
+  margin-bottom: 20px; position: relative; overflow: hidden;
+}
+.art-cover-orb {
+  position: absolute; width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(255,255,255,0.07); top: -40px; right: -30px;
+  pointer-events: none;
+}
+.art-series {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6);
+  letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase;
+}
+.art-cover h1 {
+  font-family: var(--font-serif); font-size: 20px; font-weight: 800;
+  color: white; line-height: 1.4; margin-bottom: 6px;
+}
+.art-cover h2 {
+  font-family: var(--font-serif); font-size: 17px; font-weight: 600;
+  color: rgba(255,255,255,0.8); margin-bottom: 14px;
+}
+.art-cover-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.art-chip {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85); font-size: 11px; font-weight: 600;
+  padding: 4px 11px; border-radius: 20px;
+}
+
+/* Article content blocks */
+.art-body { line-height: 1.75; }
+
+.art-section-head {
+  margin: 24px 0 10px;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+.art-section-head .en {
+  font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 2px;
+}
+.art-section-head .ta {
+  font-family: var(--font-serif); font-size: 14px; font-weight: 600; color: var(--accent);
+}
+
+.art-para { margin-bottom: 6px; }
+.art-para .en {
+  font-size: 14px; color: var(--text); line-height: 1.7;
+  text-align: justify; margin-bottom: 3px;
+}
+.art-para .ta {
+  font-size: 13.5px; color: var(--text2); line-height: 1.75;
+  text-align: justify; margin-bottom: 12px;
+}
+
+.art-highlight {
+  background: var(--card2); border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 14px 16px; margin: 14px 0;
+}
+.art-highlight .en { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+.art-highlight .ta { font-size: 12.5px; color: var(--primary); }
+
+.art-fact {
+  background: #fef9ec; border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 14px 16px; margin: 14px 0;
+  display: flex; gap: 10px;
+}
+[data-theme="dark"] .art-fact { background: #1a1400; }
+.art-fact .fact-star { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.art-fact .fact-body .en { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.art-fact .fact-body .ta { font-size: 12.5px; color: #78350f; }
+[data-theme="dark"] .art-fact .fact-body .ta { color: var(--gold); }
+
+.art-tip {
+  background: var(--green-bg); border-left: 4px solid var(--green);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 12px 14px; margin: 14px 0;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+[data-theme="dark"] .art-tip { background: #052e16; }
+.art-tip .tip-label {
+  font-size: 10px; font-weight: 800; color: white;
+  background: var(--green); padding: 3px 7px; border-radius: 6px;
+  flex-shrink: 0; letter-spacing: 0.4px; margin-top: 2px;
+}
+.art-tip .tip-body .en { font-size: 12.5px; color: var(--text); margin-bottom: 3px; }
+.art-tip .tip-body .ta { font-size: 12px; color: var(--green); }
+
+.art-bullets {
+  background: var(--card2); border-radius: var(--radius-sm);
+  border: 1px solid var(--border); padding: 14px 16px; margin: 12px 0;
+}
+.art-bullet-item {
+  display: flex; gap: 10px; padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.art-bullet-item:last-child { border-bottom: none; padding-bottom: 0; }
+.art-bullet-dot {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: var(--primary); color: white;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.art-bullet-content .en { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.art-bullet-content .ta { font-size: 12px; color: var(--text-muted); }
+
+/* Timeline */
+.art-timeline { margin: 14px 0; }
+.art-tl-item {
+  display: flex; gap: 12px; padding-bottom: 16px;
+  position: relative;
+}
+.art-tl-item::before {
+  content: ''; position: absolute;
+  left: 30px; top: 36px; bottom: 0; width: 2px;
+  background: var(--border);
+}
+.art-tl-item:last-child::before { display: none; }
+.art-tl-left { flex-shrink: 0; text-align: center; width: 62px; }
+.art-tl-year {
+  background: var(--accent); color: white;
+  font-size: 11px; font-weight: 800; padding: 4px 6px;
+  border-radius: 8px; display: inline-block; margin-bottom: 4px;
+}
+.art-tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--primary); margin: 0 auto;
+  border: 2px solid var(--card); box-shadow: 0 0 0 2px var(--primary);
+}
+.art-tl-content {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 14px; flex: 1;
+  box-shadow: var(--shadow-sm);
+}
+.art-tl-content .ev { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 3px; }
+.art-tl-content .ev-ta { font-size: 12px; color: var(--accent); margin-bottom: 5px; }
+.art-tl-content .desc { font-size: 12px; color: var(--text); margin-bottom: 3px; }
+.art-tl-content .desc-ta { font-size: 11.5px; color: var(--text-muted); }
+
+/* Sources table */
+.art-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12px; overflow-x: auto; display: block; }
+.art-table th {
+  background: var(--primary); color: white;
+  padding: 9px 12px; text-align: left; font-weight: 700;
+  font-family: var(--font-tamil); white-space: nowrap;
+}
+.art-table td {
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+  font-family: var(--font-tamil); color: var(--text); vertical-align: top;
+}
+.art-table tr:nth-child(even) td { background: var(--card2); }
+.art-table tr:hover td { background: #eff6ff; }
+[data-theme="dark"] .art-table tr:hover td { background: #0f2238; }
+.art-table td:first-child { font-weight: 700; color: var(--primary); white-space: nowrap; }
+
+/* Quick revision box */
+.art-revision {
+  background: var(--green-bg); border-radius: var(--radius);
+  border: 2px solid var(--green); padding: 16px; margin: 20px 0;
+}
+[data-theme="dark"] .art-revision { background: #052e16; }
+.art-revision-title {
+  font-size: 13px; font-weight: 800; color: var(--green);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.art-rev-item {
+  display: flex; gap: 8px; margin-bottom: 7px;
+  font-size: 12.5px;
+}
+.art-rev-item .dot { color: var(--green); font-weight: 900; flex-shrink: 0; }
+.art-rev-item .en { color: var(--text); margin-bottom: 1px; }
+.art-rev-item .ta { font-size: 12px; color: var(--green); }
+
+/* ═══════════════════════
    RESPONSIVE
 ═══════════════════════ */
 @media (min-width: 480px) {
@@ -1074,10 +1325,10 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
         <div class="ql">மாதிரித் தேர்வு</div>
         <div class="qn">9 பிரிவுகள்</div>
       </div>
-      <div class="qcard" onclick="navigate('affairs')" role="button" tabindex="0" aria-label="நடப்பு நிகழ்வுகள்">
-        <div class="qi" aria-hidden="true">📰</div>
-        <div class="ql">நடப்பு நிகழ்வுகள்</div>
-        <div class="qn">இன்றைய செய்தி</div>
+      <div class="qcard" onclick="navigate('polity')" role="button" tabindex="0" aria-label="கட்டுரைகள்">
+        <div class="qi" aria-hidden="true">📖</div>
+        <div class="ql">கட்டுரைகள்</div>
+        <div class="qn">அரசியல் & வரலாறு</div>
       </div>
       <div class="qcard" onclick="navigate('ebooks')" role="button" tabindex="0" aria-label="இலவச நூல்கள்">
         <div class="qi" aria-hidden="true">📚</div>
@@ -1453,6 +1704,729 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
     </div>
   </section>
 
+  <!-- ════════════════════
+       POLITY SECTION
+  ════════════════════ -->
+  <section id="polity" class="section" aria-label="அரசியல் கட்டுரைகள்">
+
+    <!-- Article List View -->
+    <div id="polityListView">
+      <div class="sec-head">
+        <div class="sec-title">அரசியல் கட்டுரைகள்</div>
+      </div>
+
+      <!-- Subject filter pills -->
+      <div class="subject-nav" role="tablist" aria-label="பாடப்பிரிவு வடிகட்டி">
+        <button class="subject-pill active" onclick="filterSubject(this,'polity')" role="tab">⚖️ அரசியல்</button>
+        <button class="subject-pill" onclick="filterSubject(this,'history')" role="tab">🏛️ வரலாறு</button>
+        <button class="subject-pill" onclick="filterSubject(this,'geo')" role="tab">🗺️ புவியியல்</button>
+        <button class="subject-pill" onclick="filterSubject(this,'science')" role="tab">🔬 அறிவியல்</button>
+        <button class="subject-pill" onclick="filterSubject(this,'economics')" role="tab">💹 பொருளியல்</button>
+        <button class="subject-pill" onclick="filterSubject(this,'tamil')" role="tab">அ தமிழ்</button>
+        <button class="subject-pill" onclick="startQuiz('palayam')" style="background:#fef2f2;color:#dc2626;border-color:#dc2626;" role="tab">⚔️ பாளையக்காரர்</button>
+      </div>
+
+      <!-- Coming soon chips -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+        <span style="background:#eff6ff;color:var(--primary);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid #bfdbfe;">📚 8 கட்டுரைகள் திட்டமிடப்பட்டுள்ளன</span>
+        <span style="background:var(--green-bg);color:var(--green);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid #bbf7d0;">✅ 2 வெளியிடப்பட்டது</span>
+      </div>
+
+      <!-- Article cards -->
+      <div id="articleList" role="list">
+
+        <!-- Article 01 — LIVE -->
+        <div class="article-card" onclick="openArticle('constitution')" role="listitem" tabindex="0" aria-label="இந்திய அரசியல்அமைப்பு கட்டுரை திறக்க">
+          <div class="article-card-stripe" style="background:linear-gradient(180deg,#0c4b76,#1a6fa8);"></div>
+          <div class="article-card-body">
+            <span class="article-card-tag" style="background:#eff6ff;color:#1d4ed8;">⚖️ அரசியல் அமைப்பு</span>
+            <div class="article-card-num">கட்டுரை 01 · POLITY SERIES</div>
+            <div class="article-card-title-en">The Making of the Indian Constitution</div>
+            <div class="article-card-title-ta">இந்திய அரசியல்அமைப்பு உருவான கதை</div>
+            <div class="article-card-meta">
+              <span>📖 15 நிமிட வாசிப்பு</span>
+              <span>🎯 அனைத்து குரூப்</span>
+              <span style="color:var(--green);font-weight:700;">✅ Live</span>
+            </div>
+          </div>
+          <div class="article-card-arrow">›</div>
+        </div>
+
+        <!-- Article 02 — LIVE (Vedanayagam) -->
+        <div class="article-card" onclick="openArticle('vedanayagam')" role="listitem" tabindex="0" aria-label="மாயூரம் வேதநாயகம் பிள்ளை கட்டுரை திறக்க">
+          <div class="article-card-stripe" style="background:linear-gradient(180deg,#7c3aed,#a855f7);"></div>
+          <div class="article-card-body">
+            <span class="article-card-tag" style="background:#f5f3ff;color:#6d28d9;">📜 தமிழ் இலக்கிய வரலாறு</span>
+            <div class="article-card-num">கட்டுரை 02 · TAMIL LITERATURE SERIES</div>
+            <div class="article-card-title-en">Mayuram Vedanayagam Pillai — Father of Tamil Novel</div>
+            <div class="article-card-title-ta">மாயூரம் வேதநாயகம் பிள்ளை — தமிழ் நாவலின் தந்தை</div>
+            <div class="article-card-meta">
+              <span>📖 18 நிமிட வாசிப்பு</span>
+              <span>🎯 குரூப் 2, 4</span>
+              <span style="color:var(--green);font-weight:700;">✅ Live</span>
+            </div>
+          </div>
+          <div class="article-card-arrow">›</div>
+        </div>
+
+        <div class="article-card" style="opacity:0.55;cursor:default;" role="listitem">
+          <div class="article-card-stripe" style="background:#9ca3af;"></div>
+          <div class="article-card-body">
+            <span class="article-card-tag" style="background:#f3f4f6;color:#6b7280;">⚖️ அரசியல் அமைப்பு</span>
+            <div class="article-card-num">கட்டுரை 03 · POLITY SERIES</div>
+            <div class="article-card-title-en">Directive Principles & Fundamental Duties</div>
+            <div class="article-card-title-ta">நெறிமுறைக் கோட்பாடுகள் & அடிப்படைக் கடமைகள்</div>
+            <div class="article-card-meta">
+              <span>📖 10 நிமிட வாசிப்பு</span>
+              <span style="color:#6b7280;font-weight:700;">🔜 விரைவில்</span>
+            </div>
+          </div>
+          <div class="article-card-arrow" style="color:#9ca3af;">›</div>
+        </div>
+
+        <div class="article-card" style="opacity:0.55;cursor:default;" role="listitem">
+          <div class="article-card-stripe" style="background:#9ca3af;"></div>
+          <div class="article-card-body">
+            <span class="article-card-tag" style="background:#f3f4f6;color:#6b7280;">⚖️ அரசியல் அமைப்பு</span>
+            <div class="article-card-num">கட்டுரை 04 · POLITY SERIES</div>
+            <div class="article-card-title-en">Parliament of India — Lok Sabha & Rajya Sabha</div>
+            <div class="article-card-title-ta">இந்திய நாடாளுமன்றம் — மக்களவை & ராஜ்யசபை</div>
+            <div class="article-card-meta">
+              <span>📖 14 நிமிட வாசிப்பு</span>
+              <span style="color:#6b7280;font-weight:700;">🔜 விரைவில்</span>
+            </div>
+          </div>
+          <div class="article-card-arrow" style="color:#9ca3af;">›</div>
+        </div>
+
+      </div>
+      <div class="ad-slot"><span>விளம்பர இடம்</span></div>
+    </div>
+
+    <!-- ── ARTICLE READER ── -->
+    <div class="article-reader" id="articleReader">
+
+      <!-- Top bar -->
+      <div class="article-reader-topbar">
+        <button class="back-btn" onclick="closeArticle()" aria-label="கட்டுரை பட்டியலுக்கு திரும்பு">←</button>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:700;color:var(--primary);">அரசியல் கட்டுரைகள்</div>
+          <div style="font-size:11px;color:var(--text-muted);">TNPSC வேட்டை · Polity Series</div>
+        </div>
+        <button class="icon-btn" style="background:var(--card);border:1px solid var(--border);color:var(--text);" onclick="shareArticle()" aria-label="பகிர்">🔗</button>
+      </div>
+
+      <!-- Article meta -->
+      <div class="article-reader-meta">
+        <span>⚖️ அரசியல் அமைப்பு</span>
+        <span>·</span>
+        <span>📖 15 நிமிட வாசிப்பு</span>
+        <span>·</span>
+        <span>🎯 குரூப் 1, 2, 4</span>
+        <span>·</span>
+        <span style="color:var(--green);font-weight:700;">✅ Article 01</span>
+      </div>
+
+      <!-- Cover -->
+      <div class="art-cover" style="background:linear-gradient(135deg,#0c4b76 0%,#083a5c 60%,#0f5a8c 100%);">
+        <div class="art-cover-orb"></div>
+        <div class="art-series">POLITY SERIES · கட்டுரை 01</div>
+        <h1>The Making of the Indian Constitution</h1>
+        <h2>இந்திய அரசியல்அமைப்பு உருவான கதை</h2>
+        <div class="art-cover-chips">
+          <span class="art-chip">395 → 448 Articles</span>
+          <span class="art-chip">2 yrs 11 months</span>
+          <span class="art-chip">Dr. Ambedkar</span>
+          <span class="art-chip">26 Jan 1950</span>
+        </div>
+      </div>
+
+      <!-- Article body -->
+      <div class="art-body">
+
+        <!-- Opening -->
+        <div class="art-para">
+          <div class="en">Imagine buying a brand-new car without a user manual. No instructions. No rules. Sooner or later, confusion and accidents would occur.</div>
+          <div class="ta">ஒரு புதிய காரை வாங்கிய பிறகு அதற்கான வழிகாட்டி புத்தகம் இல்லையென்றால் என்ன ஆகும்? எதை எப்படிப் பயன்படுத்த வேண்டும் என்பது தெரியாது. குழப்பம் ஏற்படும், தவறுகள் நடக்கும்.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Similarly, a nation needs a guidebook. That guidebook is called the <strong>Constitution (அரசியல்அமைப்பு)</strong>.</div>
+          <div class="ta">அதேபோல், ஒரு நாட்டிற்கும் ஒரு வழிகாட்டி புத்தகம் தேவை. அந்த வழிகாட்டி புத்தகம்தான் <strong>அரசியல்அமைப்பு (Constitution)</strong>.</div>
+        </div>
+
+        <!-- What is Constitution -->
+        <div class="art-section-head">
+          <div class="en">What is a Constitution?</div>
+          <div class="ta">அரசியல்அமைப்பு என்றால் என்ன?</div>
+        </div>
+        <div class="art-para">
+          <div class="en">A Constitution is the supreme law of a country — the rulebook that explains how a nation should function.</div>
+          <div class="ta">அரசியல்அமைப்பு என்பது ஒரு நாட்டின் உச்சக்கட்ட சட்டமாகும் — ஒரு நாடு எவ்வாறு செயல்பட வேண்டும் என்பதை விளக்கும் விதிமுறைகளின் தொகுப்பு.</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Who makes laws</div><div class="ta">சட்டங்களை யார் இயற்ற வேண்டும்?</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Who implements laws</div><div class="ta">யார் நடைமுறைப்படுத்த வேண்டும்?</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">Who interprets laws</div><div class="ta">சட்டத்தை யார் விளக்க வேண்டும்?</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">What rights citizens enjoy</div><div class="ta">மக்களுக்கு என்ன உரிமைகள் இருக்க வேண்டும்?</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">5</div><div class="art-bullet-content"><div class="en">How the government is structured</div><div class="ta">அரசாங்கம் எவ்வாறு கட்டமைக்கப்பட வேண்டும்?</div></div></div>
+        </div>
+        <div class="art-fact">
+          <div class="fact-star">★</div>
+          <div class="fact-body">
+            <div class="en">The Indian Constitution is the longest written constitution in the world — originally 395 Articles, 8 Schedules, 22 Parts. Today: 448+ Articles, 12 Schedules, 106+ Amendments.</div>
+            <div class="ta">இந்திய அரசியல்அமைப்பு உலகிலேயே மிக நீளமான எழுதப்பட்ட அரசியல்அமைப்பு. அசல்: 395 கட்டுரைகள், 8 அட்டவணைகள். இன்று: 448+ கட்டுரைகள், 12 அட்டவணைகள், 106+ திருத்தங்கள்.</div>
+          </div>
+        </div>
+
+        <!-- Why India needed -->
+        <div class="art-section-head">
+          <div class="en">Why Did India Need a Constitution?</div>
+          <div class="ta">இந்தியாவுக்கு ஏன் அரசியல்அமைப்பு தேவைப்பட்டது?</div>
+        </div>
+        <div class="art-para">
+          <div class="en">When India became independent in 1947, the country faced an enormous challenge. India was not a small, homogeneous nation — it was a vast land with different languages, religions, cultures, and communities.</div>
+          <div class="ta">1947 ஆம் ஆண்டு இந்தியா சுதந்திரம் பெற்றபோது மிகப் பெரிய சவால் ஒன்றை எதிர்கொண்டது. நூற்றுக்கணக்கான மொழிகள், பல்வேறு மதங்கள், ஆயிரக்கணக்கான சமூகங்கள் கொண்ட மிகப் பெரிய நாடு.</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">22 Scheduled Languages + 1600+ dialects</div><div class="ta">22 அட்டவணை மொழிகள் + 1600+ வட்டார மொழிகள்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">562+ Princely States needed integration</div><div class="ta">562+ சமஸ்தானங்களை ஒருங்கிணைக்க வேண்டியிருந்தது</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">Multiple religions — Hindu, Muslim, Christian, Sikh, Buddhist, Jain</div><div class="ta">இந்து, இஸ்லாம், கிறித்தவம், சீக்கியம், பௌத்தம், ஜைனம்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">Partition trauma and massive refugee crisis</div><div class="ta">பிரிவினை அதிர்ச்சி மற்றும் மிகப்பெரிய அகதிகள் நெருக்கடி</div></div></div>
+        </div>
+
+        <!-- Historical Timeline -->
+        <div class="art-section-head">
+          <div class="en">The Long Historical Journey</div>
+          <div class="ta">நீண்ட வரலாற்றுப் பயணம்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The Constitution was not written overnight. Its roots go back almost 200 years into British rule.</div>
+          <div class="ta">அரசியல்அமைப்பு ஒரே இரவில் எழுதப்படவில்லை. அதன் வேர்கள் கிட்டத்தட்ட 200 ஆண்டுகளுக்கு முன்பே தொடங்குகின்றன.</div>
+        </div>
+        <div class="art-timeline">
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1773</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">Regulating Act</div><div class="ev-ta">ஒழுங்குமுறை சட்டம்</div><div class="desc">First step to regulate British rule. Created the post of Governor-General.</div><div class="desc-ta">பிரிட்டிஷ் ஆட்சியை ஒழுங்குபடுத்திய முதல் சட்டம். கவர்னர் ஜெனரல் பதவி உருவானது.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1935</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">Government of India Act</div><div class="ev-ta">இந்திய அரசாங்கச் சட்டம்</div><div class="desc">Most influential British Act — the blueprint for the Indian Constitution. Introduced Federal Structure, Governor System, Emergency Provisions.</div><div class="desc-ta">இந்திய அரசியல்அமைப்பின் அடிப்படை. கூட்டாட்சி அமைப்பு, ஆளுநர் முறை, அவசரகால ஏற்பாடுகள் இதிலிருந்து பெறப்பட்டன.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1934</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">M.N. Roy's Idea</div><div class="ev-ta">எம்.என். ராய் யோசனை</div><div class="desc">First demand that Indians themselves should write their own Constitution.</div><div class="desc-ta">இந்தியர்களே தமது அரசியல்அமைப்பை எழுத வேண்டும் என்ற முதல் கோரிக்கை.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1946</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">Constituent Assembly Formed</div><div class="ev-ta">நிர்ணய சபை உருவாக்கம்</div><div class="desc">Cabinet Mission Plan. 389 members (reduced to 299 after Partition). 15 women members included.</div><div class="desc-ta">Cabinet Mission திட்டம். 389 உறுப்பினர்கள் (பிரிவினைக்குப் பிறகு 299). 15 பெண் உறுப்பினர்கள்.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">9 Dec<br>1946</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">First Meeting</div><div class="ev-ta">முதல் கூட்டம்</div><div class="desc">Dr. Sachchidananda Sinha — temporary President. Dr. Rajendra Prasad — permanent President (elected 2 days later).</div><div class="desc-ta">டாக்டர் சச்சிதானந்த சின்ஹா தற்காலிகத் தலைவர். 2 நாட்களுக்குப் பிறகு டாக்டர் ராஜேந்திர பிரசாத் நிரந்தரத் தலைவர்.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">29 Aug<br>1947</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">Drafting Committee</div><div class="ev-ta">வரைவுக் குழு</div><div class="desc">Dr. B.R. Ambedkar appointed Chairman of the 7-member Drafting Committee. 7,635 amendments proposed; 2,473 accepted.</div><div class="desc-ta">டாக்டர் அம்பேத்கர் 7 உறுப்பினர் வரைவுக் குழுவின் தலைவர். 7,635 திருத்தங்கள் முன்மொழிவு; 2,473 ஏற்கப்பட்டன.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">26 Nov<br>1949</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content"><div class="ev">Constitution Adopted</div><div class="ev-ta">ஏற்றுக்கொள்ளல்</div><div class="desc">284 members signed. Now celebrated as Constitution Day (Samvidhan Divas). Time taken: 2 years, 11 months, 18 days.</div><div class="desc-ta">284 உறுப்பினர்கள் கையொப்பமிட்டனர். இன்று அரசியல்அமைப்பு தினமாக கொண்டாடப்படுகிறது.</div></div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">26 Jan<br>1950</div><div class="art-tl-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent);"></div></div>
+            <div class="art-tl-content" style="border-color:var(--accent);"><div class="ev" style="color:var(--accent);">Republic Day 🇮🇳</div><div class="ev-ta">குடியரசு தினம்</div><div class="desc">Constitution came into force. India became a Sovereign Democratic Republic. This date chosen because it was the anniversary of Purna Swaraj Declaration (1930).</div><div class="desc-ta">அரசியல்அமைப்பு நடைமுறைக்கு வந்தது. இந்தியா இறையாண்மை ஜனநாயக குடியரசு நாடானது. 1930 பூர்ண சுராஜ் தீர்மான நினைவாக இந்நாள் தேர்ந்தெடுக்கப்பட்டது.</div></div>
+          </div>
+        </div>
+
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">Most asked: "When was the Constitution <em>adopted</em>?" → <strong>26 Nov 1949</strong> vs "When did it <em>come into force</em>?" → <strong>26 Jan 1950</strong>. These are TWO different dates — never confuse them!</div>
+            <div class="ta">"ஏற்றுக்கொள்ளல்" = 26 நவம்பர் 1949 மற்றும் "நடைமுறைக்கு வந்தது" = 26 ஜனவரி 1950 — இந்த இரண்டும் வேறு வேறு தேதிகள்!</div>
+          </div>
+        </div>
+
+        <!-- Ambedkar -->
+        <div class="art-section-head">
+          <div class="en">Dr. B.R. Ambedkar — Father of the Constitution</div>
+          <div class="ta">டாக்டர் அம்பேத்கர் — அரசியல்அமைப்பின் தந்தை</div>
+        </div>
+        <div class="art-para">
+          <div class="en">One name stands above all others — Dr. B.R. Ambedkar. As Chairman of the Drafting Committee, he transformed 7,635 proposed amendments into a coherent constitutional document over 166 days of debate.</div>
+          <div class="ta">அரசியல்அமைப்பு உருவாக்கத்தில் எல்லோரையும் விட முக்கியமாக நினைவுகூரப்படுபவர் டாக்டர் அம்பேத்கர். 166 நாட்கள் விவாதத்தில் 7,635 திருத்தங்களை ஒருங்கிணைத்த அவர் அரசியல்அமைப்பின் தந்தை என்று அழைக்கப்படுகிறார்.</div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">Ambedkar resigned as Law Minister in 1951 over the Hindu Code Bill. He converted to Buddhism on <strong>14 October 1956</strong> with 6 lakh followers — frequently asked in TNPSC!</div>
+            <div class="ta">அம்பேத்கர் 1951ல் சட்ட அமைச்சர் பதவியிலிருந்து விலகினார். <strong>14 அக்டோபர் 1956</strong> அன்று 6 லட்சம் பேருடன் புத்தமதத்திற்கு மாறினார் — TNPSC-ல் அடிக்கடி கேட்கப்படும்!</div>
+          </div>
+        </div>
+
+        <!-- Preamble -->
+        <div class="art-section-head">
+          <div class="en">The Preamble — Soul of the Constitution</div>
+          <div class="ta">முன்னுரை — அரசியல்அமைப்பின் ஆத்மா</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The Preamble is the "soul" of the Constitution, drafted by Jawaharlal Nehru as the "Objectives Resolution" in 1946. It declares India to be:</div>
+          <div class="ta">முன்னுரையை அரசியல்அமைப்பின் "ஆத்மா" என்று கூறுவர். நேரு 1946ல் "நோக்கங்கள் தீர்மானம்" ஆக வரைந்தார். இந்தியாவை இவ்வாறு அறிவிக்கிறது:</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Sovereign (இறையாண்மை) — Free from external control</div><div class="ta">வெளி நாடுகளின் கட்டுப்பாட்டில் இல்லாத சுதந்திர நாடு</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Socialist (சமதர்மம்) — Equal distribution of resources ★ Added 1976</div><div class="ta">வளங்களின் சம பகிர்வு ★ 1976ல் சேர்க்கப்பட்டது</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">Secular (மதசார்பற்ற) — No official State religion ★ Added 1976</div><div class="ta">அரசுக்கு எந்த அதிகாரப்பூர்வ மதமும் இல்லை ★ 1976ல் சேர்க்கப்பட்டது</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">Democratic (ஜனநாயக) — Government by the people</div><div class="ta">மக்களால் தேர்ந்தெடுக்கப்படும் அரசு</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">5</div><div class="art-bullet-content"><div class="en">Republic (குடியரசு) — Elected Head of State, not hereditary</div><div class="ta">தேர்ந்தெடுக்கப்பட்ட குடியரசுத் தலைவர், பரம்பரை அல்ல</div></div></div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">"Socialist" & "Secular" were NOT in the original 1949 Preamble. They were added by the <strong>42nd Constitutional Amendment, 1976</strong> during Emergency under Indira Gandhi.</div>
+            <div class="ta">"சமதர்மம்" & "மதசார்பற்ற" அசல் 1949 முன்னுரையில் இல்லை. இந்திரா காந்தி ஆட்சியில் அவசரகால காலத்தில் <strong>42வது திருத்தம் 1976</strong> மூலம் சேர்க்கப்பட்டன.</div>
+          </div>
+        </div>
+
+        <!-- Sources table -->
+        <div class="art-section-head">
+          <div class="en">Sources of the Indian Constitution</div>
+          <div class="ta">இந்திய அரசியல்அமைப்பின் ஆதாரங்கள்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The framers borrowed the best features from successful democracies around the world:</div>
+          <div class="ta">உலகின் வெற்றிகரமான ஜனநாயக நாடுகளிலிருந்து சிறந்த அம்சங்களை எடுத்தனர்:</div>
+        </div>
+        <div style="overflow-x:auto;margin:12px 0;">
+          <table class="art-table">
+            <thead><tr><th>Country | நாடு</th><th>Feature Borrowed | எடுத்தது</th><th>Tamil | தமிழ்</th></tr></thead>
+            <tbody>
+              <tr><td>🇬🇧 UK</td><td>Parliamentary System, Rule of Law, Cabinet</td><td>நாடாளுமன்ற முறை, சட்டாட்சி</td></tr>
+              <tr><td>🇺🇸 USA</td><td>Fundamental Rights, Judicial Review</td><td>அடிப்படை உரிமைகள், நீதிமன்ற மறுஆய்வு</td></tr>
+              <tr><td>🇮🇪 Ireland</td><td>Directive Principles of State Policy</td><td>நெறிமுறைக் கோட்பாடுகள்</td></tr>
+              <tr><td>🇫🇷 France</td><td>Liberty, Equality, Fraternity</td><td>சுதந்திரம், சமத்துவம், சகோதரத்துவம்</td></tr>
+              <tr><td>🇨🇦 Canada</td><td>Federal System with strong Centre</td><td>வலுவான மைய அரசுடன் கூட்டாட்சி</td></tr>
+              <tr><td>🇦🇺 Australia</td><td>Concurrent List, Joint Sitting</td><td>கூட்டுப் பட்டியல், கூட்டு அமர்வு</td></tr>
+              <tr><td>🇩🇪 Germany</td><td>Emergency Provisions</td><td>அவசரகால ஏற்பாடுகள்</td></tr>
+              <tr><td>🇿🇦 S.Africa</td><td>Amendment Procedure (Art.368)</td><td>திருத்த முறை</td></tr>
+              <tr><td>🇷🇺 USSR</td><td>Fundamental Duties, Five Year Plans</td><td>அடிப்படைக் கடமைகள்</td></tr>
+              <tr><td>🇯🇵 Japan</td><td>Procedure Established by Law</td><td>சட்டத்தால் நிறுவப்பட்ட நடைமுறை</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Why So Long -->
+        <div class="art-section-head">
+          <div class="en">Why Is the Constitution So Long?</div>
+          <div class="ta">இந்திய அரசியல்அமைப்பு ஏன் இவ்வளவு பெரியது?</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Many wonder why India's Constitution is one of the longest in the world. The answer lies in India's diversity — the framers wanted to protect different communities, languages, cultures, and regions through detailed provisions.</div>
+          <div class="ta">இந்திய அரசியல்அமைப்பு உலகிலேயே மிக நீளமான அரசியல்அமைப்புகளில் ஒன்றாக இருப்பதற்குக் காரணம் இந்தியாவின் பல்வகைமை. பல்வேறு சமூகங்கள், மொழிகள், பண்பாடுகள் மற்றும் பிராந்தியங்களின் உரிமைகளை விரிவான ஏற்பாடுகள் மூலம் பாதுகாக்க அவர்கள் விரும்பினர்.</div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="art-section-head">
+          <div class="en">Conclusion — A Living Document</div>
+          <div class="ta">முடிவுரை — உயிரோட்டமான ஆவணம்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The Indian Constitution is not merely a legal document. It is the collective dream of millions who fought for freedom. It protects our rights, limits government power, and ensures democracy survives.</div>
+          <div class="ta">இந்திய அரசியல்அமைப்பு ஒரு சட்டப் புத்தகம் மட்டுமல்ல. சுதந்திரத்திற்காக போராடிய கோடிக்கணக்கான மக்களின் கனவுகளின் தொகுப்பு. நமது உரிமைகளைப் பாதுகாக்கிறது, அரசின் அதிகாரங்களுக்கு வரம்பு விதிக்கிறது.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">More than seventy-five years later — through 106+ amendments — it remains the living foundation upon which modern India stands.</div>
+          <div class="ta">75 ஆண்டுகளுக்கும் மேலாக, 106+ திருத்தங்கள் மூலம் மாறிவந்தாலும், நவீன இந்தியா நின்று கொண்டிருக்கும் உயிரோட்டமான அடித்தளமாக அரசியல்அமைப்பு தொடர்ந்து விளங்குகிறது.</div>
+        </div>
+
+        <!-- Quick Revision -->
+        <div class="art-revision">
+          <div class="art-revision-title">⚡ TNPSC விரைவு திருப்பல் மூலை</div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Adopted: 26 Nov 1949 | In force: 26 Jan 1950</div><div class="ta">ஏற்றுக்கொள்ளல்: 26 நவம்பர் 1949 | நடைமுறை: 26 ஜனவரி 1950</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Drafting Committee Chairman: Dr. B.R. Ambedkar</div><div class="ta">வரைவுக் குழு தலைவர்: டாக்டர் அம்பேத்கர்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Constituent Assembly President: Dr. Rajendra Prasad</div><div class="ta">நிர்ணய சபை தலைவர்: டாக்டர் ராஜேந்திர பிரசாத்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Original: 395 Articles, 8 Schedules | Now: 448+ Articles, 12 Schedules</div><div class="ta">அசல்: 395 கட்டுரைகள், 8 அட்டவணைகள் | இன்று: 448+, 12 அட்டவணைகள்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Time: 2 years, 11 months, 18 days | 166 sitting days</div><div class="ta">எடுத்த நேரம்: 2 ஆண்டுகள் 11 மாதங்கள் 18 நாட்கள் | 166 நாட்கள் கூட்டம்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">"Socialist" & "Secular" added by 42nd Amendment 1976</div><div class="ta">"சமதர்மம்" & "மதசார்பற்ற" 42வது திருத்தம் 1976ல் சேர்க்கப்பட்டன</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Longest written constitution in the world</div><div class="ta">உலகின் மிக நீளமான எழுதப்பட்ட அரசியல்அமைப்பு</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Ambedkar converted to Buddhism: 14 October 1956</div><div class="ta">அம்பேத்கர் புத்தமதம்: 14 அக்டோபர் 1956</div></div></div>
+        </div>
+
+        <!-- Ad slot inside article -->
+        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
+
+        <!-- Next article teaser -->
+        <div class="card" style="border:2px dashed var(--border);text-align:center;padding:20px;" onclick="showToast('விரைவில் வரும்!')">
+          <div style="font-size:28px;margin-bottom:8px;">📖</div>
+          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">அடுத்த கட்டுரை விரைவில்</div>
+          <div style="font-size:12px;color:var(--text-muted);">Article 02: Fundamental Rights — Your Constitutional Shield</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">அடிப்படை உரிமைகள் — உங்கள் அரசியலமைப்பு கவசம்</div>
+        </div>
+
+      </div><!-- /.art-body -->
+    </div><!-- /#articleReader -->
+
+    <!-- ── VEDANAYAGAM ARTICLE READER ── -->
+    <div class="article-reader" id="articleReaderVeda">
+
+      <div class="article-reader-topbar">
+        <button class="back-btn" onclick="closeArticle()" aria-label="கட்டுரை பட்டியலுக்கு திரும்பு">←</button>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:700;color:var(--primary);">தமிழ் இலக்கிய வரலாறு</div>
+          <div style="font-size:11px;color:var(--text-muted);">TNPSC வேட்டை · Tamil Literature Series</div>
+        </div>
+        <button class="icon-btn" style="background:var(--card);border:1px solid var(--border);color:var(--text);" onclick="shareArticle()" aria-label="பகிர்">🔗</button>
+      </div>
+
+      <div class="article-reader-meta">
+        <span>📜 தமிழ் இலக்கிய வரலாறு</span>
+        <span>·</span><span>📖 18 நிமிட வாசிப்பு</span>
+        <span>·</span><span>🎯 குரூப் 2, 4</span>
+        <span>·</span><span style="color:var(--green);font-weight:700;">✅ Article 02</span>
+      </div>
+
+      <!-- Cover -->
+      <div class="art-cover" style="background:linear-gradient(135deg,#4c1d95 0%,#6d28d9 60%,#7c3aed 100%);">
+        <div class="art-cover-orb"></div>
+        <div class="art-series">TAMIL LITERATURE SERIES · கட்டுரை 02</div>
+        <h1>Mayuram Vedanayagam Pillai</h1>
+        <h2>மாயூரம் வேதநாயகம் பிள்ளை — தமிழ் நாவலின் தந்தை</h2>
+        <div class="art-cover-chips">
+          <span class="art-chip">பிறப்பு: 1826</span>
+          <span class="art-chip">முதல் நாவல்: 1879</span>
+          <span class="art-chip">ஞானாம்பாள்</span>
+          <span class="art-chip">பெண் கல்வி</span>
+        </div>
+      </div>
+
+      <div class="art-body">
+
+        <!-- Opening hook -->
+        <div class="art-para">
+          <div class="en">Imagine a world where Tamil literature existed only as poetry — grand, classical, but entirely written in verse. No stories told in flowing prose. No novels. No characters you could follow page after page through real-life dilemmas.</div>
+          <div class="ta">தமிழ் இலக்கியம் முழுவதும் கவிதை வடிவிலேயே மட்டும் இருந்த ஒரு உலகை கற்பனை செய்து பாருங்கள் — பிரம்மாண்டமான, செம்மையான, ஆனால் முழுவதும் செய்யுளில் எழுதப்பட்டது. உரைநடையில் ஒரு கதையும் இல்லை. நாவல்கள் இல்லை.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">One man changed that forever. His name was <strong>Mayuram Vedanayagam Pillai (மாயூரம் வேதநாயகம் பிள்ளை)</strong> — judge, musician, social reformer, and the father of the Tamil novel.</div>
+          <div class="ta">அதை என்றென்றும் மாற்றிய ஒருவர் இருந்தார். அவர் பெயர் <strong>மாயூரம் வேதநாயகம் பிள்ளை</strong> — நீதிபதி, இசைக் கலைஞர், சமூக சீர்திருத்தவாதி, மற்றும் தமிழ் நாவலின் தந்தை.</div>
+        </div>
+
+        <!-- Section 1: Early Life -->
+        <div class="art-section-head">
+          <div class="en">Early Life & Judicial Career</div>
+          <div class="ta">இளமைக்காலமும் நீதித்துறைப் பணியும்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Born on <strong>October 11, 1826</strong>, in Inathur — a small village near Trichy — Vedanayagam Pillai showed remarkable intellectual ability from a young age. Under his tutor Tyagaraja Pillai, he mastered both Tamil and English, an unusual combination that would shape his entire life.</div>
+          <div class="ta"><strong>அக்டோபர் 11, 1826</strong> அன்று திருச்சிராப்பள்ளிக்கு அருகிலுள்ள இனாத்தூர் கிராமத்தில் பிறந்தார். தியாகராஜ பிள்ளை என்ற ஆசிரியரிடம் தமிழையும் ஆங்கிலத்தையும் கற்றுத் தேர்ந்தார். இந்த இரண்டு மொழிகளிலும் புலமை அவரது வாழ்க்கையையே வடிவமைத்தது.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">His linguistic talent brought him into the judicial service. He began as a <strong>Record Keeper</strong> at the Trichy court, then rose to become a <strong>Translator</strong>. After passing the law examinations, he served as a <strong>District Munsif (judge)</strong> — first in Tarangambadi and later in <strong>Mayiladuthurai</strong> (then known as Mayuram). This posting gave him his famous title: Mayuram Vedanayagam Pillai.</div>
+          <div class="ta">அவரது மொழித் திறன் அவரை நீதித்துறைக்கு அழைத்தது. திருச்சி நீதிமன்றத்தில் <strong>ஆவணக் காப்பாளராக</strong> தொடங்கி, பின்னர் <strong>மொழிபெயர்ப்பாளராக</strong> உயர்ந்தார். சட்டத் தேர்வுகளில் தேர்ச்சி பெற்று, தரங்கம்பாடியிலும் பின்னர் <strong>மாயூரத்திலும்</strong> (இன்றைய மயிலாடுதுறை) <strong>மாவட்ட முன்சீபாக (நீதிபதியாக)</strong> பணியாற்றினார். இந்தப் பணியிடமே அவருக்கு "மாயூரம் வேதநாயகம் பிள்ளை" என்ற நிரந்தரமான பெயரை வழங்கியது.</div>
+        </div>
+        <div class="art-fact">
+          <div class="fact-star">★</div>
+          <div class="fact-body">
+            <div class="en">Vedanayagam Pillai lived from <strong>1826 to 1889</strong>. He served as a judge while simultaneously writing literature, composing music, and organizing famine relief — a true renaissance man of 19th-century Tamil Nadu.</div>
+            <div class="ta">வேதநாயகம் பிள்ளை <strong>1826 முதல் 1889</strong> வரை வாழ்ந்தார். நீதிபதியாகப் பணியாற்றியபடியே இலக்கியம் எழுதி, இசை இயற்றி, பஞ்ச நிவாரணம் அளித்த 19ஆம் நூற்றாண்டின் பல்துறை மேதை.</div>
+          </div>
+        </div>
+
+        <!-- Section 2: Father of Tamil Novel -->
+        <div class="art-section-head">
+          <div class="en">The Father of the Tamil Novel — Prathapa Mudaliar Charithram (1879)</div>
+          <div class="ta">தமிழ் நாவலின் தந்தை — பிரதாப முதலியார் சரித்திரம் (1879)</div>
+        </div>
+        <div class="art-para">
+          <div class="en">In <strong>1879</strong>, Vedanayagam Pillai published <em>Prathapa Mudaliar Charithram (பிரதாப முதலியார் சரித்திரம்)</em> — a work that broke every rule of Tamil literary tradition. Before this book, Tamil literature was almost entirely composed in verse. He dared to tell a story in flowing prose — and changed Tamil literature forever.</div>
+          <div class="ta"><strong>1879</strong> ஆம் ஆண்டில் <em>பிரதாப முதலியார் சரித்திரம்</em> வெளியிட்டார். அதுவரை தமிழ் இலக்கியம் கிட்டத்தட்ட முழுவதும் செய்யுள் வடிவத்திலேயே இருந்தது. அவர் தைரியமாக உரைநடையில் கதை சொன்னார் — தமிழ் இலக்கியத்தையே என்றென்றும் மாற்றினார்.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">But this was not merely a stylistic revolution. The novel was a <strong>reformist manifesto disguised as an entertaining story</strong>. Through the adventures of Prathapa Mudaliar and the brilliant heroine Gnanambal, Vedanayagam Pillai addressed the most urgent social questions of his time: women's education, moral integrity, religious harmony, and Tamil pride.</div>
+          <div class="ta">ஆனால் இது வெறும் பாணி மாற்றம் மட்டுமல்ல. இந்த நாவல் <strong>ஒரு சுவாரஸ்யமான கதையாக மறைத்து வைக்கப்பட்ட சீர்திருத்த அறிக்கை</strong>. பிரதாப முதலியார் மற்றும் மேதாவி நாயகி ஞானாம்பாளின் சாகசங்கள் வழியாக பெண் கல்வி, ஒழுக்க நெறி, சமய நல்லிணக்கம், தமிழ் பெருமை ஆகிய அன்றைய முக்கியமான சமூகக் கேள்விகளை எழுப்பினார்.</div>
+        </div>
+
+        <!-- Themes -->
+        <div class="art-section-head">
+          <div class="en">Themes & Social Messages of the Novel</div>
+          <div class="ta">நாவலின் கருப்பொருள்களும் சமூக செய்திகளும்</div>
+        </div>
+
+        <!-- Theme 1 -->
+        <div class="art-highlight">
+          <div class="en"><strong>1. Women's Education & Empowerment (பெண் கல்வி & உரிமை)</strong></div>
+          <div class="ta"><strong>பெண்களின் கல்வி உரிமை மற்றும் சக்தியூட்டல்</strong></div>
+        </div>
+        <div class="art-para">
+          <div class="en">The heroine <strong>Gnanambal</strong> — whose name literally means "Goddess of Wisdom" — is not a passive character waiting to be rescued. She is educated, razor-sharp, and intellectually superior to every male character in the novel. She consistently outperforms Prathapa Mudaliar and his friend Kanakasabai in understanding literature, philosophy, and law.</div>
+          <div class="ta">நாயகி <strong>ஞானாம்பாள்</strong> — அவரது பெயருக்கே "அறிவின் தேவி" என்று பொருள் — காப்பாற்றப்படக் காத்திருக்கும் பாத்திரமல்ல. கல்வியறிவுடன், கூர்மையான அறிவுடன், நாவலில் உள்ள எல்லா ஆண் பாத்திரங்களையும் விட அறிவுத்திறன் மிக்கவளாக விளங்குகிறாள். இலக்கியம், தத்துவம், சட்டம் என அனைத்திலும் பிரதாப முதலியார் மற்றும் கனகசபையை விட திறமை மிக்கவளாக தொடர்ந்து நிரூபிக்கிறாள்.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">In a dramatic allegorical sequence, Gnanambal disguises herself as a man and is unexpectedly crowned ruler of a kingdom in chaos. Through her governance, she resolves complex legal disputes with analytical clarity — proving that <strong>administrative ability, judicial fairness, and strategic policy are not gender-dependent</strong>. This was a radical argument in 1879.</div>
+          <div class="ta">நாவலின் ஒரு நாடகத்தன்மை வாய்ந்த அலங்கார காட்சியில், ஞானாம்பாள் ஆணாக மாறுவேடமிட்டு குழப்பத்தில் உள்ள ஒரு ராஜ்யத்தின் ஆட்சியாளராக பட்டம் பெறுகிறாள். சிக்கலான சட்டச் சிக்கல்களை தெளிவான பகுப்பாய்வுடன் தீர்க்கிறாள் — <strong>நிர்வாகத் திறன், நீதிமன்ற நீதி, கொள்கை உருவாக்கம் ஆகியவை பாலினத்தை சார்ந்தவை அல்ல</strong> என நிரூபிக்கிறாள். 1879ல் இது மிகவும் தீவிரமான வாதம்.</div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">Gnanambal rejects her father's demand to surrender her son for adoption — invoking her right to personal autonomy. She uses traditional family logic itself to argue against patriarchal overreach. This is 19th-century feminism in Tamil prose.</div>
+            <div class="ta">ஞானாம்பாள் தனது மகனை தத்தெடுக்கக் கோரும் தந்தையின் கோரிக்கையை நிராகரிக்கிறாள் — தனது சுய தீர்மான உரிமையை நிலைநாட்டுகிறாள். 19ஆம் நூற்றாண்டு தமிழ் உரைநடையில் பெண்ணியவாதம்.</div>
+          </div>
+        </div>
+
+        <!-- Theme 2 -->
+        <div class="art-highlight">
+          <div class="en"><strong>2. Moral & Ethical Integrity (ஒழுக்க நெறிகள்)</strong></div>
+          <div class="ta"><strong>ஒழுக்கமும் நேர்மையும்</strong></div>
+        </div>
+        <div class="art-para">
+          <div class="en">Drawing from his own career as a judge, Vedanayagam Pillai weaves ethical dilemmas into the story: the importance of truth, anti-corruption, and absolute justice in public service. Characters who act with integrity thrive. Those driven by greed or ego face downfall. This was not abstract morality — it was a lesson directly aimed at the educated elite of the colonial era.</div>
+          <div class="ta">நீதிபதியாக தனது வாழ்க்கையிலிருந்து கற்ற பாடங்களை கதையில் பின்னுகிறார். சத்தியத்தின் முக்கியத்துவம், ஊழலுக்கு எதிர்ப்பு, பொதுச் சேவையில் முழுமையான நீதி. நேர்மையாக செயல்படுவோர் வளர்கின்றனர். பேராசை அல்லது அகங்காரத்தால் இயங்குவோர் வீழ்கின்றனர். இது குறியீட்டு அறம் மட்டுமல்ல — காலனிய காலத்தின் கல்வியறிவுடைய தலித்துக்களை நேரடியாக இலக்கு வைத்த பாடம்.</div>
+        </div>
+
+        <!-- Theme 3 -->
+        <div class="art-highlight">
+          <div class="en"><strong>3. Secularism & Religious Harmony (சமய நல்லிணக்கம்)</strong></div>
+          <div class="ta"><strong>மதச் சார்பின்மையும் சமய நல்லிணக்கமும்</strong></div>
+        </div>
+        <div class="art-para">
+          <div class="en">Vedanayagam Pillai deliberately avoids the narrow sectarian rivalries — Shaivism vs. Vaishnavism — that dominated 19th-century Tamil Nadu. His characters focus on a universal, benevolent God and argue that <strong>true spirituality lies in humanitarian service</strong>, not rigid rituals. This was the same philosophy he expressed in his musical compositions, the <em>Sarva Samaya Samarasa Kirthanaigal</em>.</div>
+          <div class="ta">19ஆம் நூற்றாண்டு தமிழகத்தில் ஆதிக்கம் செலுத்திய சைவம் மற்றும் வைஷ்ணவம் இடையிலான குறுகிய பிரிவினைகளை வேதநாயகம் பிள்ளை வேண்டுமென்றே தவிர்க்கிறார். அவரது பாத்திரங்கள் பொதுவான, அன்பான கடவுளை மையமாகக் கொண்டு, <strong>உண்மையான ஆன்மீகம் மனிதநேயப் பணியில் உள்ளது</strong> என்று வாதிடுகின்றன. இதுவே அவர் <em>சர்வ சமய சமரச கீர்த்தனைகளில்</em> வெளிப்படுத்திய தத்துவம்.</div>
+        </div>
+
+        <!-- Theme 4 -->
+        <div class="art-highlight">
+          <div class="en"><strong>4. Tamil Language Pride (தாய்மொழிப் பற்று)</strong></div>
+          <div class="ta"><strong>தமிழ் மொழியின் மேன்மை</strong></div>
+        </div>
+        <div class="art-para">
+          <div class="en">Although fluent in English and working within the colonial judicial system, Vedanayagam Pillai used his novel as an active critique of the growing neglect of Tamil among the educated elite. Through the narrative itself — complex legal reasoning, philosophical debate, psychological portrayal — all in Tamil prose — he demonstrated that <strong>the Tamil language is fully capable of expressing every modern concept</strong>.</div>
+          <div class="ta">ஆங்கிலத்தில் சரளமாக பேசும் திறன் கொண்டு, காலனிய நீதி முறையில் பணியாற்றியபோதும், கல்வியறிவுடையவர்களிடையே தமிழ் மீதான அலட்சியம் வளர்வதை நாவல் மூலம் கண்டித்தார். சிக்கலான சட்ட வாதங்கள், தத்துவ விவாதங்கள், உளவியல் சித்தரிப்பு — அனைத்தும் தமிழ் உரைநடையில் — <strong>தமிழ் மொழி ஒவ்வொரு நவீன கருத்தையும் வெளிப்படுத்தும் திறன் கொண்டது</strong> என நிரூபித்தார்.</div>
+        </div>
+
+        <!-- Theme 5 -->
+        <div class="art-highlight">
+          <div class="en"><strong>5. Critique of Social Evils & Superstitions</strong></div>
+          <div class="ta"><strong>சமூக தீமைகள் மற்றும் மூடநம்பிக்கை மீதான விமர்சனம்</strong></div>
+        </div>
+        <div class="art-para">
+          <div class="en">With sharp satire and humour, the novel attacks blind faith in astrology and omens — showing how over-reliance on predictions can be exploited by fraudsters. It also critiques the toxic culture of vanity spending for social status, and endless intra-family legal disputes over property — problems that remain relevant even today.</div>
+          <div class="ta">கூர்மையான நகைச்சுவையுடன் நாவல் ஜோதிடம் மற்றும் சகுனங்களில் குருட்டு நம்பிக்கையை தாக்குகிறது — கணிப்புகளை மோசடியாளர்கள் எப்படி சுரண்டுகிறார்கள் என்று காட்டுகிறது. சமூக அந்தஸ்துக்காக வீண் செலவும், சொத்துக்காக குடும்பத்திற்குள் முடிவற்ற வழக்குகளும் விமர்சிக்கப்படுகின்றன — இன்றும் பொருத்தமான பிரச்சினைகள்.</div>
+        </div>
+
+        <!-- Section 3: Other Works -->
+        <div class="art-section-head">
+          <div class="en">His Complete Literary Works</div>
+          <div class="ta">அவரது முழுமையான இலக்கியப் படைப்புகள்</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">1</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Prathapa Mudaliar Charithram (1879)</strong> — First Tamil novel. Social reform through prose fiction.</div>
+              <div class="ta"><strong>பிரதாப முதலியார் சரித்திரம் (1879)</strong> — தமிழின் முதல் நாவல். உரைநடை கதையின் மூலம் சமூக சீர்திருத்தம்.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">2</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Suguna Sundari (சுகுண சுந்தரி)</strong> — Second major novel. Focuses on women's character, family values, social customs.</div>
+              <div class="ta"><strong>சுகுண சுந்தரி</strong> — இரண்டாவது முக்கிய நாவல். பெண்களின் பண்புகள், குடும்ப ஒற்றுமை, சமூக நடைமுறைகள்.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">3</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Penmathi Malai (பெண்மதி மாலை)</strong> — Dedicated treatise on women's education and dignity in society.</div>
+              <div class="ta"><strong>பெண்மதி மாலை</strong> — பெண்களின் கல்வி உரிமை மற்றும் சமூகத்தில் அவர்களது கண்ணியத்திற்காக அர்ப்பணிக்கப்பட்ட நூல்.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">4</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Sarva Samaya Samarasa Kirthanaigal (சர்வ சமய சமரச கீர்த்தனைகள்)</strong> — Hundreds of Carnatic compositions addressing a universal God beyond all religious boundaries. Interfaith harmony in music.</div>
+              <div class="ta"><strong>சர்வ சமய சமரச கீர்த்தனைகள்</strong> — எல்லா மத எல்லைகளையும் கடந்த பொதுவான கடவுளை உருகிப் பாடும் நூற்றுக்கணக்கான கர்நாடக இசை பாடல்கள். இசையில் சமய நல்லிணக்கம்.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">5</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Nititool (நீதி நூல்)</strong> — A work on moral codes, righteous living, and ethical conduct in society.</div>
+              <div class="ta"><strong>நீதி நூல்</strong> — சமூகத்தில் நெறிமுறை நடத்தை, நீதியான வாழ்க்கை, ஒழுக்க விதிகளை பற்றிய நூல்.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">6</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Devotional Songs & Essays</strong> — Hundreds of simple, accessible bhajans and prose essays on society, education, and public welfare.</div>
+              <div class="ta"><strong>பக்திப் பாடல்களும் கட்டுரைகளும்</strong> — எளிய மொழியில் பக்திப் பாடல்கள் மற்றும் சமூகம், கல்வி, பொதுநலன் பற்றிய உரைநடை கட்டுரைகள்.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Humanitarian -->
+        <div class="art-section-head">
+          <div class="en">The Great Famine Relief — Kanjithotti (1876–1878)</div>
+          <div class="ta">தாது வருடப் பஞ்சம் — கஞ்சித் தொட்டிகள் (1876–1878)</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Between 1876 and 1878, the devastating <strong>Great Famine of Madras</strong> (also known as the Deccan Famine or Datu Varuda Panjam) killed millions across South India. Vedanayagam Pillai did not stand aside. He spent his own personal savings, raised public funds, and organized large-scale free feeding centres called <strong>Kanjithotti (கஞ்சித் தொட்டிகள்)</strong> across the Mayuram region — saving thousands of starving people.</div>
+          <div class="ta">1876 முதல் 1878 வரை <strong>தக்காணப் பஞ்சம்</strong> (தாது வருடப் பஞ்சம்) தென்னிந்தியா முழுவதும் மில்லியன் கணக்கானோரை கொன்றது. வேதநாயகம் பிள்ளை பக்கத்தில் நின்று பார்க்கவில்லை. தனது சொந்தச் சேமிப்பை செலவழித்து, பொது நிதி திரட்டி, மாயூரம் பகுதி முழுவதும் <strong>கஞ்சித் தொட்டிகள்</strong> அமைத்து பல்லாயிரக்கணக்கான பசியுற்றவர்களை காப்பாற்றினார்.</div>
+        </div>
+        <div class="art-fact">
+          <div class="fact-star">★</div>
+          <div class="fact-body">
+            <div class="en">His humanitarian work during the famine directly reflects the same compassion he preached in his novel — that true spirituality is humanitarian service, not ritual worship. He lived what he wrote.</div>
+            <div class="ta">பஞ்சகாலத்தில் அவரது மனிதாபிமான செயல், நாவலில் அவர் போதித்த அதே கருணையை நேரடியாக பிரதிபலிக்கிறது — உண்மையான ஆன்மீகம் மனிதநேயப் பணியே, சடங்கு வழிபாடல்ல. அவர் எழுதியதை வாழ்ந்தார்.</div>
+          </div>
+        </div>
+
+        <!-- Section 5: Literary Contemporaries -->
+        <div class="art-section-head">
+          <div class="en">His Era — The 19th Century Tamil Literary Landscape</div>
+          <div class="ta">அவரது காலம் — 19ஆம் நூற்றாண்டு தமிழ் இலக்கிய உலகம்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Vedanayagam Pillai did not work in isolation. He was part of a remarkable ecosystem of scholars, musicians, and saints — all working simultaneously to transform Tamil culture. Two great movements ran in parallel in this era:</div>
+          <div class="ta">வேதநாயகம் பிள்ளை தனியாக செயல்படவில்லை. தமிழ் கலாச்சாரத்தை மாற்றுவதற்காக ஒரே நேரத்தில் பணியாற்றிய அறிஞர்கள், இசைக் கலைஞர்கள், புனிதர்களின் ஒரு குறிப்பிடத்தக்க சூழலின் ஒரு பகுதியாக இருந்தார். இந்த காலகட்டத்தில் இரண்டு மகத்தான இயக்கங்கள் இணையாக நடந்தன:</div>
+        </div>
+        <div style="overflow-x:auto;margin:12px 0;">
+          <table class="art-table">
+            <thead><tr><th>The Modernizers | புதுமைப்படுத்துவோர்</th><th>The Revivalists | மீட்பாளர்கள்</th></tr></thead>
+            <tbody>
+              <tr><td>Vedanayagam Pillai — First Tamil Novel</td><td>C.W. Damodaram Pillai — Printed Sangam texts</td></tr>
+              <tr><td>Gopalakrishna Bharathiyar — Tamil Musical Opera (Nandanar Charithram)</td><td>Arumuka Navalar — Father of Modern Tamil Prose (non-fiction)</td></tr>
+              <tr><td>Ramalinga Vallalar — Spiritual Humanism, Thiruvarutpa</td><td>U.V. Swaminatha Iyer — Rescued Cilappatikaram, Manimekalai</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">🎵</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Gopalakrishna Bharathiyar (1810–1896)</strong> — Musical contemporary. Vedanayagam Pillai used to sing his newly composed <em>Kirthanas</em> before Bharathiyar to receive feedback. Bharathiyar's <em>Nandanar Charithram</em> addressed spiritual equality and social exclusion.</div>
+              <div class="ta"><strong>கோபாலகிருஷ்ண பாரதியார் (1810–1896)</strong> — இசை தோழர். வேதநாயகம் பிள்ளை தனது புதிய கீர்த்தனைகளை பாரதியாரிடம் பாடி அவரின் அனுமதி பெற்றார். பாரதியாரின் <em>நந்தனார் சரித்திரம்</em> ஆன்மீக சமத்துவத்தை பற்றியது.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">🕊️</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Ramalinga Vallalar (1823–1874)</strong> — Spiritual contemporary. Like Vedanayagam Pillai, Vallalar rejected rigid religious sectarianism and promoted <em>Jeeva Karunyam</em> (compassion for all living beings). Both ran public feeding centers. His <em>Thiruvarutpa</em> is a masterpiece of 19th-century Tamil devotional literature.</div>
+              <div class="ta"><strong>இராமலிங்க வள்ளலார் (1823–1874)</strong> — ஆன்மீக தோழர். வேதநாயகம் பிள்ளையைப் போலவே, வள்ளலாரும் குறுகிய மதப் பிரிவினைகளை நிராகரித்து <em>ஜீவ கருண்யம்</em> (எல்லா உயிரினங்கள் மீதும் கருணை) வலியுறுத்தினார். இருவரும் பொது உணவு மையங்கள் நடத்தினர். அவரின் <em>திருவருட்பா</em> தமிழ் பக்தி இலக்கியத்தின் மகத்தான படைப்பு.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">📚</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>U.V. Swaminatha Iyer (1855–1942)</strong> — Known as <em>Tamil Thatha</em> (Grandfather of Tamil). He single-handedly rescued most of the Sangam literature — including <em>Cilappatikaram</em> and <em>Manimekalai</em> — from decaying palm-leaf manuscripts and brought them into print.</div>
+              <div class="ta"><strong>உ.வே. சாமிநாத ஐயர் (1855–1942)</strong> — <em>தமிழ் தாத்தா</em> என அழைக்கப்பட்டவர். சிதிலமடைந்து கொண்டிருந்த ஓலை சுவடிகளிலிருந்து <em>சிலப்பதிகாரம்</em>, <em>மணிமேகலை</em> உட்பட பெரும்பாலான சங்க இலக்கியங்களை மீட்டெடுத்து அச்சிடச் செய்தார்.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 6: Legacy -->
+        <div class="art-section-head">
+          <div class="en">Legacy — Where He Stands in Tamil History</div>
+          <div class="ta">நிலையான புகழ் — தமிழ் வரலாற்றில் அவரது இடம்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">If Thiruvalluvar gave Tamil its moral foundation, and Kamban enriched its poetic grandeur, then <strong>Mayuram Vedanayagam Pillai opened the door to modern Tamil prose fiction</strong>. He gave Tamil a new form — the novel — and filled that form with ideas that were radical, progressive, and urgently necessary for his time.</div>
+          <div class="ta">திருவள்ளுவர் தமிழிற்கு அறப்படை கொடுத்தார், கம்பர் அதற்கு கவிதை மாட்சி கொடுத்தார் என்றால், <strong>மாயூரம் வேதநாயகம் பிள்ளை நவீன தமிழ் உரைநடை கதைக்கான கதவை திறந்தார்</strong>. தமிழிற்கு ஒரு புதிய வடிவம் — நாவல் — கொடுத்தார். அந்த வடிவத்தை அவரது காலத்திற்கு தீவிரமான, முற்போக்கான, மிகவும் அவசியமான கருத்துக்களால் நிரப்பினார்.</div>
+        </div>
+        <div class="art-fact">
+          <div class="fact-star">★</div>
+          <div class="fact-body">
+            <div class="en">"தமிழ் நாவல் இலக்கியத்தின் கதவை முதன்முதலாகத் திறந்தவர் மாயூரம் வேதநாயகம் பிள்ளை." — He who first opened the door of Tamil novel literature was Mayuram Vedanayagam Pillai.</div>
+            <div class="ta">அவரது இந்த பங்களிப்பு TNPSC குரூப் 2, 4 தேர்வுகளில் திரும்பத் திரும்ப கேட்கப்படும் முக்கியமான தலைப்பு.</div>
+          </div>
+        </div>
+
+        <!-- ── TRICKS TO REMEMBER ── -->
+        <div class="art-section-head">
+          <div class="en">Memory Tricks — Years, Names & Books</div>
+          <div class="ta">நினைவில் வைக்கும் தந்திரங்கள் — ஆண்டுகள், பெயர்கள், புத்தகங்கள்</div>
+        </div>
+
+        <div class="art-tip">
+          <div class="tip-label">TRICK 1</div>
+          <div class="tip-body">
+            <div class="en"><strong>Birth Year 1826</strong> → "18-26 = 1826. Think: He was born when India was still under the East India Company (Company Rule: 1757–1857). He grew up watching the 1857 revolt at age 31."</div>
+            <div class="ta"><strong>பிறப்பு ஆண்டு 1826</strong> → "1857 கிளர்ச்சி நடந்தபோது அவருக்கு 31 வயது. கம்பெனி ஆட்சியில் பிறந்தவர், பிரிட்டிஷ் கிரீடத்தின் கீழ் வாழ்ந்தவர்."</div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TRICK 2</div>
+          <div class="tip-body">
+            <div class="en"><strong>First Tamil Novel — 1879</strong> → Remember: "7+9 = 16 → sweet 16 → a novel debut!" Or simpler: <strong>"1879 = 18+79 = 97 → Almost a century after 1773 Regulating Act."</strong> Key: The novel came out when Vedanayagam Pillai was <strong>53 years old</strong> (1826 + 53 = 1879).</div>
+            <div class="ta"><strong>முதல் நாவல் — 1879</strong> → எளிதான trick: வேதநாயகம் பிள்ளைக்கு 53 வயதில் (1826 + 53 = 1879) முதல் நாவல். "53 வயதிலும் சரித்திரம் படைக்கலாம்!"</div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TRICK 3</div>
+          <div class="tip-body">
+            <div class="en"><strong>Book Names Mnemonic — "P-S-P-S-N"</strong><br>
+            <strong>P</strong>rathapa Mudaliar Charithram (1879) — First Novel<br>
+            <strong>S</strong>uguna Sundari — Second Novel<br>
+            <strong>P</strong>enmathi Malai — Women's Education<br>
+            <strong>S</strong>arva Samaya Samarasa — Music/Interfaith<br>
+            <strong>N</strong>ititool — Moral codes<br>
+            → <em>"Please Send Pretty Students Now"</em></div>
+            <div class="ta"><strong>நூல் பெயர்கள் மனப்பாடம் — "ப-சு-பெ-சர்-நீ"</strong><br>
+            <strong>ப</strong>ிரதாப முதலியார் சரித்திரம் → முதல் நாவல்<br>
+            <strong>சு</strong>குண சுந்தரி → இரண்டாம் நாவல்<br>
+            <strong>பெ</strong>ண்மதி மாலை → பெண் கல்வி<br>
+            <strong>சர்</strong>வ சமய சமரச → இசை/மத நல்லிணக்கம்<br>
+            <strong>நீ</strong>தி நூல் → ஒழுக்க நெறி</div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TRICK 4</div>
+          <div class="tip-body">
+            <div class="en"><strong>Name "Gnanambal" = Goddess of Wisdom</strong> → Think: <em>"Gnana = Knowledge (like Jnana Yoga). Ambal = Goddess."</em> She rules a kingdom → Women's governance = proven. She defeats men in debate → Women's intellect = proven. Easy to remember because her name itself IS her character.</div>
+            <div class="ta"><strong>"ஞானாம்பாள்" = அறிவின் தேவி</strong> → ஞானம் = அறிவு + அம்பாள் = தேவி. அவள் ஒரு ராஜ்யத்தை ஆட்சி செய்கிறாள் = பெண்களின் ஆட்சி திறன் நிரூபிக்கப்பட்டது. அவள் பெயரே அவளது பாத்திரம்!</div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TRICK 5</div>
+          <div class="tip-body">
+            <div class="en"><strong>Famine Years 1876–1878</strong> → "Great Famine = Great Misery. 1876 = 1+8+7+6 = 22. Two years of devastation (76, 77, 78). Vedanayagam was 50 years old in 1876."<br><strong>Kanjithotti</strong> = "Kanji (rice gruel) + Thotti (pot/tank)" → Free food pot. Simple visual: a large pot of rice gruel for the starving.</div>
+            <div class="ta"><strong>பஞ்ச ஆண்டுகள் 1876–1878</strong> → "கஞ்சி + தொட்டி = கஞ்சித் தொட்டி" — பசியுற்றோருக்கான இலவச உணவு பாத்திரம். எளிய காட்சி: ஒரு பெரிய கஞ்சிப் பாத்திரம். வேதநாயகம் பிள்ளைக்கு 1876ல் 50 வயது.</div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TRICK 6</div>
+          <div class="tip-body">
+            <div class="en"><strong>Title "Mayuram"</strong> → Mayuram (மாயூரம்) = Mayil (மயில் = Peacock) + Uram (ஊர் = Town) = Peacock Town = Today's <strong>Mayiladuthurai</strong>. He served there as judge, so "Mayuram" became part of his name. Remember: <em>Peacock judge who wrote the first Tamil novel.</em></div>
+            <div class="ta"><strong>"மாயூரம்" என்ற பெயர்</strong> → மாயூரம் = மயில் + ஊர் = மயில்களின் ஊர் = இன்றைய <strong>மயிலாடுதுறை</strong>. அங்கு நீதிபதியாக பணி செய்தார், எனவே "மாயூரம்" அவர் பெயரின் ஒரு பகுதியானது. நினைவு: <em>மயில் நகரத்தின் நீதிபதி, முதல் தமிழ் நாவல் எழுதினார்.</em></div>
+          </div>
+        </div>
+
+        <!-- Quick Revision -->
+        <div class="art-revision">
+          <div class="art-revision-title">⚡ TNPSC விரைவு திருப்பல் — மாயூரம் வேதநாயகம் பிள்ளை</div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Born: October 11, 1826, Inathur (near Trichy) | Died: 1889</div><div class="ta">பிறப்பு: அக்டோபர் 11, 1826, இனாத்தூர் (திருச்சி அருகில்) | மறைவு: 1889</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Father of Tamil Novel — First Tamil Novel: Prathapa Mudaliar Charithram (1879)</div><div class="ta">தமிழ் நாவலின் தந்தை — முதல் தமிழ் நாவல்: பிரதாப முதலியார் சரித்திரம் (1879)</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Served as District Munsif (Judge) in Mayiladuthurai (Mayuram) → hence the title</div><div class="ta">மயிலாடுதுறையில் (மாயூரம்) மாவட்ட முன்சீபாக (நீதிபதியாக) பணி → அதனால் "மாயூரம்" பெயர்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Key themes: Women's Education, Secularism, Moral Integrity, Tamil Pride, Anti-superstition</div><div class="ta">முக்கிய கருப்பொருள்கள்: பெண் கல்வி, சமய நல்லிணக்கம், ஒழுக்க நெறி, தமிழ் பெருமை, மூடநம்பிக்கை எதிர்ப்பு</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Heroine Gnanambal = Goddess of Wisdom — disguised as man, ruled a kingdom</div><div class="ta">நாயகி ஞானாம்பாள் = அறிவின் தேவி — ஆண் வேடம் போட்டு ஒரு ராஜ்யத்தை ஆட்சி செய்தாள்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Other works: Suguna Sundari, Penmathi Malai, Sarva Samaya Samarasa Kirthanaigal, Nititool</div><div class="ta">மற்ற நூல்கள்: சுகுண சுந்தரி, பெண்மதி மாலை, சர்வ சமய சமரச கீர்த்தனைகள், நீதி நூல்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Famine relief: Kanjithotti (1876–1878) — Great Famine of Madras / Datu Varuda Panjam</div><div class="ta">பஞ்ச நிவாரணம்: கஞ்சித் தொட்டிகள் (1876–1878) — தாது வருடப் பஞ்சம்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Mnemonic for books: P-S-P-S-N → "Please Send Pretty Students Now"</div><div class="ta">நூல்கள் நினைவுக்கு: ப-சு-பெ-சர்-நீ → "பிரதாப, சுகுண, பெண்மதி, சர்வசமய, நீதிநூல்"</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Literary contemporaries: Gopalakrishna Bharathiyar, Ramalinga Vallalar, U.V. Swaminatha Iyer</div><div class="ta">இலக்கிய தோழர்கள்: கோபாலகிருஷ்ண பாரதியார், ராமலிங்க வள்ளலார், உ.வே. சாமிநாத ஐயர்</div></div></div>
+        </div>
+
+        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
+
+        <div class="card" style="border:2px dashed var(--border);text-align:center;padding:20px;" onclick="showToast('விரைவில் வரும்!')">
+          <div style="font-size:28px;margin-bottom:8px;">📖</div>
+          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">அடுத்த கட்டுரை விரைவில்</div>
+          <div style="font-size:12px;color:var(--text-muted);">Article 03: Fundamental Rights — Your Constitutional Shield</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">அடிப்படை உரிமைகள் — உங்கள் அரசியலமைப்பு கவசம்</div>
+        </div>
+
+      </div><!-- /.art-body -->
+    </div><!-- /#articleReaderVeda -->
+
+  </section>
+
 </main>
 
 <!-- ══ BOTTOM NAV ══ -->
@@ -1464,8 +2438,8 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
     <button class="nav-btn" id="nav-quiz" onclick="navigate('quiz')" aria-label="மாதிரித் தேர்வுகள்">
       <span class="nav-icon" aria-hidden="true">📝</span>தேர்வுகள்
     </button>
-    <button class="nav-btn" id="nav-affairs" onclick="navigate('affairs')" aria-label="நடப்பு நிகழ்வுகள்">
-      <span class="nav-icon" aria-hidden="true">📰</span>நடப்பு
+    <button class="nav-btn" id="nav-polity" onclick="navigate('polity')" aria-label="கட்டுரைகள்">
+      <span class="nav-icon" aria-hidden="true">📖</span>கட்டுரைகள்
     </button>
     <button class="nav-btn" id="nav-leaderboard" onclick="navigate('leaderboard')" aria-label="தரவரிசை">
       <span class="nav-icon" aria-hidden="true">🏆</span>தரவரிசை
@@ -1533,7 +2507,798 @@ const SUBJECTS = [
   { id:'aptitude',   name:'கணிதம் & திறனாய்வு', icon:'🔢', color:'#e85d04', bg:'#fff7ed', q:100, progress:70 },
   { id:'tamil',      name:'தமிழ்',               icon:'அ',  color:'#dc2626', bg:'#fef2f2', q:90,  progress:50 },
   { id:'current',    name:'நடப்பு நிகழ்வுகள்', icon:'📰', color:'#0f766e', bg:'#f0fdfa', q:60,  progress:80 },
+  { id:'palayam',    name:'பாளையக்காரர் கிளர்ச்சி', icon:'⚔️', color:'#dc2626', bg:'#fef2f2', q:100, progress:0 },
 ];
+
+// Palayakkarar Quiz Bank
+const PALAYAM_QUIZ_DATA = [
+
+  // ══ SECTION 1: PALAIYAKKARAR SYSTEM (Q1–15) ══
+
+  {
+    q: "The Palaiyakkarar system was first established in Tamil Nadu by which Nayak ruler?",
+    qta: "தமிழ்நாட்டில் பாளையக்காரர் முறையை முதன்முதலில் நிறுவியவர் யார்?",
+    opts: ["Thirumalai Nayaka", "Viswanatha Nayaka", "Muthu Krishnappa Nayaka", "Chandra Sekhara Nayaka"],
+    optsTA: ["திருமலை நாயக்கர்", "விஸ்வநாத நாயக்கர்", "முத்து கிருஷ்ணப்ப நாயக்கர்", "சந்திரசேகர நாயக்கர்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Viswanatha Nayaka established the Palaiyakkarar (Poligar) system in Tamil Nadu in 1529 AD when he became the Nayak ruler of Madurai, with the support of his minister Ariyanathar.",
+    explTA: "விஸ்வநாத நாயக்கர் 1529 ஆம் ஆண்டில் மதுரையின் நாயக்க ஆட்சியாளராக ஆனபோது, அமைச்சர் ஆரியநாதரின் ஆதரவுடன் தமிழ்நாட்டில் பாளையக்காரர் முறையை நிறுவினார்."
+  },
+  {
+    q: "What does the word 'Palayam' literally mean?",
+    qta: "'பாளையம்' என்ற சொல்லின் உண்மையான பொருள் என்ன?",
+    opts: ["A large army", "Domain, a military camp, or a small kingdom", "A tax collection unit", "A fort boundary"],
+    optsTA: ["ஒரு பெரிய படை", "ஆட்சி, இராணுவ முகாம் அல்லது சிறு ராஜ்யம்", "வரி வசூல் அலகு", "கோட்டை எல்லை"],
+    ans: 1,
+    diff: "easy",
+    expl: "The word 'Palayam' means a domain, a military camp, or a small kingdom. It was given for valuable military services rendered by any individual.",
+    explTA: "'பாளையம்' என்ற சொல்லுக்கு ஆட்சி, இராணுவ முகாம் அல்லது சிறிய ராஜ்யம் என்று பொருள். மதிப்புமிக்க இராணுவ சேவைக்கு வழங்கப்பட்டது."
+  },
+  {
+    q: "In which year did Viswanatha Nayaka formally institute the Poligar system?",
+    qta: "விஸ்வநாத நாயக்கர் பாளையக்காரர் முறையை முறையாக நிறுவிய ஆண்டு எது?",
+    opts: ["1529 AD", "1535 AD", "1550 AD", "1600 AD"],
+    optsTA: ["1529 கி.பி.", "1535 கி.பி.", "1550 கி.பி.", "1600 கி.பி."],
+    ans: 1,
+    diff: "hard",
+    expl: "Viswanatha Nayaka formally instituted the Poligar system in 1535 AD. He divided responsibility for the defence of each of the 72 bastions of the Madurai Fort.",
+    explTA: "விஸ்வநாத நாயக்கர் 1535 கி.பி.யில் பாளையக்காரர் முறையை முறைப்படுத்தினார். மதுரை கோட்டையின் 72 கோபுரங்கள் ஒவ்வொன்றின் பாதுகாப்பையும் பிரித்து கொடுத்தார்."
+  },
+  {
+    q: "How many Palayams were traditionally created under the Madurai Nayaka system?",
+    qta: "மதுரை நாயக்க முறையில் பாரம்பரியமாக எத்தனை பாளையங்கள் உருவாக்கப்பட்டன?",
+    opts: ["52", "62", "72", "82"],
+    optsTA: ["52", "62", "72", "82"],
+    ans: 2,
+    diff: "easy",
+    expl: "Traditionally there were 72 Palayakkarars under the Nayaka system. During the time of Thirumalai Nayaka, the number of Palayams enhanced up to 82.",
+    explTA: "நாயக்க முறையில் பாரம்பரியமாக 72 பாளையக்காரர்கள் இருந்தனர். திருமலை நாயக்கரின் காலத்தில் பாளையங்களின் எண்ணிக்கை 82 ஆக உயர்ந்தது."
+  },
+  {
+    q: "What was the revenue sharing ratio between Madurai Nayaks and Palaiyakarars?",
+    qta: "மதுரை நாயக்கர்களுக்கும் பாளையக்காரர்களுக்கும் இடையிலான வருவாய் பகிர்வு விகிதம் என்ன?",
+    opts: ["1/2 each", "1/3 Nayaks, 2/3 Palaiyakarars", "2/3 Nayaks, 1/3 Palaiyakarars", "Equal with extra levy"],
+    optsTA: ["தலா 1/2", "1/3 நாயக்கர்கள், 2/3 பாளையக்காரர்கள்", "2/3 நாயக்கர்கள், 1/3 பாளையக்காரர்கள்", "சமம் மற்றும் கூடுதல் வரி"],
+    ans: 1,
+    diff: "medium",
+    expl: "Under the Madurai Nayaks, the tax collection was split: 1/3 share went to Madurai Nayaks and 2/3 share was retained by the Palaiyakarars.",
+    explTA: "மதுரை நாயக்கர்களின் கீழ், வரி வசூல் பிரிக்கப்பட்டது: 1/3 பங்கு மதுரை நாயக்கர்களுக்கும், 2/3 பங்கு பாளையக்காரர்களுக்கும் சென்றது."
+  },
+  {
+    q: "The Palaiyakkarar system had its origins in which earlier kingdom's practice?",
+    qta: "பாளையக்காரர் முறை எந்த முந்தைய ராஜ்யத்தின் நடைமுறையில் தோன்றியது?",
+    opts: ["Chola Kingdom", "Pandya Kingdom", "Kakatiya Kingdom of Warangal", "Hoysala Kingdom"],
+    optsTA: ["சோழ ராஜ்யம்", "பாண்டிய ராஜ்யம்", "வாரங்கல்லின் காகதீய ராஜ்யம்", "ஹொய்சள ராஜ்யம்"],
+    ans: 2,
+    diff: "hard",
+    expl: "This type of Palayakkarars system was in practice during the rule of Pratapa Rudhra of Warangal in the Kakatiya Kingdom, before it was established in Tamil Nadu.",
+    explTA: "இந்த பாளையக்காரர் முறை வாரங்கல்லின் காகதீய ராஜ்யத்தில் பிரதாப ருத்ரரின் ஆட்சியில் நடைமுறையில் இருந்தது, பின்னர் தமிழ்நாட்டில் நிறுவப்பட்டது."
+  },
+  {
+    q: "The police force maintained by Palaiyakarars was known as:",
+    qta: "பாளையக்காரர்களால் பராமரிக்கப்பட்ட காவல் படை எவ்வாறு அழைக்கப்பட்டது?",
+    opts: ["Padaikkara", "Kavalkara", "Marakkal", "Silamba"],
+    optsTA: ["படைக்கார", "காவல்காரா", "மரக்கால்", "சிலம்பு"],
+    ans: 1,
+    diff: "hard",
+    expl: "The Palaiyakarars also maintained police forces called Kavalkara (Police). Their police duties were known as Padikaval or Arasu Kaval.",
+    explTA: "பாளையக்காரர்கள் காவல்காரா என்று அழைக்கப்படும் காவல் படைகளையும் பராமரித்தனர். அவர்களின் காவல் கடமைகள் படிக்காவல் அல்லது அரசு காவல் என்று அறியப்பட்டன."
+  },
+  {
+    q: "Under which treaty did the British gain rights to collect taxes from Palayakkarars?",
+    qta: "எந்த ஒப்பந்தத்தின் கீழ் பிரிட்டிஷார் பாளையக்காரர்களிடமிருந்து வரி வசூலிக்கும் உரிமை பெற்றனர்?",
+    opts: ["Treaty of 1781", "Treaty of 1787", "Treaty of 1792", "Treaty of 1801"],
+    optsTA: ["1781 ஒப்பந்தம்", "1787 ஒப்பந்தம்", "1792 ஒப்பந்தம்", "1801 ஒப்பந்தம்"],
+    ans: 2,
+    diff: "medium",
+    expl: "In 1792, the British East India Company entered into an agreement with the Nawab of Arcot, acquiring the right to collect taxes from the Palayakkarars. This was strongly opposed by the Palaiyakkarars.",
+    explTA: "1792 ஆம் ஆண்டில், பிரிட்டிஷ் கிழக்கிந்திய கம்பெனி அர்காட் நவாபுடன் ஒப்பந்தம் செய்து, பாளையக்காரர்களிடமிருந்து வரி வசூலிக்கும் உரிமை பெற்றது. இதை பாளையக்காரர்கள் கடுமையாக எதிர்த்தனர்."
+  },
+  {
+    q: "Which Nawab was the 1st Nawab of Arcot who was killed at the Battle of Ambur (1749)?",
+    qta: "1749 இல் அம்பூர் போரில் கொல்லப்பட்ட அர்காட்டின் முதல் நவாப் யார்?",
+    opts: ["Muhammad Ali Khan", "Mahfuz Khan", "Anwaruddin Khan", "Umdad-ul-Umra"],
+    optsTA: ["முகம்மது அலி கான்", "மஹ்பூஸ் கான்", "அன்வருதீன் கான்", "உம்தாத்-உல்-உம்ரா"],
+    ans: 2,
+    diff: "medium",
+    expl: "Anwaruddin Khan (1672–1749), also known as Muhammad Anwaruddin, was the 1st Nawab of Arcot. He was killed at the Battle of Ambur on 3 August 1749 at the age of 77, fighting the French army.",
+    explTA: "அன்வருதீன் கான் (1672–1749), முகம்மது அன்வருதீன் என்றும் அழைக்கப்படுபவர், அர்காட்டின் 1வது நவாப். 77 வயதில் 3 ஆகஸ்ட் 1749 அன்று அம்பூர் போரில் பிரெஞ்சு படையுடன் போரிட்டு கொல்லப்பட்டார்."
+  },
+  {
+    q: "What fraction of revenue did Muhammad Ali agree to pay to the British under the 1787 Treaty?",
+    qta: "1787 ஒப்பந்தத்தின் கீழ் முகம்மது அலி பிரிட்டிஷாருக்கு எவ்வளவு வருவாய் செலுத்த சம்மதித்தார்?",
+    opts: ["1/5 of annual revenue", "2/5 of annual revenue", "3/5 of annual revenue", "4/5 of annual revenue"],
+    optsTA: ["ஆண்டு வருவாயில் 1/5", "ஆண்டு வருவாயில் 2/5", "ஆண்டு வருவாயில் 3/5", "ஆண்டு வருவாயில் 4/5"],
+    ans: 3,
+    diff: "hard",
+    expl: "Under the Treaty of 1787 signed with Muhammad Ali, he accepted to pay 4/5 of his annual revenue to the British. He also surrendered his forts to the British and accepted their supremacy.",
+    explTA: "1787 ஒப்பந்தத்தின் கீழ் முகம்மது அலி தனது ஆண்டு வருவாயில் 4/5ஐ பிரிட்டிஷாருக்கு செலுத்த சம்மதித்தார். மேலும் தனது கோட்டைகளை ஒப்படைத்தார்."
+  },
+  {
+    q: "What was Travancore's unique position in the Palayam system?",
+    qta: "பாளையம் முறையில் திருவிதாங்கூரின் தனித்துவமான நிலை என்ன?",
+    opts: ["It was the 71st Palayam", "It was the 72nd Palayam", "It was the 73rd Palayam", "It was not part of the system"],
+    optsTA: ["இது 71வது பாளையம்", "இது 72வது பாளையம்", "இது 73வது பாளையம்", "இது முறையில் இல்லை"],
+    ans: 2,
+    diff: "hard",
+    expl: "Travancore was included as the 73rd Palayam as it was a feudatory under the Vijayanagar rule, extending beyond the original 72 Palayams created by the Nayakas.",
+    explTA: "திருவிதாங்கூர் விஜயநகர ஆட்சியின் கீழ் ஒரு சாமந்த நாடாக இருந்ததால் 73வது பாளையமாக சேர்க்கப்பட்டது."
+  },
+  {
+    q: "After the fall of the Nayak dynasty in which year were the Palayams disturbed?",
+    qta: "நாயக்க வம்சம் வீழ்ந்த பிறகு எந்த ஆண்டில் பாளையங்கள் கலக்கமடைந்தன?",
+    opts: ["1726", "1736", "1746", "1756"],
+    optsTA: ["1726", "1736", "1746", "1756"],
+    ans: 1,
+    diff: "medium",
+    expl: "After the fall of the Nayak dynasty in 1736, the palayams were disturbed. After the fall of the Vijayanagara Empire, the Mughals established control and the Nawab of Arcot acted as their representative.",
+    explTA: "1736 ஆம் ஆண்டில் நாயக்க வம்சம் வீழ்ந்த பிறகு பாளையங்கள் கலக்கமடைந்தன. விஜயநகர சாம்ராஜ்யம் வீழ்ந்த பிறகு முகலாயர்கள் கட்டுப்பாட்டை நிறுவி, அர்காட் நவாப் அவர்களின் பிரதிநிதியாக செயல்பட்டார்."
+  },
+  {
+    q: "The Kongu country had the _____ number of Palayams in South India:",
+    qta: "கொங்கு நாட்டில் தென்னிந்தியாவில் _____ பாளையங்கள் இருந்தன:",
+    opts: ["Smallest", "Second largest", "Largest", "Equal to Madurai"],
+    optsTA: ["மிகக் குறைந்த", "இரண்டாவது அதிக", "மிக அதிக", "மதுரைக்கு சமம்"],
+    ans: 2,
+    diff: "medium",
+    expl: "The Kongu country in South India had the largest number of Palayams. In the Kongu country alone there were ten strong Palayams.",
+    explTA: "தென்னிந்தியாவில் கொங்கு நாட்டில் அதிக எண்ணிக்கையிலான பாளையங்கள் இருந்தன. கொங்கு நாட்டில் மட்டுமே பத்து வலிமையான பாளையங்கள் இருந்தன."
+  },
+  {
+    q: "Which two blocs of Eastern and Western Palayams were among the prominent ones?",
+    qta: "கிழக்கு மற்றும் மேற்கு பாளையங்களில் முக்கியமான இரண்டு குழுக்கள் யாவை?",
+    opts: ["Sattur/Ettayapuram (East) & Uthumalai/Singampatti (West)", "Madurai/Trichy (East) & Coimbatore/Salem (West)", "Tanjore/Nagapattinam (East) & Tirunelveli/Kanyakumari (West)", "None of the above"],
+    optsTA: ["சாத்தூர்/எட்டயபுரம் (கிழக்கு) & ஊத்துமலை/சிங்கம்பட்டி (மேற்கு)", "மதுரை/திருச்சி (கிழக்கு) & கோவை/சேலம் (மேற்கு)", "தஞ்சாவூர்/நாகப்பட்டினம் (கிழக்கு) & திருநெல்வேலி/கன்னியாகுமரி (மேற்கு)", "மேற்கூறிய எதுவும் இல்லை"],
+    ans: 0,
+    diff: "hard",
+    expl: "The prominent Eastern Palayams were Sattur, Nagalapuram, Ettayapuram, and Panchalamkurichi. The prominent Western Palayams were Uthumalai, Thalavankottai, Naduvakurichi, Singampatti, and Seithur.",
+    explTA: "முக்கியமான கிழக்கு பாளையங்கள்: சாத்தூர், நாகலாபுரம், எட்டயபுரம், பஞ்சலங்குறிச்சி. முக்கியமான மேற்கு பாளையங்கள்: ஊத்துமலை, தலவான்கோட்டை, நடுவக்குறிச்சி, சிங்கம்பட்டி, சீத்தூர்."
+  },
+  {
+    q: "In which year did the Palaiyakkarars' Revolution formally break out?",
+    qta: "பாளையக்காரர்கள் புரட்சி எந்த ஆண்டில் முறையாக வெடித்தது?",
+    opts: ["1795", "1797", "1799", "1801"],
+    optsTA: ["1795", "1797", "1799", "1801"],
+    ans: 2,
+    diff: "easy",
+    expl: "In 1799, the Palaiyakkarars' Revolution broke out. The First Poligar War in 1799 was sparked by the British imposition of a new land tax system.",
+    explTA: "1799 ஆம் ஆண்டில் பாளையக்காரர்கள் புரட்சி வெடித்தது. 1799 இல் நடந்த முதல் பாளையக்காரர் போர் பிரிட்டிஷ் புதிய நில வரி முறையால் தூண்டப்பட்டது."
+  },
+
+  // ══ SECTION 2: PULI THEVAR (Q16–25) ══
+
+  {
+    q: "Puli Thevar ruled which Palayam near Sankarankovil?",
+    qta: "புலிதேவர் சங்கரன்கோவிலுக்கு அருகிலுள்ள எந்த பாளையத்தை ஆட்சி செய்தார்?",
+    opts: ["Panchalankurichi", "Sivaganga", "Audaiyapuram (Nelkattum Seval)", "Virupatchi"],
+    optsTA: ["பஞ்சலங்குறிச்சி", "சிவகங்கை", "ஒடையாபுரம் (நெல்கட்டும்செவல்)", "விருபாட்சி"],
+    ans: 2,
+    diff: "medium",
+    expl: "Puli Thevar ruled Audaiyapuram near Sankarankovil, also known as Nelkattum Sewal. He was born on September 1, 1715.",
+    explTA: "புலிதேவர் சங்கரன்கோவிலுக்கு அருகிலுள்ள ஒடையாபுரத்தை (நெல்கட்டும்செவல்) ஆட்சி செய்தார். அவர் செப்டம்பர் 1, 1715 அன்று பிறந்தார்."
+  },
+  {
+    q: "Who were the two generals of Puli Thevar?",
+    qta: "புலிதேவரின் இரண்டு தளபதிகள் யார்?",
+    opts: ["Sundaralingam and Sivasubramaniam", "Ondiveeran and Venni Kaladi/Periya Kaladi", "Kumaraswamy and Duraisingam", "Marudu and Chinna Marudu"],
+    optsTA: ["சுந்தரலிங்கம் மற்றும் சிவசுப்பிரமணியம்", "ஒண்டிவீரன் மற்றும் வெண்ணி களடி/பெரிய களடி", "குமாரசாமி மற்றும் துரைசிங்கம்", "மருது மற்றும் சின்ன மருது"],
+    ans: 1,
+    diff: "hard",
+    expl: "Puli Thevar's generals were Ondiveeran and Venni Kaladi (also called Periya Kaladi). Ondiveeran led one of the army units of Puli Thevar and caused much damage to the Company's army.",
+    explTA: "புலிதேவரின் தளபதிகள் ஒண்டிவீரன் மற்றும் வெண்ணி களடி (பெரிய களடி என்றும் அழைக்கப்பட்டனர்). ஒண்டிவீரன் புலிதேவரின் படை பிரிவை வழிநடத்தி கம்பெனி படைக்கு பெரும் சேதம் விளைவித்தார்."
+  },
+  {
+    q: "Puli Thevar ascended the throne in which year at what age?",
+    qta: "புலிதேவர் எந்த ஆண்டில் எத்தனை வயதில் அரியணை ஏறினார்?",
+    opts: ["1726 at age 11", "1726 at age 12", "1730 at age 15", "1740 at age 25"],
+    optsTA: ["1726 ல் 11 வயதில்", "1726 ல் 12 வயதில்", "1730 ல் 15 வயதில்", "1740 ல் 25 வயதில்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Puli Thevar ascended the throne in 1726 at the age of 12. He was born on September 1, 1715.",
+    explTA: "புலிதேவர் 1726 ஆம் ஆண்டில் 12 வயதில் அரியணை ஏறினார். அவர் செப்டம்பர் 1, 1715 அன்று பிறந்தார்."
+  },
+  {
+    q: "In the Battle of Kalakadu (1755), who was defeated by Puli Thevar?",
+    qta: "கலக்காடு போரில் (1755) புலிதேவரால் யார் தோற்கடிக்கப்பட்டார்?",
+    opts: ["Colonel Heron", "Muhammad Ali", "Mahfuz Khan", "Robert Clive"],
+    optsTA: ["கர்னல் ஹெரான்", "முகம்மது அலி", "மஹ்பூஸ் கான்", "ராபர்ட் கிளைவ்"],
+    ans: 2,
+    diff: "medium",
+    expl: "In the 1755 Battle of Kalakadu (Siege of Kalakadu), there was a battle between Mahfuz Khan and Puli Thevar (Bhulidevar), and Puli Thevar won. The Nawab's reinforced troops were routed.",
+    explTA: "1755 கலக்காடு போரில் மஹ்பூஸ் கான் மற்றும் புலிதேவருக்கு இடையே போர் நடந்தது, புலிதேவர் வெற்றி பெற்றார். நவாபின் வலுவூட்டப்பட்ட படைகள் தோற்கடிக்கப்பட்டன."
+  },
+  {
+    q: "Yusuf Khan (Khan Sahib) who fought Puli Thevar was earlier known by what Hindu name?",
+    qta: "புலிதேவருடன் போர் செய்த யூசுப் கான் (கான் சாகிப்) முன்பு எந்த இந்து பெயரில் அறியப்பட்டார்?",
+    opts: ["Sivasubramaniam Pillai", "Marudhanayagam Pillai", "Thandavaraya Pillai", "Gopala Nayak"],
+    optsTA: ["சிவசுப்பிரமணிய பிள்ளை", "மருதநாயகம் பிள்ளை", "தண்டவராய பிள்ளை", "கோபால நாயக்கர்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Yusuf Khan (also known as Khan Sahib) was, before his conversion to Islam, known as Marudhanayagam Pillai. He was sent by the Company to fight the palayakkarars.",
+    explTA: "யூசுப் கான் (கான் சாகிப் என்றும் அழைக்கப்பட்டார்) இஸ்லாமுக்கு மதமாற்றத்திற்கு முன்பு மருதநாயகம் பிள்ளை என்று அறியப்பட்டார். பாளையக்காரர்களை எதிர்க்க கம்பெனியால் அனுப்பப்பட்டார்."
+  },
+  {
+    q: "On what date was Yusuf Khan hanged after being accused of treachery?",
+    qta: "துரோகம் செய்தனர் என்று குற்றம்சாட்டப்பட்டு யூசுப் கான் தூக்கிலிடப்பட்ட தேதி என்ன?",
+    opts: ["15 October 1763", "15 October 1764", "15 October 1765", "15 October 1766"],
+    optsTA: ["15 அக்டோபர் 1763", "15 அக்டோபர் 1764", "15 அக்டோபர் 1765", "15 அக்டோபர் 1766"],
+    ans: 1,
+    diff: "hard",
+    expl: "Yusuf Khan was accused of negotiating with the palayakkarars without consulting the British officials and was sentenced to death. He was hanged on 15 October 1764.",
+    explTA: "யூசுப் கான் பிரிட்டிஷ் அதிகாரிகளை கலந்தாலோசிக்காமல் பாளையக்காரர்களுடன் பேரம் பேசியதற்காக குற்றம்சாட்டப்பட்டு மரண தண்டனை விதிக்கப்பட்டார். 15 அக்டோபர் 1764 அன்று தூக்கிலிடப்பட்டார்."
+  },
+  {
+    q: "After Yusuf Khan's death, Puli Thevar recaptured Nelkattum Sevel in which year?",
+    qta: "யூசுப் கான் மரணத்திற்குப் பிறகு புலிதேவர் எந்த ஆண்டில் நெல்கட்டும்செவலை மீண்டும் கைப்பற்றினார்?",
+    opts: ["1763", "1764", "1765", "1767"],
+    optsTA: ["1763", "1764", "1765", "1767"],
+    ans: 1,
+    diff: "medium",
+    expl: "After the death of Khan Sahib (Yusuf Khan), Puli Thevar returned from exile and recaptured Nerkattumseval in 1764. He ruled till 1767 before his defeat by Captain Campbell.",
+    explTA: "கான் சாகிப் (யூசுப் கான்) மரணத்திற்குப் பிறகு புலிதேவர் நாடுகடத்தலிலிருந்து திரும்பி 1764 இல் நெல்கட்டும்செவலை மீண்டும் கைப்பற்றினார். கேப்டன் கேம்பெல்லால் தோற்கடிக்கப்படுவதற்கு முன்பு 1767 வரை ஆட்சி செய்தார்."
+  },
+  {
+    q: "Puli Thevar sought alliance with which of the following leaders against the British?",
+    qta: "புலிதேவர் பிரிட்டிஷாருக்கு எதிராக பின்வருவோரில் யாரிடம் கூட்டணி தேடினார்?",
+    opts: ["Tipu Sultan only", "Hyder Ali and the French", "Marudhu Brothers only", "The Marathas"],
+    optsTA: ["திப்பு சுல்தான் மட்டும்", "ஹைதர் அலி மற்றும் பிரஞ்சுக்காரர்கள்", "மருது சகோதரர்கள் மட்டும்", "மராத்தியர்கள்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Puli Thevar tried to get the support of Hyder Ali of Mysore and the French against the British. However, Hyder Ali could not help Puli Thevar as he was locked in a serious conflict with the Marathas.",
+    explTA: "புலிதேவர் மைசூரின் ஹைதர் அலி மற்றும் பிரஞ்சுக்காரர்களின் ஆதரவை பிரிட்டிஷாருக்கு எதிராக பெற முயன்றார். ஆனால் ஹைதர் அலி மராத்தியர்களுடன் தீவிர மோதலில் இருந்ததால் உதவ முடியவில்லை."
+  },
+  {
+    q: "Who was Colonel Heron's replacement who was also later recalled and dismissed?",
+    qta: "கர்னல் ஹெரானுக்கு பதிலாக வந்தவர் யார், அவரும் பின்னர் திரும்ப அழைக்கப்பட்டு பணிநீக்கம் செய்யப்பட்டார்?",
+    opts: ["Major Bannerman", "Colonel Heron himself was recalled", "The same Colonel Heron was recalled and dismissed", "Colonel Maxwell"],
+    optsTA: ["மேஜர் பேன்னர்மன்", "கர்னல் ஹெரானே திரும்ப அழைக்கப்பட்டார்", "அதே கர்னல் ஹெரான் திரும்ப அழைக்கப்பட்டு பணிநீக்கம் செய்யப்பட்டார்", "கர்னல் மேக்ஸ்வெல்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Colonel Heron, who was urged to deal with Puli Thevar but abandoned the plan for want of cannon and supplies, was recalled and dismissed from service by the British.",
+    explTA: "புலிதேவரை கையாள உந்தப்பட்ட கர்னல் ஹெரான், பீரங்கி மற்றும் பொருட்கள் இல்லாத காரணத்தால் திட்டத்தை கைவிட்டார். பிரிட்டிஷாரால் திரும்ப அழைக்கப்பட்டு பணிநீக்கம் செய்யப்பட்டார்."
+  },
+  {
+    q: "Venni Kaladi of Puli Thevar's army was killed in which year?",
+    qta: "புலிதேவரின் படையில் வெண்ணி களடி எந்த ஆண்டில் கொல்லப்பட்டார்?",
+    opts: ["1758", "1759", "1760", "1761"],
+    optsTA: ["1758", "1759", "1760", "1761"],
+    ans: 2,
+    diff: "hard",
+    expl: "In 1759, Yusuf Khan waged a war against Pulithevar. In this battle, Venni Kaladi was killed on 20 December 1760.",
+    explTA: "1759 இல் யூசுப் கான் புலிதேவருக்கு எதிராக போர் தொடுத்தார். இந்த போரில் வெண்ணி களடி 20 டிசம்பர் 1760 அன்று கொல்லப்பட்டார்."
+  },
+
+  // ══ SECTION 3: KATTABOMMAN (Q26–45) ══
+
+  {
+    q: "What is the meaning of 'Keti Pommu' (Kattabomman's title)?",
+    qta: "'கேடி பொம்மு' (கட்டபொம்மனின் பட்டம்) என்பதன் பொருள் என்ன?",
+    opts: ["Great warrior", "Brave/courageous", "Lion of the South", "Ruler of Panchalankurichi"],
+    optsTA: ["மாவீரன்", "தைரியமானவன்/துணிச்சல்மிக்கவன்", "தென்னிந்தியாவின் சிங்கம்", "பஞ்சலங்குறிச்சியின் ஆட்சியாளர்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Keti Pommu means brave/courageous. Kattabomman's original name was Karuthaiya. His father's name was Jaga Veerapandiya Kattabomman.",
+    explTA: "கேடி பொம்மு என்றால் 'தைரியமான' என்று பொருள். கட்டபொம்மனின் உண்மையான பெயர் கருத்தையா. அவரது தந்தையின் பெயர் ஜகவீரபாண்டிய கட்டபொம்மன்."
+  },
+  {
+    q: "On what date was Veerapandiya Kattabomman born?",
+    qta: "வீரபாண்டிய கட்டபொம்மன் எந்த தேதியில் பிறந்தார்?",
+    opts: ["January 3, 1760", "January 3, 1730", "October 17, 1760", "February 2, 1760"],
+    optsTA: ["ஜனவரி 3, 1760", "ஜனவரி 3, 1730", "அக்டோபர் 17, 1760", "பிப்ரவரி 2, 1760"],
+    ans: 0,
+    diff: "medium",
+    expl: "Veerapandiya Kattabomman was born on 3rd January 1760. Note: Velunachiyar was born 30 years before on 3rd January 1730 — same date, different year.",
+    explTA: "வீரபாண்டிய கட்டபொம்மன் 3 ஜனவரி 1760 அன்று பிறந்தார். குறிப்பு: வேலு நாச்சியார் 30 ஆண்டுகள் முன்பு 3 ஜனவரி 1730 அன்று பிறந்தார் — ஒரே தேதி, வெவ்வேறு ஆண்டுகள்."
+  },
+  {
+    q: "On which date did Kattabomman take over the reins of Panchalankurichi Palayam?",
+    qta: "கட்டபொம்மன் எந்த தேதியில் பஞ்சலங்குறிச்சி பாளையத்தின் ஆட்சியை ஏற்றுக்கொண்டார்?",
+    opts: ["January 3, 1790", "February 2, 1790", "March 1, 1792", "May 31, 1798"],
+    optsTA: ["ஜனவரி 3, 1790", "பிப்ரவரி 2, 1790", "மார்ச் 1, 1792", "மே 31, 1798"],
+    ans: 1,
+    diff: "hard",
+    expl: "On February 2, 1790, Veerapandiya Kattabomman, aged 30, took over the reins of Panchalangurichi Palayam after the death of his father.",
+    explTA: "பிப்ரவரி 2, 1790 அன்று 30 வயதான வீரபாண்டிய கட்டபொம்மன் தனது தந்தையின் மரணத்திற்குப் பிறகு பஞ்சலங்குறிச்சி பாளையத்தின் ஆட்சியை ஏற்றுக்கொண்டார்."
+  },
+  {
+    q: "What was the tax demand (in pagodas) sent to Kattabomman by Collector Jackson?",
+    qta: "கலெக்டர் ஜாக்சன் கட்டபொம்மனுக்கு அனுப்பிய வரி கோரிக்கை (பகோடாக்களில்) என்ன?",
+    opts: ["1080 pagodas", "2000 pagodas", "3310 pagodas", "4000 rupees"],
+    optsTA: ["1080 பகோடாக்கள்", "2000 பகோடாக்கள்", "3310 பகோடாக்கள்", "4000 ரூபாய்"],
+    ans: 2,
+    diff: "medium",
+    expl: "On 31 May 1798, Veerapandiya Kattabomman received a letter from Colin Jackson stating that 3310 pagodas (varagans) were to be paid.",
+    explTA: "31 மே 1798 அன்று வீரபாண்டிய கட்டபொம்மன் கோலின் ஜாக்சனிடமிருந்து 3310 பகோடாக்கள் (வராகன்கள்) செலுத்தப்பட வேண்டும் என்று கடிதம் பெற்றார்."
+  },
+  {
+    q: "Where did the famous meeting between Kattabomman and Collector Jackson take place on 19 September 1798?",
+    qta: "19 செப்டம்பர் 1798 அன்று கட்டபொம்மனும் கலெக்டர் ஜாக்சனும் சந்தித்த பிரசித்தமான இடம் எது?",
+    opts: ["Panchalankurichi Fort", "Palayankottai Court", "Ramalinga Vilasam, Ramanathapuram", "Tirunelveli Collectorate"],
+    optsTA: ["பஞ்சலங்குறிச்சி கோட்டை", "பாளையங்கோட்டை நீதிமன்றம்", "ராமலிங்க விலாசம், இராமநாதபுரம்", "திருநெல்வேலி கலெக்டரேட்"],
+    ans: 2,
+    diff: "medium",
+    expl: "On 19 September 1798, Kattabomman met Jackson at Ramalinga Vilasam, the palace of Ramanathapuram Setumathi in Ramanathapuram. Kattabomman was accompanied by his minister Sivasubramania Pillai.",
+    explTA: "19 செப்டம்பர் 1798 அன்று கட்டபொம்மன் இராமநாதபுரத்தில் சேதுபதியின் அரண்மனையான ராமலிங்க விலாசத்தில் ஜாக்சனை சந்தித்தார். கட்டபொம்மனுடன் அவரது அமைச்சர் சிவசுப்பிரமணிய பிள்ளை இருந்தார்."
+  },
+  {
+    q: "Who was the English officer killed during the riot at Ramanathapuram fort?",
+    qta: "இராமநாதபுரம் கோட்டையில் நடந்த கலகத்தில் கொல்லப்பட்ட ஆங்கிலேய அதிகாரி யார்?",
+    opts: ["Captain Heron", "Lieutenant Clarke", "Major Bannerman", "Collector Jackson"],
+    optsTA: ["கேப்டன் ஹெரான்", "லெப்டினன்ட் கிளார்க்", "மேஜர் பேன்னர்மன்", "கலெக்டர் ஜாக்சன்"],
+    ans: 1,
+    diff: "medium",
+    expl: "During the riot at Ramanathapuram fort, an English officer named Lieutenant Clarke was stabbed to death. Oomai Durai and his warriors who were hiding outside helped Kattabomman escape.",
+    explTA: "இராமநாதபுரம் கோட்டையில் நடந்த கலகத்தில் லெப்டினன்ட் கிளார்க் என்ற ஆங்கிலேய அதிகாரி குத்திக் கொல்லப்பட்டார். வெளியே மறைந்திருந்த ஊமைத்துரை மற்றும் அவரது வீரர்கள் கட்டபொம்மன் தப்பிக்க உதவினர்."
+  },
+  {
+    q: "Who was the Governor of Madras who ordered an inquiry into the Ramanathapuram incident?",
+    qta: "இராமநாதபுரம் சம்பவத்தில் விசாரணை உத்தரவிட்ட மதராஸ் கவர்னர் யார்?",
+    opts: ["Lord Wellesley", "Edward Clive", "Sir George Harris", "Lord Cornwallis"],
+    optsTA: ["லார்ட் வெல்லெஸ்லி", "எட்வர்ட் கிளைவ்", "சர் ஜார்ஜ் ஹாரிஸ்", "லார்ட் கார்ன்வாலிஸ்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Edward Clive, the Governor of Madras, registered Kattabomman's letter and set up a commission of inquiry headed by William Brown, William Orr and John Kasmeyer to investigate the Ramanathapuram incident.",
+    explTA: "மதராஸ் கவர்னர் எட்வர்ட் கிளைவ் கட்டபொம்மனின் கடிதத்தை பதிவு செய்து, இராமநாதபுரம் சம்பவத்தை விசாரிக்க வில்லியம் பிரவுன், வில்லியம் ஓர் மற்றும் ஜான் காஸ்மேயர் தலைமையில் ஒரு விசாரணை ஆணையம் அமைத்தார்."
+  },
+  {
+    q: "What was the verdict of the inquiry committee on Kattabomman?",
+    qta: "கட்டபொம்மன் மீதான விசாரணை குழுவின் தீர்ப்பு என்ன?",
+    opts: ["Guilty of treason", "Acquitted (not guilty)", "Fined 4000 rupees", "Banished to Penang"],
+    optsTA: ["தேசத்துரோகி என்று குற்றவாளி", "விடுவிக்கப்பட்டார் (குற்றமில்லை)", "4000 ரூபாய் அபராதம்", "பினாங்கிற்கு நாடு கடத்தப்பட்டார்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Kattabomman appeared before the Committee on 15 December 1798 and was acquitted (found not guilty). Jackson was dismissed from service and a new Collector S.R. Lushington was appointed.",
+    explTA: "கட்டபொம்மன் 15 டிசம்பர் 1798 அன்று குழுவின் முன் ஆஜரானார் மற்றும் விடுவிக்கப்பட்டார் (குற்றமில்லை என்று கண்டறியப்பட்டது). ஜாக்சன் பணிநீக்கம் செய்யப்பட்டு புதிய கலெக்டர் எஸ்.ஆர். லஷிங்டன் நியமிக்கப்பட்டார்."
+  },
+  {
+    q: "Who did Kattabomman meet on 1st June 1799 to form a confederacy?",
+    qta: "கட்டபொம்மன் கூட்டணி உருவாக்க 1 ஜூன் 1799 அன்று யாரை சந்தித்தார்?",
+    opts: ["Gopala Nayak", "Marudu Pandyan of Sivaganga", "Dheeran Chinnamalai", "Kerala Varma"],
+    optsTA: ["கோபால நாயக்கர்", "சிவகங்கையின் மருது பாண்டியன்", "தீரன் சின்னமலை", "கேரள வர்மா"],
+    ans: 1,
+    diff: "medium",
+    expl: "Concluding that the company officer could not be trusted, Kattabomman left for Sivaganga on 1st June 1799 with his soldiers to meet Marudu Pandyan and form a confederacy.",
+    explTA: "கம்பெனி அதிகாரியை நம்ப முடியாது என்று முடிவு செய்து, கட்டபொம்மன் 1 ஜூன் 1799 அன்று மருது பாண்டியனை சந்திக்க சிவகங்கை சென்றார்."
+  },
+  {
+    q: "Who informed the British about the secrets of Panchalankurichi fort?",
+    qta: "பஞ்சலங்குறிச்சி கோட்டையின் இரகசியங்களை பிரிட்டிஷாருக்கு யார் தெரிவித்தார்?",
+    opts: ["Sivasubramaniam Pillai", "Ramalinga Mudaliar", "Pudukottai King", "Ettayapuram Raja"],
+    optsTA: ["சிவசுப்பிரமணிய பிள்ளை", "ராமலிங்க முதலியார்", "புதுக்கோட்டை ராஜா", "எட்டயபுரம் ராஜா"],
+    ans: 1,
+    diff: "hard",
+    expl: "Ramalinga Mudaliar is said to have given information about the Panchalankurichi fort to the British. He first sent an emissary to Kattabomman asking him to surrender, and when Kattabomman refused, the British attacked.",
+    explTA: "ராமலிங்க முதலியார் பஞ்சலங்குறிச்சி கோட்டையின் தகவல்களை பிரிட்டிஷாருக்கு வழங்கியதாக கூறப்படுகிறது. முதலில் கட்டபொம்மனை சரணடையுமாறு கேட்டார், மறுத்தபோது பிரிட்டிஷார் தாக்கினர்."
+  },
+  {
+    q: "What heroic act did Commander Sundaralingam perform on 8 September 1799?",
+    qta: "தளபதி சுந்தரலிங்கம் 8 செப்டம்பர் 1799 அன்று என்ன வீர செயல் செய்தார்?",
+    opts: ["Led a cavalry charge against Bannerman", "Disguised as cowherd and blew up British ammunition depot", "Captured Bannerman's cannon", "Rescued Kattabomman from capture"],
+    optsTA: ["பேன்னர்மனுக்கு எதிராக குதிரைப் படை தாக்குதல் நடத்தினார்", "மாட்டிடையன் வேடம் போட்டு பிரிட்டிஷ் வெடிமருந்து கிடங்கை தகர்த்தார்", "பேன்னர்மனின் பீரங்கியை கைப்பற்றினார்", "கட்டபொம்மனை கைது ஆவதிலிருந்து காப்பாற்றினார்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On 8 September 1799, Sundaralingam disguised as a cowherd with a female relative Vadivu, went to the British ammunition depot. They jumped into the depot after creating fire — the warehouse burst into flames. Sundaralingam and Vadivu became the first suicide bombers of the Indian War of Independence.",
+    explTA: "8 செப்டம்பர் 1799 அன்று சுந்தரலிங்கம் பெண் உறவினர் வடிவுவுடன் மாட்டிடையன் வேடமிட்டு பிரிட்டிஷ் வெடிமருந்து கிடங்கிற்கு சென்றார். தீ வைத்த பிறகு இருவரும் கிடங்கிற்குள் குதித்தனர் — கிடங்கு வெடித்தது. இந்திய சுதந்திரப் போரின் முதல் தற்கொலை வீரர்கள் ஆனார்கள்."
+  },
+  {
+    q: "Who arrested Kattabomman after he escaped and handed him over to Bannerman?",
+    qta: "தப்பிச்சென்ற கட்டபொம்மனை கைது செய்து பேன்னர்மனிடம் ஒப்படைத்தவர் யார்?",
+    opts: ["Ettayapuram Raja", "Pudukottai King Vijayaranganathar Thondaiman", "Travancore King", "Thanjavur Raja"],
+    optsTA: ["எட்டயபுரம் ராஜா", "புதுக்கோட்டை ராஜா விஜயரங்கநாதர் தொண்டைமான்", "திருவிதாங்கூர் ராஜா", "தஞ்சாவூர் ராஜா"],
+    ans: 1,
+    diff: "medium",
+    expl: "The fugitive Kattabomman was caught by Pudukottai King Vijayaranganathar Thondaiman from the Kalapur forest and arrested and handed over to Commander Bannerman.",
+    explTA: "தப்பியோடும் கட்டபொம்மன் களபுர் காட்டிலிருந்து புதுக்கோட்டை ராஜா விஜயரங்கநாதர் தொண்டைமானால் கைது செய்யப்பட்டு தளபதி பேன்னர்மனிடம் ஒப்படைக்கப்பட்டார்."
+  },
+  {
+    q: "On which date was Veerapandiya Kattabomman hanged, and where?",
+    qta: "வீரபாண்டிய கட்டபொம்மன் எந்த தேதியில் எங்கே தூக்கிலிடப்பட்டார்?",
+    opts: ["September 9, 1799 at Panchalankurichi", "October 1, 1799 at Palayankottai", "October 16, 1799 at Ramanathapuram", "October 17, 1799 at Kayathar"],
+    optsTA: ["செப்டம்பர் 9, 1799 பஞ்சலங்குறிச்சியில்", "அக்டோபர் 1, 1799 பாளையங்கோட்டையில்", "அக்டோபர் 16, 1799 இராமநாதபுரத்தில்", "அக்டோபர் 17, 1799 காயத்தாரில்"],
+    ans: 3,
+    diff: "medium",
+    expl: "Kattabomman was hanged from a tamarind tree in the old fort of Kayathar, close to Tirunelveli, on October 17, 1799. The inquest was held on October 16. Panchalankurichi was captured on September 9, 1799.",
+    explTA: "கட்டபொம்மன் அக்டோபர் 17, 1799 அன்று திருநெல்வேலிக்கு அருகில் உள்ள காயத்தார் பழைய கோட்டையில் புளியமரத்தில் தூக்கிலிடப்பட்டார். விசாரணை அக்டோபர் 16 அன்று நடந்தது. பஞ்சலங்குறிச்சி செப்டம்பர் 9, 1799 அன்று கைப்பற்றப்பட்டது."
+  },
+  {
+    q: "How many members were in Kattabomman's family (siblings)?",
+    qta: "கட்டபொம்மனின் குடும்பத்தில் (உடன்பிறந்தவர்கள்) எத்தனை பேர் இருந்தனர்?",
+    opts: ["2 brothers and 1 sister", "3 brothers and 1 sister", "4 brothers and 1 sister", "2 brothers and 2 sisters"],
+    optsTA: ["2 சகோதரர்கள் மற்றும் 1 சகோதரி", "3 சகோதரர்கள் மற்றும் 1 சகோதரி", "4 சகோதரர்கள் மற்றும் 1 சகோதரி", "2 சகோதரர்கள் மற்றும் 2 சகோதரிகள்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Veerapandiya Kattabomman's siblings were: Kumaraswamy/Omaithurai, Duraisingam/Sevathaiya, Eswara Vadivu, Thuraikannu (4 brothers), and Jakkammal (1 sister). His wife Jakkammal had no heir.",
+    explTA: "வீரபாண்டிய கட்டபொம்மனின் உடன்பிறந்தவர்கள்: குமாரசாமி/ஊமைத்துரை, துரைசிங்கம்/சேவத்தையா, ஈஸ்வர வடிவு, துரைக்கண்ணு (4 சகோதரர்கள்), மற்றும் ஜக்கம்மாள் (1 சகோதரி)."
+  },
+  {
+    q: "Which paddy granary was looted by Kattabomman's minister Sivasubramaniam Pillai?",
+    qta: "கட்டபொம்மனின் அமைச்சர் சிவசுப்பிரமணிய பிள்ளை எந்த நெல் கிடங்கை சூறையாடினார்?",
+    opts: ["Sivagiri granary", "Tiruvaikundam rice granary", "Panchalankurichi granary", "Kayathar granary"],
+    optsTA: ["சிவகிரி கிடங்கு", "திருவைகுண்டம் நெல் கிடங்கு", "பஞ்சலங்குறிச்சி கிடங்கு", "காயத்தார் கிடங்கு"],
+    ans: 1,
+    diff: "hard",
+    expl: "Kattabomman's minister Sivasubramaniam Pillai looted the Tiruvaikundam rice granary. 700 kottai of paddy were looted (worth Rs 3300). The British demanded Kattabomman pay a fine of 4000 rupees and hand over Sivasubramaniam Pillai.",
+    explTA: "கட்டபொம்மனின் அமைச்சர் சிவசுப்பிரமணிய பிள்ளை திருவைகுண்டம் நெல் கிடங்கை சூறையாடினார். 700 கொட்டை நெல் (3300 ரூபாய் மதிப்பு) சூறையாடப்பட்டது. பிரிட்டிஷார் 4000 ரூபாய் அபராதம் கட்டி சிவசுப்பிரமணிய பிள்ளையை ஒப்படைக்க கோரினர்."
+  },
+
+  // ══ SECTION 4: VELU NACHIYAR (Q46–60) ══
+
+  {
+    q: "Why is Rani Velu Nachiyar known as India's 'Joan of Arc'?",
+    qta: "ராணி வேலு நாச்சியார் இந்தியாவின் 'ஜோன் ஆஃப் ஆர்க்' என்று ஏன் அழைக்கப்படுகிறார்?",
+    opts: ["She was a religious martyr", "She was the first woman from a royal family to fight against the British", "She led the Vellore Mutiny", "She founded the first women's army in India"],
+    optsTA: ["அவர் ஒரு மத தியாகி", "பிரிட்டிஷாருக்கு எதிராக போரிட்ட முதல் அரச குடும்பப் பெண்", "அவர் வேலூர் கிளர்ச்சியை வழிநடத்தினார்", "இந்தியாவில் முதல் மகளிர் படையை நிறுவினார்"],
+    ans: 1,
+    diff: "easy",
+    expl: "Rani Velu Nachiyar is known as India's Joan of Arc because she was the first woman from a royal family to fight against the British colonial power in India.",
+    explTA: "ராணி வேலு நாச்சியார் இந்தியாவில் பிரிட்டிஷ் காலனி ஆட்சிக்கு எதிராக போரிட்ட முதல் அரச குடும்பப் பெண்ணாக இருந்ததால் இந்தியாவின் 'ஜோன் ஆஃப் ஆர்க்' என்று அழைக்கப்படுகிறார்."
+  },
+  {
+    q: "Velu Nachiyar was born on which date and to which royal family?",
+    qta: "வேலு நாச்சியார் எந்த தேதியில் எந்த அரச குடும்பத்தில் பிறந்தார்?",
+    opts: ["January 3, 1720, Sivaganga", "January 3, 1730, Ramanathapuram", "March 1, 1740, Madurai", "October 11, 1730, Trichy"],
+    optsTA: ["ஜனவரி 3, 1720, சிவகங்கை", "ஜனவரி 3, 1730, இராமநாதபுரம்", "மார்ச் 1, 1740, மதுரை", "அக்டோபர் 11, 1730, திருச்சி"],
+    ans: 1,
+    diff: "medium",
+    expl: "Velu Nachiyar was born on January 3, 1730 to Chellamuthu Vijaya Raghunatha Sethupathi and Muthatthal Nachiyar who ruled Ramanathapuram. She was the only daughter of this royal family.",
+    explTA: "வேலு நாச்சியார் ஜனவரி 3, 1730 அன்று இராமநாதபுரம் ஆண்ட செல்லமுத்து விஜய ரகுநாத சேதுபதி மற்றும் முத்தத்தாள் நாச்சியார் தம்பதியினருக்கு பிறந்தார். இந்த அரச குடும்பத்தின் ஒரே மகள்."
+  },
+  {
+    q: "At what age did Velunachiyar marry Muthu Vadukanathar of Sivaganga?",
+    qta: "வேலு நாச்சியார் சிவகங்கையின் முத்து வடுகநாதரை எத்தனை வயதில் திருமணம் செய்துகொண்டார்?",
+    opts: ["14 years", "16 years", "18 years", "20 years"],
+    optsTA: ["14 வயது", "16 வயது", "18 வயது", "20 வயது"],
+    ans: 1,
+    diff: "medium",
+    expl: "In 1746, at the age of 16, Velunachiyar married Muthu Vadukanathar, the ruler of the Sivaganga region. She was well-trained in martial arts, valari, stick fighting, horse riding, and archery.",
+    explTA: "1746 ஆம் ஆண்டில் 16 வயதில் வேலு நாச்சியார் சிவகங்கை பகுதியின் ஆட்சியாளர் முத்து வடுகநாதரை திருமணம் செய்துகொண்டார். அவர் வாலாரி, தடிசண்டை, குதிரையேற்றம், வில்வித்தை ஆகியவற்றில் நன்கு பயிற்சி பெற்றிருந்தார்."
+  },
+  {
+    q: "How was Muthu Vadukanathar killed in 1772?",
+    qta: "1772 ல் முத்து வடுகநாதர் எவ்வாறு கொல்லப்பட்டார்?",
+    opts: ["In a direct battle with British forces", "Ambushed at Kaliswarar shrine in Kalaiyar temple", "Betrayed by the Marudhu brothers", "Poisoned by the Nawab of Arcot"],
+    optsTA: ["பிரிட்டிஷ் படையுடன் நேரடி போரில்", "கலையார் கோவிலில் கலீஸ்வரர் கோவிலில் புதைக்கப்பட்டார்", "மருது சகோதரர்களால் காட்டிக்கொடுக்கப்பட்டார்", "அர்காட் நவாபால் விஷம் வைக்கப்பட்டார்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On June 25, 1772, the Nawab's forces received information that Muthu Vadukanatha would visit the Kaliswarar shrine in Kalaiyar temple without weapons. The Nawab's forces surrounded him and both Muthu Vadukanatha and Gauri Nachiyar were killed in the battle.",
+    explTA: "ஜூன் 25, 1772 அன்று நவாபின் படைகள் முத்து வடுகநாதர் ஆயுதமின்றி கலையார் கோவிலில் கலீஸ்வரர் கோவிலுக்கு செல்வார் என்ற தகவல் பெற்று சூழ்ந்து கொண்டு போரில் அவரையும் கௌரி நாச்சியாரையும் கொன்றனர்."
+  },
+  {
+    q: "Velunachiyar wrote a letter to Hyder Ali on which date seeking military assistance?",
+    qta: "வேலு நாச்சியார் ஹைதர் அலிக்கு இராணுவ உதவி கோரி எந்த தேதியில் கடிதம் எழுதினார்?",
+    opts: ["8-12-1772", "8-12-1773", "8-12-1780", "8-12-1778"],
+    optsTA: ["8-12-1772", "8-12-1773", "8-12-1780", "8-12-1778"],
+    ans: 0,
+    diff: "hard",
+    expl: "Velunachiyar wrote a letter to Hyder Ali on 8-12-1772 requesting military assistance. Her military chief Dalavay Thandavarayanar wrote the letter on her behalf, explaining all problems with the East India Company in Urdu.",
+    explTA: "வேலு நாச்சியார் 8-12-1772 அன்று ஹைதர் அலிக்கு இராணுவ உதவி கோரி கடிதம் எழுதினார். அவரது தளபதி தண்டவராயனார் அவர் சார்பாக கடிதம் எழுதி, கிழக்கிந்திய கம்பெனியுடனான அனைத்து பிரச்சினைகளையும் உர்து மொழியில் விளக்கினார்."
+  },
+  {
+    q: "How did the Marudhu brothers earn Hyder Ali's military support for Velunachiyar?",
+    qta: "மருது சகோதரர்கள் வேலு நாச்சியாருக்கு ஹைதர் அலியின் இராணுவ ஆதரவை எவ்வாறு பெற்றனர்?",
+    opts: ["By paying tribute to Hyder Ali", "By killing tigers in Watalagundu forests as Hyder Ali requested", "By sending soldiers to Hyder Ali's army", "By capturing a fort for Hyder Ali"],
+    optsTA: ["ஹைதர் அலிக்கு காணிக்கை செலுத்துவதன் மூலம்", "ஹைதர் அலி கேட்டபடி வட்டலகுண்டு காடுகளில் புலிகளை கொல்வதன் மூலம்", "ஹைதர் அலியின் படைக்கு வீரர்களை அனுப்புவதன் மூலம்", "ஹைதர் அலிக்கு ஒரு கோட்டையை கைப்பற்றுவதன் மூலம்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Hyder Ali announced that those who helped control the tigers in the Watalagundu forests would be rewarded with whatever they asked for. The Marudu brothers killed the tigers and in return requested military assistance for Velunachiyar. Hyder Ali sent 5000 cavalry and 5000 infantry.",
+    explTA: "ஹைதர் அலி வட்டலகுண்டு காடுகளில் புலிகளை கட்டுப்படுத்தும் உதவி செய்வோருக்கு அவர்கள் கேட்பதை தருவதாக அறிவித்தார். மருது சகோதரர்கள் புலிகளை கொன்று, வேலு நாச்சியாருக்கு இராணுவ உதவி கோரினர். ஹைதர் அலி 5000 குதிரைப் படை மற்றும் 5000 காலாட் படை அனுப்பினார்."
+  },
+  {
+    q: "What was the name of the brave woman commander who set herself on fire to destroy the British arsenal?",
+    qta: "பிரிட்டிஷ் ஆயுதக் கிடங்கை அழிக்க தன்னை தீக்கொளுத்திக்கொண்ட வீர மகளிர் தளபதியின் பெயர் என்ன?",
+    opts: ["Vellachi Nachiyar", "Udaiyaal", "Kuyili", "Jakkammal"],
+    optsTA: ["வெள்ளாச்சி நாச்சியார்", "உடையாள்", "குயிலி", "ஜக்கம்மாள்"],
+    ans: 2,
+    diff: "easy",
+    expl: "Kuyili, fondly addressed as Veerthalapathy (The Brave Commander) or Veeramangai (The Brave Woman), set herself on fire after pouring ghee and oil on herself and walked into the British arsenal on September 30, 1780, destroying all British weapons.",
+    explTA: "குயிலி, வீர்த்தலபதி (வீர தளபதி) அல்லது வீரமங்கை என்று அன்போடு அழைக்கப்படுபவர், 30 செப்டம்பர் 1780 அன்று தன் மீது நெய் மற்றும் எண்ணெய் ஊற்றிக்கொண்டு பிரிட்டிஷ் ஆயுதக் கிடங்கில் புகுந்து அனைத்து ஆயுதங்களையும் அழித்தார்."
+  },
+  {
+    q: "What was the significance of the Navaratri festival for Kuyili's plan?",
+    qta: "நவராத்திரி திருவிழா குயிலியின் திட்டத்திற்கு என்ன முக்கியத்துவம் வாய்ந்தது?",
+    opts: ["The British reduced their guards during the festival", "Women were allowed inside the Sivagangai fort for Vijayadasami celebration", "The festival provided cover to smuggle weapons into the fort", "British troops were celebrating and distracted"],
+    optsTA: ["திருவிழாவின் போது பிரிட்டிஷார் காவல்காரர்களை குறைத்தனர்", "விஜயதசமி கொண்டாட்டத்திற்காக பெண்கள் சிவகங்கை கோட்டைக்குள் அனுமதிக்கப்பட்டனர்", "திருவிழா ஆயுதங்களை கோட்டைக்கு கடத்த மறைவு வழங்கியது", "பிரிட்டிஷ் படை கொண்டாடி திசைதிரிக்கப்பட்டனர்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On the 10th day of Navaratri (Vijayadasami), women across the kingdom were allowed inside the Sivagangai fort to celebrate the festival in the Rajarajeswari Amman temple. Kuyili used this golden opportunity — her army dressed as civilians entered with weapons hidden in flower and fruit baskets.",
+    explTA: "நவராத்திரியின் 10வது நாளில் (விஜயதசமி), ராஜராஜேஸ்வரி அம்மன் கோவிலில் திருவிழா கொண்டாட பெண்கள் சிவகங்கை கோட்டைக்குள் அனுமதிக்கப்பட்டனர். குயிலி இந்த தங்கமான வாய்ப்பை பயன்படுத்தி, மலர் மற்றும் பழக் கூடைகளில் மறைத்த ஆயுதங்களுடன் சாதாரண மக்களாக வேடமிட்ட படையை உள்ளே அழைத்துச் சென்றார்."
+  },
+  {
+    q: "In which year did Velunachiyar become the ruler of Sivaganga?",
+    qta: "வேலு நாச்சியார் சிவகங்கையின் ஆட்சியாளர் ஆன ஆண்டு எது?",
+    opts: ["1772", "1778", "1780", "1785"],
+    optsTA: ["1772", "1778", "1780", "1785"],
+    ans: 2,
+    diff: "medium",
+    expl: "In 1780, Velunachiyar became the ruler of Sivaganga after defeating General Pansoor and other Nawab forces with the assistance of Hyder Ali's troops. She was the first female ruler to resist British colonial power in India.",
+    explTA: "1780 ஆம் ஆண்டில் வேலு நாச்சியார் ஹைதர் அலியின் படையின் உதவியுடன் ஜெனரல் பன்சூர் மற்றும் பிற நவாப் படைகளை தோற்கடித்து சிவகங்கையின் ஆட்சியாளர் ஆனார். இந்தியாவில் பிரிட்டிஷ் காலனி ஆட்சியை எதிர்த்த முதல் மகளிர் ஆட்சியாளர்."
+  },
+  {
+    q: "On what date did Rani Velu Nachiyar die?",
+    qta: "ராணி வேலு நாச்சியார் எந்த தேதியில் இறந்தார்?",
+    opts: ["December 25, 1790", "December 25, 1793", "December 25, 1796", "January 3, 1800"],
+    optsTA: ["டிசம்பர் 25, 1790", "டிசம்பர் 25, 1793", "டிசம்பர் 25, 1796", "ஜனவரி 3, 1800"],
+    ans: 2,
+    diff: "medium",
+    expl: "Rani Velu Nachiyar died on December 25, 1796. After her granddaughter's death in 1793, she was depressed and stayed in the Virupatchi palace until her death.",
+    explTA: "ராணி வேலு நாச்சியார் டிசம்பர் 25, 1796 அன்று இறந்தார். 1793 ல் அவரது பேத்தியின் மரணத்திற்குப் பிறகு மனச்சோர்வடைந்து விருபாட்சி அரண்மனையில் இறுதி வரை தங்கியிருந்தார்."
+  },
+  {
+    q: "How long did Velu Nachiyar live in exile before recapturing Sivaganga?",
+    qta: "சிவகங்கையை மீண்டும் கைப்பற்றுவதற்கு முன்பு வேலு நாச்சியார் எத்தனை ஆண்டுகள் நாடுகடத்தலில் வாழ்ந்தார்?",
+    opts: ["5 years", "6 years", "8 years", "10 years"],
+    optsTA: ["5 ஆண்டுகள்", "6 ஆண்டுகள்", "8 ஆண்டுகள்", "10 ஆண்டுகள்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Velu Nachiyar stayed for eight years in exile in Dindigul, Vidhachi and Ayyambalayam under the protection of Gopala Nayak after her husband was killed in 1772, before recapturing Sivaganga in 1780.",
+    explTA: "வேலு நாச்சியார் 1772 ல் கணவர் கொல்லப்பட்ட பிறகு, 1780 ல் சிவகங்கையை மீண்டும் கைப்பற்றுவதற்கு முன்பு கோபால நாயக்கரின் பாதுகாப்பில் தினிகல், விதாச்சி மற்றும் ஐயம்பலயம் ஆகிய இடங்களில் எட்டு ஆண்டுகள் நாடுகடத்தலில் வாழ்ந்தார்."
+  },
+
+  // ══ SECTION 5: MARUDHU BROTHERS (Q61–72) ══
+
+  {
+    q: "Where were the Marudhu brothers born?",
+    qta: "மருது சகோதரர்கள் எங்கு பிறந்தனர்?",
+    opts: ["Sivaganga", "Aruppukottai", "Mukkulam near Narikudi, Virudhunagar district", "Madurai"],
+    optsTA: ["சிவகங்கை", "ஆருப்புக்கோட்டை", "விருதுநகர் மாவட்டத்தில் நரிக்குடிக்கு அருகில் உள்ள முக்குளம்", "மதுரை"],
+    ans: 2,
+    diff: "medium",
+    expl: "Periya and Chinna Marudhu were sons of Mookiah Palaniappan Servai and were native of Mukkulam, near Narikudi, 18 miles away from Aruppukottai in Virudhunagar district.",
+    explTA: "பெரிய மற்றும் சின்ன மருது, மூக்கையா பழனியப்பன் செர்வாயின் மகன்கள். விருதுநகர் மாவட்டத்தில் ஆருப்புக்கோட்டையிலிருந்து 18 மைல் தொலைவில் நரிக்குடிக்கு அருகில் உள்ள முக்குளத்தை சேர்ந்தவர்கள்."
+  },
+  {
+    q: "What weapon were both Marudhu brothers talented in using?",
+    qta: "இரண்டு மருது சகோதரர்களும் எந்த ஆயுதத்தை பயன்படுத்துவதில் திறமை மிக்கவர்கள்?",
+    opts: ["Sword (Vaal)", "Valari (a type of throwing weapon)", "Spear (Vel)", "Bow and Arrow"],
+    optsTA: ["வாள்", "வாலாரி (ஒரு வகை எறியும் ஆயுதம்)", "வேல்", "வில் மற்றும் அம்பு"],
+    ans: 1,
+    diff: "hard",
+    expl: "Both the Marudu brothers were talented in using VALARI — a traditional South Indian throwing weapon. King Vijayaragunatha Sethupathi of Ramanathapuram gave them the name Pandyas.",
+    explTA: "இரண்டு மருது சகோதரர்களும் வாலாரி என்ற பாரம்பரிய தென்னிந்திய எறியும் ஆயுதத்தை பயன்படுத்துவதில் திறமை மிக்கவர்கள். இராமநாதபுரத்தின் விஜயரகுநாத சேதுபதி அரசர் அவர்களுக்கு பாண்டியர்கள் என்று பெயர் கொடுத்தார்."
+  },
+  {
+    q: "When were Periya Marudhu and Chinna Marudhu born?",
+    qta: "பெரிய மருது மற்றும் சின்ன மருது பிறந்த ஆண்டுகள் யாவை?",
+    opts: ["1748 and 1750", "1748 and 1753", "1750 and 1755", "1745 and 1750"],
+    optsTA: ["1748 மற்றும் 1750", "1748 மற்றும் 1753", "1750 மற்றும் 1755", "1745 மற்றும் 1750"],
+    ans: 1,
+    diff: "medium",
+    expl: "Periya Marudhu (Vella Marudhu) was born on 15 December 1748, and Chinna Marudhu was born in 1753. They were the sons of Mookaiah Palaniappan Servai.",
+    explTA: "பெரிய மருது (வெள்ள மருது) 15 டிசம்பர் 1748 அன்று பிறந்தார், சின்ன மருது 1753 இல் பிறந்தார். அவர்கள் மூக்கையா பழனியப்பன் செர்வாயின் மகன்கள்."
+  },
+  {
+    q: "What was the Sambutheevu Declaration and why was it significant?",
+    qta: "சம்புதீவு அறிவிப்பு என்றால் என்ன, அது ஏன் முக்கியத்துவம் வாய்ந்தது?",
+    opts: ["A peace treaty with the British", "First proclamation calling all Indians to unite against British rule", "A land reform declaration", "A trade agreement with France"],
+    optsTA: ["பிரிட்டிஷாருடன் சமாதான ஒப்பந்தம்", "அனைத்து இந்தியர்களையும் பிரிட்டிஷ் ஆட்சிக்கு எதிராக ஒன்றிணையும்படி அழைத்த முதல் பிரகடனம்", "நில சீர்திருத்த அறிவிப்பு", "பிரான்சுடன் வர்த்தக ஒப்பந்தம்"],
+    ans: 1,
+    diff: "hard",
+    expl: "The Sambutheevu Declaration (16 June 1801) was issued by the Marudhu brothers in response to Agnew's defamatory report. It was pasted on fort walls in Trichy and Tiruvarangam temple, calling all to unite against the British. 'Sambutheevu' or 'Navalantheevu' referred to the Indian subcontinent.",
+    explTA: "சம்புதீவு அறிவிப்பு (16 ஜூன் 1801) மருது சகோதரர்களால் அக்னியுவின் அவதூறு அறிக்கைக்கு பதிலாக வெளியிடப்பட்டது. திருச்சி நவாபின் அரண்மனை கோட்டை சுவர்களிலும் திருவரங்கம் கோவில் சுவர்களிலும் ஒட்டப்பட்டு அனைவரையும் பிரிட்டிஷாருக்கு எதிராக ஒன்றிணையுமாறு கோரியது. 'சம்புதீவு' அல்லது 'நவலந்தீவு' என்பது இந்திய துணைக்கண்டத்தை குறிக்கும்."
+  },
+  {
+    q: "On what date were the Marudhu Brothers hanged and where?",
+    qta: "மருது சகோதரர்கள் எந்த தேதியில் எங்கே தூக்கிலிடப்பட்டனர்?",
+    opts: ["October 19, 1801 at Kalaiyar Kovil", "October 24, 1801 at Tirupattur Fort, Sivaganga", "November 16, 1801 at Panchalankurichi", "November 24, 1801 at Ramanathapuram"],
+    optsTA: ["அக்டோபர் 19, 1801 கலையார்கோவிலில்", "அக்டோபர் 24, 1801 சிவகங்கையில் திருப்பத்தூர் கோட்டையில்", "நவம்பர் 16, 1801 பஞ்சலங்குறிச்சியில்", "நவம்பர் 24, 1801 இராமநாதபுரத்தில்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On October 24, 1801, both Periya Marudhu and Chinna Marudhu were hanged at Tirupattur Fort near Ramanathapuram along with more than 500 others. Their bodies were cremated in front of Kalayar temple as per their wish.",
+    explTA: "அக்டோபர் 24, 1801 அன்று பெரிய மருது மற்றும் சின்ன மருது இருவரும் இராமநாதபுரத்திற்கு அருகில் உள்ள திருப்பத்தூர் கோட்டையில் 500க்கும் மேற்பட்டோருடன் தூக்கிலிடப்பட்டனர். அவர்களது விருப்பப்படி உடல்கள் கலையார் கோவில் முன்பாக தகனம் செய்யப்பட்டன."
+  },
+  {
+    q: "Who was the British officer who had a close friendship with Chinna Marudhu but later executed them?",
+    qta: "சின்ன மருதுவுடன் நெருங்கிய நட்பு வைத்திருந்தும் பின்னர் அவர்களை கொலை செய்த பிரிட்டிஷ் அதிகாரி யார்?",
+    opts: ["Colonel Agnew", "Colonel Maxwell", "Colonel Welsh", "Colonel Macaulay"],
+    optsTA: ["கர்னல் அக்னியூ", "கர்னல் மேக்ஸ்வெல்", "கர்னல் வெல்ஷ்", "கர்னல் மேக்காலே"],
+    ans: 2,
+    diff: "hard",
+    expl: "Colonel Welsh was monitoring Tamil Nadu dominated by the Marudu brothers. He and Chinna Marudhu were especially close friends — it was Chinna Marudu who trained him to throw the javelin. Welsh first met Chinna Marudhu in February 1795. However, later under his leadership, the British army executed the Marudu brothers.",
+    explTA: "கர்னல் வெல்ஷ் மருது சகோதரர்களால் ஆதிக்கம் செலுத்தப்பட்ட தமிழ்நாட்டை கண்காணித்தார். அவரும் சின்ன மருதுவும் நெருங்கிய நண்பர்கள் — சின்ன மருதுவே அவருக்கு ஈட்டி எறிவதை கற்றுக்கொடுத்தார். வெல்ஷ் 1795 பிப்ரவரியில் சின்ன மருதுவை முதன்முதலில் சந்தித்தார். ஆனால் பின்னர் அவரது தலைமையில் பிரிட்டிஷ் படை மருது சகோதரர்களை கொன்றது."
+  },
+  {
+    q: "How many people were exiled to Penang (Malaya) after the Marudhu brothers' revolt?",
+    qta: "மருது சகோதரர்கள் கிளர்ச்சிக்குப் பிறகு எத்தனை பேர் பினாங்கிற்கு (மலேசியா) நாடு கடத்தப்பட்டனர்?",
+    opts: ["51", "62", "73", "100"],
+    optsTA: ["51", "62", "73", "100"],
+    ans: 2,
+    diff: "hard",
+    expl: "Seventy-three rebels were exiled to Penang in Malaya after the rebellion. Colonel Welsh writes that 71 people (another account says 73) from Tamil Nadu were taken to Penang Island as political prisoners.",
+    explTA: "கிளர்ச்சிக்குப் பிறகு 73 கிளர்ச்சியாளர்கள் மலேசியாவின் பினாங்கிற்கு நாடு கடத்தப்பட்டனர். கர்னல் வெல்ஷ் தமிழ்நாட்டிலிருந்து 71 பேர் (மற்றொரு கணக்கில் 73 பேர்) பினாங்கிற்கு அரசியல் கைதிகளாக அழைத்துச் செல்லப்பட்டதாக எழுதுகிறார்."
+  },
+  {
+    q: "What was unique about Oomaiturai and Sevathaiah's execution?",
+    qta: "ஊமைத்துரை மற்றும் சேவத்தையாவின் தூக்கிலிடுதலில் என்ன தனித்துவம் இருந்தது?",
+    opts: ["They were hanged at Tirupattur", "They escaped twice before final capture", "They were beheaded at Panchalankurichi on 16 November 1801", "They surrendered voluntarily"],
+    optsTA: ["அவர்கள் திருப்பத்தூரில் தூக்கிலிடப்பட்டனர்", "இறுதி கைதிற்கு முன்பு இரண்டு முறை தப்பினர்", "நவம்பர் 16, 1801 அன்று பஞ்சலங்குறிச்சியில் கொல்லப்பட்டனர்", "தாமாக சரணடைந்தனர்"],
+    ans: 2,
+    diff: "medium",
+    expl: "Oomathurai and Sevathaiah were captured after escaping from Palayankottai prison (2 February 1801) and later hiding with Marudhu brothers. They were beheaded (not hanged) at Panchalankurichi on 16 November 1801.",
+    explTA: "ஊமைத்துரை மற்றும் சேவத்தையா பாளையங்கோட்டை சிறையிலிருந்து தப்பி (2 பிப்ரவரி 1801) பின்னர் மருது சகோதரர்களுடன் மறைந்திருந்தனர். அவர்கள் நவம்பர் 16, 1801 அன்று பஞ்சலங்குறிச்சியில் கொல்லப்பட்டனர்."
+  },
+
+  // ══ SECTION 6: DHEERAN CHINNAMALAI (Q73–82) ══
+
+  {
+    q: "Dheeran Chinnamalai was born on which date and where?",
+    qta: "தீரன் சின்னமலை எந்த தேதியில் எங்கு பிறந்தார்?",
+    opts: ["April 17, 1756, Melapalayam near Kangeyam, Erode district", "January 3, 1760, Coimbatore", "April 17, 1750, Salem", "March 1, 1760, Tiruchengode"],
+    optsTA: ["ஏப்ரல் 17, 1756, ஈரோடு மாவட்டம் காங்கேயத்திற்கு அருகில் மேலப்பாளையம்", "ஜனவரி 3, 1760, கோயம்புத்தூர்", "ஏப்ரல் 17, 1750, சேலம்", "மார்ச் 1, 1760, திருச்செங்கோடு"],
+    ans: 0,
+    diff: "medium",
+    expl: "Dheeran Chinnamalai was born on April 17, 1756, as the son of Ratnaswamy and Periyathal couple in Melapalayam town near Kangeyam in Erode district. His original name was Theertagiri.",
+    explTA: "தீரன் சின்னமலை ஏப்ரல் 17, 1756 அன்று ஈரோடு மாவட்டத்தில் காங்கேயத்திற்கு அருகில் மேலப்பாளையம் நகரில் ரத்னசாமி மற்றும் பெரியதாள் தம்பதியினருக்கு பிறந்தார். அவரது உண்மையான பெயர் தீர்த்தகிரி."
+  },
+  {
+    q: "Why did Dheeran Chinnamalai's fame first spread throughout Kongu country?",
+    qta: "தீரன் சின்னமலையின் புகழ் கொங்கு நாட்டில் முதலில் ஏன் பரவியது?",
+    opts: ["He won a battle against the British", "He snatched tax money from Hyder Ali's soldiers going to Sangakiri fort", "He killed a tiger threatening the village", "He defeated the Nawab of Arcot's forces"],
+    optsTA: ["பிரிட்டிஷாருக்கு எதிராக போரில் வென்றதால்", "சங்ககிரி கோட்டைக்கு செல்லும் ஹைதர் அலியின் வீரர்களிடமிருந்து வரி பணத்தை பிடுங்கியதால்", "கிராமத்தை அச்சுறுத்திய புலியை கொன்றதால்", "அர்காட் நவாபின் படைகளை தோற்கடித்ததால்"],
+    ans: 1,
+    diff: "medium",
+    expl: "When Hyder Ali's soldiers were collecting taxes for Sangakiri fort, Chinnamalai intercepted them and grabbed the money bag, declaring 'Between Shivanmalai and Chennimalai, a Chinnamalai has come and collected the tax money.' Since then his fame spread.",
+    explTA: "ஹைதர் அலியின் வீரர்கள் சங்ககிரி கோட்டைக்கு வரி வசூலிக்க வந்தபோது, சின்னமலை அவர்களை தடுத்து பணப் பையை பிடுங்கி, 'சிவன்மலைக்கும் செண்ணிமலைக்கும் இடையே ஒரு சின்னமலை வந்து வரி பணம் வசூலித்தான்' என்று அறிவித்தார். அன்றிலிருந்து அவரது புகழ் பரவியது."
+  },
+  {
+    q: "Which war was Dheeran Chinnamalai part of alongside Tipu Sultan?",
+    qta: "தீரன் சின்னமலை திப்பு சுல்தானுடன் எந்த போரில் பங்கேற்றார்?",
+    opts: ["First Anglo-Mysore War", "Second Anglo-Mysore War", "Battle of Malavalli (Third/Fourth Mysore War)", "First Carnatic War"],
+    optsTA: ["முதல் ஆங்கிலோ-மைசூர் போர்", "இரண்டாம் ஆங்கிலோ-மைசூர் போர்", "மலவல்லி போர் (மூன்றாம்/நான்காம் மைசூர் போர்)", "முதல் கர்நாடக போர்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Along with 1,000 Kongu youths, Chinnamalai went to Seringapatnam and met Tipu Sultan. At Tipu's behest, Chinnamalai acted as one of the commanders. The English army fought fiercely against Chinnamalai's army in the Battle of Malavalli. Tipu Sultan was killed by the British on May 4, 1799.",
+    explTA: "1,000 கொங்கு இளைஞர்களுடன் சின்னமலை சேரன்மகாதேவிக்கு சென்று திப்பு சுல்தானை சந்தித்தார். திப்புவின் உத்தரவால் சின்னமலை தளபதிகளில் ஒருவராக செயல்பட்டார். ஆங்கிலேய படை மலவல்லி போரில் சின்னமலையின் படையுடன் கடுமையாக போரிட்டது. திப்பு சுல்தான் மே 4, 1799 அன்று பிரிட்டிஷாரால் கொல்லப்பட்டார்."
+  },
+  {
+    q: "What was the Odanilai War (1802)?",
+    qta: "ஒடனிலை போர் (1802) என்றால் என்ன?",
+    opts: ["Battle where British Colonel Maxwell was defeated and beheaded by Chinnamalai", "Battle where Chinnamalai surrendered to the British", "Battle at the Cauvery river banks", "Battle between Chinnamalai and Tipu Sultan"],
+    optsTA: ["பிரிட்டிஷ் கர்னல் மேக்ஸ்வெல் தோற்கடிக்கப்பட்டு சின்னமலையால் தலை வெட்டப்பட்ட போர்", "சின்னமலை பிரிட்டிஷாரிடம் சரணடைந்த போர்", "காவேரி ஆற்றின் கரையில் நடந்த போர்", "சின்னமலைக்கும் திப்பு சுல்தானுக்கும் இடையிலான போர்"],
+    ans: 0,
+    diff: "medium",
+    expl: "In the Odanilai War (1802), a large British force of 10,000 men from Sangakiri came towards Odanilai. The British army was scattered by Chinnamalai's soldiers. British Colonel Maxwell, who commanded the force, was beheaded by Chinnamalai. The head was garlanded with sandalwood and displayed in many towns of Kongunath.",
+    explTA: "ஒடனிலை போரில் (1802) சங்ககிரியிலிருந்து 10,000 படையினருடன் வந்த பிரிட்டிஷ் படை சின்னமலையின் வீரர்களால் சிதறடிக்கப்பட்டது. படையை வழிநடத்திய பிரிட்டிஷ் கர்னல் மேக்ஸ்வெல் சின்னமலையால் தலை வெட்டப்பட்டார். தலையை சந்தனத்தால் அலங்கரித்து கொங்கு நாட்டின் பல நகரங்களில் கொண்டு சென்று காட்டினர்."
+  },
+  {
+    q: "Who betrayed Dheeran Chinnamalai to the British for money?",
+    qta: "தீரன் சின்னமலையை பணத்திற்காக பிரிட்டிஷாருக்கு காட்டிக்கொடுத்தவர் யார்?",
+    opts: ["Pollan", "Velappan", "Nallappan the cook", "Karuppu Servai"],
+    optsTA: ["பொல்லன்", "வேலப்பன்", "சமையல்காரன் நல்லப்பன்", "கருப்பு செர்வை"],
+    ans: 2,
+    diff: "hard",
+    expl: "When Chinnamalai and his brothers came to eat at the foot of Karumalai, Nallappan the cook was converted by the British with money. He dug a tunnel near the house, forced them to put down their guns to eat, then moved a box blocking the tunnel and British troops came inside. Chinnamalai slapped Nallappan and he collapsed and died.",
+    explTA: "சின்னமலை மற்றும் அவரது சகோதரர்கள் கருமலையின் அடிவாரத்தில் சாப்பிட வந்தபோது, சமையல்காரன் நல்லப்பன் பிரிட்டிஷாரால் பணத்தால் மாற்றப்பட்டிருந்தான். வீட்டிற்கு அருகில் சுரங்கம் தோண்டி, ஆயுதங்களை வைக்கவைத்து, சுரங்கத்தை மறைத்த பெட்டியை நகர்த்தினான் — பிரிட்டிஷ் படை உள்ளே வந்தது. சின்னமலை நல்லப்பனை அறைந்தார், அவன் சரிந்து இறந்தான்."
+  },
+  {
+    q: "On which date was Dheeran Chinnamalai hanged and at which fort?",
+    qta: "தீரன் சின்னமலை எந்த தேதியில் எந்த கோட்டையில் தூக்கிலிடப்பட்டார்?",
+    opts: ["31 July 1804 at Odanilai fort", "31 July 1805 at Sangakiri fort", "15 August 1805 at Coimbatore", "1 October 1804 at Arachalur"],
+    optsTA: ["31 ஜூலை 1804 ஒடனிலை கோட்டையில்", "31 ஜூலை 1805 சங்ககிரி கோட்டையில்", "15 ஆகஸ்ட் 1805 கோயம்புத்தூரில்", "1 அக்டோபர் 1804 அரச்சலூரில்"],
+    ans: 1,
+    diff: "medium",
+    expl: "31st July 1805 was the festival day of Aadi Perukku — a sorrow day in Kongunathu history. Four gallows were ready at Sangakiri fort. Chinnamalai, Periyathambi, Kiledhar and Karuppu Servai were all hanged.",
+    explTA: "31 ஜூலை 1805 ஆடி பெருக்கு திருவிழா நாள் — கொங்கு நாட்டு வரலாற்றில் சோகமான நாள். சங்ககிரி கோட்டையில் நான்கு தூக்கு மேடைகள் தயார் செய்யப்பட்டன. சின்னமலை, பெரியத்தம்பி, கிலேதார் மற்றும் கருப்பு செர்வை அனைவரும் தூக்கிலிடப்பட்டனர்."
+  },
+  {
+    q: "What was Dheeran Chinnamalai's memorable last words when British offered to spare his life?",
+    qta: "பிரிட்டிஷார் உயிர் மன்னிக்க முன்வந்தபோது தீரன் சின்னமலையின் நினைவிற்குரிய கடைசி வார்த்தைகள் என்ன?",
+    opts: ["I will fight till my last breath", "It is better to die than to live as a slave — Thousands of Chinnamalais will appear", "I bow to no foreign power", "Death before surrender"],
+    optsTA: ["கடைசி மூச்சு வரை போரிடுவேன்", "அடிமையாக வாழ்வதை விட மரணமே மேல் — ஆயிரம் சின்னமலைகள் தோன்றுவர்", "நான் எந்த அன்னிய சக்திக்கும் தலை வணங்க மாட்டேன்", "சரணடைவதை விட மரணம் மேல்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Chinnamalai said: 'My mind does not give room to live a life of slavery. It is better for you to die than to live as a slave. Thousands of Chinnamalais will appear. The bonds of slavery of our country will be untied.' These prophetic words inspired future generations.",
+    explTA: "சின்னமலை கூறினார்: 'அடிமை வாழ்க்கை வாழ என் மனம் இடமளிக்கவில்லை. அடிமையாக வாழ்வதை விட மரணமே மேல். ஆயிரம் சின்னமலைகள் தோன்றுவர். நம் நாட்டின் அடிமைச் சங்கிலி அறுபடும்.' இந்த தீர்க்கதரிசன வார்த்தைகள் எதிர்கால தலைமுறைகளை ஊக்குவித்தன."
+  },
+
+  // ══ SECTION 7: REGIONAL LEAGUES & SOUTH INDIAN REVOLT (Q83–92) ══
+
+  {
+    q: "How many regional confederations were formed between 1795 to 1799?",
+    qta: "1795 முதல் 1799 வரை எத்தனை பிராந்திய கூட்டணிகள் உருவாக்கப்பட்டன?",
+    opts: ["Two", "Three", "Four", "Five"],
+    optsTA: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
+    ans: 2,
+    diff: "medium",
+    expl: "From 1795 to 1799, four regional confederations were formed: Ramanathapuram, Tirunelveli, Dindigul, and Malabar-Coimbatore. These were precursors to the South Indian Rebellion of 1800-1801.",
+    explTA: "1795 முதல் 1799 வரை நான்கு பிராந்திய கூட்டணிகள் உருவாக்கப்பட்டன: இராமநாதபுரம், திருநெல்வேலி, தினிகல் மற்றும் மலபார்-கோயம்புத்தூர். இவை 1800-1801 தென்னிந்திய கிளர்ச்சியின் முன்னோடிகள்."
+  },
+  {
+    q: "Who was the leader of the Dindigul League?",
+    qta: "தினிகல் லீக்கின் தலைவர் யார்?",
+    opts: ["Marudhu Pandyar", "Kerala Varma", "Gopala Nayak of Virupatchi", "Khan-e-Jagan"],
+    optsTA: ["மருது பாண்டியர்", "கேரள வர்மா", "விருபாட்சியின் கோபால நாயக்கர்", "கான்-இ-ஜகான்"],
+    ans: 2,
+    diff: "medium",
+    expl: "Gopala Nayak of Virupatchi was the founder of the Dindigul League. He spearheaded the Dindigul League formed with Lakshmi Nayak of Manaparai and Poojai Nayak of Devadanapatti.",
+    explTA: "விருபாட்சியின் கோபால நாயக்கர் தினிகல் லீக்கின் நிறுவனர். மனபாறையின் லக்ஷ்மி நாயக்கர் மற்றும் தேவதானப்பட்டியின் பூஜை நாயக்கருடன் சேர்ந்து தினிகல் லீக்கை உருவாக்கினார்."
+  },
+  {
+    q: "What was the Palani Conspiracy (Virupatchi Conference) of April 29, 1800?",
+    qta: "ஏப்ரல் 29, 1800 இன் பாலனி சதி (விருபாட்சி மாநாடு) என்றால் என்ன?",
+    opts: ["A peace negotiation with the British", "A meeting of anti-British forces to plan simultaneous rebellion using guerrilla tactics", "A religious gathering at the Palani temple", "A conference to elect the next Palayakkarar leader"],
+    optsTA: ["பிரிட்டிஷாருடன் சமாதான பேச்சு", "ஒரே நேரத்தில் கிளர்ச்சி மற்றும் கெரில்லா தந்திரங்களை திட்டமிட பிரிட்டிஷ் எதிர்ப்பு படைகளின் கூட்டம்", "பழனி கோவிலில் மத கூட்டம்", "அடுத்த பாளையக்காரர் தலைவரை தேர்ந்தெடுக்கும் மாநாடு"],
+    ans: 1,
+    diff: "hard",
+    expl: "On April 29, 1800, anti-British forces gathered at Virupatchi under Gopala Nayak. Three major decisions: (1) Start rebellion simultaneously in many areas; (2) Rebels fight unitedly; (3) Adopt guerrilla hide-and-attack method. It was decided to attack Coimbatore on 3 June 1800.",
+    explTA: "ஏப்ரல் 29, 1800 அன்று கோபால நாயக்கரின் தலைமையில் விருபாட்சியில் பிரிட்டிஷ் எதிர்ப்பு படைகள் கூடின. மூன்று முக்கிய முடிவுகள்: (1) பல இடங்களில் ஒரே நேரத்தில் கிளர்ச்சி; (2) கிளர்ச்சியாளர்கள் ஒன்றிணைந்து போரிடுவது; (3) கெரில்லா முறை பயன்படுத்துவது. ஜூன் 3, 1800 அன்று கோயம்புத்தூரை தாக்க திட்டம் தீட்டப்பட்டது."
+  },
+  {
+    q: "Why was Coimbatore Fort specifically chosen as the target for the 3 June 1800 attack?",
+    qta: "3 ஜூன் 1800 தாக்குதலுக்கு கோயம்புத்தூர் கோட்டை ஏன் குறிப்பாக இலக்காக தேர்ந்தெடுக்கப்பட்டது?",
+    opts: ["It was the weakest British fort", "It was the last day of Mukarram festival and served as a bridge between North and South Indian factions", "It had the largest ammunition store", "The British Governor resided there"],
+    optsTA: ["அது மிகவும் பலவீனமான பிரிட்டிஷ் கோட்டை", "அது முகர்ரம் திருவிழாவின் கடைசி நாளாக இருந்தது மற்றும் வட-தென் இந்திய குழுக்களுக்கு இடையில் பாலமாக செயல்பட்டது", "அது மிகப்பெரிய வெடிமருந்து கிடங்கை கொண்டிருந்தது", "பிரிட்டிஷ் கவர்னர் அங்கு வாழ்ந்தார்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Coimbatore was chosen because: (1) It served as a bridge between the South and North Indian revolutionary factions; (2) 3 June 1800 was the last day of Mukarram festival, when soldiers were expected to be tired from celebrations; (3) The fort's fifth corps consisted mostly of Muslim soldiers who might not oppose.",
+    explTA: "கோயம்புத்தூர் தேர்ந்தெடுக்கப்பட்டதற்கான காரணங்கள்: (1) தென் மற்றும் வட இந்திய புரட்சிகர குழுக்களுக்கு இடையில் பாலமாக செயல்பட்டது; (2) ஜூன் 3, 1800 முகர்ரம் திருவிழாவின் கடைசி நாளாக இருந்ததால் வீரர்கள் கொண்டாட்டத்தில் சோர்ந்திருப்பார்கள் என்று எதிர்பார்க்கப்பட்டது; (3) கோட்டையின் ஐந்தாம் படை பெரும்பாலும் முஸ்லீம் வீரர்களைக் கொண்டிருந்தது."
+  },
+  {
+    q: "The Carnatic Treaty of 1801 was signed between whom?",
+    qta: "1801 இன் கர்நாடக ஒப்பந்தம் யார் யாருக்கிடையில் கையெழுத்திடப்பட்டது?",
+    opts: ["British and Marudhu Brothers", "Nawab of Arcot and the East India Company", "British and Kattabomman's successors", "Dheeran Chinnamalai and the British"],
+    optsTA: ["பிரிட்டிஷ் மற்றும் மருது சகோதரர்கள்", "அர்காட் நவாப் மற்றும் கிழக்கிந்திய கம்பெனி", "பிரிட்டிஷ் மற்றும் கட்டபொம்மனின் வாரிசுகள்", "தீரன் சின்னமலை மற்றும் பிரிட்டிஷ்"],
+    ans: 1,
+    diff: "medium",
+    expl: "The Poligar War concluded with the signing of the Carnatic Treaty in 1801 between the Nawab of Arcot and the East India Company. This treaty marked the British assumption of direct control over Tamil Nadu, effectively ending the Poligar System.",
+    explTA: "1801 இல் அர்காட் நவாப் மற்றும் கிழக்கிந்திய கம்பெனிக்கு இடையில் கர்நாடக ஒப்பந்தம் கையெழுத்திடப்பட்டதுடன் பாளையக்காரர் போர் முடிவுக்கு வந்தது. இந்த ஒப்பந்தம் தமிழ்நாட்டின் மீது பிரிட்டிஷ் நேரடி கட்டுப்பாட்டை குறிக்கிறது."
+  },
+
+  // ══ SECTION 8: VELLORE MUTINY & MISC (Q93–100) ══
+
+  {
+    q: "Who was Veera Alagu Muthukon and what was his unique death?",
+    qta: "வீர அழகு முத்துக்கோன் யார், அவரது தனித்துவமான மரணம் என்ன?",
+    opts: ["A Poligar of Madurai who died in battle", "King of Katalangulam who was tied with 248 others in front of a cannon and blasted to death", "Commander of Kattabomman who was hanged", "A follower of Marudhu brothers exiled to Penang"],
+    optsTA: ["மதுரையின் பாளையக்காரர், போரில் இறந்தார்", "கதலாங்குளத்தின் ஆட்சியாளர், 248 பேருடன் பீரங்கி முன்பு கட்டி வெடிக்கச் செய்யப்பட்டார்", "கட்டபொம்மனின் தளபதி, தூக்கிலிடப்பட்டார்", "மருது சகோதரர்களின் தொண்டர், பினாங்கிற்கு நாடு கடத்தப்பட்டார்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Veera Alagu Muthukon was born in 1728 as king of Katalangulam. In 1759, through Maruthanayakam's trick, Alagumuthukon and 248 others were tied in front of a cannon and blasted to death — a particularly cruel method of execution.",
+    explTA: "வீர அழகு முத்துக்கோன் 1728 இல் கதலாங்குளத்தின் ஆட்சியாளராக பிறந்தார். 1759 இல் மருதநாயகத்தின் தந்திரத்தால் அழகுமுத்துக்கோன் மற்றும் 248 பேர் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர் — மிகவும் கொடுமையான மரண தண்டனை முறை."
+  },
+  {
+    q: "Who was the first Indian King to be exiled by the British?",
+    qta: "பிரிட்டிஷாரால் நாடுகடத்தப்பட்ட முதல் இந்திய அரசர் யார்?",
+    opts: ["Chinna Marudhu", "Periya Marudhu", "Vengai Periya Udayana Devar (King of Sivaganga)", "Kattabomman"],
+    optsTA: ["சின்ன மருது", "பெரிய மருது", "வேங்கை பெரிய உடையன் தேவர் (சிவகங்கை ஆட்சியாளர்)", "கட்டபொம்மன்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Vengai Periya Udayana Devar (Venkan Periya Wodeyar Devar), the King of Sivaganga and Periya Marudhu's son-in-law, was the first Indian King to be exiled by the British. He was exiled to Penang and later to Bencoolen Prison in Sumatra. He died on 19 September 1802.",
+    explTA: "வேங்கை பெரிய உடையன் தேவர் (வேங்கை பெரிய வொடையர் தேவர்), சிவகங்கை ஆட்சியாளர் மற்றும் பெரிய மருதுவின் மருமகன், பிரிட்டிஷாரால் நாடுகடத்தப்பட்ட முதல் இந்திய அரசர். பினாங்கிற்கும் பின்னர் சுமத்ரா தீவில் உள்ள பெங்குலன் சிறைக்கும் நாடுகடத்தப்பட்டார். செப்டம்பர் 19, 1802 அன்று இறந்தார்."
+  },
+  {
+    q: "What was the significance of the ship 'Admiral Nelson' on February 11, 1802?",
+    qta: "பிப்ரவரி 11, 1802 அன்று 'அட்மிரல் நெல்சன்' கப்பலின் முக்கியத்துவம் என்ன?",
+    opts: ["It brought British reinforcements to Tuticorin", "It carried 73 prisoners including the King of Sivaganga from Tuticorin to Penang", "It was captured by the Marudhu brothers", "It brought the Carnatic Treaty documents"],
+    optsTA: ["அது கோயம்புத்தூருக்கு பிரிட்டிஷ் வலுவூட்டப்பட்ட படை கொண்டு வந்தது", "அது தூத்துக்குடியிலிருந்து சிவகங்கை ஆட்சியாளர் உட்பட 73 கைதிகளை பினாங்கிற்கு கொண்டு சென்றது", "மருது சகோதரர்களால் கைப்பற்றப்பட்டது", "கர்நாடக ஒப்பந்த ஆவணங்கள் கொண்டு வந்தது"],
+    ans: 1,
+    diff: "hard",
+    expl: "On February 11, 1802, the ship Admiral Nelson started her voyage from Tuticorin harbour to Penang, Malaysia, carrying 73 prisoners, including Vengai Periya Udayana Devar, the ruler of Sivaganga and first Indian king to be exiled by the British.",
+    explTA: "பிப்ரவரி 11, 1802 அன்று 'அட்மிரல் நெல்சன்' கப்பல் தூத்துக்குடி துறைமுகத்திலிருந்து பினாங்கிற்கு புறப்பட்டது. சிவகங்கை ஆட்சியாளர் வேங்கை பெரிய உடையன் தேவர் உட்பட 73 கைதிகளை கொண்டு சென்றது."
+  },
+  {
+    q: "What was the Sundaralingam and Vadivu's act called in Indian history?",
+    qta: "இந்திய வரலாற்றில் சுந்தரலிங்கம் மற்றும் வடிவுவின் செயல் என்று அழைக்கப்படுகிறது?",
+    opts: ["The first revolutionary act", "The first suicide bombers of the Indian War of Independence", "The first guerrilla attack", "The first spy mission"],
+    optsTA: ["முதல் புரட்சிகர செயல்", "இந்திய சுதந்திரப் போரின் முதல் தற்கொலை வீரர்கள்", "முதல் கெரில்லா தாக்குதல்", "முதல் உளவு நடவடிக்கை"],
+    ans: 1,
+    diff: "medium",
+    expl: "Sundaralingam, disguised as a cowherd, and his female relative Vadivu, jumped into the British ammunition depot after setting it on fire on September 8, 1799. They are considered the first suicide bombers of the Indian War of Independence. Panchalankurichi was captured by the British the very next day.",
+    explTA: "சுந்தரலிங்கம் மாட்டிடையன் வேடமிட்டு, அவரது பெண் உறவினர் வடிவுவுடன், செப்டம்பர் 8, 1799 அன்று பிரிட்டிஷ் வெடிமருந்து கிடங்கில் தீ வைத்த பிறகு குதித்தனர். அவர்கள் இந்திய சுதந்திரப் போரின் முதல் தற்கொலை வீரர்கள் என்று கருதப்படுகின்றனர். மறுநாளே பஞ்சலங்குறிச்சி பிரிட்டிஷாரால் கைப்பற்றப்பட்டது."
+  },
+  {
+    q: "Which of the following statements about the Palayakkarar system is INCORRECT?",
+    qta: "பாளையக்காரர் முறையைப் பற்றிய பின்வரும் கூற்றுகளில் எது தவறானது?",
+    opts: ["The Nayakas were vassals of the Vijayanagar ruler", "The Palayakkarars maintained police forces called Kavalkara", "The Carnatic Treaty of 1801 strengthened the Palayakkarar system", "Visvanatha Nayaka was the founding father of the Nayaka kingdom at Madurai"],
+    optsTA: ["நாயக்கர்கள் விஜயநகர ஆட்சியாளரின் சாமந்தர்கள்", "பாளையக்காரர்கள் காவல்காரா என்ற காவல் படைகளை பராமரித்தனர்", "1801 இன் கர்நாடக ஒப்பந்தம் பாளையக்காரர் முறையை வலுப்படுத்தியது", "விஸ்வநாத நாயக்கர் மதுரையில் நாயக்க ராஜ்யத்தின் நிறுவன தந்தை"],
+    ans: 2,
+    diff: "medium",
+    expl: "The Carnatic Treaty of 1801 did NOT strengthen the Palayakkarar system — it actually ENDED it. The treaty marked British assumption of direct control over Tamil Nadu, effectively ending the Poligar System.",
+    explTA: "1801 இன் கர்நாடக ஒப்பந்தம் பாளையக்காரர் முறையை வலுப்படுத்தவில்லை — இது அதை முடித்துவிட்டது. இந்த ஒப்பந்தம் தமிழ்நாட்டின் மீது பிரிட்டிஷ் நேரடி கட்டுப்பாட்டை குறிக்கிறது, பாளையக்காரர் முறையை முடிவுக்கு கொண்டுவந்தது."
+  }
+
+];
+
 
 const QUIZ_BANK = {
   history: [
@@ -1571,6 +3336,7 @@ const QUIZ_BANK = {
     { q:'2025ல் இந்தியாவின் G20 தலைவர் நாடு யது?', opts:['இந்தியா','பிரேசில்','தென்ஆப்பிரிக்கா','ரஷ்யா'], ans:1, diff:'medium', expl:'2025 G20 உச்சிமாநாடு பிரேசிலில் நடைபெற்றது.' },
     { q:'2024 ஒலிம்பிக்ஸ் எந்த நகரத்தில் நடந்தது?', opts:['லண்டன்','பாரிஸ்','டோக்கியோ','லாஸ் ஏஞ்சல்ஸ்'], ans:1, diff:'easy', expl:'2024 கோடைகால ஒலிம்பிக்ஸ் பிரான்ஸின் பாரிஸ் நகரில் நடைபெற்றது.' },
   ],
+  palayam: PALAYAM_QUIZ_DATA
 };
 
 const FREE_BOOKS = [
@@ -1603,6 +3369,7 @@ const CA_DATA = {
     { icon:'🌏', tag:'சர்வதேசம்', tagColor:'#dc2626', tagBg:'#fee2e2', title:'G20 உச்சிமாநாடு 2025 — முக்கிய தீர்மானங்கள்', body:'G20 உச்சிமாநாட்டில் காலநிலை மாற்றம், டிஜிட்டல் பொருளாதாரம் ஆகியவற்றில் முக்கியமான ஒப்பந்தங்கள்.', date:'2 வாரங்கள் முன்பு' },
     { icon:'⚖️', tag:'சட்டம்', tagColor:'#6d28d9', tagBg:'#ede9fe', title:'சமீபத்திய உச்ச நீதிமன்ற தீர்ப்புகள் — TNPSC சிறப்பு', body:'இந்த மாதம் அரசியலமைப்பு வழக்குகளில் வந்த முக்கியமான தீர்ப்புகள் TNPSC கோணத்தில்.', date:'1 வாரம் முன்பு' },
   ],
+
 };
 
 const LEADERBOARD = [
@@ -1617,6 +3384,7 @@ const LEADERBOARD = [
   { rank:9, avatar:'🐯', name:'வினோத் குமார்', score:'3,750', pts:'3750', loc:'ஈரோடு' },
   { rank:10, avatar:'🐺', name:'மீனாட்சி பி', score:'3,600', pts:'3600', loc:'திருநெல்வேலி' },
 ];
+
 
 const BADGES = [
   { icon:'🏅', name:'வரலாறு மாஸ்டர்', req:'25 வரலாறு கேள்விகள்', earned:true },
@@ -1708,15 +3476,25 @@ function navigate(tab) {
 
   // Map special tabs to nav buttons
   const navMap = { home:'home', quiz:'quiz', ebooks:'quiz', paid:'quiz',
-                   affairs:'affairs', leaderboard:'leaderboard', analytics:'profile',
-                   achievements:'profile', profile:'profile' };
+                   affairs:'polity', leaderboard:'leaderboard', analytics:'profile',
+                   achievements:'profile', profile:'profile',
+                   polity:'polity', articleReader:'polity' };
   const navId = 'nav-' + (navMap[tab] || tab);
   const navEl = document.getElementById(navId);
   if (navEl) navEl.classList.add('active');
 
-  // Reset quiz state when navigating to quiz
+  // Reset quiz state only when navigating TO quiz via nav button (not startQuiz)
   if (tab === 'quiz') {
     exitQuiz();
+  }
+  // Reset article reader when navigating away from polity
+  if (tab !== 'polity') {
+    const reader = document.getElementById('articleReader');
+    const readerV = document.getElementById('articleReaderVeda');
+    if (reader) reader.classList.remove('show');
+    if (readerV) readerV.classList.remove('show');
+    const lv = document.getElementById('polityListView');
+    if (lv) lv.style.display = 'block';
   }
 
   // Scroll to top
@@ -1794,9 +3572,14 @@ function renderCatList() {
    QUIZ ENGINE
 ══════════════════════════════════════════ */
 function startQuiz(catId) {
-  navigate('quiz');
-  const bankKey = catId === 'geo' ? 'geo' : catId;
-  const bank = QUIZ_BANK[bankKey] || QUIZ_BANK.history;
+  // Switch to quiz tab without triggering exitQuiz
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('quiz').classList.add('active');
+  document.getElementById('nav-quiz').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const bank = QUIZ_BANK[catId] || QUIZ_BANK.history;
   const q = state.quiz;
   q.cat = catId;
   q.questions = shuffleArray([...bank]);
@@ -1834,9 +3617,17 @@ function renderQ() {
   document.getElementById('bookmarkBtn').textContent = isBookmarked ? '🔖' : '🔖';
 
   const nums = ['அ','ஆ','இ','ஈ','உ'];
-  const optHtml = cur.opts.map((opt, i) => `
-    <button class="opt-btn" 
-            onclick="checkAnswer(this, ${i}, ${cur.ans}, '${escHtml(cur.expl)}')"
+
+  // Show Tamil question if available
+  const qText = cur.qta
+    ? `<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:6px;line-height:1.6;font-style:italic;">${cur.q}</div><div class="q-text">${cur.qta}</div>`
+    : `<div class="q-text">${cur.q}</div>`;
+
+  // Use Tamil options if available, else English
+  const displayOpts = cur.optsTA || cur.opts;
+  const optHTML = displayOpts.map((opt, i) => `
+    <button class="opt-btn" data-idx="${i}"
+            onclick="checkAnswer(this, ${i}, ${cur.ans})"
             aria-label="${nums[i]}) ${opt}">
       <span class="ob-num">${nums[i]}</span>
       <span>${opt}</span>
@@ -1846,12 +3637,12 @@ function renderQ() {
   document.getElementById('questionContainer').innerHTML = `
     <div class="q-card">
       <div class="q-num">கேள்வி ${q.index + 1}</div>
-      <div class="q-text">${cur.q}</div>
+      ${qText}
       <span class="q-diff diff-${cur.diff || 'medium'}" aria-label="கடினத்தன்மை">
         ${cur.diff === 'easy' ? '🟢 எளிது' : cur.diff === 'hard' ? '🔴 கடினம்' : '🟡 நடுத்தரம்'}
       </span>
       <div class="opts-list" role="radiogroup" aria-label="பதில் விருப்பங்கள்">
-        ${optHtml}
+        ${optHTML}
       </div>
       <div class="expl-box" id="explBox"></div>
     </div>
@@ -1884,25 +3675,26 @@ function autoSubmit() {
   const q = state.quiz;
   const cur = q.questions[q.index];
   q.answered = true;
-
-  // Mark correct
   const btns = document.querySelectorAll('.opts-list .opt-btn');
   btns.forEach(b => b.disabled = true);
   if (btns[cur.ans]) btns[cur.ans].classList.add('correct');
-
   const eb = document.getElementById('explBox');
-  eb.innerHTML = `<div class="expl-title">⏱️ समय समाप्त — நேரம் முடிந்தது</div>${cur.expl}`;
+  const explHtml = cur.explTA
+    ? `<div class="expl-title">⏱️ நேரம் முடிந்தது</div><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">${cur.expl}</div>${cur.explTA}`
+    : `<div class="expl-title">⏱️ நேரம் முடிந்தது</div>${cur.expl || ''}`;
+  eb.innerHTML = explHtml;
   eb.classList.add('show');
   document.getElementById('qActions').style.display = 'flex';
   document.getElementById('nextBtn').style.display = 'block';
   document.getElementById('nextBtn').textContent = q.index + 1 < q.questions.length ? 'அடுத்த கேள்வி →' : 'முடிவு காண்க →';
 }
 
-function checkAnswer(btn, chosen, correct, expl) {
+function checkAnswer(btn, chosen, correct) {
   const q = state.quiz;
   if (q.answered) return;
   q.answered = true;
   clearInterval(q.timer);
+  const cur = q.questions[q.index];
 
   const btns = document.querySelectorAll('.opts-list .opt-btn');
   btns.forEach(b => b.disabled = true);
@@ -1919,13 +3711,17 @@ function checkAnswer(btn, chosen, correct, expl) {
   q.totalAttempted++;
 
   const eb = document.getElementById('explBox');
-  eb.innerHTML = `<div class="expl-title">📖 விளக்கம்</div>${expl}`;
+  const explHtml = cur.explTA
+    ? `<div class="expl-title">📖 விளக்கம்</div><div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">${cur.expl}</div><div style="font-size:12.5px;">${cur.explTA}</div>`
+    : `<div class="expl-title">📖 விளக்கம்</div>${cur.expl || ''}`;
+  eb.innerHTML = explHtml;
   eb.classList.add('show');
 
   document.getElementById('qActions').style.display = 'flex';
   document.getElementById('nextBtn').style.display = 'block';
   document.getElementById('nextBtn').textContent = q.index + 1 < q.questions.length ? 'அடுத்த கேள்வி →' : 'முடிவு காண்க →';
 }
+
 
 function nextQuestion() {
   const q = state.quiz;
@@ -2352,6 +4148,58 @@ function shuffleArray(arr) {
 
 function escHtml(str) {
   return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+}
+
+/* ══════════════════════════════════════════
+   POLITY ARTICLES
+══════════════════════════════════════════ */
+function openArticle(id) {
+  document.getElementById('polityListView').style.display = 'none';
+  // Hide all readers first
+  document.getElementById('articleReader').classList.remove('show');
+  document.getElementById('articleReaderVeda').classList.remove('show');
+  // Show correct reader
+  if (id === 'vedanayagam') {
+    document.getElementById('articleReaderVeda').classList.add('show');
+  } else {
+    document.getElementById('articleReader').classList.add('show');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeArticle() {
+  document.getElementById('articleReader').classList.remove('show');
+  document.getElementById('articleReaderVeda').classList.remove('show');
+  document.getElementById('polityListView').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function filterSubject(btn, subject) {
+  document.querySelectorAll('.subject-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const labels = {
+    polity: 'அரசியல் கட்டுரைகள்',
+    history: 'வரலாறு கட்டுரைகள்',
+    geo: 'புவியியல் கட்டுரைகள்',
+    science: 'அறிவியல் கட்டுரைகள்',
+    economics: 'பொருளியல் கட்டுரைகள்',
+    tamil: 'தமிழ் கட்டுரைகள்'
+  };
+  showToast('📖 ' + (labels[subject] || 'கட்டுரைகள்') + ' — விரைவில் வரும்!');
+}
+
+function shareArticle() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'TNPSC வேட்டை — இந்திய அரசியல்அமைப்பு',
+      text: 'TNPSC வேட்டையில் இந்திய அரசியல்அமைப்பு பற்றிய முழுமையான கட்டுரை படியுங்கள்!',
+      url: 'https://tnpscvettai.vercel.app'
+    }).catch(() => {});
+  } else {
+    navigator.clipboard?.writeText('https://tnpscvettai.vercel.app').then(() => {
+      showToast('🔗 இணைப்பு நகலெடுக்கப்பட்டது!');
+    }).catch(() => showToast('🔗 tnpscvettai.vercel.app'));
+  }
 }
 
 // Keyboard navigation
