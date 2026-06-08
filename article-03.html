@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>நீதித்துறை | TNPSC வேட்டை</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+/* ── KaarKalvi-style bouncing card design ── */
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+
+.articles-hero {
+  background: linear-gradient(135deg, #0c4b76 0%, #083a5c 50%, #0f5a8c 100%);
+  padding: 20px 16px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.articles-hero::before {
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  top:-60px; right:-40px;
+}
+.articles-hero::after {
+  content:'';
+  position:absolute;
+  width:120px; height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  bottom:-30px; left:20px;
+}
+.hero-nav {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.hero-back {
+  width:36px; height:36px; border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  border:none; color:white; font-size:18px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  text-decoration:none; flex-shrink:0;
+  transition: background 0.2s;
+}
+.hero-back:hover { background:rgba(255,255,255,0.25); }
+.hero-title { color:white; font-size:22px; font-weight:800; margin:0; }
+.hero-sub { color:rgba(255,255,255,0.65); font-size:12px; margin:4px 0 0; }
+
+.hero-stats {
+  display:flex; gap:12px; margin-top:16px;
+}
+.hero-stat {
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:10px; padding:8px 14px; text-align:center;
+}
+.hero-stat-num { font-size:16px; font-weight:800; color:white; }
+.hero-stat-label { font-size:10px; color:rgba(255,255,255,0.65); }
+
+/* Filter pills */
+.filter-wrap {
+  padding:14px 16px 0;
+  display:flex; gap:8px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.filter-wrap::-webkit-scrollbar { display:none; }
+.filter-pill {
+  flex-shrink:0; padding:6px 14px;
+  border-radius:20px; border:1.5px solid var(--border);
+  background:var(--card); font-size:12px; font-weight:600;
+  color:var(--text-muted); cursor:pointer;
+  transition:all 0.2s; white-space:nowrap;
+}
+.filter-pill.active {
+  background:var(--primary); border-color:var(--primary);
+  color:white;
+}
+
+/* Article cards */
+.cards-grid {
+  padding:16px;
+  display:flex; flex-direction:column; gap:16px;
+}
+
+/* ── BOUNCING CARD ── */
+.art-bounce-card {
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(0) scale(1);
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.18s ease;
+  position:relative;
+}
+.art-bounce-card:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.art-bounce-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+/* Card slide-in animation */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.art-bounce-card { animation: slideUp 0.4s ease forwards; opacity:0; }
+.art-bounce-card:nth-child(1) { animation-delay:0.05s; }
+.art-bounce-card:nth-child(2) { animation-delay:0.12s; }
+.art-bounce-card:nth-child(3) { animation-delay:0.19s; }
+.art-bounce-card:nth-child(4) { animation-delay:0.26s; }
+.art-bounce-card:nth-child(5) { animation-delay:0.33s; }
+
+.card-cover {
+  padding:20px 18px 16px;
+  position:relative;
+  min-height:120px;
+}
+.card-cover-orb {
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  top:-20px; right:-20px;
+  pointer-events:none;
+}
+.card-cover-orb2 {
+  position:absolute;
+  width:60px; height:60px; border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  bottom:10px; right:40px;
+  pointer-events:none;
+}
+.card-series {
+  font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:1px; text-transform:uppercase;
+  margin-bottom:6px;
+}
+.card-title-en {
+  font-size:16px; font-weight:800; color:white;
+  line-height:1.3; margin-bottom:4px;
+}
+.card-title-ta {
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.8);
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+.card-chips {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;
+}
+.card-chip {
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.9);
+  font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:20px;
+}
+.card-chip.live {
+  background:rgba(34,197,94,0.25);
+  border-color:rgba(34,197,94,0.4);
+  color:#86efac;
+}
+
+.card-footer {
+  background:var(--card);
+  padding:12px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.card-meta-items { display:flex; gap:12px; align-items:center; }
+.card-meta-item { font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+.card-arrow {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700;
+}
+
+/* Coming soon card */
+.art-bounce-card.coming-soon {
+  opacity:0.5 !important;
+  cursor:default;
+  pointer-events:none;
+  animation-delay:0s !important;
+}
+
+/* Section label */
+.section-label {
+  font-size:11px; font-weight:800;
+  color:var(--text-muted); letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:16px 16px 0;
+}
+</style>
+  <style>
+    /* Force article content visible — no .show needed */
+    .article-reader { display:block !important; }
+    .article-reader-topbar { display:none; }
+    body { margin:0; }
+    .page-wrap { padding:0 16px 40px; max-width:680px; margin:0 auto; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <button onclick="history.back()" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;flex-shrink:0;">←</button>
+    <div style="flex:1;margin-left:10px;">
+      <div style="font-size:14px;font-weight:700;color:white;">நீதித்துறை</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">கட்டுரை 03 · TNPSC வேட்டை</div>
+    </div>
+    <button onclick="toggleTheme()" id="themeBtn" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:15px;cursor:pointer;">🌙</button>
+  </header>
+
+  <div class="page-wrap">
+    <div class="art-cover" style="background:linear-gradient(135deg,#4c1d95 0%,#6d28d9 60%,#7c3aed 100%);">
+        <div class="art-cover-orb"></div>
+        <div class="art-series">POLITY SERIES · கட்டுரை 03</div>
+        <h1>Supreme Court of India</h1>
+        <h2>இந்திய உச்ச நீதிமன்றம் — அரசியலமைப்பின் காவலன்</h2>
+        <div class="art-cover-chips">
+          <span class="art-chip">Article 124–147</span>
+          <span class="art-chip">1950 ஜனவரி 28</span>
+          <span class="art-chip">34 நீதிபதிகள்</span>
+          <span class="art-chip">Collegium</span>
+        </div>
+      </div>
+
+      <div class="art-body">
+
+        <!-- Opening -->
+        <div class="art-para">
+          <div class="en">Imagine a country where the government itself could break the rules it was supposed to follow. Who would stop it? Who would protect ordinary citizens from the misuse of power? The answer, in India's democracy, is the Supreme Court.</div>
+          <div class="ta">அரசாங்கமே தான் பின்பற்ற வேண்டிய விதிகளை மீறும் ஒரு நாட்டை கற்பனை செய்யுங்கள். அதை யார் தடுப்பார்கள்? சாதாரண குடிமக்களை அதிகார துஷ்பிரயோகத்திலிருந்து யார் காப்பார்கள்? இந்தியா ஜனநாயகத்தில் அந்த பதில் தான் உச்ச நீதிமன்றம்.</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The Supreme Court of India is the highest judicial body in the country — the final authority on law, the protector of fundamental rights, and the guardian of the Constitution itself.</div>
+          <div class="ta">இந்திய உச்ச நீதிமன்றம் நாட்டின் மிக உயர்ந்த நீதித்துறை அமைப்பு — சட்டத்தின் இறுதி அதிகாரம், அடிப்படை உரிமைகளின் பாதுகாவலன், அரசியலமைப்பின் காவலன்.</div>
+        </div>
+
+        <!-- Historical Background -->
+        <div class="art-section-head">
+          <div class="en">Historical Background — The Road to 1950</div>
+          <div class="ta">வரலாற்றுப் பின்னணி — 1950 வரையிலான பயணம்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The Supreme Court did not emerge suddenly. It was the result of nearly 200 years of legal evolution under British rule — from the Regulating Act of 1773 to Independence in 1947.</div>
+          <div class="ta">உச்ச நீதிமன்றம் திடீரென உருவாகவில்லை. 1773 ஆம் ஆண்டு ஒழுங்குமுறைச் சட்டம் முதல் 1947 சுதந்திரம் வரை கிட்டத்தட்ட 200 ஆண்டுகால சட்ட பரிணாமத்தின் விளைவு இது.</div>
+        </div>
+        <div class="art-timeline">
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1773</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content">
+              <div class="ev">Regulating Act</div><div class="ev-ta">ஒழுங்குமுறைச் சட்டம்</div>
+              <div class="desc">Supreme Court of Judicature established at Calcutta — first court of record in India, handling civil and criminal cases in Bengal, Bihar, and Orissa.</div>
+              <div class="desc-ta">கல்கத்தாவில் உயர்நீதிமன்றம் நிறுவப்பட்டது — பெங்கால், பீகார், ஒரிசாவில் வழக்குகளை கையாண்டது.</div>
+            </div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1800<br>1823</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content">
+              <div class="ev">Madras & Bombay Courts</div><div class="ev-ta">மதராஸ் & பம்பாய் நீதிமன்றங்கள்</div>
+              <div class="desc">King George III established Madras (1800) and Bombay (1823) Supreme Courts. Converted to High Courts under Indian High Courts Act, 1861.</div>
+              <div class="desc-ta">1861 சட்டத்தின் கீழ் உயர் நீதிமன்றங்களாக மாற்றப்பட்டன.</div>
+            </div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year">1935</div><div class="art-tl-dot"></div></div>
+            <div class="art-tl-content">
+              <div class="ev">Federal Court of India</div><div class="ev-ta">இந்திய கூட்டாட்சி நீதிமன்றம்</div>
+              <div class="desc">Government of India Act 1935 created the Federal Court to resolve provincial disputes and hear appeals — the immediate predecessor of today's Supreme Court.</div>
+              <div class="desc-ta">மாகாண தகராறுகளை தீர்க்கவும் மேல்முறையீடுகளை விசாரிக்கவும் உருவாக்கப்பட்டது — இன்றைய உச்ச நீதிமன்றத்தின் நேரடி முன்னோடி.</div>
+            </div>
+          </div>
+          <div class="art-tl-item">
+            <div class="art-tl-left"><div class="art-tl-year" style="background:var(--accent);">28 Jan<br>1950</div><div class="art-tl-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent);"></div></div>
+            <div class="art-tl-content" style="border-color:var(--accent);">
+              <div class="ev" style="color:var(--accent);">Supreme Court Established 🏛️</div><div class="ev-ta">உச்ச நீதிமன்றம் நிறுவப்பட்டது</div>
+              <div class="desc">The present Supreme Court was formally constituted on January 28, 1950 — two days after India became a Republic. Justice Harilal J. Kania was the first Chief Justice of India (CJI).</div>
+              <div class="desc-ta">இந்தியா குடியரசு ஆன இரண்டு நாட்களுக்குப் பிறகு ஜனவரி 28, 1950 அன்று இன்றைய உச்ச நீதிமன்றம் நிறுவப்பட்டது. நீதிபதி ஹரிலால் ஜே. கானியா முதல் இந்திய தலைமை நீதிபதி.</div>
+            </div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">Article 130 states the Supreme Court shall sit in Delhi OR at such other place(s) as the CJI may, with the approval of the President, appoint. The original Constitution provided only 8 judges; Parliament has gradually increased this to 34.</div>
+            <div class="ta">விதி 130 படி உச்ச நீதிமன்றம் டெல்லியில் அல்லது குடியரசுத் தலைவரின் ஒப்புதலுடன் தலைமை நீதிபதி தீர்மானிக்கும் இடங்களில் இயங்கலாம். அரசியலமைப்பு ஆரம்பத்தில் 8 நீதிபதிகளை நிர்ணயித்தது; நாடாளுமன்றம் படிப்படியாக 34 ஆக உயர்த்தியது.</div>
+          </div>
+        </div>
+
+        <!-- Constitutional Provisions -->
+        <div class="art-section-head">
+          <div class="en">Constitutional Provisions — Articles 124 to 147</div>
+          <div class="ta">அரசியலமைப்பு விதிகள் — விதி 124 முதல் 147 வரை</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Part V of the Indian Constitution (Articles 124–147) deals entirely with the Union Judiciary. These articles define the composition, independence, jurisdiction, and powers of the Supreme Court.</div>
+          <div class="ta">இந்திய அரசியலமைப்பின் பகுதி V (விதி 124–147) முழுவதும் சங்க நீதித்துறையை பற்றியது. இந்த விதிகள் உச்ச நீதிமன்றத்தின் கட்டமைப்பு, சுதந்திரம், அதிகார வரம்பு மற்றும் அதிகாரங்களை வரையறுக்கின்றன.</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">124</div><div class="art-bullet-content"><div class="en">Establishment, composition (34 judges), qualifications, appointment, removal</div><div class="ta">நிறுவல், கட்டமைப்பு (34 நீதிபதிகள்), தகுதிகள், நியமனம், நீக்கம்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">125</div><div class="art-bullet-content"><div class="en">Salaries, allowances and service conditions of judges</div><div class="ta">நீதிபதிகளின் சம்பளம் மற்றும் சேவை நிபந்தனைகள்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">129</div><div class="art-bullet-content"><div class="en">Supreme Court as Court of Record — power to punish for contempt</div><div class="ta">பதிவு நீதிமன்றம் — நீதிமன்ற அவமதிப்புக்கு தண்டிக்கும் அதிகாரம்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">131</div><div class="art-bullet-content"><div class="en">Original Jurisdiction — Centre vs States / States vs States disputes</div><div class="ta">அசல் அதிகார வரம்பு — மைய அரசு மற்றும் மாநிலங்களுக்கிடையேயான தகராறுகள்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">132–134</div><div class="art-bullet-content"><div class="en">Appellate Jurisdiction — Constitutional, Civil, Criminal appeals from High Courts</div><div class="ta">மேல்முறையீட்டு அதிகார வரம்பு — அரசியலமைப்பு, சிவில், குற்றவியல் மேல்முறையீடுகள்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">136</div><div class="art-bullet-content"><div class="en">Special Leave Petition (SLP) — Supreme Court can grant special leave to appeal from any court</div><div class="ta">சிறப்பு விடுப்பு மனு (SLP) — எந்த நீதிமன்றத்திலிருந்தும் மேல்முறையீட்டை ஏற்கலாம்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">141</div><div class="art-bullet-content"><div class="en">Law declared by Supreme Court is binding on all courts in India</div><div class="ta">உச்ச நீதிமன்றம் அறிவிக்கும் சட்டம் இந்தியாவின் அனைத்து நீதிமன்றங்களுக்கும் கட்டுப்படும்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">143</div><div class="art-bullet-content"><div class="en">Advisory Jurisdiction — President may seek SC's opinion on questions of law or public importance</div><div class="ta">ஆலோசனை அதிகார வரம்பு — குடியரசுத் தலைவர் சட்டச் சிக்கல்களில் ஆலோசனை கோரலாம்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">32</div><div class="art-bullet-content"><div class="en">Writ Jurisdiction — SC issues writs to protect Fundamental Rights (Habeas Corpus, Mandamus, Certiorari, Prohibition, Quo Warranto). Dr. Ambedkar called Article 32 "Heart and Soul of the Constitution"</div><div class="ta">நீதிப்பேராணை அதிகாரம் — அடிப்படை உரிமைகளை பாதுகாக்க 5 பேராணைகள். டாக்டர் அம்பேத்கர் விதி 32ஐ "அரசியலமைப்பின் இதயமும் ஆன்மாவும்" என்று அழைத்தார்</div></div></div>
+        </div>
+
+        <!-- Qualifications & Appointment -->
+        <div class="art-section-head">
+          <div class="en">Qualifications & Appointment of Judges</div>
+          <div class="ta">நீதிபதிகளின் தகுதிகளும் நியமனமும்</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Under Article 124(3), a person can be appointed as a Supreme Court judge if they are an Indian citizen AND meet one of three qualifications:</div>
+          <div class="ta">விதி 124(3) படி இந்தியக் குடிமகன் ஆனவர் மூன்று தகுதிகளில் ஒன்றை பூர்த்தி செய்தால் உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கப்படலாம்:</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en"><strong>Bench Quota:</strong> Minimum 5 years as Judge of one or more High Courts (consecutively)</div><div class="ta"><strong>நீதிபதி கோட்டா:</strong> ஒன்று அல்லது அடுத்தடுத்த உயர் நீதிமன்றங்களில் குறைந்தபட்சம் 5 ஆண்டுகள் நீதிபதியாக பணி</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en"><strong>Bar Quota:</strong> Minimum 10 years as Advocate of one or more High Courts (consecutively)</div><div class="ta"><strong>வழக்கறிஞர் கோட்டா:</strong> ஒன்று அல்லது அடுத்தடுத்த உயர் நீதிமன்றங்களில் குறைந்தபட்சம் 10 ஆண்டுகள் வழக்கறிஞராக பணி</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en"><strong>Distinguished Jurist [Art.124(3)(c)]:</strong> President considers the person an eminent legal scholar. <em>Note: Never used in 75+ years of Supreme Court history!</em></div><div class="ta"><strong>சிறந்த சட்ட நிபுணர்:</strong> குடியரசுத் தலைவரின் கண்ணோட்டத்தில் சிறந்த சட்ட அறிஞர். <em>குறிப்பு: 75+ ஆண்டுகள் இந்த பிரிவு இதுவரை பயன்படுத்தப்படவில்லை!</em></div></div></div>
+        </div>
+        <div class="art-fact">
+          <div class="fact-star">★</div>
+          <div class="fact-body">
+            <div class="en">Retirement Age: 65 years. Judges swear oath before the President. Salary is charged to the Consolidated Fund of India (not voted by Parliament) — ensuring judicial independence.</div>
+            <div class="ta">ஓய்வு வயது: 65 ஆண்டுகள். நீதிபதிகள் குடியரசுத் தலைவர் முன்பு பதவிப்பிரமாணம் எடுக்கின்றனர். சம்பளம் இந்தியாவின் ஒருங்கிணைந்த நிதியிலிருந்து வழங்கப்படுகிறது (நாடாளுமன்ற வாக்கெடுப்பில்லை) — நீதித்துறை சுதந்திரத்தை உறுதிசெய்கிறது.</div>
+          </div>
+        </div>
+
+        <!-- Seniority -->
+        <div class="art-section-head">
+          <div class="en">How Seniority is Calculated</div>
+          <div class="ta">மூப்பு நிலை எவ்வாறு கணக்கிடப்படுகிறது?</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Seniority in the Supreme Court is NOT based on age. It is calculated from the date of appointment as a Supreme Court judge. If two judges are appointed on the same day, seniority is determined by their previous standing in the All-India High Court seniority list.</div>
+          <div class="ta">உச்ச நீதிமன்றத்தில் மூப்பு நிலை வயதை அடிப்படையாக கொண்டதல்ல. உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கப்பட்ட தேதியை அடிப்படையாகக் கொண்டது. ஒரே நாளில் இரண்டு நீதிபதிகள் நியமிக்கப்பட்டால், அகில இந்திய உயர் நீதிமன்ற மூப்பு நிலை பட்டியலில் அவர்களது நிலை கணக்கில் கொள்ளப்படும்.</div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">The <strong>next Chief Justice of India is decided purely by seniority</strong> — the most senior judge of the Supreme Court automatically becomes the CJI. The outgoing CJI recommends the senior-most judge, and the President formalizes the appointment.</div>
+            <div class="ta">இந்தியாவின் அடுத்த தலைமை நீதிபதி <strong>மூப்பு நிலை மட்டுமே அடிப்படையாக</strong> தீர்மானிக்கப்படுகிறார் — உச்ச நீதிமன்றத்தின் மூத்த நீதிபதி தானாகவே தலைமை நீதிபதி ஆகிறார். பதவிவிலகும் CJI மூத்த நீதிபதியை பரிந்துரைக்கிறார், குடியரசுத் தலைவர் நியமனத்தை உறுதிசெய்கிறார்.</div>
+          </div>
+        </div>
+
+        <!-- Collegium System -->
+        <div class="art-section-head">
+          <div class="en">The Collegium System — How Judges Appoint Judges</div>
+          <div class="ta">கொலிஜியம் முறை — நீதிபதிகளை நீதிபதிகளே நியமிக்கும் முறை</div>
+        </div>
+        <div class="art-para">
+          <div class="en">The Collegium System is not mentioned anywhere in the Constitution. It evolved through three landmark Supreme Court cases — known as the "Three Judges Cases."</div>
+          <div class="ta">கொலிஜியம் முறை அரசியலமைப்பில் எங்கும் குறிப்பிடப்படவில்லை. இது மூன்று முக்கிய உச்ச நீதிமன்ற வழக்குகள் மூலம் உருவானது — "மூன்று நீதிபதிகள் வழக்குகள்" என்று அழைக்கப்படும்.</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">1</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>First Judges Case (1982) — S.P. Gupta v. Union of India:</strong> Held that the President was NOT bound by the CJI's advice. Executive had primacy in appointments.</div>
+              <div class="ta"><strong>முதல் நீதிபதிகள் வழக்கு (1982):</strong> குடியரசுத் தலைவர் தலைமை நீதிபதியின் ஆலோசனையால் கட்டுப்படமாட்டார் என்று தீர்மானிக்கப்பட்டது. நியமனத்தில் நிர்வாகத்திற்கு முன்னுரிமை.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">2</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Second Judges Case (1993) — Supreme Court Advocates-on-Record Assn. v. Union of India:</strong> Overruled 1982. CJI's opinion is binding — the President MUST consult the CJI, and CJI's concurrence is mandatory. Judiciary gets primacy.</div>
+              <div class="ta"><strong>இரண்டாம் நீதிபதிகள் வழக்கு (1993):</strong> 1982 தீர்ப்பை தலைகீழாக மாற்றியது. தலைமை நீதிபதியின் கருத்து கட்டுப்படும் — குடியரசுத் தலைவர் கண்டிப்பாக CJI-ஐ கலந்தாலோசிக்க வேண்டும். நீதித்துறைக்கு முன்னுரிமை.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">3</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Third Judges Case (1998) — Presidential Reference:</strong> Formalized the Collegium system. CJI alone cannot decide — must consult the 4 most senior SC judges. Unanimous recommendation by the Collegium is binding on the President.</div>
+              <div class="ta"><strong>மூன்றாம் நீதிபதிகள் வழக்கு (1998):</strong> கொலிஜியம் முறையை முறைப்படுத்தியது. தலைமை நீதிபதி தனியாக முடிவெடுக்கக் கூடாது — 4 மூத்த நீதிபதிகளை கலந்தாலோசிக்க வேண்டும். கொலிஜியத்தின் ஒருமன பரிந்துரை குடியரசுத் தலைவரை கட்டுப்படுத்தும்.</div>
+            </div>
+          </div>
+        </div>
+        <div class="art-highlight">
+          <div class="en"><strong>2015 NJAC Controversy:</strong> Parliament passed the 99th Constitutional Amendment creating the National Judicial Appointments Commission (NJAC) to replace the Collegium. The Supreme Court struck it down in 2015 as unconstitutional — ruling it violated judicial independence, a basic structure element.</div>
+          <div class="ta"><strong>2015 NJAC விவகாரம்:</strong> நாடாளுமன்றம் 99வது திருத்தம் மூலம் கொலிஜியத்திற்கு பதிலாக தேசிய நீதிபதிகள் நியமன ஆணையம் (NJAC) அமைத்தது. உச்ச நீதிமன்றம் 2015ல் அதை அரசியலமைப்பிற்கு எதிரானது என்று ரத்து செய்தது — நீதித்துறை சுதந்திரம் அடிப்படை கட்டமைப்பு என்று தீர்மானித்தது.</div>
+        </div>
+
+        <!-- Removal Process -->
+        <div class="art-section-head">
+          <div class="en">Removal of Judges — A Near-Impossible Process</div>
+          <div class="ta">நீதிபதிகள் நீக்கம் — கிட்டத்தட்ட சாத்தியமற்ற செயல்முறை</div>
+        </div>
+        <div class="art-para">
+          <div class="en">A judge can be removed ONLY on grounds of <strong>misbehaviour or incapacity</strong>. The process is deliberately made very difficult to ensure judicial independence. In 75 years, no Supreme Court judge has ever been successfully removed.</div>
+          <div class="ta">ஒரு நீதிபதியை <strong>முறையற்ற நடத்தை அல்லது தகுதியின்மை</strong> மட்டுமே காரணமாக நீக்க முடியும். நீதித்துறை சுதந்திரத்தை உறுதி செய்ய இந்த செயல்முறை வேண்டுமென்றே மிகவும் கடினமாக்கப்பட்டுள்ளது. 75 ஆண்டுகளில் எந்த உச்ச நீதிமன்ற நீதிபதியும் வெற்றிகரமாக நீக்கப்படவில்லை.</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Motion signed by 100+ Lok Sabha members OR 50+ Rajya Sabha members, submitted to Speaker/Chairman</div><div class="ta">100+ மக்களவை உறுப்பினர்கள் அல்லது 50+ மாநிலங்களவை உறுப்பினர்கள் கையெழுத்திட்ட தீர்மானம் சபாநாயகரிடம் சமர்ப்பிக்கவும்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Speaker/Chairman admits the motion and forms a 3-member inquiry committee (SC judge + HC Chief Justice + eminent jurist)</div><div class="ta">சபாநாயகர் தீர்மானத்தை ஏற்று 3 பேர் விசாரணை குழு அமைக்கிறார் (SC நீதிபதி + HC தலைமை நீதிபதி + சிறந்த சட்ட நிபுணர்)</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">If committee confirms misbehaviour, BOTH Houses of Parliament must pass the motion by Special Majority (2/3 members present + voting AND absolute majority of total membership)</div><div class="ta">குழு குற்றத்தை உறுதிசெய்தால், நாடாளுமன்றத்தின் இரு அவைகளிலும் சிறப்பு பெரும்பான்மை மூலம் தீர்மானம் நிறைவேற வேண்டும்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">President issues the order of removal. Governed by Judges (Inquiry) Act, 1968.</div><div class="ta">குடியரசுத் தலைவர் நீக்கம் செய்யும் உத்தரவை வெளியிடுகிறார். நீதிபதிகள் (விசாரணை) சட்டம், 1968 படி நடைமுறை.</div></div></div>
+        </div>
+
+        <!-- Jurisdiction Types -->
+        <div class="art-section-head">
+          <div class="en">Jurisdiction of the Supreme Court</div>
+          <div class="ta">உச்ச நீதிமன்றத்தின் அதிகார வரம்புகள்</div>
+        </div>
+        <div style="overflow-x:auto;margin:12px 0;">
+          <table class="art-table">
+            <thead><tr><th>Jurisdiction | அதிகார வரம்பு</th><th>Article</th><th>Description | விளக்கம்</th></tr></thead>
+            <tbody>
+              <tr><td>Original | அசல்</td><td>131</td><td>Centre vs State / State vs State disputes exclusively | மைய-மாநில, மாநில-மாநில தகராறுகள் மட்டும்</td></tr>
+              <tr><td>Appellate | மேல்முறையீட்டு</td><td>132–134</td><td>Constitutional, Civil, Criminal appeals from HCs | உயர் நீதிமன்றங்களிலிருந்து மேல்முறையீடுகள்</td></tr>
+              <tr><td>Special Leave | சிறப்பு விடுப்பு</td><td>136</td><td>SC can grant leave to appeal from ANY court/tribunal | எந்த நீதிமன்றத்திலிருந்தும் மேல்முறையீடு</td></tr>
+              <tr><td>Writ | பேராணை</td><td>32</td><td>5 writs for Fundamental Rights protection | அடிப்படை உரிமை பாதுகாப்புக்கு 5 பேராணைகள்</td></tr>
+              <tr><td>Advisory | ஆலோசனை</td><td>143</td><td>President seeks SC opinion (not binding) | குடியரசுத்தலைவர் கோரும் ஆலோசனை (கட்டுப்படாது)</td></tr>
+              <tr><td>Court of Record</td><td>129</td><td>Contempt powers; precedents binding all courts | அவமதிப்பு அதிகாரம்; முன்மாதிரிகள் கட்டுப்படும்</td></tr>
+              <tr><td>Review | மறுஆய்வு</td><td>137</td><td>SC can review its own judgments | தனது சொந்த தீர்ப்புகளை மறுஆய்வு செய்யலாம்</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Women in SC -->
+        <div class="art-section-head">
+          <div class="en">Women in the Supreme Court</div>
+          <div class="ta">உச்ச நீதிமன்றத்தில் பெண்கள்</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">1</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Justice Fathima Beevi (1989)</strong> — First woman judge of the Supreme Court of India.</div>
+              <div class="ta"><strong>நீதிபதி பாத்திமா பீவி (1989)</strong> — இந்திய உச்ச நீதிமன்றத்தின் முதல் பெண் நீதிபதி.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">2</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Justice Leila Seth (1991)</strong> — First woman Chief Justice of a High Court (Himachal Pradesh HC).</div>
+              <div class="ta"><strong>நீதிபதி லைலா சேத் (1991)</strong> — உயர் நீதிமன்றத்தின் முதல் பெண் தலைமை நீதிபதி (இமாச்சல பிரதேசம்).</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">3</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Justice Indu Malhotra (2018)</strong> — First woman directly elevated from the Bar (advocate) to the Supreme Court bench.</div>
+              <div class="ta"><strong>நீதிபதி இந்து மல்ஹோத்ரா (2018)</strong> — வழக்கறிஞர் கோட்டாவிலிருந்து நேரடியாக உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கப்பட்ட முதல் பெண்.</div>
+            </div>
+          </div>
+          <div class="art-bullet-item">
+            <div class="art-bullet-dot">★</div>
+            <div class="art-bullet-content">
+              <div class="en"><strong>Justice B.V. Nagarathna</strong> — Expected to become India's first woman Chief Justice of India (CJI) in <strong>2027</strong>. As of 2026, India has had NO woman CJI yet.</div>
+              <div class="ta"><strong>நீதிபதி பி.வி. நாகரத்னா</strong> — <strong>2027</strong> ஆம் ஆண்டு இந்தியாவின் முதல் பெண் தலைமை நீதிபதியாக பொறுப்பேற்க எதிர்பார்க்கப்படுகிறார். 2026 வரை இந்தியாவில் ஒரு பெண் CJI கூட இல்லை.</div>
+            </div>
+          </div>
+        </div>
+        <div class="art-tip">
+          <div class="tip-label">TNPSC TIP</div>
+          <div class="tip-body">
+            <div class="en">Total women judges appointed to SC in 75 years: <strong>only 11</strong>. This is a frequently asked diversity-related question in TNPSC exams.</div>
+            <div class="ta">75 ஆண்டுகளில் உச்ச நீதிமன்றத்தில் நியமிக்கப்பட்ட மொத்த பெண் நீதிபதிகள்: <strong>11 மட்டுமே</strong>. TNPSC தேர்வுகளில் பல்வகைத்தன்மை தொடர்பான அடிக்கடி கேட்கப்படும் கேள்வி.</div>
+          </div>
+        </div>
+
+        <!-- AOR System -->
+        <div class="art-section-head">
+          <div class="en">Advocate-on-Record (AOR) — The Exclusive Gateway to Supreme Court</div>
+          <div class="ta">பதிவு பெற்ற வழக்கறிஞர் (AOR) — உச்ச நீதிமன்றத்தின் பிரத்தியேக நுழைவு</div>
+        </div>
+        <div class="art-para">
+          <div class="en">Only an <strong>Advocate-on-Record (AOR)</strong> can file cases, appear, and act for parties in the Supreme Court. Other advocates can only argue if briefed through an AOR.</div>
+          <div class="ta">உச்ச நீதிமன்றத்தில் வழக்குகளை தாக்கல் செய்யவும், ஆஜராகவும் <strong>பதிவு பெற்ற வழக்கறிஞர் (AOR)</strong>-களுக்கு மட்டுமே பிரத்தியேக அதிகாரம். மற்ற வழக்கறிஞர்கள் AOR மூலமாகவே வழக்காட முடியும்.</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Must be enrolled in the Bar Council of India</div><div class="ta">இந்திய பார் கவுன்சிலில் பதிவு செய்யப்பட்டவராக இருக்க வேண்டும்</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Minimum 4 years of continuous legal practice in any court</div><div class="ta">எந்த நீதிமன்றத்திலும் குறைந்தபட்சம் 4 ஆண்டுகள் தொடர் வழக்கறிஞர் பயிற்சி</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">Mandatory 1 year training under a Senior AOR with 10+ years experience</div><div class="ta">10+ ஆண்டுகள் அனுபவமுள்ள மூத்த AOR-இன் கீழ் 1 ஆண்டு கட்டாய பயிற்சி</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">Pass the rigorous AOR Examination (4 papers: Procedural Law, Drafting, Professional Ethics, Leading Cases) — minimum 45% per paper, 50% aggregate</div><div class="ta">கடினமான AOR தேர்வில் தேர்ச்சி (4 தாள்கள்) — ஒவ்வொரு தாளிலும் 45%, மொத்தம் 50%</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">5</div><div class="art-bullet-content"><div class="en">Must have own office within 16 km radius of Supreme Court building in New Delhi + a registered clerk</div><div class="ta">புது தில்லியில் உச்ச நீதிமன்றத்திலிருந்து 16 கி.மீ சுற்றளவுக்குள் சொந்த அலுவலகம் + பதிவு செய்யப்பட்ட எழுத்தர்</div></div></div>
+        </div>
+
+        <!-- Challenges -->
+        <div class="art-section-head">
+          <div class="en">Challenges Facing the Supreme Court</div>
+          <div class="ta">உச்ச நீதிமன்றம் எதிர்கொள்ளும் சவால்கள்</div>
+        </div>
+        <div class="art-bullets">
+          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Pendency Crisis:</strong> As of April 1, 2024 — 80,194 cases pending in Supreme Court alone. India's total judicial pendency exceeds 5 crore cases!</div><div class="ta"><strong>வழக்கு தேக்கம்:</strong> ஏப்ரல் 1, 2024 நிலவரப்படி — உச்ச நீதிமன்றத்தில் மட்டும் 80,194 வழக்குகள் நிலுவையில். இந்தியாவின் மொத்த நிலுவை வழக்குகள் 5 கோடியை தாண்டும்!</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Collegium Opacity:</strong> No transparent criteria for judicial appointments; NJAC attempt struck down. Collegium recommendations are often not explained publicly.</div><div class="ta"><strong>கொலிஜியம் வெளிப்படைத்தன்மை குறைபாடு:</strong> நீதிபதிகள் நியமனத்திற்கு வெளிப்படையான அளவுகோல்கள் இல்லை; NJAC முயற்சி ரத்தானது.</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Judicial Overreach:</strong> Allegations that SC steps into legislative/executive domain — e.g., ban on liquor shops near highways, directions on cricket board management.</div><div class="ta"><strong>நீதித்துறை மீறல்:</strong> உச்ச நீதிமன்றம் சட்டமன்ற/நிர்வாகத் துறையில் தலையிடுகிறது என்ற குற்றச்சாட்டு.</div></div></div>
+          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Diversity Deficit:</strong> Only 11 women judges in 75 years; inadequate representation of marginalized communities among SC judges.</div><div class="ta"><strong>பன்முகத்தன்மை குறைபாடு:</strong> 75 ஆண்டுகளில் 11 பெண் நீதிபதிகள் மட்டுமே; விளிம்பு நிலை சமுதாயங்களின் பிரதிநிதித்துவம் குறைவு.</div></div></div>
+        </div>
+
+        <!-- Ad slot -->
+        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
+
+        <!-- ═══ MAINS QUESTION ═══ -->
+        <div class="art-section-head">
+          <div class="en">TNPSC Group 1 Mains Practice Question</div>
+          <div class="ta">TNPSC குரூப் 1 முதன்மைத் தேர்வு பயிற்சி வினா</div>
+        </div>
+
+        <!-- Question Box -->
+        <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:var(--radius);padding:18px 16px;margin:14px 0;">
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.55);letter-spacing:1px;margin-bottom:8px;">GROUP 1 MAINS · 15 MARKS · 250 WORDS</div>
+          <div style="font-size:13px;font-weight:600;color:white;line-height:1.7;margin-bottom:8px;">"Though Article 124(3)(c) of the Indian Constitution provides for the appointment of a 'Distinguished Jurist' as a Judge of the Supreme Court, this provision has never been utilized in the last 75 years. Critically analyze the reasons behind this and suggest measures to operationalize it."</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,0.8);line-height:1.7;">"இந்திய அரசியலமைப்பின் விதி 124(3)(c) ஒரு 'சிறந்த சட்ட நிபுணரை' உச்ச நீதிமன்ற நீதிபதியாக நியமிக்க வழிவகை செய்திருந்த போதிலும், கடந்த 75 ஆண்டுகளில் இந்த விதி ஒருமுறை கூட பயன்படுத்தப்படவில்லை. இதற்கான காரணங்களை விமர்சன ரீதியாக பகுப்பாய்வு செய்து, இவ்விதியை நடைமுறைப்படுத்துவதற்கான வழிமுறைகளைப் பரிந்துரைக்கவும்."</div>
+        </div>
+
+        <!-- Model Answer -->
+        <div style="background:var(--card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;margin:14px 0;">
+          <div style="background:var(--accent);padding:10px 16px;">
+            <div style="font-size:12px;font-weight:800;color:white;letter-spacing:0.5px;">✍️ மாதிரி விடை | MODEL ANSWER</div>
+          </div>
+          <div style="padding:16px;">
+
+            <!-- Intro -->
+            <div style="background:var(--bg2);border-left:4px solid var(--primary);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;margin-bottom:14px;">
+              <div style="font-size:11px;font-weight:800;color:var(--primary);letter-spacing:0.5px;margin-bottom:6px;">① அறிமுகம் | INTRODUCTION</div>
+              <div style="font-size:13px;color:var(--text);margin-bottom:5px;line-height:1.65;">Article 124(3)(c) of the Indian Constitution includes a progressive clause allowing the President to appoint a <strong>"Distinguished Jurist"</strong> directly to the Supreme Court. Inspired by the US Supreme Court model, the framers introduced this to bring diverse academic and theoretical expertise into the judiciary. However, to date, not a single appointment has been made under this category — a paradox in India's legal system.</div>
+              <div style="font-size:12.5px;color:var(--text-muted);line-height:1.65;">இந்திய அரசியலமைப்பின் விதி 124(3)(c) படி குடியரசுத் தலைவர் ஒரு "சிறந்த சட்ட நிபுணரை" நேரடியாக உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கலாம். அமெரிக்க உச்ச நீதிமன்றத்தை முன்மாதிரியாகக் கொண்டு, சட்டப் பேராசிரியர்கள் மற்றும் ஆராய்ச்சியாளர்களின் கோட்பாட்டு அறிவை நீதித்துறைக்குள் கொண்டுவர அரசியலமைப்பு நிர்ணய சபை இதனை உருவாக்கியது. ஆனால், 75 ஆண்டுகளில் ஒரு நியமனம் கூட நடைபெறவில்லை.</div>
+            </div>
+
+            <!-- Reasons -->
+            <div style="background:var(--red-bg);border-left:4px solid var(--red);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;margin-bottom:14px;">
+              <div style="font-size:11px;font-weight:800;color:var(--red);letter-spacing:0.5px;margin-bottom:8px;">② காரணங்கள் | REASONS FOR NON-UTILIZATION</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>1. அளவுகோல்களில் தெளிவின்மை (Lack of Objective Criteria):</strong><br>
+                <span style="color:var(--text-muted);">'சிறந்த சட்ட நிபுணர்' என்ற வார்த்தைக்கு அரசியலமைப்பில் தெளிவான வரையறை இல்லை. | The term "Distinguished Jurist" is subjective and lacks precise statutory definition.</span></div>
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>2. கொலிஜியம் முறையின் ஆதிக்கம் (Collegium Dominance):</strong><br>
+                <span style="color:var(--text-muted);">1993க்கு பிறகு கொலிஜியம் முறை, நீதிபதிகள் மற்றும் மூத்த வழக்கறிஞர்களை மட்டுமே பரிசீலிக்கும் வழக்கத்தைக் கொண்டுள்ளது. | Collegium favors career judges and senior advocates, neglecting academic jurists.</span></div>
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>3. நடைமுறை அனுபவக் குறைபாடு (Lack of Litigation Experience):</strong><br>
+                <span style="color:var(--text-muted);">கல்வியாளர்களுக்கு நீதிமன்ற நடைமுறை அனுபவம் இல்லை என்ற பொதுவான கருத்து. | Prevailing mindset that academics lack essential courtroom experience.</span></div>
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>4. அரசியல் தலையீடு குறித்த அச்சம் (Fear of Executive Misuse):</strong><br>
+                <span style="color:var(--text-muted);">தெளிவான விதிகள் இல்லாதால் ஆளும் அரசு தனக்கு சாதகமான நபர்களை நியமிக்கக் கூடும் என்ற அச்சம். | Without clear rules, executive could misuse this subjective clause for political appointments.</span></div>
+              </div>
+            </div>
+
+            <!-- Way Forward -->
+            <div style="background:var(--green-bg);border-left:4px solid var(--green);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;margin-bottom:14px;">
+              <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:0.5px;margin-bottom:8px;">③ பரிந்துரைகள் | WAY FORWARD</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>1. தெளிவான வரையறை (Define Criteria):</strong><br><span style="color:var(--text-muted);">சட்டக் கல்வி மற்றும் ஆராய்ச்சியில் 15-20 ஆண்டுகள் அனுபவம், சர்வதேச அளவில் அங்கீகரிக்கப்பட்ட வெளியீடுகள் என்று நாடாளுமன்றம் தகுதிகளை வரையறுக்க வேண்டும். | Parliament should define eligibility: 15-20 years as law professor, peer-reviewed international publications.</span></div>
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>2. கொலிஜியத்தில் மாற்றம் (Reform Collegium Search):</strong><br><span style="color:var(--text-muted);">NLU பேராசிரியர்களின் பெயர்களையும் கொலிஜியம் கட்டாயமாக பரிசீலிக்க வேண்டும். | Collegium must include exceptional legal scholars from National Law Universities in its search.</span></div>
+                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>3. அமெரிக்க முன்மாதிரி (US Model):</strong><br><span style="color:var(--text-muted);">அமெரிக்காவில் Ruth Bader Ginsburg, Antonin Scalia போன்ற சட்ட அறிஞர்கள் உச்ச நீதிமன்ற நீதிபதிகளாக செயல்பட்டு தலைசிறந்த தீர்ப்புகளை வழங்கியுள்ளனர். | US model shows legal scholars like Ginsburg can deliver landmark judgments enriching constitutional jurisprudence.</span></div>
+              </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div style="background:var(--bg2);border-left:4px solid var(--accent);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;">
+              <div style="font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;margin-bottom:6px;">④ முடிவுரை | CONCLUSION</div>
+              <div style="font-size:13px;color:var(--text);margin-bottom:5px;line-height:1.65;">Activating Article 124(3)(c) is vital to enrich the Supreme Court with deep constitutional jurisprudence. Striking a balance between academic brilliance and judicial experience will enhance the quality of landmark judgments and bring diverse perspectives into India's highest court.</div>
+              <div style="font-size:12.5px;color:var(--text-muted);line-height:1.65;">அமெரிக்கா போன்ற வளர்ந்த நாடுகளைப் போல, இந்திய உச்ச நீதிமன்றத்திலும் சிறந்த அரசியலமைப்புச் சட்டக் கோட்பாடுகளைக் கொண்டுவர விதி 124(3)(c)-ஐ உயிர்ப்பிப்பது அவசியம். நடைமுறை அனுபவத்துடன் கல்வியாளர்களின் மேதைமையையும் இணைப்பது எதிர்கால இந்திய நீதித்துறையின் தரத்தை உயர்த்தும்.</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Quick Revision -->
+        <div class="art-revision">
+          <div class="art-revision-title">⚡ TNPSC விரைவு திருப்பல் — இந்திய உச்ச நீதிமன்றம்</div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Established: January 28, 1950 | First CJI: Justice Harilal J. Kania</div><div class="ta">நிறுவப்பட்டது: ஜனவரி 28, 1950 | முதல் CJI: நீதிபதி ஹரிலால் ஜே. கானியா</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Constitutional Articles: 124–147 (Part V) | Current strength: 34 judges (including CJI)</div><div class="ta">அரசியலமைப்பு விதிகள்: 124–147 (பகுதி V) | தற்போதைய வலிமை: 34 நீதிபதிகள்</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Retirement age: 65 years | Salary from Consolidated Fund of India</div><div class="ta">ஓய்வு வயது: 65 | சம்பளம் இந்தியாவின் ஒருங்கிணைந்த நிதியிலிருந்து</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Article 32 = Writ jurisdiction = "Heart & Soul of Constitution" (Dr. Ambedkar)</div><div class="ta">விதி 32 = நீதிப்பேராணை அதிகாரம் = "அரசியலமைப்பின் இதயமும் ஆன்மாவும்" (டாக்டர் அம்பேத்கர்)</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Collegium: CJI + 4 senior-most SC judges. Formalized by Third Judges Case (1998)</div><div class="ta">கொலிஜியம்: CJI + 4 மூத்த நீதிபதிகள். மூன்றாம் நீதிபதிகள் வழக்கு (1998) மூலம் முறைப்படுத்தப்பட்டது</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">NJAC (99th Amendment, 2015) struck down as unconstitutional — violates Basic Structure</div><div class="ta">NJAC (99வது திருத்தம், 2015) அரசியலமைப்புக்கு எதிரானது என்று ரத்தானது — அடிப்படை கட்டமைப்பை மீறுகிறது</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">First woman SC judge: Fathima Beevi (1989) | Expected first woman CJI: B.V. Nagarathna (2027)</div><div class="ta">முதல் பெண் SC நீதிபதி: பாத்திமா பீவி (1989) | எதிர்பார்க்கப்படும் முதல் பெண் CJI: B.V. நாகரத்னா (2027)</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Distinguished Jurist [Art.124(3)(c)] — NEVER used in 75+ years of SC history</div><div class="ta">சிறந்த சட்ட நிபுணர் [விதி 124(3)(c)] — 75+ ஆண்டுகளில் ஒருமுறை கூட பயன்படுத்தப்படவில்லை</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Pending cases in SC (April 2024): 80,194 | Total judicial pendency India: 5 crore+</div><div class="ta">SC-ல் நிலுவை வழக்குகள் (ஏப்ரல் 2024): 80,194 | இந்தியாவின் மொத்த நிலுவை: 5 கோடி+</div></div></div>
+          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">AOR Examination: 4 papers, 45% per paper, 50% aggregate. Office within 16 km of SC building.</div><div class="ta">AOR தேர்வு: 4 தாள்கள், ஒவ்வொன்றிலும் 45%, மொத்தம் 50%. SC கட்டிடத்திலிருந்து 16 கி.மீ சுற்றளவில் அலுவலகம்.</div></div></div>
+        </div>
+
+        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
+
+        <div class="card" style="border:2px dashed var(--border);text-align:center;padding:20px;" onclick="showToast('விரைவில் வரும்!')">
+          <div style="font-size:28px;margin-bottom:8px;">📖</div>
+          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">அடுத்த கட்டுரை விரைவில்</div>
+          <div style="font-size:12px;color:var(--text-muted);">Article 04: Fundamental Rights — Your Constitutional Shield</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">அடிப்படை உரிமைகள் — உங்கள் அரசியலமைப்பு கவசம்</div>
+        </div>
+
+      </div><!-- /.art-body -->
+    
+    <div style="margin-top:20px;text-align:center;padding-bottom:10px;">
+      <a href="articles.html" style="color:var(--primary);font-size:13px;font-weight:600;text-decoration:none;">← அனைத்து கட்டுரைகள்</a>
+    </div>
+  </div>
+
+  <script>
+    const t=localStorage.getItem('tnpsc-theme')||'light';
+    document.documentElement.setAttribute('data-theme',t);
+    document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
+    function toggleTheme(){
+      const c=document.documentElement.getAttribute('data-theme')||'light';
+      const n=c==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',n);
+      localStorage.setItem('tnpsc-theme',n);
+      document.getElementById('themeBtn').textContent=n==='dark'?'☀️':'🌙';
+    }
+    function shareArticle(){
+      if(navigator.share)navigator.share({title:document.title,url:window.location.href}).catch(()=>{});
+      else navigator.clipboard?.writeText(window.location.href).then(()=>showToast('🔗 Link copied!'));
+    }
+    function showToast(m){
+      let el=document.getElementById('_toast');
+      if(!el){el=document.createElement('div');el.id='_toast';el.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;white-space:nowrap;';document.body.appendChild(el);}
+      el.textContent=m;el.style.opacity='1';clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity='0',2500);
+    }
+  </script>
+</body>
+</html>

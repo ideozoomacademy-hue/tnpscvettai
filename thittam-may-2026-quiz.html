@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>திட்டம் மே 2026 - வினாடி வினா</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;600;700;800&family=Hind+Madurai:wght@400;500;600&display=swap');
+
+  :root {
+    --primary: #1a237e;
+    --accent: #f57f17;
+    --success: #2e7d32;
+    --danger: #c62828;
+    --bg: #f5f5f0;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --muted: #666;
+    --border: #e0e0e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hind Madurai', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 60%, #1565c0 100%);
+    color: white;
+    padding: 20px 16px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: -20px;
+    width: 80px; height: 80px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .header h1 {
+    font-family: 'Baloo Thambi 2', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .header p {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 14px;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+  .stat-item { display: flex; align-items: center; gap: 4px; }
+  .stat-icon { font-size: 14px; }
+
+  /* PROGRESS */
+  .progress-wrap {
+    background: white;
+    padding: 12px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .progress-bar {
+    height: 6px;
+    background: #e8eaf6;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1a237e, #1565c0);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  /* MAIN */
+  .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+  .q-card.active { display: block; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .q-number {
+    background: var(--primary);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .q-topic {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    background: #fff8e1;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .q-text {
+    font-family: 'Baloo Thambi 2', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  /* OPTIONS */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    background: #f8f9fe;
+    border: 2px solid #e8eaf6;
+    border-radius: 12px;
+    padding: 13px 16px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Hind Madurai', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: #e8eaf6;
+    border-color: var(--primary);
+    transform: translateX(3px);
+  }
+  .option-label {
+    min-width: 26px;
+    height: 26px;
+    background: #e8eaf6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    flex-shrink: 0;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .option-btn.correct {
+    background: #e8f5e9;
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .option-btn.correct .option-label {
+    background: var(--success);
+    color: white;
+  }
+  .option-btn.wrong {
+    background: #ffebee;
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  .option-btn.wrong .option-label {
+    background: var(--danger);
+    color: white;
+  }
+  .option-btn:disabled { cursor: default; transform: none; }
+
+  /* EXPLANATION */
+  .explanation {
+    display: none;
+    margin-top: 14px;
+    background: #e3f2fd;
+    border-left: 4px solid #1565c0;
+    border-radius: 0 10px 10px 0;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #1a237e;
+    font-weight: 500;
+  }
+  .explanation.show { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* NEXT BUTTON */
+  .next-area { margin-top: 16px; display: none; }
+  .next-area.show { display: block; }
+  .next-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #1a237e, #1565c0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Baloo Thambi 2', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .next-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,35,126,0.3); }
+  .next-btn:active { transform: translateY(0); }
+
+  /* RESULT SCREEN */
+  #result-screen {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .result-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+  }
+  .result-icon { font-size: 60px; margin-bottom: 12px; }
+  .result-title {
+    font-family: 'Baloo Thambi 2', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .result-score {
+    font-size: 48px;
+    font-weight: 800;
+    font-family: 'Baloo Thambi 2', sans-serif;
+    color: var(--accent);
+    line-height: 1;
+    margin: 10px 0;
+  }
+  .result-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+  .result-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .rs-item {
+    background: #f5f5f0;
+    border-radius: 12px;
+    padding: 12px 8px;
+  }
+  .rs-num {
+    font-size: 22px;
+    font-weight: 800;
+    font-family: 'Baloo Thambi 2', sans-serif;
+  }
+  .rs-label { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .rs-correct .rs-num { color: var(--success); }
+  .rs-wrong .rs-num { color: var(--danger); }
+  .rs-pct .rs-num { color: var(--primary); }
+
+  .restart-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #f57f17, #ff8f00);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Baloo Thambi 2', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.2s;
+  }
+  .restart-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(245,127,23,0.3); }
+
+  .topic-tag {
+    display: inline-block;
+    background: #e8eaf6;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin: 3px;
+  }
+
+  .performance-msg {
+    background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #2e7d32;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">திட்டம் மே 2026</div>
+  <h1>திட்டம் மாத இதழ் வினாடி வினா</h1>
+  <p>மே 2026 இதழ் சார்ந்த TNPSC முக்கிய தலைப்புகள்</p>
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-icon">📝</span> 25 கேள்விகள்</div>
+    <div class="stat-item"><span class="stat-icon">🎯</span> அனைத்து தலைப்புகள்</div>
+    <div class="stat-item"><span class="stat-icon">🏆</span> தமிழில்</div>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-info">
+    <span id="progress-text">கேள்வி 1 / 25</span>
+    <span id="score-text">மதிப்பெண்: 0</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width:4%"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="quiz-area"></div>
+  <div id="result-screen"></div>
+</div>
+
+<script>
+const questions = [
+  {
+    topic: "திறன் இந்தியா",
+    q: "Skill India திட்டம் எந்த ஆண்டில் தொடங்கப்பட்டது?",
+    opts: ["2013", "2015", "2017", "2019"],
+    ans: 1,
+    exp: "இந்திய அரசு 2015ஆம் ஆண்டில் திறன் இந்தியா (Skill India) திட்டத்தை தொடங்கியது. இதன் நோக்கம் இளைஞர்களுக்கு தொழில் திறன் பயிற்சி வழங்குவதாகும்."
+  },
+  {
+    topic: "திறன் இந்தியா",
+    q: "SIDH 2.0 என்பது எதனுடன் தொடர்புடையது?",
+    opts: ["விவசாயம்", "டிஜிட்டல் திறன் மைய அமைப்பு", "ட்ரோன் தொழில்நுட்பம்", "UPI பணப்பரிமாற்றம்"],
+    ans: 1,
+    exp: "SIDH 2.0 என்பது Skill India Digital Hub 2.0 ஆகும். இது டிஜிட்டல் முறையில் தொழிலாளர் சந்தையுடன் திறன் பெற்றவர்களை இணைக்கும் கட்டமைப்பாகும்."
+  },
+  {
+    topic: "திறன் இந்தியா",
+    q: "தேசிய கடன் கட்டமைப்பு (NCrF) எதனை இணைக்கிறது?",
+    opts: ["வங்கிக் கடன்களை", "கல்வி மற்றும் திறன் பயிற்சி தகுதிகளை", "வரிச் சலுகைகளை", "அரசு திட்டங்களை"],
+    ans: 1,
+    exp: "தேசிய கடன் கட்டமைப்பு (NCrF) என்பது கல்வி மற்றும் திறன் பயிற்சி தகுதிகளை ஒருங்கிணைக்கும் அமைப்பாகும். இது கல்விக்கும் தொழிலுக்கும் இடையில் இடைவெளியை குறைக்கிறது."
+  },
+  {
+    topic: "UPI & பணப்பரிமாற்றம்",
+    q: "ஒருங்கிணைந்த பணப்பரிமாற்ற வழிமுறை (UPI) எந்த ஆண்டில் தொடங்கப்பட்டது?",
+    opts: ["2014", "2016", "2018", "2020"],
+    ans: 1,
+    exp: "இந்திய தேசிய பணப்பரிமாற்ற வாரியம் ஒருங்கிணைந்த பணப்பரிமாற்ற வழிமுறையை (UPI) 2016ஆம் ஆண்டில் தொடங்கியது."
+  },
+  {
+    topic: "UPI & பணப்பரிமாற்றம்",
+    q: "ஜனவரி 2026 நிலவரப்படி UPI-ல் எத்தனை வங்கிகள் இணைக்கப்பட்டுள்ளன?",
+    opts: ["216", "450", "691", "850"],
+    ans: 2,
+    exp: "2021இல் 216 வங்கிகள் UPI-ல் இணைக்கப்பட்டிருந்தன. ஜனவரி 2026ஆம் ஆண்டு வாக்கில் இது 691 ஆக உயர்ந்துள்ளது."
+  },
+  {
+    topic: "UPI & பணப்பரிமாற்றம்",
+    q: "பிரதம மந்திரி மக்கள் பண சேமிப்புத் திட்டம் (ஜன் தன் யோஜனா) எந்த நோக்கத்திற்காக தொடங்கப்பட்டது?",
+    opts: ["வரி சேகரிக்க", "வங்கி வசதி இல்லாதவர்களுக்கு கணக்கு திறக்க", "உரம் மானியம் வழங்க", "வீட்டு கடன் வழங்க"],
+    ans: 1,
+    exp: "பிரதம மந்திரி மக்கள் பண சேமிப்புத் திட்டம் வங்கி வசதி இல்லாத மக்களுக்கு இலவசமாக வங்கிக் கணக்கு திறந்து, அவர்களை நிதிசார் சேவையுடன் இணைக்கும் நோக்கத்துடன் தொடங்கப்பட்டது."
+  },
+  {
+    topic: "ட்ரோன் தொழில்நுட்பம்",
+    q: "இந்தியாவில் Drone Rules எந்த ஆண்டு அறிமுகப்படுத்தப்பட்டது?",
+    opts: ["2018", "2019", "2021", "2023"],
+    ans: 2,
+    exp: "இந்திய அரசு 2021ஆம் ஆண்டு Drone Rules 2021 என்ற புதிய விதிமுறைகளை அறிமுகப்படுத்தியது. இதன் மூலம் ட்ரோன் இயக்க அனுமதி எளிமையாக்கப்பட்டது."
+  },
+  {
+    topic: "ட்ரோன் தொழில்நுட்பம்",
+    q: "Drone Shakt திட்டம் எதற்காக அறிமுகப்படுத்தப்பட்டது?",
+    opts: ["விவசாயிகளுக்கு மட்டும்", "தொடக்கத் தொழில்முனைவோருக்கு ட்ரோன் ஆதரவு", "இராணுவ பயன்பாட்டிற்காக", "சுற்றுச்சூழல் கண்காணிப்பிற்காக"],
+    ans: 1,
+    exp: "Drone Shakt திட்டம் தொடக்கத் தொழில்முனைவோருக்கும் (Startups) தொழில்முனைவோருக்கும் (Entrepreneurs) தேவையான ஆதரவும் ஊக்கமும் வழங்குவதற்காக அறிமுகப்படுத்தப்பட்டது."
+  },
+  {
+    topic: "ட்ரோன் தொழில்நுட்பம்",
+    q: "2030க்குள் இந்தியாவில் ட்ரோன் தொழில்நுட்பத்திற்காக எவ்வளவு முதலீடு எதிர்பார்க்கப்படுகிறது?",
+    opts: ["₹5,000 கோடி", "₹12,000 கோடி", "₹25,000 கோடி", "₹50,000 கோடி"],
+    ans: 1,
+    exp: "2030க்குள் இந்தியாவின் ட்ரோன் தொழில்நுட்பத் துறையில் ₹12,000 கோடி மதிப்பிலான முதலீடு எதிர்பார்க்கப்படுகிறது."
+  },
+  {
+    topic: "மக்கள் தொகை கணக்கெடுப்பு",
+    q: "இந்தியாவில் கடைசியாக மக்கள் தொகை கணக்கெடுப்பு எந்த ஆண்டு நடைபெற்றது?",
+    opts: ["2001", "2011", "2021", "2023"],
+    ans: 1,
+    exp: "இந்தியாவில் கடைசியாக 2011ஆம் ஆண்டு மக்கள் தொகை கணக்கெடுப்பு நடைபெற்றது. கோவிட்-19 காரணமாக 2021ஆம் ஆண்டு நடைபெற வேண்டிய கணக்கெடுப்பு ஒத்திவைக்கப்பட்டது."
+  },
+  {
+    topic: "மக்கள் தொகை கணக்கெடுப்பு",
+    q: "2027 மக்கள் தொகை கணக்கெடுப்பு முதற்கட்டம் எப்போது நடைபெறும்?",
+    opts: ["ஜனவரி 2026 முதல் ஜூன் 2026 வரை", "ஏப்ரல் 2026 முதல் செப்டம்பர் 2026 வரை", "ஜனவரி 2027 முதல் மார்ச் 2027 வரை", "ஜூலை 2027 முதல் டிசம்பர் 2027 வரை"],
+    ans: 1,
+    exp: "2027 மக்கள் தொகை கணக்கெடுப்பின் முதற்கட்டமாக வீடுகளின் நிலை, குடும்பத்திற்கு கிடைக்கும் வசதிகள் ஆகியவை ஏப்ரல் 2026 முதல் செப்டம்பர் 2026 வரை சேகரிக்கப்படும்."
+  },
+  {
+    topic: "மக்கள் தொகை கணக்கெடுப்பு",
+    q: "இந்திய அரசியலமைப்பில் மக்கள் தொகை கணக்கெடுப்பை நடத்துவதற்கான சட்ட அடிப்படை எது?",
+    opts: ["பிரிவு 73", "ஏழாவது அட்டவணை, பட்டியல் 59", "பிரிவு 246 இன் கீழ் ஏழாவது அட்டவணை", "பிரிவு 312"],
+    ans: 1,
+    exp: "இந்திய அரசியலமைப்புச் சட்டத்தின் ஏழாவது அட்டவணையின் ஒன்றியப் பட்டியலில் உள்ள 59ஆம் இனத்தின் கீழ் மக்கள் தொகை கணக்கெடுப்பு வருகிறது."
+  },
+  {
+    topic: "விவசாயம் & நவீன தொழில்நுட்பம்",
+    q: "நானோ உரங்கள் பயன்படுத்துவதால் என்ன நன்மை?",
+    opts: ["விலை அதிகமாகும்", "ஊட்டச்சத்துக் குறைபாடுகள் தீரும்; சுற்றுச்சூழல் பாதிப்பு குறையும்", "மகசூல் குறையும்", "மண் கெட்டுவிடும்"],
+    ans: 1,
+    exp: "நானோ உரங்கள் பயன்படுத்துவதால் ஊட்டச்சத்துக் குறைபாடுகள் தீரும், சுற்றுச்சூழல் பாதிப்பு குறையும், மேலும் உரங்கள் நேரடியாக தாவரங்களுக்கு கிடைக்கும்."
+  },
+  {
+    topic: "விவசாயம் & நவீன தொழில்நுட்பம்",
+    q: "கிசான் சம்மான் நிதி திட்டம் யாருக்கு வழங்கப்படுகிறது?",
+    opts: ["விவசாயக் கூட்டுறவு சங்கங்களுக்கு", "சிறு மற்றும் குறு விவசாயிகளுக்கு", "அரசு வேளாண் ஊழியர்களுக்கு", "வேளாண் ஆராய்ச்சியாளர்களுக்கு"],
+    ans: 1,
+    exp: "பிரதம மந்திரி கிசான் சம்மான் நிதி (PM-KISAN) திட்டம் சிறு மற்றும் குறு விவசாயிகளுக்கு ஆண்டுக்கு ₹6,000 நிதி உதவி வழங்குகிறது."
+  },
+  {
+    topic: "விவசாயம் & நவீன தொழில்நுட்பம்",
+    q: "இயற்கை வேளாண்மை என்று சொல்லும்போது LiFE என்பது எதை குறிக்கிறது?",
+    opts: ["Living in Farm Economy", "Lifestyle for Environment", "Linked Farming Education", "Low Input Farm Enterprise"],
+    ans: 1,
+    exp: "LiFE என்பது Lifestyle for Environment என்பதன் சுருக்கமாகும். உலக அரங்கில் இந்தியா இந்த இயக்கத்தை முன்மொழிந்தது. சுற்றுச்சூழலுக்கு உகந்த வாழ்க்கை முறை பின்பற்றுவதை ஊக்குவிக்கும் நோக்கில் உருவாக்கப்பட்டது."
+  },
+  {
+    topic: "தொழிலாளர் நலம்",
+    q: "இந்தியாவில் புதிய தொழிலாளர் சட்டங்கள் எத்தனை பழைய சட்டங்களை ஒருங்கிணைக்கின்றன?",
+    opts: ["15", "25", "29", "44"],
+    ans: 2,
+    exp: "இந்தியாவில் நடைமுறையில் இருந்த 29 தொழிலாளர் நலச் சட்டங்கள் ஒருங்கிணைக்கப்பட்டு, நான்கு சட்டங்களாக மாற்றப்பட்டுள்ளன."
+  },
+  {
+    topic: "தொழிலாளர் நலம்",
+    q: "2019ஆம் ஆண்டின் ஊதியங்கள் தொடர்பான சட்டத்தின் முக்கியமான அம்சம் என்ன?",
+    opts: ["ஊதியம் குறைக்கப்பட்டது", "குறைந்தபட்ச ஊதியம் நாடு முழுவதும் ஒரே மாதிரியாக நிர்ணயிக்கப்பட வேண்டும்", "தனியார் நிறுவனங்களுக்கு மட்டும் பொருந்தும்", "ஊதியம் ரொக்கமாக வழங்கப்பட வேண்டும்"],
+    ans: 1,
+    exp: "2019ஆம் ஆண்டின் ஊதியங்கள் தொடர்பான சட்டத்தின் முக்கிய அம்சம் குறைந்தபட்ச ஊதியம் நாடு முழுவதும் ஒரே மாதிரியாக நிர்ணயிக்கப்பட வேண்டும் என்பதாகும்."
+  },
+  {
+    topic: "தொழிலாளர் நலம்",
+    q: "கிக் பணியாளர்கள் (Gig Workers) என்பவர்கள் யார்?",
+    opts: ["அரசு ஊழியர்கள்", "நிரந்தர வேலையில்லாமல் தளம் சார்ந்த பணி செய்பவர்கள்", "விவசாயிகள்", "படித்த இளைஞர்கள்"],
+    ans: 1,
+    exp: "கிக் பணியாளர்கள் என்பவர்கள் நிரந்தர வேலை இல்லாமல், ஸ்விக்கி, ஊபர், அமேசான் போன்ற டிஜிட்டல் தளங்கள் மூலம் பணி செய்பவர்கள். 2020 சமூகப் பாதுகாப்புச் சட்டத்தில் அவர்களுக்கான பாதுகாப்புகள் சேர்க்கப்பட்டுள்ளன."
+  },
+  {
+    topic: "கல்வி",
+    q: "தேசிய கல்விக் கொள்கை (NEP) 2020 அடிப்படைக் கல்வியை எத்தனை வயதுக்குக் கட்டாயமாக்குகிறது?",
+    opts: ["3 முதல் 14 வயது", "5 முதல் 16 வயது", "6 முதல் 14 வயது", "4 முதல் 18 வயது"],
+    ans: 0,
+    exp: "தேசிய கல்விக் கொள்கை 2020, 3 வயது முதல் 14 வயது வரை இலவசமும் கட்டாயமும் கல்வியை உறுதி செய்கிறது. இதில் மழலையர் பள்ளி (Pre-school) கூட சேர்க்கப்பட்டுள்ளது."
+  },
+  {
+    topic: "கல்வி",
+    q: "ASER 2024 ஆய்வின்படி 14 முதல் 16 வயது இளைஞர்களில் எத்தனை சதவிகிதம் பேர் கைப்பேசி வைத்திருப்பதாக தெரியவந்தது?",
+    opts: ["50 சதவிகிதம்", "65 சதவிகிதம்", "75 சதவிகிதம்", "90 சதவிகிதம்"],
+    ans: 3,
+    exp: "ASER 2024 ஆய்வின்படி 14 முதல் 16 வயது இளைஞர்களில் 90 சதவிகிதம் பேர் கைப்பேசி வைத்திருப்பதாக தெரியவந்தது."
+  },
+  {
+    topic: "கல்வி",
+    q: "2020-21ஆம் ஆண்டில் 8ஆம் வகுப்புச் சேர்க்கையில் மாணவர்கள் எத்தனை கோடி?",
+    opts: ["1.1 கோடி", "1.5 கோடி", "2.2 கோடி", "3.0 கோடி"],
+    ans: 2,
+    exp: "2005-06ல் 8ஆம் வகுப்பில் 1.1 கோடி மாணவர்கள் சேர்ந்தனர். 2020-21ஆம் ஆண்டில் இது 2.2 கோடியாக அதிகரித்தது."
+  },
+  {
+    topic: "கல்பாக்கம் அணு உலை",
+    q: "கல்பாக்கத்தில் உள்ள முன்மாதிரி வேக ஈனுலை (PFBR) முதலாவது செயல்பாட்டை எப்போது அடைந்தது?",
+    opts: ["2024 ஜனவரி 6", "2026 ஏப்ரல் 6", "2025 மார்ச் 15", "2023 டிசம்பர் 31"],
+    ans: 1,
+    exp: "தமிழ்நாட்டின் கல்பாக்கத்தில் உள்ள முன்மாதிரி வேக ஈனுலை (PFBR) 2026 ஏப்ரல் 6 அன்று இரவு 08:25 மணிக்கு முதலாவது செயல்பாட்டை அடைந்தது. இது இந்திய அணு சக்தித் துறையில் ஒரு வரலாற்று சிறப்புமிக்க சாதனையாகும்."
+  },
+  {
+    topic: "கல்பாக்கம் அணு உலை",
+    q: "PFBR திட்டத்தின் மொத்த மதிப்பு எவ்வளவு?",
+    opts: ["₹2,000 கோடி", "₹5,000 கோடி", "₹8,000 கோடி", "₹15,000 கோடி"],
+    ans: 2,
+    exp: "கல்பாக்கம் PFBR திட்டத்தின் மொத்த மதிப்பு ₹8,000 கோடி ஆகும். இது இந்தியாவின் மூன்றாவது கட்ட அணு சக்தி திட்டத்தின் ஒரு பகுதியாகும்."
+  },
+  {
+    topic: "அன்னை நர்கீஸ்",
+    q: "அன்னை நர்கீஸ் 1972ல் எந்த விருது பெற்றார்?",
+    opts: ["பத்மஸ்ரீ விருது", "இந்திய ஸ்பாஸ்டிக்ஸ் சங்கத்தின் முதல் புரவலர் விருது", "தேசிய திரைப்பட விருது", "ராஜீவ் காந்தி விருது"],
+    ans: 1,
+    exp: "1972ல் பெருமூளை வாதம் குறித்த புரிதல் குறைவாக இருந்த காலகட்டத்தில், அன்னை நர்கீஸ் இந்திய ஸ்பாஸ்டிக்ஸ் சங்கத்தின் முதல் புரவலரானார்."
+  },
+  {
+    topic: "அன்னை நர்கீஸ்",
+    q: "நர்கீஸ் எந்த ஆண்டு பிறந்தார்?",
+    opts: ["1925", "1929", "1933", "1940"],
+    ans: 1,
+    exp: "நர்கீஸ் 1929 ஜூன் மாதம் கல்வந்தி தேவிக்கு மகளாகப் பிறந்தார். ஏழு வயதில் தந்தை இறந்ததிலிருந்து, அவரது வாழ்க்கையின் உந்துசக்தியாக நர்கீஸ் திகழ்ந்தார்."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function init() {
+  renderQuestion(current);
+  updateProgress();
+}
+
+function renderQuestion(idx) {
+  const area = document.getElementById('quiz-area');
+  area.innerHTML = '';
+  const q = questions[idx];
+
+  const card = document.createElement('div');
+  card.className = 'q-card active';
+  card.id = 'q-card';
+
+  const labels = ['அ', 'ஆ', 'இ', 'ஈ'];
+
+  card.innerHTML = `
+    <div class="q-meta">
+      <span class="q-number">கேள்வி ${idx + 1}</span>
+      <span class="q-topic">${q.topic}</span>
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="options" id="options">
+      ${q.opts.map((opt, i) => `
+        <button class="option-btn" onclick="selectAnswer(${i})" id="opt-${i}">
+          <span class="option-label">${labels[i]}</span>
+          <span>${opt}</span>
+        </button>
+      `).join('')}
+    </div>
+    <div class="explanation" id="explanation">💡 <strong>விளக்கம்:</strong> ${q.exp}</div>
+    <div class="next-area" id="next-area">
+      <button class="next-btn" onclick="nextQuestion()">
+        ${idx === questions.length - 1 ? '📊 முடிவைப் பார்' : 'அடுத்த கேள்வி →'}
+      </button>
+    </div>
+  `;
+
+  area.appendChild(card);
+  answered = false;
+}
+
+function selectAnswer(selected) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[current];
+  const buttons = document.querySelectorAll('.option-btn');
+
+  buttons.forEach(btn => btn.disabled = true);
+
+  if (selected === q.ans) {
+    buttons[selected].classList.add('correct');
+    score++;
+  } else {
+    buttons[selected].classList.add('wrong');
+    buttons[q.ans].classList.add('correct');
+  }
+
+  document.getElementById('explanation').classList.add('show');
+  document.getElementById('next-area').classList.add('show');
+  document.getElementById('score-text').textContent = `மதிப்பெண்: ${score}`;
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showResult();
+    return;
+  }
+  renderQuestion(current);
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = ((current + 1) / questions.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `கேள்வி ${current + 1} / ${questions.length}`;
+}
+
+function showResult() {
+  document.getElementById('quiz-area').innerHTML = '';
+  document.querySelector('.progress-wrap').style.display = 'none';
+
+  const pct = Math.round((score / questions.length) * 100);
+  let icon, msg, msgText;
+
+  if (pct >= 80) {
+    icon = '🏆'; msg = 'மிகச் சிறந்தது!';
+    msgText = 'நீங்கள் திட்டம் மே 2026 இதழை நன்கு படித்துள்ளீர்கள். TNPSC தேர்வில் வெற்றி நிச்சயம்!';
+  } else if (pct >= 60) {
+    icon = '⭐'; msg = 'நல்ல முயற்சி!';
+    msgText = 'நல்ல அடித்தளம் உள்ளது. மீண்டும் ஒருமுறை படித்தால் மேலும் மேம்படுவீர்கள்.';
+  } else if (pct >= 40) {
+    icon = '📚'; msg = 'தொடர்ந்து படியுங்கள்!';
+    msgText = 'திட்டம் இதழை மீண்டும் கவனமாகப் படியுங்கள். சரியான விளக்கங்களை கவனிக்கவும்.';
+  } else {
+    icon = '💪'; msg = 'மீண்டும் முயற்சி செய்யுங்கள்!';
+    msgText = 'திட்டம் இதழை முழுமையாகப் படியுங்கள். ஒவ்வொரு கட்டுரையும் முக்கியமானது.';
+  }
+
+  const wrong = questions.length - score;
+
+  document.getElementById('result-screen').style.display = 'block';
+  document.getElementById('result-screen').innerHTML = `
+    <div class="result-card">
+      <div class="result-icon">${icon}</div>
+      <div class="result-title">${msg}</div>
+      <div class="result-score">${score}/${questions.length}</div>
+      <div class="result-sub">திட்டம் மே 2026 வினாடி வினா முடிந்தது</div>
+      <div class="result-stats">
+        <div class="rs-item rs-correct">
+          <div class="rs-num">${score}</div>
+          <div class="rs-label">✅ சரியானவை</div>
+        </div>
+        <div class="rs-item rs-wrong">
+          <div class="rs-num">${wrong}</div>
+          <div class="rs-label">❌ தவறானவை</div>
+        </div>
+        <div class="rs-item rs-pct">
+          <div class="rs-num">${pct}%</div>
+          <div class="rs-label">🎯 மதிப்பெண்</div>
+        </div>
+      </div>
+      <div class="performance-msg">${msgText}</div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">🔄 மீண்டும் விளையாடு</button>
+  `;
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  answered = false;
+  document.getElementById('result-screen').style.display = 'none';
+  document.querySelector('.progress-wrap').style.display = 'block';
+  document.getElementById('score-text').textContent = 'மதிப்பெண்: 0';
+  init();
+}
+
+init();
+</script>
+</body>
+</html>

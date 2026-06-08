@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>சமூக மறுமலர்ச்சி | TNPSC வேட்டை</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+/* ── KaarKalvi-style bouncing card design ── */
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+
+.articles-hero {
+  background: linear-gradient(135deg, #0c4b76 0%, #083a5c 50%, #0f5a8c 100%);
+  padding: 20px 16px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.articles-hero::before {
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  top:-60px; right:-40px;
+}
+.articles-hero::after {
+  content:'';
+  position:absolute;
+  width:120px; height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  bottom:-30px; left:20px;
+}
+.hero-nav {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.hero-back {
+  width:36px; height:36px; border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  border:none; color:white; font-size:18px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  text-decoration:none; flex-shrink:0;
+  transition: background 0.2s;
+}
+.hero-back:hover { background:rgba(255,255,255,0.25); }
+.hero-title { color:white; font-size:22px; font-weight:800; margin:0; }
+.hero-sub { color:rgba(255,255,255,0.65); font-size:12px; margin:4px 0 0; }
+
+.hero-stats {
+  display:flex; gap:12px; margin-top:16px;
+}
+.hero-stat {
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:10px; padding:8px 14px; text-align:center;
+}
+.hero-stat-num { font-size:16px; font-weight:800; color:white; }
+.hero-stat-label { font-size:10px; color:rgba(255,255,255,0.65); }
+
+/* Filter pills */
+.filter-wrap {
+  padding:14px 16px 0;
+  display:flex; gap:8px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.filter-wrap::-webkit-scrollbar { display:none; }
+.filter-pill {
+  flex-shrink:0; padding:6px 14px;
+  border-radius:20px; border:1.5px solid var(--border);
+  background:var(--card); font-size:12px; font-weight:600;
+  color:var(--text-muted); cursor:pointer;
+  transition:all 0.2s; white-space:nowrap;
+}
+.filter-pill.active {
+  background:var(--primary); border-color:var(--primary);
+  color:white;
+}
+
+/* Article cards */
+.cards-grid {
+  padding:16px;
+  display:flex; flex-direction:column; gap:16px;
+}
+
+/* ── BOUNCING CARD ── */
+.art-bounce-card {
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(0) scale(1);
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.18s ease;
+  position:relative;
+}
+.art-bounce-card:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.art-bounce-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+/* Card slide-in animation */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.art-bounce-card { animation: slideUp 0.4s ease forwards; opacity:0; }
+.art-bounce-card:nth-child(1) { animation-delay:0.05s; }
+.art-bounce-card:nth-child(2) { animation-delay:0.12s; }
+.art-bounce-card:nth-child(3) { animation-delay:0.19s; }
+.art-bounce-card:nth-child(4) { animation-delay:0.26s; }
+.art-bounce-card:nth-child(5) { animation-delay:0.33s; }
+
+.card-cover {
+  padding:20px 18px 16px;
+  position:relative;
+  min-height:120px;
+}
+.card-cover-orb {
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  top:-20px; right:-20px;
+  pointer-events:none;
+}
+.card-cover-orb2 {
+  position:absolute;
+  width:60px; height:60px; border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  bottom:10px; right:40px;
+  pointer-events:none;
+}
+.card-series {
+  font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:1px; text-transform:uppercase;
+  margin-bottom:6px;
+}
+.card-title-en {
+  font-size:16px; font-weight:800; color:white;
+  line-height:1.3; margin-bottom:4px;
+}
+.card-title-ta {
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.8);
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+.card-chips {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;
+}
+.card-chip {
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.9);
+  font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:20px;
+}
+.card-chip.live {
+  background:rgba(34,197,94,0.25);
+  border-color:rgba(34,197,94,0.4);
+  color:#86efac;
+}
+
+.card-footer {
+  background:var(--card);
+  padding:12px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.card-meta-items { display:flex; gap:12px; align-items:center; }
+.card-meta-item { font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+.card-arrow {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700;
+}
+
+/* Coming soon card */
+.art-bounce-card.coming-soon {
+  opacity:0.5 !important;
+  cursor:default;
+  pointer-events:none;
+  animation-delay:0s !important;
+}
+
+/* Section label */
+.section-label {
+  font-size:11px; font-weight:800;
+  color:var(--text-muted); letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:16px 16px 0;
+}
+</style>
+  <style>
+    body{margin:0;}
+    .quiz-hero{background:linear-gradient(135deg,#3b0764,#7c3aed,#a855f7);padding:24px 16px 28px;position:relative;overflow:hidden;}
+    .quiz-hero::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06);top:-50px;right:-40px;}
+    .quiz-hero::after{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.04);bottom:-20px;left:30px;}
+    .hero-icon{font-size:44px;margin-bottom:10px;display:block;position:relative;z-index:1;}
+    .hero-title{font-size:22px;font-weight:900;color:white;margin-bottom:4px;font-family:var(--font-serif);position:relative;z-index:1;}
+    .hero-sub{font-size:12px;color:rgba(255,255,255,0.65);position:relative;z-index:1;}
+    .hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1;}
+    .h-chip{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;}
+    .start-body{padding:16px;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
+    .i-box{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:12px 8px;text-align:center;}
+    .i-val{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:3px;}
+    .i-lbl{font-size:10px;color:var(--text-muted);font-weight:600;}
+    .start-btn{width:100%;padding:16px;background:#7c3aed;color:white;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:14px;font-family:inherit;}
+    .start-btn:active{transform:scale(0.97);}
+    .tips-box{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:14px 16px;}
+    .tips-title{font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.4px;text-transform:uppercase;margin-bottom:10px;}
+    .tip{display:flex;gap:10px;font-size:12.5px;color:var(--text);margin-bottom:8px;line-height:1.5;}
+    .quiz-topbar{position:sticky;top:0;z-index:100;background:var(--primary-dark);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+    .q-back{background:rgba(255,255,255,0.15);border:none;color:white;width:34px;height:34px;border-radius:9px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .score-wrap{padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .score-big{font-size:56px;font-weight:900;color:var(--primary);line-height:1;}
+    .score-denom{font-size:16px;color:var(--text-muted);margin-bottom:16px;}
+    .s-row{display:flex;gap:10px;width:100%;margin-bottom:20px;}
+    .s-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;}
+    .s-val{font-size:20px;font-weight:800;margin-bottom:4px;}
+    .s-lbl{font-size:10px;color:var(--text-muted);}
+    
+    .q-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .q-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+    .q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;}
+    .q-diff{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+    .diff-easy{background:#dcfce7;color:#16a34a;}
+    .diff-medium{background:#fef9c3;color:#ca8a04;}
+    .diff-hard{background:#fee2e2;color:#dc2626;}
+    .opts-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+    .opt-btn{width:100%;text-align:left;display:flex;align-items:center;gap:12px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.15s ease;font-family:inherit;line-height:1.4;}
+    .opt-btn:active:not(:disabled){transform:scale(0.98);}
+    .ob-num{width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);transition:all 0.15s;}
+    .opt-btn.correct{background:#dcfce7 !important;border-color:#16a34a !important;color:#14532d !important;}
+    .opt-btn.correct .ob-num{background:#16a34a !important;color:white !important;}
+    .opt-btn.wrong{background:#fee2e2 !important;border-color:#dc2626 !important;color:#7f1d1d !important;}
+    .opt-btn.wrong .ob-num{background:#dc2626 !important;color:white !important;}
+    .expl-box{display:none;margin-top:12px;background:var(--bg2);border-radius:12px;border-left:4px solid var(--primary);padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7;}
+    .expl-box.show{display:block;}
+    .expl-title{font-size:12px;font-weight:800;color:var(--primary);letter-spacing:0.4px;margin-bottom:8px;}
+    .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s ease;}
+    .next-btn{width:100%;padding:15px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;}
+    .next-btn:active{transform:scale(0.98);}
+    .bookmark-btn{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text);}
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button onclick="goBack()" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;">←</button>
+    <div style="flex:1;margin-left:10px;">
+      <div style="font-size:14px;font-weight:700;color:white;">சமூக மறுமலர்ச்சி</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">TNPSC வேட்டை Quiz</div>
+    </div>
+    <button onclick="toggleTheme()" id="themeBtn" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:15px;cursor:pointer;">🌙</button>
+  </header>
+
+  <div id="startScreen">
+    <div class="quiz-hero">
+      <span class="hero-icon">🕊️</span>
+      <div class="hero-title">சமூக மறுமலர்ச்சி</div>
+      <div class="hero-sub">வைகுண்ட சுவாமிகள் · ராமலிங்க வள்ளலார்</div>
+      <div class="hero-chips">
+        <span class="h-chip">⏱️ 30 வினாடி / கேள்வி</span>
+        <span class="h-chip">🎯 குரூப் 2, 4</span>
+        <span class="h-chip">29 கேள்விகள்</span>
+      </div>
+    </div>
+    <div class="start-body">
+      <div class="info-grid">
+        <div class="i-box"><div class="i-val">29</div><div class="i-lbl">கேள்விகள்</div></div>
+        <div class="i-box"><div class="i-val">30s</div><div class="i-lbl">ஒவ்வொரு கேள்விக்கும்</div></div>
+        <div class="i-box"><div class="i-val">🔀</div><div class="i-lbl">Random</div></div>
+      </div>
+      <button class="start-btn" onclick="startThisQuiz()">🎯 தேர்வு தொடங்கு</button>
+      <div class="tips-box">
+        <div class="tips-title">📋 தேர்வு விவரங்கள்</div>
+        <div class="tip"><span>✅</span><span>விடைக்கு Tamil & English விளக்கம்</span></div>
+        <div class="tip"><span>⏱️</span><span>நேரம் முடிந்தால் Auto submit</span></div>
+        <div class="tip"><span>🔀</span><span>ஒவ்வொரு முறையும் Random வரிசை</span></div>
+        <div class="tip"><span>📊</span><span>முடிவில் மதிப்பெண் காண்பீர்கள்</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizEngine" style="display:none;">
+    <div class="quiz-topbar">
+      <button class="q-back" onclick="exitQuiz()">←</button>
+      <div style="flex:1;text-align:center;font-size:12px;font-weight:700;color:white;">சமூக மறுமலர்ச்சி</div>
+      <div style="background:var(--accent);color:white;font-weight:800;font-size:14px;padding:5px 13px;border-radius:18px;" id="timerDisplay">30</div>
+    </div>
+    <div style="padding:12px 16px 24px;">
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin:6px 0 14px;">
+        <span id="qProg">கேள்வி 1/1</span>
+        <span id="qScoreLabel">மதிப்பெண்: 0</span>
+      </div>
+      <div id="questionContainer"></div>
+      <!-- Next button area - shown after answer -->
+      <div id="nextArea" style="display:none;margin-top:12px;">
+        <button id="nextBtnEl" class="next-btn" onclick="nextQuestion()">அடுத்த கேள்வி →</button>
+        <button class="bookmark-btn" onclick="showToast('🔖 சேமிக்கப்பட்டது!')">🔖 சேமி</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="scoreScreen" style="display:none;">
+    <div class="score-wrap">
+      <div style="font-size:56px;margin-bottom:10px;" id="scoreEmoji">🎉</div>
+      <div class="score-big" id="scoreNum">0</div>
+      <div class="score-denom">/ <span id="scoreTot">0</span> சரியான விடைகள்</div>
+      <div class="s-row">
+        <div class="s-box"><div class="s-val" style="color:#16a34a;" id="statCorrect">0</div><div class="s-lbl">✅ சரி</div></div>
+        <div class="s-box"><div class="s-val" style="color:#dc2626;" id="statWrong">0</div><div class="s-lbl">❌ தவறு</div></div>
+        <div class="s-box"><div class="s-val" id="statTime">0s</div><div class="s-lbl">⏱️ நேரம்</div></div>
+      </div>
+      <button class="start-btn" onclick="retryQuiz()" style="width:100%;">🔄 மீண்டும் முயற்சி</button>
+      <button onclick="exitQuiz()" style="margin-top:10px;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;color:var(--text);font-family:inherit;">← Quiz பட்டியல்</button>
+    </div>
+  </div>
+
+  <script>
+    var CURRENT_CAT="socialreform";
+    const SOCIAL_REFORM_QUIZ_DATA = [
+  {
+    q:"Vaikunda Swami was born on which date and where?",
+    qta:"வைகுண்ட சுவாமிகள் எந்த தேதியில் எங்கு பிறந்தார்?",
+    opts:["12 March 1809, Swamithoppu, Kanyakumari","12 March 1809, Shastan Kovil Vilai (Thamarakulam), Travancore","5 October 1823, Maruttur, Cuddalore","12 March 1809, Vadalooru, Villupuram"],
+    optsTA:["12 மார்ச் 1809, சுவாமித்தோப்பு, கன்னியாகுமரி","12 மார்ச் 1809, சாஸ்தான் கோவில் விளை (தாமரைக்குளம்), திருவிதாங்கூர்","5 அக்டோபர் 1823, மருதூர், கடலூர்","12 மார்ச் 1809, வடலூர், விழுப்புரம்"],
+    ans:1, diff:"easy",
+    expl:"Vaikunda Swami was born on 12 March 1809 at Shastan Kovil Vilai (Thamarakulam) in Travancore (present-day Kanyakumari district). His parents were Ponnumadan and Veyilaal Ammal.",
+    explTA:"வைகுண்ட சுவாமிகள் 12 மார்ச் 1809 அன்று திருவிதாங்கூரில் (இன்றைய கன்னியாகுமரி மாவட்டம்) சாஸ்தான் கோவில் விளையில் (தாமரைக்குளம்) பிறந்தார். பெற்றோர்: பொன்னுமாடன் - வெயிலாள் அம்மாள்."
+  },
+  {
+    q:"What was the original name of Vaikunda Swami?",
+    qta:"வைகுண்ட சுவாமிகளின் இயற்பெயர் என்ன?",
+    opts:["Muthukkutti","Mudisoodum Perumaal","Sampooranathevan","Ayya Vaikundar"],
+    optsTA:["முத்துக்குட்டி","முடிசூடும் பெருமாள்","சம்பூரண தேவன்","அய்யா வைகுண்டர்"],
+    ans:1, diff:"medium",
+    expl:"Vaikunda Swami's original name was 'Mudisoodum Perumaal' (முடிசூடும் பெருமாள்). Later it was changed to 'Muthukkutti'. He was also called 'Sampoorana Thevan' (சம்பூரண தேவன்).",
+    explTA:"வைகுண்ட சுவாமிகளின் இயற்பெயர் 'முடிசூடும் பெருமாள்'. பின்னர் 'முத்துக்குட்டி' என்று பெயர் மாற்றம் செய்யப்பட்டது. 'சம்பூரண தேவன்' என்றும் அழைக்கப்பட்டார்."
+  },
+  {
+    q:"When and where did Vaikunda Swami have his divine experience (Avataram)?",
+    qta:"வைகுண்ட சுவாமிகளுக்கு அவதார அனுபவம் எப்போது எங்கு கிடைத்தது?",
+    opts:["At age 30 at Thamarakulam temple","At age 24 at Thiruchendur sea — spent 3 days underwater","At age 34 at Vadalooru","At age 40 at Swamithoppu"],
+    optsTA:["30 வயதில் தாமரைக்குளம் கோவிலில்","24 வயதில் திருச்செந்தூர் கடலில் — 3 நாட்கள் மூழ்கி","34 வயதில் வடலூரில்","40 வயதில் சுவாமித்தோப்பில்"],
+    ans:1, diff:"medium",
+    expl:"Vaikunda Swami's Avataram: At age 24, he submerged in the sea at Thiruchendur for 3 days, emerged and declared that Narayanan/Thirumaal and Lakshmi had blessed him. The Avataram day was 1 March 1833 (Maasi 20, Kollam year 1008).",
+    explTA:"அவதாரம்: 24 வயதில் திருச்செந்தூர் கடலில் மூழ்கி 3 நாட்கள் கழித்து வந்து நாராயணன்/திருமால் - லட்சுமி அருள் கிடைத்ததாக கூறினார். அவதார தினம் 1 மார்ச் 1833 (மாசி 20, கொல்லம் ஆண்டு 1008)."
+  },
+  {
+    q:"The 'Samathuva Samajam' (Equality Society) was founded in which year and where?",
+    qta:"'சமத்துவ சமாஜம்' எந்த ஆண்டில் எங்கு தொடங்கப்பட்டது?",
+    opts:["1825 in Chennai","1836 in Kerala","1865 in Vadalooru","1872 in Parvathipuram"],
+    optsTA:["1825 சென்னையில்","1836 கேரளாவில்","1865 வடலூரில்","1872 பார்வதிபுரத்தில்"],
+    ans:1, diff:"medium",
+    expl:"The Samathuva Samajam was founded in 1836 in Kerala. Its aims: socio-economic improvement, welfare of farmers and women, and establishing equality (சமத்துவம்).",
+    explTA:"சமத்துவ சமாஜம் 1836 ஆம் ஆண்டில் கேரளாவில் தொடங்கப்பட்டது. நோக்கம்: சமூக பொருளாதார கேம்பாட்டிற்காக, விவசாயிகள் மற்றும் பெண்களின் நல கேம்பாட்டிற்காக, சமத்துவத்தை நிறுவுவதற்காக."
+  },
+  {
+    q:"How many sacred 'Pathis' (பதிகள்) are there in Ayyavazhi faith, and what are the 'Panja Pathis'?",
+    qta:"அய்யாவழி நம்பிக்கையில் எத்தனை புனித 'பதிகள்' உள்ளன? 'பஞ்சப் பதிகள்' என்றால் என்ன?",
+    opts:["5 Pathis — all five are Panja Pathis","7 Pathis — first 5 are called Panja Pathis","3 Pathis — all are sacred","10 Pathis — only first 3 are Panja Pathis"],
+    optsTA:["5 பதிகள் — அனைத்தும் பஞ்சப் பதிகள்","7 பதிகள் — முதல் 5 பஞ்சப் பதிகள் என அழைக்கப்படும்","3 பதிகள் — அனைத்தும் புனிதமானவை","10 பதிகள் — முதல் 3 மட்டும் பஞ்சப் பதிகள்"],
+    ans:1, diff:"hard",
+    expl:"There are 7 Pathis in Ayyavazhi. The first 5 are called 'Panja Pathis' (பஞ்சப் பதிகள்): 1.Swamithoppu Pathi 2.Muttaapathi 3.Thamarakulam Pathi 4.Ambalapathi 5.Pooopathi. The 6th and 7th are Vaakaipathi and Avatharapathi (Thiruchendur).",
+    explTA:"அய்யாவழியில் 7 பதிகள் உள்ளன. முதல் 5 'பஞ்சப் பதிகள்': 1.சுவாமித்தோப்பு பதி 2.முட்டாப்பதி 3.தாமரைக்குளம் பதி 4.அம்பாலப்பதி 5.பூப்பதி. 6,7: வாகைப்பதி, அவதாரப்பதி (திருச்செந்தூர்)."
+  },
+  {
+    q:"What is the 'Muthiri Kinaru' (முத்திரிக்கிணறு) in Ayyavazhi practice?",
+    qta:"அய்யாவழி முறையில் 'முத்திரிக்கிணறு' என்றால் என்ன?",
+    opts:["A well used only by upper castes","An 'Equality Well' where people of 18 castes bathed together from the same well","A well used for religious rituals only","A well built by Vaikunda Swami himself"],
+    optsTA:["மேல் சாதியினர் மட்டும் பயன்படுத்தும் கிணறு","18 சாதிகளைச் சேர்ந்த மக்கள் ஒரே கிணற்றிலிருந்து தண்ணீர் எடுத்து ஒன்றாக குளித்த 'சமத்துவ கிணறு'","மத சடங்குகளுக்கு மட்டும் பயன்படுத்தும் கிணறு","வைகுண்ட சுவாமிகள் தாமே கட்டிய கிணறு"],
+    ans:1, diff:"hard",
+    expl:"The Muthiri Kinaru (முத்திரிக்கிணறு) is the 'Equality Well' (சமத்துவ கிணறு). According to Akila Thirattu Ammaan, 18 castes gathered at one place and drew water from the same well and bathed. This practice is called 'Paadamiduthal' (பாதமிடுதல்) or 'Muthiri Paadam'.",
+    explTA:"முத்திரிக்கிணறு என்பது 'சமத்துவ கிணறு'. அகில திரட்டு அம்மான் கூற்றுப்படி '18 சாதிகளைச் சேர்ந்த மக்கள் ஒரே இடத்தில் கூடி, இந்த ஒரே கிணற்றிலிருந்து தண்ணீர் எடுத்து குளித்தனர்'. இந்த செயல்முறைக்கு 'பாதமிடுதல்' அல்லது 'முத்திரிப் பாதம்' என்று பெயர்."
+  },
+  {
+    q:"The Travancore king who imprisoned Vaikunda Swami was:",
+    qta:"வைகுண்ட சுவாமிகளை சிறையில் அடைத்த திருவிதாங்கூர் மன்னர் யார்?",
+    opts:["Marthandam Varma","Swathi Thirunal Rama Varma (1813-1846)","Chithra Thirunal Balarama Varma","Karthika Thirunal Rama Varma"],
+    optsTA:["மார்தாண்டம் வர்மா","சுவாதி திருநாள் ராம வர்மா (1813-1846)","சித்திர திருநாள் பாலராம வர்மா","கார்த்திக திருநாள் ராம வர்மா"],
+    ans:1, diff:"medium",
+    expl:"Travancore king Swathi Thirunal Rama Varma (1813-1846) arrested Vaikunda Swami in 1838 and imprisoned him at Singarathoppu. After 110 days of imprisonment, he was released on 26 March 1839.",
+    explTA:"திருவிதாங்கூர் மன்னர் சுவாதி திருநாள் ராம வர்மா (1813-1846) 1838ல் அய்யா வைகுண்டரை கைது செய்து சிங்காரத்தோப்பு சிறையில் அடைத்தார். 110 நாட்கள் சிறைவாசத்திற்குப் பிறகு, 26 மார்ச் 1839 அன்று விடுதலை செய்யப்பட்டார்."
+  },
+  {
+    q:"Who wrote 'Akila Thirattu Ammaan' (அகில திரட்டு அம்மான்), and when was it composed?",
+    qta:"'அகில திரட்டு அம்மான்' யாரால் எழுதப்பட்டது? எப்போது இயற்றப்பட்டது?",
+    opts:["Vaikunda Swami himself, 1833","Hari Gopalan, composed 10 December 1841, published 1933/1939","Sivanandi, 1836","Thozhuvooru Velayudha Mudhaliyar, 1867"],
+    optsTA:["வைகுண்ட சுவாமிகள், 1833","ஹரி கோபாலன், 10 டிசம்பர் 1841 இயற்றப்பட்டது, 1933/1939 பதிப்பிக்கப்பட்டது","சிவனாண்டி, 1836","தொழுவூர் வேலாயுத முதலியார், 1867"],
+    ans:1, diff:"hard",
+    expl:"Akila Thirattu Ammaan (அகில திரட்டு அம்மான்) was written by Hari Gopalan (ஹரி கோபாலன்) — the 5th disciple of Vaikunda Swami. It was composed on 10 December 1841 and published in 1933/1939.",
+    explTA:"அகில திரட்டு அம்மான் வைகுண்ட சுவாமிகளின் 5வது சீடரான ஹரி கோபாலன் இயற்றினார். 10 டிசம்பர் 1841 அன்று இயற்றப்பட்டது, 1933/1939 இல் பதிப்பிக்கப்பட்டது."
+  },
+  {
+    q:"What did Vaikunda Swami call the British and the Travancore king respectively?",
+    qta:"வைகுண்ட சுவாமிகள் பிரிட்டிஷாரையும் திருவிதாங்கூர் மன்னரையும் முறையே என்று அழைத்தார்?",
+    opts:["Neesan and Kaalan","Vella Pei (வெள்ள பேய்) / Venda Neesan — and — Karuppu Pei (கருப்பு பேய்) / Kaali Neesan","Arayan and Neesan","Raja and Company"],
+    optsTA:["நீசன் மற்றும் காலன்","வெள்ள பேய் / வேந்நீசன் — மற்றும் — கருப்பு பேய் / காளிநீசன்","ஆரியன் மற்றும் நீசன்","ராஜா மற்றும் கம்பெனி"],
+    ans:1, diff:"medium",
+    expl:"Vaikunda Swami called the British 'Vella Pei' (வெள்ள பேய்) or 'Venda Neesan' (வேந்நீசன்), and the Travancore king 'Karuppu Pei' (கருப்பு பேய்) or 'Kaali Neesan' (காளிநீசன') — boldly criticizing both colonial and local rulers.",
+    explTA:"வைகுண்ட சுவாமிகள் பிரிட்டிஷாரை 'வெள்ள பேய்' (வேந்நீசன்) என்றும், திருவிதாங்கூர் மன்னரை 'கருப்பு பேய்' (காளிநீசன்) என்றும் விமர்சித்தார் — காலனிய மற்றும் உள்ளூர் ஆட்சியாளர்கள் இருவரையும் துணிச்சலாக விமர்சித்தார்."
+  },
+  {
+    q:"On what date did Vaikunda Swami pass away (Iraivu)?",
+    qta:"வைகுண்ட சுவாமிகள் எந்த தேதியில் இறந்தார் (இறைவு)?",
+    opts:["30 January 1874","2 June 1851","30 January 1851","12 March 1851"],
+    optsTA:["30 ஜனவரி 1874","2 ஜூன் 1851","30 ஜனவரி 1851","12 மார்ச் 1851"],
+    ans:1, diff:"easy",
+    expl:"Vaikunda Swami passed away (Iraivu) on 2 June 1851. He was born on 12 March 1809 and died at age 42. Note: Ramalinga Adigalar died on 30 January 1874 — don't confuse the two dates.",
+    explTA:"வைகுண்ட சுவாமிகள் 2 ஜூன் 1851 அன்று இறந்தார். பிறப்பு: 12 மார்ச் 1809; 42 வயதில் மறைந்தார். குறிப்பு: ராமலிங்க அடிகளார் 30 ஜனவரி 1874 அன்று மறைந்தார் — இரண்டையும் குழப்பிக்கொள்ளாதீர்கள்."
+  },
+
+  // ══ RAMALINGA ADIGALAR (Q11-Q20) ══
+  {
+    q:"Ramalinga Adigalar (Vallalar) was born on which date and where?",
+    qta:"ராமலிங்க அடிகளார் (வள்ளலார்) எந்த தேதியில் எங்கு பிறந்தார்?",
+    opts:["12 March 1809, Maruttur","5 October 1823, Maruttur near Chidambaram, Cuddalore district","5 October 1823, Vadalooru","30 January 1823, Chennai"],
+    optsTA:["12 மார்ச் 1809, மருதூர்","5 அக்டோபர் 1823, சிதம்பரம் அருகில் மருதூர், கடலூர் மாவட்டம்","5 அக்டோபர் 1823, வடலூர்","30 ஜனவரி 1823, சென்னை"],
+    ans:1, diff:"easy",
+    expl:"Ramalinga Adigalar (Vallalar) was born on 5 October 1823 at Maruttur near Chidambaram in Cuddalore district. His parents were Ramaiah Pillai and Chinnammai. His 200th birth anniversary was celebrated on 5 October 2023.",
+    explTA:"ராமலிங்க அடிகளார் (வள்ளலார்) 5 அக்டோபர் 1823 அன்று கடலூர் மாவட்டத்தில் சிதம்பரம் அருகில் மருதூரில் பிறந்தார். பெற்றோர்: ராமைய பிள்ளை - சின்னம்மை. 200வது பிறந்தநாள் 5 அக்டோபர் 2023 அன்று கொண்டாடப்பட்டது."
+  },
+  {
+    q:"Who gave Ramalinga Adigalar the title 'Thiru Arutpiraka Vallalar'?",
+    qta:"ராமலிங்க அடிகளாருக்கு 'திரு அருட்பிரகாச வள்ளலார்' என்று பெயரிட்டவர் யார்?",
+    opts:["Arumuga Navalar","Thozhuvooru Velayudha Mudhaliyar","Sodasavadhanam Subbaraya Chettyar","Thiruthanikkai Saravana Perumal Aiyer"],
+    optsTA:["ஆறுமுக நாவலர்","தொழுவூர் வேலாயுத முதலியார்","சோடசாவதனம் சுப்பராய செட்டியார்","திருத்தணிகை சரவணப் பெருமாள் ஐயர்"],
+    ans:1, diff:"medium",
+    expl:"Thozhuvoor Velayudha Mudhaliyar (தொழுவூர் வேலாயுத முதலியார்) gave Ramalinga Adigalar the title 'Thiru Arutpiraka Vallalar'. He also published the first 4 Thirumurais of Thiruvarutpa on 1 February 1867.",
+    explTA:"தொழுவூர் வேலாயுத முதலியார் ராமலிங்க அடிகளாருக்கு 'திரு அருட்பிரகாச வள்ளலார்' என்று பெயரிட்டார். திருவருட்பாவின் முதல் 4 திருமுறைகளை 1 பிப்ரவரி 1867 அன்று வெளியிட்டவரும் இவரே."
+  },
+  {
+    q:"The 'Samarasa Veda Sanmarga Sangam' was founded in 1865 and later renamed. What was the new name?",
+    qta:"'சமரச வேத சன்மார்க்க சங்கம்' 1865ல் தொடங்கப்பட்டு பின்னர் மறுபெயரிடப்பட்டது. புதிய பெயர் என்ன?",
+    opts:["Samarasa Veda Dharmasalai","Samarasa Sutta Sanmarga Sathiya Sangam (18-7-1872)","Sathiya Gnana Sabai","Siddhi Valakam"],
+    optsTA:["சமரச வேத தர்மசாலை","சமரச சுத்த சன்மார்க்க சத்திய சங்கம் (18-7-1872)","சத்திய ஞான சபை","சித்தி வளாகம்"],
+    ans:1, diff:"medium",
+    expl:"The Samarasa Veda Sanmarga Sangam (1865) was renamed 'Samarasa Sutta Sanmarga Sathiya Sangam' (சமரச சுத்த சன்மார்க்க சத்திய சங்கம்) on 18-7-1872. Its principles include: God is one, worship God as light, no caste/religion discrimination, avoid meat, compassion for all living beings.",
+    explTA:"சமரச வேத சன்மார்க்க சங்கம் (1865) 18-7-1872 அன்று 'சமரச சுத்த சன்மார்க்க சத்திய சங்கம்' என மறுபெயரிடப்பட்டது. கொள்கைகள்: கடவுள் ஒருவரே, ஒளி வடிவில் வழிபடுதல், சாதி மத வேறுபாடு கூடாது, புலால் மறுக்க வேண்டும், எல்லா உயிர்களிலும் அன்பு."
+  },
+  {
+    q:"The 'Sathiya Dharmasalai' (சத்திய தர்மசாலை) was started on which date, and what is its uniqueness?",
+    qta:"'சத்திய தர்மசாலை' எந்த தேதியில் தொடங்கப்பட்டது? அதன் தனித்துவம் என்ன?",
+    opts:["18-7-1872 — First school for elderly people","23-5-1867 — Free food for all without any caste/religion discrimination, stove still burning after 158 years","25-1-1872 — Place for spiritual discussions","22 October 1873 — Yoga practice centre"],
+    optsTA:["18-7-1872 — முதியோர் கல்வி முதல் பாடசாலை","23-5-1867 — எந்த ஜாதி மத பாகுபாடும் இன்றி அனைவருக்கும் இலவச உணவு, 158 ஆண்டுகளாக அடுப்பு அணையாமல் எரிகிறது","25-1-1872 — ஆன்மீக விவாதங்களுக்கான இடம்","22 அக்டோபர் 1873 — யோகப் பயிற்சி மையம்"],
+    ans:1, diff:"medium",
+    expl:"The Sathiya Dharmasalai was started on 23-5-1867 at Vadalooru. Free food is given to all without any caste or religion discrimination. Remarkably, the stove lit by Vallalar in 1867 is still burning even today (2025) — 158 years of continuous service!",
+    explTA:"சத்திய தர்மசாலை 23-5-1867 அன்று வடலூரில் தொடங்கப்பட்டது. ஜாதி மத பாகுபாடின்றி அனைவருக்கும் இலவச உணவு வழங்கப்படுகிறது. அதிசயமாக, வள்ளலார் 1867ல் ஏற்றிய அடுப்பு இன்றும் (2025) அணையாமல் எரிந்து கொண்டிருக்கிறது — 158 ஆண்டுகள் தொடர்ந்து சேவை!"
+  },
+  {
+    q:"The 'Sathiya Gnana Sabai' (சத்திய ஞான சபை) was started on which date?",
+    qta:"'சத்திய ஞான சபை' எந்த தேதியில் தொடங்கப்பட்டது?",
+    opts:["23 May 1867","25 January 1872","22 October 1873","30 January 1874"],
+    optsTA:["23 மே 1867","25 ஜனவரி 1872","22 அக்டோபர் 1873","30 ஜனவரி 1874"],
+    ans:1, diff:"medium",
+    expl:"The Sathiya Gnana Sabai (சத்திய ஞான சபை) — 'Hall of True Wisdom' — was started on 25-1-1872. On that day, Vallalar commenced Jothi Darshanam (ஜோதி தரிசனம்). It was a place where people of all religions could come and discuss.",
+    explTA:"சத்திய ஞான சபை — 'உண்மையான அறிவின் சபை' — 25-1-1872ல் தொடங்கப்பட்டது. அன்று வள்ளலார் ஜோதி தரிசனத்தை துவக்கினார். அனைத்து மதத்தினரும் வந்து பிரச்சாரம் செய்யும் இடம்."
+  },
+  {
+    q:"On what date did Vallalar enter the 'Siddhi Valakam' room and merge with the divine light, never to be seen again?",
+    qta:"வள்ளலார் 'சித்தி வளாகம்' அறைக்குள் சென்று ஒளியில் கலந்த தேதி என்ன?",
+    opts:["25 January 1872","22 October 1873","30 January 1874 (Thai Poosam)","23 May 1867"],
+    optsTA:["25 ஜனவரி 1872","22 அக்டோபர் 1873","30 ஜனவரி 1874 (தைப்பூசம்)","23 மே 1867"],
+    ans:2, diff:"medium",
+    expl:"The Siddhi Valakam was started on 22 October 1873. On 30 January 1874 (Thaippoosam day), Vallalar entered the Siddhi Valakam room and merged with Arutperunjyothi (அருட்பெருஞ்ஜோதி) — never seen again. This room is called 'Thirukaappidapatta Arai' (திருகாப்பிடப்பட்ட அறை). Yoga: Pirama Thandika Yoga.",
+    explTA:"சித்தி வளாகம் 22 அக்டோபர் 1873 அன்று தொடங்கப்பட்டது. 30 ஜனவரி 1874 (தைப்பூசம்) அன்று வள்ளலார் சித்தி வளாக அறைக்குள் சென்று அருட்பெருஞ்ஜோதியுடன் இரண்டறக் கலந்தார். இந்த அறை 'திருக்காப்பிடப்பட்ட அறை' என்று அழைக்கப்படுகிறது."
+  },
+  {
+    q:"The Arutpaa (திருவருட்பா) controversy 'Arutpaa - Marutpaa Vivadham' was started by whom?",
+    qta:"'அருட்பா - மருட்பா விவாதம்' யாரால் தொடங்கப்பட்டது?",
+    opts:["Thozhuvooru Velayudha Mudhaliyar","Arumuga Navalar of Jaffna","Sodasavadhanam Subbaraya Chettyar","Sivasubramaniya Pillai"],
+    optsTA:["தொழுவூர் வேலாயுத முதலியார்","யாழ்ப்பாணம் ஆறுமுக நாவலர்","சோடசாவதனம் சுப்பராய செட்டியார்","சிவசுப்பிரமணிய பிள்ளை"],
+    ans:1, diff:"hard",
+    expl:"The 'Arutpaa - Marutpaa Vivadham' (1867-1904) was started by Arumuga Navalar from Jaffna (யாழ்ப்பாணம் நல்லூர்). He argued that only Saiva Thirumurais should be called 'Arutpaa', and Ramalinga Vallalar's poems should be called 'Marutpaa'. The controversy lasted from 1867 to 1904.",
+    explTA:"'அருட்பா - மருட்பா விவாதம்' (1867-1904) யாழ்ப்பாண நல்லூரைச் சேர்ந்த ஆறுமுக நாவலரால் தொடங்கப்பட்டது. சைவ திருமுறைகளை மட்டுமே அருட்பா என்றும், ராமலிங்க வள்ளலாரின் பாடல்களை மருட்பா என்றும் வகுப்படுத்த வேண்டும் என்று நாவலர் வாதிட்டார்."
+  },
+  {
+    q:"How many Thirumurais and songs does Thiruvarutpa (திருவருட்பா) contain?",
+    qta:"திருவருட்பா எத்தனை திருமுறைகளும் பாடல்களும் கொண்டுள்ளது?",
+    opts:["4 Thirumurais, 3000 songs","6 Thirumurais, 5818 songs","8 Thirumurais, 8000 songs","12 Thirumurais, 12000 songs"],
+    optsTA:["4 திருமுறைகள், 3000 பாடல்கள்","6 திருமுறைகள், 5818 பாடல்கள்","8 திருமுறைகள், 8000 பாடல்கள்","12 திருமுறைகள், 12000 பாடல்கள்"],
+    ans:1, diff:"medium",
+    expl:"Thiruvarutpa has 6 Thirumurais with 5818 songs. Publication: 1st-4th Thirumurai by Thozhuvooru Velayudha Mudhaliyar (1 Feb 1867), 5th by him in 1880, 6th by Sodasavadhanam Subbaraya Chettyar in 1885.",
+    explTA:"திருவருட்பா 6 திருமுறைகள், 5818 பாடல்கள் கொண்டது. வெளியீடு: 1-4 திருமுறை: தொழுவூர் வேலாயுத முதலியார் (1 பிப்ரவரி 1867), 5வது: அவரே 1880ல், 6வது: சோடசாவதனம் சுப்பராய செட்டியார் 1885ல்."
+  },
+  {
+    q:"Which of these was NOT an institution started by Ramalinga Adigalar?",
+    qta:"ராமலிங்க அடிகளார் தொடங்காத நிறுவனம் எது?",
+    opts:["Sanmarga Podhini (1867)","Samarasa Veda Padasalai (11-1-1872)","Samathuva Samajam (1836)","Sathiya Gnana Sabai (1872)"],
+    optsTA:["சன்மார்க்க போதினி (1867)","சமரச வேத பாடசாலை (11-1-1872)","சமத்துவ சமாஜம் (1836)","சத்திய ஞான சபை (1872)"],
+    ans:2, diff:"hard",
+    expl:"The 'Samathuva Samajam' (1836) was founded by Vaikunda Swami — NOT by Ramalinga Adigalar. Vallalar's institutions were: Samarasa Veda Sanmarga Sangam (1865), Sathiya Dharmasalai (1867), Sanmarga Podhini (1867), Samarasa Veda Padasalai (1872), Sathiya Gnana Sabai (1872), Siddhi Valakam (1873).",
+    explTA:"'சமத்துவ சமாஜம்' (1836) வைகுண்ட சுவாமிகளால் நிறுவப்பட்டது — ராமலிங்க அடிகளாரால் அல்ல. வள்ளலாரின் நிறுவனங்கள்: சமரச வேத சன்மார்க்க சங்கம் (1865), சத்திய தர்மசாலை (1867), சன்மார்க்க போதினி (1867), சமரச வேத பாடசாலை (1872), சத்திய ஞான சபை (1872), சித்தி வளாகம் (1873)."
+  },
+  {
+    q:"Vallalar was the first to do which of these educational firsts in Tamil Nadu?",
+    qta:"தமிழ்நாட்டில் வள்ளலார் முதன்முறையாக செய்தது எது?",
+    opts:["First to establish a school for women","First to start Thirukkural classes for public, first school for elderly, first pre-school","First to establish a college","First to publish a Tamil newspaper"],
+    optsTA:["பெண்களுக்கு முதல் பள்ளி நிறுவியவர்","பொதுமக்களுக்கு முதல் திருக்குறள் வகுப்பு, முதியோர் கல்விக்கு முதல் பாடசாலை, முதல் முன்பள்ளி நிறுவியவர்","முதல் கல்லூரி நிறுவியவர்","தமிழ் செய்தித்தாள் முதல் வெளியிட்டவர்"],
+    ans:1, diff:"medium",
+    expl:"Vallalar was the first to: (1) Start Thirukkural classes for the public in Tamil Nadu, (2) Establish a school for the elderly (முதியோர் கல்விக்கு பாடசாலை), (3) Establish a pre-school (முன்பழி பாடசாலை). He was also the first Tamil scholar to begin studying inscriptions (கல்வெட்டுகள்).",
+    explTA:"வள்ளலார் தமிழ்நாட்டில் முதன்முதலாக: (1) பொதுமக்களுக்காக திருக்குறள் வகுப்பு தொடங்கினார், (2) முதியோர் கல்விக்கு பாடசாலை நிறுவினார், (3) முன்பழி பாடசாலை நிறுவினார். முதன்முதலாக கல்வெட்டுகளை ஆராயத் தொடங்கிய தமிழ் அறிஞரும் இவரே."
+  },
+  {
+    q:"Chief Minister M.K. Stalin declared which date as 'Thanipperum Karunai Naal' (தனிப்பெருங்கருணை நாள்)?",
+    qta:"முதலமைச்சர் மு.க. ஸ்டாலின் எந்த தேதியை 'தனிப்பெருங்கருணை நாளாக' அறிவித்தார்?",
+    opts:["January 30 (Vallalar's disappearance day)","October 5 (Vallalar's birth anniversary)","May 23 (Sathiya Dharmasalai day)","March 12 (Vaikunda Swami's birthday)"],
+    optsTA:["ஜனவரி 30 (வள்ளலார் மறைந்த நாள்)","அக்டோபர் 5 (வள்ளலார் பிறந்த நாள்)","மே 23 (சத்திய தர்மசாலை நாள்)","மார்ச் 12 (வைகுண்ட சுவாமி பிறந்த நாள்)"],
+    ans:1, diff:"medium",
+    expl:"Chief Minister M.K. Stalin announced that October 5 — Vallalar's birth anniversary — would be observed as 'Thanipperum Karunai Naal' (தனிப்பெருங்கருணை நாள் — Day of Universal Compassion). October 5, 2023 was Vallalar's 200th birth anniversary.",
+    explTA:"முதலமைச்சர் மு.க. ஸ்டாலின் அக்டோபர் 5 — வள்ளலாரின் பிறந்தநாள் — 'தனிப்பெருங்கருணை நாளாக' அனுசரிக்கப்படும் என்று அறிவித்தார். அக்டோபர் 5, 2023 வள்ளலாரின் 200வது பிறந்தநாள்."
+  },
+
+  // ══ MIXED / COMPARATIVE (Q21-Q30) ══
+  {
+    q:"Match the correct book with its author: 'Ozhivil Odukkam' (ஒழிவில் ஒடுக்கம்) — published 1851",
+    qta:"சரியான புத்தகம்-ஆசிரியர் பொருத்துக: 'ஒழிவில் ஒடுக்கம்' (1851 பதிப்பு)",
+    opts:["Ramalinga Adigalar","Kannanuudaiya Vallal (கண்ணனுடைய வள்ளல்)","Arumuga Navalar","Thozhuvooru Velayudha Mudhaliyar"],
+    optsTA:["ராமலிங்க அடிகளார்","கண்ணனுடைய வள்ளல்","ஆறுமுக நாவலர்","தொழுவூர் வேலாயுத முதலியார்"],
+    ans:1, diff:"hard",
+    expl:"'Ozhivil Odukkam' (1851) was written by Kannanuudaiya Vallal. Other books published in this era: 'Thondaimandala Sathakam' (1855) by Padikkasu Pulavar; 'Chinmaya Theepikai' (1857) by Viruthachalam Kumaradeva Swamigal.",
+    explTA:"'ஒழிவில் ஒடுக்கம்' (1851) கண்ணனுடைய வள்ளல் என்பவரால் எழுதப்பட்டது. இதர நூல்கள்: 'தொண்டைமண்டல சதகம்' (1855) படிக்காசு புலவர்; 'சின்மய தீபிகை' (1857) விருத்தாச்சலம் குமாரதேவ சுவாமிகள்."
+  },
+  {
+    q:"Ramalinga Adigalar's poem beginning 'Vaadiya Payirai Kandapodhelaam Vaadinen' (வாடிய பயிரை கண்டபோதெல்லாம் வாடினேன்) expresses which of his core values?",
+    qta:"'வாடிய பயிரை கண்டபோதெல்லாம் வாடினேன்' என்ற வள்ளலாரின் கவிதை வரி அவரின் எந்த மையக் கொள்கையை வெளிப்படுத்துகிறது?",
+    opts:["Devotion to Lord Murugan","Jeeva Karunyam (ஜீவகாருண்யம்) — compassion for all living beings","Opposition to British rule","Women's education"],
+    optsTA:["முருகன் மீது பக்தி","ஜீவகாருண்யம் — எல்லா உயிரினங்களிடமும் கருணை","பிரிட்டிஷ் ஆட்சிக்கு எதிர்ப்பு","பெண் கல்வி"],
+    ans:1, diff:"medium",
+    expl:"'Vaadiya Payirai Kandapodhelaam Vaadinen' (I wilted whenever I saw a wilted plant) expresses Vallalar's central philosophy of Jeeva Karunyam (ஜீவகாருண்யம்) — compassion for all living beings. He also said: 'Jeeva Karunyam is the key to the house of great bliss' (ஜீவகாருண்ய ஒழுக்கமே, பேரின்ப வீட்டின் திறவுகோல்).",
+    explTA:"'வாடிய பயிரை கண்டபோதெல்லாம் வாடினேன்' — வள்ளலாரின் மையக் கொள்கையான ஜீவகாருண்யம் (எல்லா உயிரினங்களிடமும் கருணை) வெளிப்படுத்துகிறது. 'ஜீவகாருண்ய ஒழுக்கமே, பேரின்ப வீட்டின் திறவுகோல்' என்றும் கூறினார்."
+  },
+  {
+    q:"Where did Vallalar live between 1858-1867?",
+    qta:"வள்ளலார் 1858-1867 இடையில் எங்கு வாழ்ந்தார்?",
+    opts:["Chennai","Karunguzhi (கருங்குழி) near Vadalooru","Chidambaram","Medu Thukkupam"],
+    optsTA:["சென்னை","வடலூருக்கு அருகில் கருங்குழி","சிதம்பரம்","மேடு துக்குப்பம்"],
+    ans:1, diff:"medium",
+    expl:"Vallalar's residences: 1825-1858 Chennai; 1858-1867 Karunguzhi (near Vadalooru); 1867-1870 Vadalooru; 1870-1874 Mettukuppam (மேட்டுக்குப்பம்). He went to Karunguzhi in 1858 at the invitation of Ramakrishna Reddiyar (Thiruvengadam) and stayed for 9 years.",
+    explTA:"வள்ளலாரின் வாழ்விடங்கள்: 1825-1858 சென்னை; 1858-1867 கருங்குழி (வடலூர் அருகில்); 1867-1870 வடலூர்; 1870-1874 மேட்டுக்குப்பம். 1858ல் ராமகிருஷ்ண ரெட்டியார் (திருவேங்கடம்) அழைப்பின் பேரில் கருங்குழி சென்று 9 ஆண்டுகள் அங்கு தங்கினார்."
+  },
+  {
+    q:"What are the 5 disciples (சீடர்கள்) of Vaikunda Swami?",
+    qta:"வைகுண்ட சுவாமிகளின் 5 சீடர்கள் யார் யார்?",
+    opts:["Sivam, Vishnu, Murugan, Pillaiyar, Saraswathi","Dharma Seedar/Sivanandi, Bhiman Seedar/Pandaram, Arjunan Seedar/Arjunaa, Nagulan Seedar/Subbeya, Sadhevan Seedar/Hari Gopalan","Vallalar, Navalar, Mudhaliyar, Pillai, Chettiyar","None of the above"],
+    optsTA:["சிவம், விஷ்ணு, முருகன், பிள்ளையார், சரஸ்வதி","தர்ம சீடர்/சிவனாண்டி, பீமன் சீடர்/பண்டாரம், அர்ஜுனன் சீடர்/அர்ஜுனா, நகுலன் சீடர்/சுப்பையா, சகாதேவன் சீடர்/ஹரி கோபாலன்","வள்ளலார், நாவலர், முதலியார், பிள்ளை, செட்டியார்","மேற்கூறியது எதுவும் இல்லை"],
+    ans:1, diff:"hard",
+    expl:"Vaikunda Swami's 5 disciples (named after Pandava brothers): 1.Dharma Seedar/Sivanandi 2.Bhiman Seedar/Pandaram 3.Arjunan Seedar/Arjunaa 4.Nagulan Seedar/Subbeya 5.Sadhevan Seedar/Hari Gopalan. Hari Gopalan (5th disciple) wrote 'Akila Thirattu Ammaan'.",
+    explTA:"வைகுண்ட சுவாமிகளின் 5 சீடர்கள் (பாண்டவர் பெயரில்): 1.தர்ம சீடர்/சிவனாண்டி 2.பீமன் சீடர்/பண்டாரம் 3.அர்ஜுனன் சீடர்/அர்ஜுனா 4.நகுலன் சீடர்/சுப்பையா 5.சகாதேவன் சீடர்/ஹரி கோபாலன். ஹரி கோபாலன் (5வது சீடர்) 'அகில திரட்டு அம்மான்' எழுதினார்."
+  },
+  {
+    q:"Which of Vallalar's books describes 'Jeeva Karunyam' (ஜீவகாருண்யம்) as a treatise?",
+    qta:"வள்ளலாரின் எந்த நூல் 'ஜீவகாருண்யம்' பற்றி விரிவாக விளக்குகிறது?",
+    opts:["Thiruvarutpa","Manumurai Kanda Vasagam","Jeeva Karunyam Ozhukkam (ஜீவகாருண்ய ஒழுக்கம்)","Neenja Ariuruthal"],
+    optsTA:["திருவருட்பா","மனுமுறை கண்ட வாசகம்","ஜீவகாருண்ய ஒழுக்கம்","நெஞ்சறிவுறுத்தல்"],
+    ans:2, diff:"medium",
+    expl:"'Jeeva Karunyam Ozhukkam' (ஜீவகாருண்ய ஒழுக்கம்) is a separate book by Ramalinga Adigalar specifically about compassion for all living beings. Other books: Manumurai Kanda Vasagam, Vadivudai Manikka Malai, Theivamanimalai, Siva Nesa Venpa, Neenja Ariuruthal, etc.",
+    explTA:"'ஜீவகாருண்ய ஒழுக்கம்' ராமலிங்க அடிகளார் எல்லா உயிரினங்களிடமும் கருணை பற்றி எழுதிய தனி நூல். மற்ற நூல்கள்: மனுமுறை கண்ட வாசகம், வடிவுடை மாணிக்க மாலை, தெய்வமணிமாலை, சிவநேச வெண்பா, நெஞ்சறிவுறுத்தல் முதலியன."
+  },
+  {
+    q:"The 'Ayyavazhi' practice of 'Thuvayal Bavasu' (துவையல் தவசு) or 'Thuvayal Panthi' was initiated at which sacred place?",
+    qta:"அய்யாவழி 'துவையல் தவசு' அல்லது 'துவையல் பந்தி' எந்த புனித இடத்தில் தொடங்கியது?",
+    opts:["Swamithoppu Pathi","Thamarakulam","Vaakai Pathi (வாகைப்பதி)","Thiruchendur"],
+    optsTA:["சுவாமித்தோப்பு பதி","தாமரைக்குளம்","வாகைப்பதி","திருச்செந்தூர்"],
+    ans:2, diff:"hard",
+    expl:"The Thuvayal Bavasu (அல்லது Thuvayal Panthi) — a religious practice where external and internal purity is achieved — was started at Vaakai Pathi (வாகைப்பதி). It began to create social changes among the downtrodden people. 700 families participated.",
+    explTA:"துவையல் தவசு (துவையல் பந்தி) — புறத்தூய்மை மற்றும் அகத்தூய்மை அளிக்கும் மத செயல்முறை — வாகைப்பதியில் தொடங்கியது. தாழ்த்தப்பட்ட மக்களிடையே சமூக மாற்றங்களை உருவாக்க தொடங்கப்பட்டது. 700 குடும்பங்கள் பங்கேற்றன."
+  },
+  {
+    q:"What is the significance of 'Anbu Kodi' (அன்புக்கொடி) in Ayyavazhi?",
+    qta:"அய்யாவழியில் 'அன்புக்கொடி' என்பதன் முக்கியத்துவம் என்ன?",
+    opts:["A sacred text written by Vaikunda Swami","A flag lit during festivals in Tirunelveli and Tenkasi regions to honour Vaikunda Swami's followers","A daily prayer ritual","A type of food offering"],
+    optsTA:["வைகுண்ட சுவாமிகள் எழுதிய புனித நூல்","திருநெல்வேலி மற்றும் தேன்காசி பகுதிகளில் வைகுண்ட சுவாமிகளின் பக்தர்களுக்கு மரியாதை செலுத்தும் விழாக்களின் போது ஏற்றப்படும் கொடி","தினசரி பிரார்த்தனை சடங்கு","ஒரு வகை உணவு நிவேதனம்"],
+    ans:1, diff:"hard",
+    expl:"Anbu Kodi (அன்புக்கொடி) is a flag lit during festivals of Vaikunda Swami in Tirunelveli (Kalmidukkurichi) and Tenkasi (Surandai) districts. Those who follow Vaikunda Swami are called 'Anbu Kodi Makkal' (அன்புக்கொடி மக்கள').",
+    explTA:"அன்புக்கொடி வைகுண்ட சுவாமிகளின் விழாக்களின் போது திருநெல்வேலி (கல்மிடுக்குறிச்சி) மற்றும் தேன்காசி (சுரண்டை) மாவட்ட பகுதிகளில் ஏற்றப்படும் கொடி. வைகுண்ட சுவாமிகளை பின்பற்றுபவர்களுக்கு 'அன்புக்கொடி மக்கள்' என்று பெயர்."
+  },
+  {
+    q:"What was Vallalar's poetic line about those who do not feel compassion for suffering beings?",
+    qta:"துயரப்படும் உயிரினங்களைப் பார்த்து இரக்கம் கொள்ளாதவர்கள் பற்றி வள்ளலார் என்ன கூறினார்?",
+    opts:["They are great sinners","They have stone hearts (கல்நெஞ்சக்காரர்கள்), their wisdom is covered by clouds","They should be punished by God","They will not attain moksha"],
+    optsTA:["அவர்கள் மாபாதகர்கள்","அவர்கள் கல்நெஞ்சக்காரர்கள், அவர்களின் ஞானம் மேகங்களால் மூடப்பட்டிருக்கும்","அவர்கள் கடவுளால் தண்டிக்கப்படுவார்கள்","அவர்கள் மோட்சம் அடைய மாட்டார்கள்"],
+    ans:1, diff:"medium",
+    expl:"Vallalar said: 'துயரப்படும் உயிரினங்களைப் பார்த்து இரக்கம் கொள்ளாதவர்கள் கல்நெஞ்சக்காரர்கள், அவர்களின் ஞானம் மேகங்களால் மூடப்பட்டிருக்கும்' — Those who do not feel compassion for suffering beings have stone hearts, and their wisdom is covered by clouds.",
+    explTA:"வள்ளலார் கூறினார்: 'துயரப்படும் உயிரினங்களைப் பார்த்து இரக்கம் கொள்ளாதவர்கள் கல்நெஞ்சக்காரர்கள், அவர்களின் ஞானம் மேகங்களால் மூடப்பட்டிருக்கும்' — ஆழமான ஜீவகாருண்ய கொள்கையின் வெளிப்பாடு."
+  }
+];
+    var QUIZ_BANK={};
+    QUIZ_BANK["socialreform"]=SOCIAL_REFORM_QUIZ_DATA;
+    
+function shuffleArray(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function showToast(m){var t=document.getElementById('_toast');if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.3s;';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2500);}
+var QS={cat:null,questions:[],index:0,score:0,answered:false,timer:null,timeLeft:30,startTime:0};
+function startQuiz(catId){
+  var bank=QUIZ_BANK[catId]||[];
+  QS.cat=catId;QS.questions=shuffleArray(bank);
+  QS.index=0;QS.score=0;QS.answered=false;QS.startTime=Date.now();
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('quizEngine').style.display='block';
+  document.getElementById('scoreScreen').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderQ();
+}
+function renderQ(){
+  var cur=QS.questions[QS.index];if(!cur)return;
+  var total=QS.questions.length;
+  document.getElementById('qProg').textContent='கேள்வி '+(QS.index+1)+' / '+total;
+  document.getElementById('qScoreLabel').textContent='மதிப்பெண்: '+QS.score;
+  document.getElementById('progFill').style.width=((QS.index/total)*100)+'%';
+  // Hide next area
+  document.getElementById('nextArea').style.display='none';
+  var nums=['அ','ஆ','இ','ஈ'];
+  var opts=cur.optsTA||cur.opts;
+  var qText=cur.qta?'<div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.q+'</div><div class="q-text">'+cur.qta+'</div>':'<div class="q-text">'+cur.q+'</div>';
+  var diffLabel=cur.diff==='easy'?'🟢 எளிது':cur.diff==='hard'?'🔴 கடினம்':'🟡 நடுத்தரம்';
+  var optHTML='';
+  for(var i=0;i<opts.length;i++){
+    optHTML+='<button class="opt-btn" onclick="checkAnswer(this,'+i+','+cur.ans+')">'+'<span class="ob-num">'+nums[i]+'</span><span>'+opts[i]+'</span></button>';
+  }
+  document.getElementById('questionContainer').innerHTML='<div class="q-card"><div class="q-num">கேள்வி '+(QS.index+1)+'</div>'+qText+'<span class="q-diff diff-'+(cur.diff||'medium')+'">'+diffLabel+'</span><div class="opts-list">'+optHTML+'</div><div class="expl-box" id="explBox"></div></div>';
+  startTimer();
+}
+function startTimer(){
+  QS.timeLeft=30;QS.answered=false;
+  if(QS.timer)clearInterval(QS.timer);
+  updateTimer(30);
+  QS.timer=setInterval(function(){QS.timeLeft--;updateTimer(QS.timeLeft);if(QS.timeLeft<=0){clearInterval(QS.timer);autoSubmit();}},1000);
+}
+function updateTimer(v){var el=document.getElementById('timerDisplay');if(el){el.textContent=v;el.style.background=v<=10?'#dc2626':'var(--accent)';}}
+function showNextBtn(){
+  var na=document.getElementById('nextArea');
+  var nb=document.getElementById('nextBtnEl');
+  var isLast=QS.index+1>=QS.questions.length;
+  nb.textContent=isLast?'📊 முடிவு காண்க':'அடுத்த கேள்வி →';
+  na.style.display='block';
+}
+function autoSubmit(){
+  var cur=QS.questions[QS.index];QS.answered=true;
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  var btns=document.querySelectorAll('.opt-btn');
+  if(btns[cur.ans])btns[cur.ans].classList.add('correct');
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">⏱️ நேரம் முடிந்தது</div>'+(cur.explTA?'<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function checkAnswer(btn,chosen,correct){
+  if(QS.answered)return;QS.answered=true;clearInterval(QS.timer);
+  var cur=QS.questions[QS.index];
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  document.querySelectorAll('.opt-btn')[correct].classList.add('correct');
+  if(chosen===correct){QS.score++;showToast('✅ சரியான விடை!');}else{btn.classList.add('wrong');showToast('❌ தவறான விடை!');}
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">📖 விளக்கம்</div>'+(cur.explTA?'<div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function nextQuestion(){
+  QS.index++;
+  if(QS.index<QS.questions.length){renderQ();}else{showScore();}
+}
+function showScore(){
+  var total=QS.questions.length;var wrong=total-QS.score;
+  var pct=Math.round((QS.score/total)*100);var elapsed=Math.round((Date.now()-QS.startTime)/1000);
+  var emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'👍':'💪';
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='block';
+  document.getElementById('scoreEmoji').textContent=emoji;
+  document.getElementById('scoreNum').textContent=QS.score;
+  document.getElementById('scoreTot').textContent=total;
+  document.getElementById('statCorrect').textContent=QS.score;
+  document.getElementById('statWrong').textContent=wrong;
+  document.getElementById('statTime').textContent=elapsed+'s';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function retryQuiz(){document.getElementById('scoreScreen').style.display='none';startQuiz(QS.cat);}
+function exitQuiz(){
+  if(QS.timer)clearInterval(QS.timer);
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='none';
+  document.getElementById('startScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startThisQuiz(){document.getElementById('startScreen').style.display='none';startQuiz(CURRENT_CAT);}
+function goBack(){
+  if(document.getElementById('quizEngine').style.display!=='none'||document.getElementById('scoreScreen').style.display!=='none'){exitQuiz();}
+  else{window.location.href='quiz.html';}
+}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme')||'light';
+  var n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('tnpsc-theme',n);
+  document.getElementById('themeBtn').textContent=n==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var t=localStorage.getItem('tnpsc-theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
+});
+
+  </script>
+</body>
+</html>

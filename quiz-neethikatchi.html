@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>நீதிக்கட்சி — தோற்றமும் வளர்ச்சியும் | TNPSC வேட்டை</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+/* ── KaarKalvi-style bouncing card design ── */
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+
+.articles-hero {
+  background: linear-gradient(135deg, #0c4b76 0%, #083a5c 50%, #0f5a8c 100%);
+  padding: 20px 16px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.articles-hero::before {
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  top:-60px; right:-40px;
+}
+.articles-hero::after {
+  content:'';
+  position:absolute;
+  width:120px; height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  bottom:-30px; left:20px;
+}
+.hero-nav {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.hero-back {
+  width:36px; height:36px; border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  border:none; color:white; font-size:18px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  text-decoration:none; flex-shrink:0;
+  transition: background 0.2s;
+}
+.hero-back:hover { background:rgba(255,255,255,0.25); }
+.hero-title { color:white; font-size:22px; font-weight:800; margin:0; }
+.hero-sub { color:rgba(255,255,255,0.65); font-size:12px; margin:4px 0 0; }
+
+.hero-stats {
+  display:flex; gap:12px; margin-top:16px;
+}
+.hero-stat {
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:10px; padding:8px 14px; text-align:center;
+}
+.hero-stat-num { font-size:16px; font-weight:800; color:white; }
+.hero-stat-label { font-size:10px; color:rgba(255,255,255,0.65); }
+
+/* Filter pills */
+.filter-wrap {
+  padding:14px 16px 0;
+  display:flex; gap:8px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.filter-wrap::-webkit-scrollbar { display:none; }
+.filter-pill {
+  flex-shrink:0; padding:6px 14px;
+  border-radius:20px; border:1.5px solid var(--border);
+  background:var(--card); font-size:12px; font-weight:600;
+  color:var(--text-muted); cursor:pointer;
+  transition:all 0.2s; white-space:nowrap;
+}
+.filter-pill.active {
+  background:var(--primary); border-color:var(--primary);
+  color:white;
+}
+
+/* Article cards */
+.cards-grid {
+  padding:16px;
+  display:flex; flex-direction:column; gap:16px;
+}
+
+/* ── BOUNCING CARD ── */
+.art-bounce-card {
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(0) scale(1);
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.18s ease;
+  position:relative;
+}
+.art-bounce-card:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.art-bounce-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+/* Card slide-in animation */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.art-bounce-card { animation: slideUp 0.4s ease forwards; opacity:0; }
+.art-bounce-card:nth-child(1) { animation-delay:0.05s; }
+.art-bounce-card:nth-child(2) { animation-delay:0.12s; }
+.art-bounce-card:nth-child(3) { animation-delay:0.19s; }
+.art-bounce-card:nth-child(4) { animation-delay:0.26s; }
+.art-bounce-card:nth-child(5) { animation-delay:0.33s; }
+
+.card-cover {
+  padding:20px 18px 16px;
+  position:relative;
+  min-height:120px;
+}
+.card-cover-orb {
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  top:-20px; right:-20px;
+  pointer-events:none;
+}
+.card-cover-orb2 {
+  position:absolute;
+  width:60px; height:60px; border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  bottom:10px; right:40px;
+  pointer-events:none;
+}
+.card-series {
+  font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:1px; text-transform:uppercase;
+  margin-bottom:6px;
+}
+.card-title-en {
+  font-size:16px; font-weight:800; color:white;
+  line-height:1.3; margin-bottom:4px;
+}
+.card-title-ta {
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.8);
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+.card-chips {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;
+}
+.card-chip {
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.9);
+  font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:20px;
+}
+.card-chip.live {
+  background:rgba(34,197,94,0.25);
+  border-color:rgba(34,197,94,0.4);
+  color:#86efac;
+}
+
+.card-footer {
+  background:var(--card);
+  padding:12px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.card-meta-items { display:flex; gap:12px; align-items:center; }
+.card-meta-item { font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+.card-arrow {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700;
+}
+
+/* Coming soon card */
+.art-bounce-card.coming-soon {
+  opacity:0.5 !important;
+  cursor:default;
+  pointer-events:none;
+  animation-delay:0s !important;
+}
+
+/* Section label */
+.section-label {
+  font-size:11px; font-weight:800;
+  color:var(--text-muted); letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:16px 16px 0;
+}
+</style>
+  <style>
+    body{margin:0;}
+    .quiz-hero{background:linear-gradient(135deg,#1e3a5f,#1d4ed8,#3b82f6);padding:24px 16px 28px;position:relative;overflow:hidden;}
+    .quiz-hero::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06);top:-50px;right:-40px;}
+    .quiz-hero::after{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.04);bottom:-20px;left:30px;}
+    .hero-icon{font-size:44px;margin-bottom:10px;display:block;position:relative;z-index:1;}
+    .hero-title{font-size:22px;font-weight:900;color:white;margin-bottom:4px;font-family:var(--font-serif);position:relative;z-index:1;}
+    .hero-sub{font-size:12px;color:rgba(255,255,255,0.65);position:relative;z-index:1;}
+    .hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1;}
+    .h-chip{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;}
+    .start-body{padding:16px;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
+    .i-box{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:12px 8px;text-align:center;}
+    .i-val{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:3px;}
+    .i-lbl{font-size:10px;color:var(--text-muted);font-weight:600;}
+    .start-btn{width:100%;padding:16px;background:#1d4ed8;color:white;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:14px;font-family:inherit;}
+    .start-btn:active{transform:scale(0.97);}
+    .tips-box{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:14px 16px;}
+    .tips-title{font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.4px;text-transform:uppercase;margin-bottom:10px;}
+    .tip{display:flex;gap:10px;font-size:12.5px;color:var(--text);margin-bottom:8px;line-height:1.5;}
+    .quiz-topbar{position:sticky;top:0;z-index:100;background:var(--primary-dark);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+    .q-back{background:rgba(255,255,255,0.15);border:none;color:white;width:34px;height:34px;border-radius:9px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .score-wrap{padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .score-big{font-size:56px;font-weight:900;color:var(--primary);line-height:1;}
+    .score-denom{font-size:16px;color:var(--text-muted);margin-bottom:16px;}
+    .s-row{display:flex;gap:10px;width:100%;margin-bottom:20px;}
+    .s-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;}
+    .s-val{font-size:20px;font-weight:800;margin-bottom:4px;}
+    .s-lbl{font-size:10px;color:var(--text-muted);}
+    
+    .q-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .q-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+    .q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;}
+    .q-diff{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+    .diff-easy{background:#dcfce7;color:#16a34a;}
+    .diff-medium{background:#fef9c3;color:#ca8a04;}
+    .diff-hard{background:#fee2e2;color:#dc2626;}
+    .opts-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+    .opt-btn{width:100%;text-align:left;display:flex;align-items:center;gap:12px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.15s ease;font-family:inherit;line-height:1.4;}
+    .opt-btn:active:not(:disabled){transform:scale(0.98);}
+    .ob-num{width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);transition:all 0.15s;}
+    .opt-btn.correct{background:#dcfce7 !important;border-color:#16a34a !important;color:#14532d !important;}
+    .opt-btn.correct .ob-num{background:#16a34a !important;color:white !important;}
+    .opt-btn.wrong{background:#fee2e2 !important;border-color:#dc2626 !important;color:#7f1d1d !important;}
+    .opt-btn.wrong .ob-num{background:#dc2626 !important;color:white !important;}
+    .expl-box{display:none;margin-top:12px;background:var(--bg2);border-radius:12px;border-left:4px solid var(--primary);padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7;}
+    .expl-box.show{display:block;}
+    .expl-title{font-size:12px;font-weight:800;color:var(--primary);letter-spacing:0.4px;margin-bottom:8px;}
+    .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s ease;}
+    .next-btn{width:100%;padding:15px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;}
+    .next-btn:active{transform:scale(0.98);}
+    .bookmark-btn{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text);}
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button onclick="goBack()" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;">←</button>
+    <div style="flex:1;margin-left:10px;">
+      <div style="font-size:14px;font-weight:700;color:white;">நீதிக்கட்சி — தோற்றமும் வளர்ச்சியும்</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">TNPSC வேட்டை Quiz</div>
+    </div>
+    <button onclick="toggleTheme()" id="themeBtn" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:15px;cursor:pointer;">🌙</button>
+  </header>
+  <div id="startScreen">
+    <div class="quiz-hero">
+      <span class="hero-icon">⚖️</span>
+      <div class="hero-title">நீதிக்கட்சி — தோற்றமும் வளர்ச்சியும்</div>
+      <div class="hero-sub">Justice Party · 1916–1944 · Unit | Group 2 Mains</div>
+      <div class="hero-chips">
+        <span class="h-chip">⏱️ 30 வினாடி / கேள்வி</span>
+        <span class="h-chip">🎯 குரூப் 2 முதன்மை</span>
+        <span class="h-chip">0 கேள்விகள்</span>
+      </div>
+    </div>
+    <div class="start-body">
+      <div class="info-grid">
+        <div class="i-box"><div class="i-val">0</div><div class="i-lbl">கேள்விகள்</div></div>
+        <div class="i-box"><div class="i-val">30s</div><div class="i-lbl">ஒவ்வொரு கேள்விக்கும்</div></div>
+        <div class="i-box"><div class="i-val">🔀</div><div class="i-lbl">Random</div></div>
+      </div>
+      <button class="start-btn" onclick="startThisQuiz()">⚖️ தேர்வு தொடங்கு</button>
+      <div class="tips-box">
+        <div class="tips-title">📋 தேர்வு விவரங்கள்</div>
+        <div class="tip"><span>✅</span><span>விடைக்கு Tamil & English விளக்கம்</span></div>
+        <div class="tip"><span>⏱️</span><span>நேரம் முடிந்தால் Auto submit</span></div>
+        <div class="tip"><span>🔀</span><span>ஒவ்வொரு முறையும் Random வரிசை</span></div>
+        <div class="tip"><span>📊</span><span>முடிவில் மதிப்பெண் காண்பீர்கள்</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="quizEngine" style="display:none;">
+    <div class="quiz-topbar">
+      <button class="q-back" onclick="exitQuiz()">←</button>
+      <div style="flex:1;text-align:center;font-size:12px;font-weight:700;color:white;">நீதிக்கட்சி — தோற்றமும் வளர்ச்சியும்</div>
+      <div style="background:var(--accent);color:white;font-weight:800;font-size:14px;padding:5px 13px;border-radius:18px;" id="timerDisplay">30</div>
+    </div>
+    <div style="padding:12px 16px 24px;">
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin:6px 0 14px;">
+        <span id="qProg">கேள்வி 1/1</span><span id="qScoreLabel">மதிப்பெண்: 0</span>
+      </div>
+      <div id="questionContainer"></div>
+      <div id="nextArea" style="display:none;margin-top:12px;">
+        <button id="nextBtnEl" class="next-btn" onclick="nextQuestion()">அடுத்த கேள்வி →</button>
+        <button class="bookmark-btn" onclick="showToast('🔖 சேமிக்கப்பட்டது!')">🔖 சேமி</button>
+      </div>
+    </div>
+  </div>
+  <div id="scoreScreen" style="display:none;">
+    <div class="score-wrap">
+      <div style="font-size:56px;margin-bottom:10px;" id="scoreEmoji">🎉</div>
+      <div class="score-big" id="scoreNum">0</div>
+      <div class="score-denom">/ <span id="scoreTot">0</span> சரியான விடைகள்</div>
+      <div class="s-row">
+        <div class="s-box"><div class="s-val" style="color:#16a34a;" id="statCorrect">0</div><div class="s-lbl">✅ சரி</div></div>
+        <div class="s-box"><div class="s-val" style="color:#dc2626;" id="statWrong">0</div><div class="s-lbl">❌ தவறு</div></div>
+        <div class="s-box"><div class="s-val" id="statTime">0s</div><div class="s-lbl">⏱️ நேரம்</div></div>
+      </div>
+      <button class="start-btn" onclick="retryQuiz()" style="width:100%;">🔄 மீண்டும் முயற்சி</button>
+      <button onclick="exitQuiz()" style="margin-top:10px;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;color:var(--text);font-family:inherit;">← Quiz பட்டியல்</button>
+    </div>
+  </div>
+  <script>
+    var CURRENT_CAT="neethikatchi";
+    const NEETHIKATCHI_QUIZ_DATA = [
+  { q:"In which year was the Justice Party (Neethikatchi) founded?", qta:"நீதிக்கட்சி எந்த ஆண்டில் நிறுவப்பட்டது?", opts:["1912","1914","1916","1920"], optsTA:["1912","1914","1916","1920"], ans:2, diff:"easy", expl:"The Justice Party (South Indian Liberal Federation) was founded in November 1916 by P. Thyagaraya Chetty and M. Nayar after the defeat in the 1916 Imperial elections.", explTA:"நீதிக்கட்சி (தென்னிந்திய லிபரல் பெர்ஸ்டேஷன்) நவம்பர் 1916 இல் பி. தியாகராய செட்டி மற்றும் எம். நாயர் ஆகியோரால் 1916 சாம்ராஜ்ய சட்டமன்ற தேர்தலில் தோல்வியடைந்த பிறகு நிறுவப்பட்டது." },
+  { q:"Who was the first president of the Justice Party?", qta:"நீதிக்கட்சியின் முதல் தலைவர் யார்?", opts:["Panagal Raja","P. Thyagaraya Chetty","M. Nayar","T.M. Nair"], optsTA:["பனகல் ராஜா","பி. தியாகராய செட்டி","எம். நாயர்","டி.எம். நாயர்"], ans:1, diff:"easy", expl:"Sir P. Thyagaraya Chetty was the first president (Thalaivar) of the Justice Party. He also authored the Non-Brahmin Manifesto in December 1916.", explTA:"சர் பி. தியாகராய செட்டி நீதிக்கட்சியின் முதல் தலைவர் ஆவார். டிசம்பர் 1916 இல் பிராமணியற்ற மக்கள் பிரகடனத்தையும் வெளியிட்டார்." },
+  { q:"What was the English name of the Justice Party's newspaper that had a huge impact?", qta:"நீதிக்கட்சியின் பெரும் தாக்கம் ஏற்படுத்திய ஆங்கில பத்திரிகையின் பெயர் என்ன?", opts:["The Hindu","Justice","New India","Dravidian"], optsTA:["தி இந்து","ஜஸ்டிஸ்","நியூ இந்தியா","திராவிடன்"], ans:1, diff:"easy", expl:"The South Indian People's Association launched the newspaper 'Justice' in 1917 after raising Rs.40,000. It had a huge impact and the party later came to be called 'Justice Party' after this newspaper.", explTA:"தென்னிந்திய மக்கள் சங்கம் ரூ.40,000 திரட்டி 1917 இல் 'நீதி' (Justice) என்ற பத்திரிகையை வெளியிட்டது. இந்த பத்திரிகையின் பெரும் தாக்கத்தால் கட்சி 'ஜஸ்டிஸ் பார்ட்டி' என பெயரெடுத்தது." },
+  { q:"The 'Non-Brahmin Manifesto' (பிராமணியற்ற மக்கள் பிரகடனம்) was issued in which year?", qta:"'பிராமணியற்ற மக்கள் பிரகடனம்' எந்த ஆண்டில் வெளியிடப்பட்டது?", opts:["1914","1915","1916","1917"], optsTA:["1914","1915","1916","1917"], ans:2, diff:"easy", expl:"The Non-Brahmin Manifesto was issued by Thyagaraya Chetty in December 1916. It demanded proportional representation for non-Brahmins and self-rule for non-Brahmin communities.", explTA:"பிராமணியற்ற மக்கள் பிரகடனம் டிசம்பர் 1916 இல் தியாகராய செட்டியால் வெளியிடப்பட்டது. பிராமணியற்றோருக்கு வகுப்புவாரி பிரதிநிதித்துவம் மற்றும் சுயராஜ்யம் கோரியது." },
+  { q:"The 'First All Non-Brahmin Conference' (முதலாவது பிராமணரல்லாதார் மாநாடு) was held in which city in 1917?", qta:"1917 ஆம் ஆண்டு 'முதலாவது பிராமணரல்லாதார் மாநாடு' எந்த நகரில் நடந்தது?", opts:["Chennai","Madurai","Coimbatore","Tirunelveli"], optsTA:["சென்னை","மதுரை","கோயம்புத்தூர்","திருநெல்வேலி"], ans:2, diff:"medium", expl:"The First All Non-Brahmin Conference was held in Coimbatore on 19 August 1917. This conference clarified the aims and objectives of the Justice Party.", explTA:"முதலாவது பிராமணரல்லாதார் மாநாடு ஆகஸ்ட் 19, 1917 அன்று கோயம்புத்தூரில் நடந்தது. இந்த மாநாட்டில் நீதிக்கட்சி தனது நோக்கங்கள் மற்றும் இலக்குகளை தெளிவுபடுத்தியது." },
+  { q:"The Justice Party won how many seats in the 1920 Legislative elections?", qta:"1920 சட்டமன்ற தேர்தலில் நீதிக்கட்சி எத்தனை இடங்களில் வெற்றி பெற்றது?", opts:["45","53","63","73"], optsTA:["45","53","63","73"], ans:2, diff:"medium", expl:"In the 1920 elections, Congress did not contest. The Justice Party won 63 seats in the Madras Legislative Assembly which had 127 members. The voter turnout was 24.97%.", explTA:"1920 தேர்தலில் காங்கிரஸ் போட்டியிடவில்லை. நீதிக்கட்சி 127 உறுப்பினர்கள் கொண்ட மதராஸ் சட்டமன்றத்தில் 63 இடங்களில் வெற்றி பெற்றது. வாக்கு பதிவான சராசரி 24.97% ஆகும்." },
+  { q:"Who led the First Justice Party Cabinet (முதல் அமைச்சரவை) in 1920-1923?", qta:"1920-1923 முதல் நீதிக்கட்சி அமைச்சரவையை யார் வழிநடத்தினார்?", opts:["Thyagaraya Chetty","A. Subbarayalu Nayudu then Panagal Raja","Munusamy Nayudu","P. Boopathi"], optsTA:["தியாகராய செட்டி","ஏ. சுப்பராயலு நாயுடு பின்னர் பனகல் ராஜா","முனுசாமி நாயுடு","பி. பூபதி"], ans:1, diff:"medium", expl:"Thyagaraya Chetty declined to become PM, so A. Subbarayalu Nayudu became CM. He resigned due to health reasons, after which Panagal Raja became CM on 11 July 1921.", explTA:"தியாகராய செட்டி முதல்வராக இருப்பதை தவிர்க்க, ஏ. சுப்பராயலு நாயுடு முதலமைச்சர் ஆனார். அவர் உடல்நலக் காரணமாக பதவி விலகியதால் பனகல் ராஜா ஜூலை 11, 1921 அன்று முதலமைச்சர் ஆனார்." },
+  { q:"Which act was passed by the Justice Party government in 1921 granting women voting rights?", qta:"1921 ஆம் ஆண்டு நீதிக்கட்சி அரசு பெண்களுக்கு வாக்குரிமை வழங்கிய சட்டம் என்ன?", opts:["Madras Women's Franchise Act","Madras Municipal Act Amendment","Montagu-Chelmsford Reforms","Meston Award"], optsTA:["மதராஸ் பெண்கள் வாக்குரிமை சட்டம்","மதராஸ் நகராட்சி சட்ட திருத்தம்","மாண்டேகு-செம்ஸ்ஃபோர்ட் சீர்திருத்தம்","மெஸ்டன் நடுவர் தீர்ப்பு"], ans:0, diff:"medium", expl:"The Justice Party government passed the Women's Franchise Act in 1921, granting women the right to vote. This was one of the Justice Party's greatest achievements and laid the foundation for future women's rights movements.", explTA:"நீதிக்கட்சி அரசு 1921 ஆம் ஆண்டு பெண்கள் வாக்குரிமை சட்டம் இயற்றியது. இது நீதிக்கட்சியின் மிகப்பெரிய சாதனைகளில் ஒன்றாகும்." },
+  { q:"The Public Services Commission (பணியாளர் தேர்வாணையம்) established in 1924 later became what?", qta:"1924 இல் நிறுவப்பட்ட பணியாளர் நியமன வாரியம் பின்னர் என்னவாக மாறியது?", opts:["UPSC","TNPSC (Tamil Nadu Public Service Commission)","Central Recruitment Board","Madras Recruitment Board"], optsTA:["UPSC","TNPSC (தமிழ்நாடு பணியாளர் தேர்வாணையம்)","மத்திய ஆட்சேர்ப்பு வாரியம்","மதராஸ் ஆட்சேர்ப்பு வாரியம்"], ans:1, diff:"medium", expl:"The Public Services Commission (Panialar Niyamana Vaaryam) established by the Justice Party in 1924 later became the Tamil Nadu Public Service Commission (TNPSC) which conducts Group exams today.", explTA:"நீதிக்கட்சி 1924 இல் நிறுவிய பணியாளர் நியமன வாரியம் பின்னர் தமிழ்நாடு மாநில பணியாளர் தேர்வாணையமாக (TNPSC) உருமாற்றம் அடைந்தது." },
+  { q:"The Annamalai University was established in which year?", qta:"அண்ணாமலை பல்கலைக்கழகம் எந்த ஆண்டில் தொடங்கப்பட்டது?", opts:["1924","1926","1928","1929"], optsTA:["1924","1926","1928","1929"], ans:3, diff:"medium", expl:"Annamalai University was established in 1929 for the development of Tamil education. The Andhra University was established in 1926 for Telugu language development — don't confuse these two.", explTA:"அண்ணாமலை பல்கலைக்கழகம் 1929 ஆம் ஆண்டு தமிழ் கல்வி வளர்ச்சிக்காக தொடங்கப்பட்டது. ஆந்திர பல்கலைக்கழகம் 1926 இல் தெலுங்கு மொழி வளர்ச்சிக்காக அமைக்கப்பட்டது — இரண்டையும் குழப்பிக்கொள்ளாதீர்கள்." },
+  { q:"The Devadasi Abolition Act (தேவதாசி ஒழிப்பு சட்டம்) was finally enacted in which year?", qta:"தேவதாசி ஒழிப்பு சட்டம் இறுதியாக எந்த ஆண்டில் அமல்பட்டது?", opts:["1930","1938","1944","1949"], optsTA:["1930","1938","1944","1949"], ans:3, diff:"hard", expl:"The Devadasi Abolition Act was enacted in 1949. The process began in 1930 when the Devadasi Prohibition Act was first passed, and the complete abolition came in 1949 under the Devadasi Abolition Act.", explTA:"தேவதாசி ஒழிப்பு சட்டம் 1949 ஆம் ஆண்டு அமல்பட்டது. 1930 இல் தேவதாசி தடை சட்டம் முதலில் இயற்றப்பட்டது, முழுமையான ஒழிப்பு 1949 இல் தேவதாசி ஒழிப்பு சட்டம் மூலம் வந்தது." },
+  { q:"Who is called the 'Father of Communal Representation' (வகுப்புவாரி பிரதிநிதித்துவத்தின் தந்தை)?", qta:"'வகுப்புவாரி பிரதிநிதித்துவத்தின் தந்தை' என்று யார் அழைக்கப்படுகிறார்?", opts:["Panagal Raja","V. Muthaiah Mudhaliyar","Thyagaraya Chetty","T.M. Nair"], optsTA:["பனகல் ராஜா","வி. முத்தையா முதலியார்","தியாகராய செட்டி","டி.எம். நாயர்"], ans:1, diff:"hard", expl:"V. Muthaiah Mudhaliyar is called the 'Father of Communal Representation' (Vakuppuvari Prathinithithuvatthin Thanthai) for his pioneering work in securing proportional representation for non-Brahmin communities.", explTA:"வி. முத்தையா முதலியார் பிராமணியற்ற சமூகங்களுக்கு வகுப்புவாரி பிரதிநிதித்துவம் பெற்றுத் தர முன்னோடியாக செயல்பட்டதால் 'வகுப்புவாரி பிரதிநிதித்துவத்தின் தந்தை' என்று அழைக்கப்படுகிறார்." },
+  { q:"In which year did the Justice Party rename itself as 'Dravidar Kazhagam' under Periyar's leadership?", qta:"பெரியார் தலைமையில் நீதிக்கட்சி 'திராவிடர் கழகம்' என எந்த ஆண்டில் பெயர் மாற்றப்பட்டது?", opts:["1938","1940","1944","1948"], optsTA:["1938","1940","1944","1948"], ans:2, diff:"medium", expl:"In 1944 at the Salem Conference, the Justice Party was renamed as 'Dravidar Kazhagam' (DK). Periyar had been elected as the party's president in 1938. The party symbol also changed to a black flag with red circle.", explTA:"1944 ஆம் ஆண்டு சேலத்தில் நடந்த மாநாட்டில் நீதிக்கட்சி 'திராவிடர் கழகம்' என பெயர் மாற்றப்பட்டது. பெரியார் 1938 இல் கட்சியின் தலைவராக தேர்ந்தெடுக்கப்பட்டிருந்தார்." },
+  { q:"The Madras Town Planning Act was passed in which year by the Justice Party?", qta:"மெட்ராஸ் டவுன் பிளானிங் ஆக்ட் நீதிக்கட்சியால் எந்த ஆண்டில் இயற்றப்பட்டது?", opts:["1916","1918","1920","1922"], optsTA:["1916","1918","1920","1922"], ans:2, diff:"medium", expl:"The Madras Town Planning Act was passed in 1920 by the Justice Party government. The Panchayats Act was also passed in 1920.", explTA:"மெட்ராஸ் டவுன் பிளானிங் ஆக்ட் 1920 ஆம் ஆண்டு நீதிக்கட்சி அரசால் இயற்றப்பட்டது. பஞ்சாயத்துக்கள் சட்டமும் 1920 இல் இயற்றப்பட்டது." },
+  { q:"The Hindu Religious Endowments Act (இந்து அறநிலையத்துறை சட்டம்) brought Hindu temples under which authority?", qta:"இந்து அறநிலையத்துறை சட்டம் இந்து கோவில்களை எந்த அதிகாரத்தின் கீழ் கொண்டு வந்தது?", opts:["Central Government","Private Trust Management","State Government (Direct Administration)","Supreme Court"], optsTA:["மத்திய அரசு","தனியார் அறக்கட்டளை நிர்வாகம்","மாநில அரசு (நேரடி நிர்வாகம்)","உச்ச நீதிமன்றம்"], ans:2, diff:"medium", expl:"The Hindu Religious Endowments Act brought Hindu temples under direct state government administration. The 1925 Act made the income from temples available for public welfare. All sections of society could access temples through this.", explTA:"இந்து அறநிலையத்துறை சட்டம் இந்து கோவில்களை மாநில அரசின் நேரடி நிர்வாகத்தின் கீழ் கொண்டு வந்தது. 1925 சட்டம் கோவில்களிலிருந்து வரும் வருமானம் பொதுப்பணிகளுக்காக பயன்படுத்தப்படுவதை உறுதி செய்தது." },
+  { q:"The 'South Indian People's Association' published newspapers in which languages?", qta:"தென்னிந்திய மக்கள் சங்கம் எந்த மொழிகளில் பத்திரிகைகள் வெளியிட்டது?", opts:["Only Tamil","Only English","English and Tamil only","English, Tamil and Telugu"], optsTA:["தமிழ் மட்டும்","ஆங்கிலம் மட்டும்","ஆங்கிலம் மற்றும் தமிழ் மட்டும்","ஆங்கிலம், தமிழ் மற்றும் தெலுங்கு"], ans:3, diff:"hard", expl:"The South Indian People's Association published newspapers in English, Tamil, and Telugu. 'Dravidian' (Tamil) was started in June 1917 by Bakthavatsalam Pillai, and 'Andhra Prakasika' (Telugu) was also published.", explTA:"தென்னிந்திய மக்கள் சங்கம் ஆங்கிலம், தமிழ் மற்றும் தெலுங்கு மொழிகளில் பத்திரிகைகள் வெளியிட்டது. 'திராவிடன்' (தமிழ்) 1917 ஜூன் மாதம் பக்தவத்சலம் பிள்ளை தொடங்கினார், 'ஆந்திர பிரகாசிகா' (தெலுங்கு) வும் வெளியிடப்பட்டது." },
+  { q:"In the 2nd Cabinet (1923-1926), Panagal Raja's key achievement was establishing which commission?", qta:"2வது அமைச்சரவையில் (1923-1926) பனகல் ராஜாவின் முக்கிய சாதனை எந்த ஆணையம் நிறுவியது?", opts:["Delimitation Commission","TNPSC (Public Services Commission, 1924)","Finance Commission","Education Commission"], optsTA:["வரையறை ஆணையம்","TNPSC (பணியாளர் நியமன வாரியம், 1924)","நிதி ஆணையம்","கல்வி ஆணையம்"], ans:1, diff:"medium", expl:"During the 2nd Cabinet (1923-1926) under Panagal Raja, the Public Services Commission (1924) was established. This later became the Tamil Nadu Public Service Commission (TNPSC).", explTA:"பனகல் ராஜாவின் 2வது அமைச்சரவை (1923-1926) காலத்தில் பணியாளர் நியமன வாரியம் (1924) நிறுவப்பட்டது. இது பின்னர் தமிழ்நாடு மாநில பணியாளர் தேர்வாணையம் (TNPSC) ஆனது." },
+  { q:"Who was the first woman minister (முதல் பெண் அமைச்சர்) appointed in the 3rd Justice Party Cabinet?", qta:"3வது நீதிக்கட்சி அமைச்சரவையில் நியமிக்கப்பட்ட முதல் பெண் அமைச்சர் யார்?", opts:["Muthulakshmi Reddy","Rukmini Lakshmipathi","S. Kannammal","Padmasini Ammal"], optsTA:["முத்துலட்சுமி ரெட்டி","ருக்மணி லட்சுமிபதி","எஸ். கண்ணம்மாள்","பத்மாசினி அம்மாள்"], ans:0, diff:"medium", expl:"Dr. Muthulakshmi Reddy was the first woman minister appointed during the 3rd Justice Party Cabinet (1926-1930). She was also the first woman member of the Madras Legislative Council.", explTA:"டாக்டர் முத்துலட்சுமி ரெட்டி 3வது நீதிக்கட்சி அமைச்சரவை (1926-1930) காலத்தில் முதல் பெண் அமைச்சராக நியமிக்கப்பட்டார். மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் உறுப்பினரும் இவரே." },
+  { q:"The Justice Party opposed Gandhi's Non-Cooperation Movement (ஒத்துழையாமை இயக்கம்) in 1919. Why?", qta:"நீதிக்கட்சி 1919 ஆம் ஆண்டு காந்தியின் ஒத்துழையாமை இயக்கத்தை ஏன் எதிர்த்தது?", opts:["They supported British rule completely","They wanted to participate in elections with British support under Montagu-Chelmsford reforms","They had no political agenda","They were against Gandhi personally"], optsTA:["பிரிட்டிஷ் ஆட்சியை முழுவதுமாக ஆதரித்தது","மாண்டேகு-செம்ஸ்ஃபோர்ட் சீர்திருத்தங்களின் கீழ் பிரிட்டிஷ் அரசின் ஆதரவுடன் தேர்தலில் பங்கேற்க விரும்பியது","அரசியல் நிகழ்ச்சி நிரல் இல்லை","காந்தியை தனிப்பட்ட முறையில் எதிர்த்தது"], ans:1, diff:"hard", expl:"The Justice Party refused to cooperate with Gandhi's Non-Cooperation Movement and instead participated in the Provincial Legislative elections under Montagu-Chelmsford Reforms with British government support. They also severely criticized Gandhi's movement.", explTA:"நீதிக்கட்சி காந்தியின் ஒத்துழையாமை இயக்கத்தில் ஒத்துழைக்க மறுத்து, பிரிட்டிஷ் அரசின் ஆதரவுடன் மாண்டேகு-செம்ஸ்ஃபோர்ட் சீர்திருத்தங்களின் கீழ் மாநில சட்டமன்றத் தேர்தலில் பங்கேற்றது." },
+  { q:"The Communal Government Order (வகுப்புவாரி இடஒதுக்கீடு அரசாணை) was first introduced in which year?", qta:"வகுப்புவாரி இடஒதுக்கீடு அரசாணை முதலில் எந்த ஆண்டில் அறிமுகப்படுத்தப்பட்டது?", opts:["1919","1920","1921","1928"], optsTA:["1919","1920","1921","1928"], ans:2, diff:"hard", expl:"The Communal Government Order (Vakuppuvari Idaothukkedu Arasaanai) was first introduced in 1920-21 by the Justice Party government. The Quota System was formalized in 1928 under the 3rd Cabinet.", explTA:"வகுப்புவாரி இடஒதுக்கீடு அரசாணை முதலில் 1920-21 ஆம் ஆண்டில் நீதிக்கட்சி அரசால் அறிமுகப்படுத்தப்பட்டது. கோட்டா முறை 3வது அமைச்சரவையில் 1928 இல் முறைப்படுத்தப்பட்டது." },
+  { q:"The Justice Party's predecessor organization '1909 Chennai Non-Brahmin Association' was focused on:", qta:"நீதிக்கட்சியின் முன்னோடி அமைப்பான '1909 சென்னை பிராமணரல்லாதார் சங்கம்' எதில் கவனம் செலுத்தியது?", opts:["Political representation only","Only armed resistance","Educational improvement of non-Brahmins","Cultural activities"], optsTA:["அரசியல் பிரதிநிதித்துவம் மட்டும்","ஆயுத எதிர்ப்பு மட்டும்","பிராமணரல்லாதோரின் கல்வி மேம்பாடு","கலாச்சார நடவடிக்கைகள்"], ans:2, diff:"medium", expl:"The 1909 Chennai Non-Brahmin Association (Chennai Brahmanarllathar Sangam) was established with the aim of improving educational opportunities for non-Brahmins.", explTA:"1909 சென்னை பிராமணரல்லாதார் சங்கம் பிராமணரல்லாதோரின் கல்வி மேம்பாட்டை நோக்கி நிறுவப்பட்டது." },
+  { q:"The 'South Indian Liberal Federation' became 'Justice Party' because of:", qta:"'தென்னிந்திய லிபரல் பெர்ஸ்டேஷன்' 'ஜஸ்டிஸ் பார்ட்டி' ஆனதற்கான காரணம்:", opts:["Government order","The huge impact of their English newspaper 'Justice'","Periyar's decision","Thyagaraya Chetty's preference"], optsTA:["அரசாங்க உத்தரவு","அவர்களின் ஆங்கில பத்திரிகை 'நீதி' ஏற்படுத்திய பெரும் தாக்கம்","பெரியாரின் முடிவு","தியாகராய செட்டியின் விருப்பம்"], ans:1, diff:"medium", expl:"The South Indian Liberal Federation was later renamed 'Justice Party' because their English newspaper 'Justice' (நீதி) had a huge impact on public opinion. The party became commonly known by their newspaper's name.", explTA:"தென்னிந்திய லிபரல் பெர்ஸ்டேஷன் பின்னர் 'ஜஸ்டிஸ் பார்ட்டி' என மாற்றப்பட்டது, ஏனெனில் அவர்களின் ஆங்கில பத்திரிகை 'நீதி' (Justice) பெரும் தாக்கத்தை ஏற்படுத்தியது." },
+  { q:"The Meston Award (மெஸ்டன் நடுவர் தீர்ப்பு) of 1920 allocated how many seats to non-Brahmin communities?", qta:"1920 ஆம் ஆண்டு மெஸ்டன் நடுவர் தீர்ப்பு பிராமணரல்லாத சமூகங்களுக்கு எத்தனை இடங்கள் ஒதுக்கியது?", opts:["45","52","63","75"], optsTA:["45","52","63","75"], ans:2, diff:"hard", expl:"The Meston Award (1920) allocated 63 plural member constituency seats to non-Brahmin communities (Brahmanarllathar), with separate reservations for rural and urban areas.", explTA:"மெஸ்டன் நடுவர் தீர்ப்பு (1920) பிராமணரல்லாதவர்களுக்கு 63 பன்மை உறுப்பினர் தொகுதிகளை ஒதுக்கியது. கிராமங்கள் மற்றும் நகரங்களுக்கு தனித்தனியான இடஒதுக்கீடு செய்யப்பட்டது." },
+  { q:"The Hindu Religious Endowments Act was first passed in which year?", qta:"இந்து அறநிலை மசோதா முதலில் எந்த ஆண்டில் நிறைவேற்றப்பட்டது?", opts:["1921","1922","1925","1930"], optsTA:["1921","1922","1925","1930"], ans:1, diff:"hard", expl:"The Hindu Religious Endowments Bill was first brought in 1922 during the 1st Cabinet (1920-1923). The 1925 Act was enacted during the 2nd Cabinet which made temple revenues available for public purposes.", explTA:"இந்து அறநிலை மசோதா முதலில் 1922 ஆம் ஆண்டு 1வது அமைச்சரவை காலத்தில் (1920-1923) கொண்டு வரப்பட்டது. 1925 சட்டம் 2வது அமைச்சரவையில் இயற்றப்பட்டது, கோவில் வருமானம் பொதுப்பணிக்கு பயன்படுத்தப்பட்டது." },
+  { q:"The term 'Paraiah' was replaced by which dignified term by the Justice Party?", qta:"'பறையர்' என்ற சொல்லை நீதிக்கட்சி எந்த மரியாதையான சொல்லால் மாற்றியது?", opts:["Dalit","Adi Dravidar (ஆதி திராவிடர்)","Harijans","Scheduled Caste"], optsTA:["தலித்","ஆதி திராவிடர்","ஹரிஜன்","பட்டியல் சாதி"], ans:1, diff:"easy", expl:"The Justice Party replaced the humiliating terms 'Paraiah' (பறையர்) and 'Panchama' (பஞ்சமர்) with the dignified term 'Adi Dravidar' (ஆதி திராவிடர்). This was a significant social reform of the Justice Party.", explTA:"நீதிக்கட்சி 'பறையர்' மற்றும் 'பஞ்சமர்' என்ற இழிவுப்படுத்தும் சொற்களை 'ஆதி திராவிடர்' என்ற மரியாதையான சொல்லால் மாற்றியது. இது நீதிக்கட்சியின் முக்கியமான சமூக சீர்திருத்தமாகும்." },
+  { q:"The Justice Party's 1912 Chennai Kootamaippu Kuzhu later became:", qta:"நீதிக்கட்சியின் 1912 சென்னை கூட்டமைப்புக் குழு பின்னர் என்னவாக மாறியது?", opts:["Justice Party","Chennai Dravidar Sangam","Indian National Congress Tamil unit","South Indian People's Association"], optsTA:["நீதிக்கட்சி","சென்னை திராவிடர் சங்கம்","இந்திய தேசிய காங்கிரஸ் தமிழ் அலகு","தென்னிந்திய மக்கள் சங்கம்"], ans:1, diff:"hard", expl:"The 1912 Chennai Kootamaippu Kuzhu (Chennai Coalition Group) was later renamed as 'Chennai Dravidar Sangam' (சென்னை திராவிடர் சங்கம'). It was formed with non-Brahmin government officials in the lead.", explTA:"1912 சென்னை கூட்டமைப்புக் குழு பின்னர் 'சென்னை திராவிடர் சங்கம்' என மாறியது. பிராமணர் அல்லாத அரசு அலுவலர்கள் தலைமையில் தொடங்கப்பட்டது." },
+  { q:"The Justice Party's Madras State Aid to Industries Act (1922) was aimed at:", qta:"நீதிக்கட்சியின் மதராஸ் மாநில தொழில் உதவி சட்டம் (1922) எதை நோக்கியது?", opts:["Nationalizing all industries","Encouraging industrialization and economic development","Banning foreign goods","Taxing Brahmin traders"], optsTA:["அனைத்து தொழில்களை தேசியமயமாக்குதல்","தொழிலமயமாக்கல் மற்றும் பொருளாதார வளர்ச்சியை ஊக்குவித்தல்","வெளிநாட்டு பொருட்களை தடைசெய்தல்","பிராமண வணிகர்களுக்கு வரிவிதித்தல்"], ans:1, diff:"medium", expl:"The Madras State Aid to Industries Act (1922) encouraged industrialization and economic development of the state. It provided state aid to industries to promote economic growth.", explTA:"மதராஸ் மாநில தொழில் உதவி சட்டம் (1922) தொழிலமயமாக்கல் மற்றும் மாநிலத்தின் பொருளாதார வளர்ச்சியை ஊக்குவித்தது. தொழில்களுக்கு மாநில உதவி வழங்கியது." },
+  { q:"During which Justice Party cabinet did 'Karuppu Kudirai' Subbarayan form a minority government?", qta:"எந்த நீதிக்கட்சி அமைச்சரவையில் 'கருப்பு குதிரை' சுப்பராயன் சிறுபான்மை அரசை அமைத்தார்?", opts:["1st Cabinet (1920-1923)","2nd Cabinet (1923-1926)","3rd Cabinet (1926-1930)","4th Cabinet (1930-1934)"], optsTA:["1வது அமைச்சரவை (1920-1923)","2வது அமைச்சரவை (1923-1926)","3வது அமைச்சரவை (1926-1930)","4வது அமைச்சரவை (1930-1934)"], ans:2, diff:"hard", expl:"'Karuppu Kudirai' (Black Horse) Subbarayan, who contested independently in the 1926 elections, formed the 3rd Cabinet (1926-1930) with Justice Party support. He also established the Annamalai University and Quota System.", explTA:"1926 தேர்தலில் சுயேட்சையாக போட்டியிட்ட 'கருப்பு குதிரை' சுப்பராயன் நீதிக்கட்சியின் ஆதரவுடன் 3வது அமைச்சரவை (1926-1930) அமைத்தார். அண்ணாமலை பல்கலைக்கழகமும் கோட்டா முறையும் அவர் காலத்தில் வந்தது." },
+  { q:"The Justice Party's 5th Cabinet (1934-1937) ended with Periyar being elected as party president in which year?", qta:"நீதிக்கட்சியின் 5வது அமைச்சரவை (1934-1937) முடிவில் பெரியார் கட்சித் தலைவராக எந்த ஆண்டில் தேர்ந்தெடுக்கப்பட்டார்?", opts:["1936","1937","1938","1940"], optsTA:["1936","1937","1938","1940"], ans:2, diff:"medium", expl:"After the 5th Cabinet ended, Periyar (E.V. Ramasamy) was elected as the Justice Party's president in 1938. In 1944 at Salem, the party was renamed 'Dravidar Kazhagam' (திராவிடர் கழகம்).", explTA:"5வது அமைச்சரவை முடிந்த பிறகு, பெரியார் (ஈ.வெ. இராமசாமி) 1938 ஆம் ஆண்டு நீதிக்கட்சியின் தலைவராக தேர்ந்தெடுக்கப்பட்டார். 1944 ஆம் ஆண்டு சேலத்தில் கட்சி 'திராவிடர் கழகம்' என பெயர் மாற்றப்பட்டது." }
+];
+    var QUIZ_BANK={};QUIZ_BANK["neethikatchi"]=NEETHIKATCHI_QUIZ_DATA;
+    
+function shuffleArray(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function showToast(m){var t=document.getElementById('_toast');if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.3s;';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2500);}
+var QS={cat:null,questions:[],index:0,score:0,answered:false,timer:null,timeLeft:30,startTime:0};
+function startQuiz(catId){
+  var bank=QUIZ_BANK[catId]||[];
+  QS.cat=catId;QS.questions=shuffleArray(bank.slice());
+  QS.index=0;QS.score=0;QS.answered=false;QS.startTime=Date.now();
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('quizEngine').style.display='block';
+  document.getElementById('scoreScreen').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});renderQ();
+}
+function renderQ(){
+  var cur=QS.questions[QS.index];if(!cur)return;
+  var total=QS.questions.length;
+  document.getElementById('qProg').textContent='கேள்வி '+(QS.index+1)+' / '+total;
+  document.getElementById('qScoreLabel').textContent='மதிப்பெண்: '+QS.score;
+  document.getElementById('progFill').style.width=((QS.index/total)*100)+'%';
+  document.getElementById('nextArea').style.display='none';
+  var nums=['அ','ஆ','இ','ஈ'];
+  var opts=cur.optsTA||cur.opts;
+  var qText=cur.qta?'<div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.q+'</div><div class="q-text">'+cur.qta+'</div>':'<div class="q-text">'+cur.q+'</div>';
+  var diffLabel=cur.diff==='easy'?'🟢 எளிது':cur.diff==='hard'?'🔴 கடினம்':'🟡 நடுத்தரம்';
+  var optHTML='';
+  for(var i=0;i<opts.length;i++){optHTML+='<button class="opt-btn" onclick="checkAnswer(this,'+i+','+cur.ans+')">'+'<span class="ob-num">'+nums[i]+'</span><span>'+opts[i]+'</span></button>';}
+  document.getElementById('questionContainer').innerHTML='<div class="q-card"><div class="q-num">கேள்வி '+(QS.index+1)+'</div>'+qText+'<span class="q-diff diff-'+(cur.diff||'medium')+'">'+diffLabel+'</span><div class="opts-list">'+optHTML+'</div><div class="expl-box" id="explBox"></div></div>';
+  startTimer();
+}
+function startTimer(){
+  QS.timeLeft=30;QS.answered=false;
+  if(QS.timer)clearInterval(QS.timer);updateTimer(30);
+  QS.timer=setInterval(function(){QS.timeLeft--;updateTimer(QS.timeLeft);if(QS.timeLeft<=0){clearInterval(QS.timer);autoSubmit();}},1000);
+}
+function updateTimer(v){var el=document.getElementById('timerDisplay');if(el){el.textContent=v;el.style.background=v<=10?'#dc2626':'var(--accent)';}}
+function showNextBtn(){
+  var na=document.getElementById('nextArea');
+  var nb=document.getElementById('nextBtnEl');
+  nb.textContent=QS.index+1>=QS.questions.length?'📊 முடிவு காண்க':'அடுத்த கேள்வி →';
+  na.style.display='block';
+}
+function autoSubmit(){
+  var cur=QS.questions[QS.index];QS.answered=true;
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  var btns=document.querySelectorAll('.opt-btn');
+  if(btns[cur.ans])btns[cur.ans].classList.add('correct');
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">⏱️ நேரம் முடிந்தது</div>'+(cur.explTA?'<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');showNextBtn();
+}
+function checkAnswer(btn,chosen,correct){
+  if(QS.answered)return;QS.answered=true;clearInterval(QS.timer);
+  var cur=QS.questions[QS.index];
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  document.querySelectorAll('.opt-btn')[correct].classList.add('correct');
+  if(chosen===correct){QS.score++;showToast('✅ சரியான விடை!');}else{btn.classList.add('wrong');showToast('❌ தவறான விடை!');}
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">📖 விளக்கம்</div>'+(cur.explTA?'<div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');showNextBtn();
+}
+function nextQuestion(){QS.index++;if(QS.index<QS.questions.length){renderQ();}else{showScore();}}
+function showScore(){
+  var total=QS.questions.length;var wrong=total-QS.score;
+  var pct=Math.round((QS.score/total)*100);var elapsed=Math.round((Date.now()-QS.startTime)/1000);
+  var emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'👍':'💪';
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='block';
+  document.getElementById('scoreEmoji').textContent=emoji;
+  document.getElementById('scoreNum').textContent=QS.score;
+  document.getElementById('scoreTot').textContent=total;
+  document.getElementById('statCorrect').textContent=QS.score;
+  document.getElementById('statWrong').textContent=wrong;
+  document.getElementById('statTime').textContent=elapsed+'s';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function retryQuiz(){document.getElementById('scoreScreen').style.display='none';startQuiz(QS.cat);}
+function exitQuiz(){
+  if(QS.timer)clearInterval(QS.timer);
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='none';
+  document.getElementById('startScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startThisQuiz(){document.getElementById('startScreen').style.display='none';startQuiz(CURRENT_CAT);}
+function goBack(){
+  if(document.getElementById('quizEngine').style.display!=='none'||document.getElementById('scoreScreen').style.display!=='none'){exitQuiz();}
+  else{window.location.href='quiz.html';}
+}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme')||'light';
+  var n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);localStorage.setItem('tnpsc-theme',n);
+  document.getElementById('themeBtn').textContent=n==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var t=localStorage.getItem('tnpsc-theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
+});
+
+  </script>
+</body>
+</html>

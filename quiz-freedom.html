@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>விடுதலைப் போராட்டம் | TNPSC வேட்டை</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+/* ── KaarKalvi-style bouncing card design ── */
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+
+.articles-hero {
+  background: linear-gradient(135deg, #0c4b76 0%, #083a5c 50%, #0f5a8c 100%);
+  padding: 20px 16px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.articles-hero::before {
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  top:-60px; right:-40px;
+}
+.articles-hero::after {
+  content:'';
+  position:absolute;
+  width:120px; height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  bottom:-30px; left:20px;
+}
+.hero-nav {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.hero-back {
+  width:36px; height:36px; border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  border:none; color:white; font-size:18px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  text-decoration:none; flex-shrink:0;
+  transition: background 0.2s;
+}
+.hero-back:hover { background:rgba(255,255,255,0.25); }
+.hero-title { color:white; font-size:22px; font-weight:800; margin:0; }
+.hero-sub { color:rgba(255,255,255,0.65); font-size:12px; margin:4px 0 0; }
+
+.hero-stats {
+  display:flex; gap:12px; margin-top:16px;
+}
+.hero-stat {
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:10px; padding:8px 14px; text-align:center;
+}
+.hero-stat-num { font-size:16px; font-weight:800; color:white; }
+.hero-stat-label { font-size:10px; color:rgba(255,255,255,0.65); }
+
+/* Filter pills */
+.filter-wrap {
+  padding:14px 16px 0;
+  display:flex; gap:8px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.filter-wrap::-webkit-scrollbar { display:none; }
+.filter-pill {
+  flex-shrink:0; padding:6px 14px;
+  border-radius:20px; border:1.5px solid var(--border);
+  background:var(--card); font-size:12px; font-weight:600;
+  color:var(--text-muted); cursor:pointer;
+  transition:all 0.2s; white-space:nowrap;
+}
+.filter-pill.active {
+  background:var(--primary); border-color:var(--primary);
+  color:white;
+}
+
+/* Article cards */
+.cards-grid {
+  padding:16px;
+  display:flex; flex-direction:column; gap:16px;
+}
+
+/* ── BOUNCING CARD ── */
+.art-bounce-card {
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(0) scale(1);
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.18s ease;
+  position:relative;
+}
+.art-bounce-card:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.art-bounce-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+/* Card slide-in animation */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.art-bounce-card { animation: slideUp 0.4s ease forwards; opacity:0; }
+.art-bounce-card:nth-child(1) { animation-delay:0.05s; }
+.art-bounce-card:nth-child(2) { animation-delay:0.12s; }
+.art-bounce-card:nth-child(3) { animation-delay:0.19s; }
+.art-bounce-card:nth-child(4) { animation-delay:0.26s; }
+.art-bounce-card:nth-child(5) { animation-delay:0.33s; }
+
+.card-cover {
+  padding:20px 18px 16px;
+  position:relative;
+  min-height:120px;
+}
+.card-cover-orb {
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  top:-20px; right:-20px;
+  pointer-events:none;
+}
+.card-cover-orb2 {
+  position:absolute;
+  width:60px; height:60px; border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  bottom:10px; right:40px;
+  pointer-events:none;
+}
+.card-series {
+  font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:1px; text-transform:uppercase;
+  margin-bottom:6px;
+}
+.card-title-en {
+  font-size:16px; font-weight:800; color:white;
+  line-height:1.3; margin-bottom:4px;
+}
+.card-title-ta {
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.8);
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+.card-chips {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;
+}
+.card-chip {
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.9);
+  font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:20px;
+}
+.card-chip.live {
+  background:rgba(34,197,94,0.25);
+  border-color:rgba(34,197,94,0.4);
+  color:#86efac;
+}
+
+.card-footer {
+  background:var(--card);
+  padding:12px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.card-meta-items { display:flex; gap:12px; align-items:center; }
+.card-meta-item { font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+.card-arrow {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700;
+}
+
+/* Coming soon card */
+.art-bounce-card.coming-soon {
+  opacity:0.5 !important;
+  cursor:default;
+  pointer-events:none;
+  animation-delay:0s !important;
+}
+
+/* Section label */
+.section-label {
+  font-size:11px; font-weight:800;
+  color:var(--text-muted); letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:16px 16px 0;
+}
+</style>
+  <style>
+    body{margin:0;}
+    .quiz-hero{background:linear-gradient(135deg,#14532d,#16a34a,#22c55e);padding:24px 16px 28px;position:relative;overflow:hidden;}
+    .quiz-hero::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06);top:-50px;right:-40px;}
+    .quiz-hero::after{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.04);bottom:-20px;left:30px;}
+    .hero-icon{font-size:44px;margin-bottom:10px;display:block;position:relative;z-index:1;}
+    .hero-title{font-size:22px;font-weight:900;color:white;margin-bottom:4px;font-family:var(--font-serif);position:relative;z-index:1;}
+    .hero-sub{font-size:12px;color:rgba(255,255,255,0.65);position:relative;z-index:1;}
+    .hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1;}
+    .h-chip{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;}
+    .start-body{padding:16px;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
+    .i-box{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:12px 8px;text-align:center;}
+    .i-val{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:3px;}
+    .i-lbl{font-size:10px;color:var(--text-muted);font-weight:600;}
+    .start-btn{width:100%;padding:16px;background:#16a34a;color:white;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:14px;font-family:inherit;}
+    .start-btn:active{transform:scale(0.97);}
+    .tips-box{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:14px 16px;}
+    .tips-title{font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.4px;text-transform:uppercase;margin-bottom:10px;}
+    .tip{display:flex;gap:10px;font-size:12.5px;color:var(--text);margin-bottom:8px;line-height:1.5;}
+    .quiz-topbar{position:sticky;top:0;z-index:100;background:var(--primary-dark);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+    .q-back{background:rgba(255,255,255,0.15);border:none;color:white;width:34px;height:34px;border-radius:9px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .score-wrap{padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .score-big{font-size:56px;font-weight:900;color:var(--primary);line-height:1;}
+    .score-denom{font-size:16px;color:var(--text-muted);margin-bottom:16px;}
+    .s-row{display:flex;gap:10px;width:100%;margin-bottom:20px;}
+    .s-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;}
+    .s-val{font-size:20px;font-weight:800;margin-bottom:4px;}
+    .s-lbl{font-size:10px;color:var(--text-muted);}
+    
+    .q-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .q-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+    .q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;}
+    .q-diff{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+    .diff-easy{background:#dcfce7;color:#16a34a;}
+    .diff-medium{background:#fef9c3;color:#ca8a04;}
+    .diff-hard{background:#fee2e2;color:#dc2626;}
+    .opts-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+    .opt-btn{width:100%;text-align:left;display:flex;align-items:center;gap:12px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.15s ease;font-family:inherit;line-height:1.4;}
+    .opt-btn:active:not(:disabled){transform:scale(0.98);}
+    .ob-num{width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);transition:all 0.15s;}
+    .opt-btn.correct{background:#dcfce7 !important;border-color:#16a34a !important;color:#14532d !important;}
+    .opt-btn.correct .ob-num{background:#16a34a !important;color:white !important;}
+    .opt-btn.wrong{background:#fee2e2 !important;border-color:#dc2626 !important;color:#7f1d1d !important;}
+    .opt-btn.wrong .ob-num{background:#dc2626 !important;color:white !important;}
+    .expl-box{display:none;margin-top:12px;background:var(--bg2);border-radius:12px;border-left:4px solid var(--primary);padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7;}
+    .expl-box.show{display:block;}
+    .expl-title{font-size:12px;font-weight:800;color:var(--primary);letter-spacing:0.4px;margin-bottom:8px;}
+    .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s ease;}
+    .next-btn{width:100%;padding:15px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;}
+    .next-btn:active{transform:scale(0.98);}
+    .bookmark-btn{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text);}
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button onclick="goBack()" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;">←</button>
+    <div style="flex:1;margin-left:10px;">
+      <div style="font-size:14px;font-weight:700;color:white;">விடுதலைப் போராட்டம்</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">TNPSC வேட்டை Quiz</div>
+    </div>
+    <button onclick="toggleTheme()" id="themeBtn" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:15px;cursor:pointer;">🌙</button>
+  </header>
+
+  <div id="startScreen">
+    <div class="quiz-hero">
+      <span class="hero-icon">🇮🇳</span>
+      <div class="hero-title">விடுதலைப் போராட்டம்</div>
+      <div class="hero-sub">VOC · Rajaji · Kuyili · Tiruppur Kumaran</div>
+      <div class="hero-chips">
+        <span class="h-chip">⏱️ 30 வினாடி / கேள்வி</span>
+        <span class="h-chip">🎯 குரூப் 2, 4</span>
+        <span class="h-chip">0 கேள்விகள்</span>
+      </div>
+    </div>
+    <div class="start-body">
+      <div class="info-grid">
+        <div class="i-box"><div class="i-val">0</div><div class="i-lbl">கேள்விகள்</div></div>
+        <div class="i-box"><div class="i-val">30s</div><div class="i-lbl">ஒவ்வொரு கேள்விக்கும்</div></div>
+        <div class="i-box"><div class="i-val">🔀</div><div class="i-lbl">Random</div></div>
+      </div>
+      <button class="start-btn" onclick="startThisQuiz()">🎯 தேர்வு தொடங்கு</button>
+      <div class="tips-box">
+        <div class="tips-title">📋 தேர்வு விவரங்கள்</div>
+        <div class="tip"><span>✅</span><span>விடைக்கு Tamil & English விளக்கம்</span></div>
+        <div class="tip"><span>⏱️</span><span>நேரம் முடிந்தால் Auto submit</span></div>
+        <div class="tip"><span>🔀</span><span>ஒவ்வொரு முறையும் Random வரிசை</span></div>
+        <div class="tip"><span>📊</span><span>முடிவில் மதிப்பெண் காண்பீர்கள்</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizEngine" style="display:none;">
+    <div class="quiz-topbar">
+      <button class="q-back" onclick="exitQuiz()">←</button>
+      <div style="flex:1;text-align:center;font-size:12px;font-weight:700;color:white;">விடுதலைப் போராட்டம்</div>
+      <div style="background:var(--accent);color:white;font-weight:800;font-size:14px;padding:5px 13px;border-radius:18px;" id="timerDisplay">30</div>
+    </div>
+    <div style="padding:12px 16px 24px;">
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin:6px 0 14px;">
+        <span id="qProg">கேள்வி 1/1</span>
+        <span id="qScoreLabel">மதிப்பெண்: 0</span>
+      </div>
+      <div id="questionContainer"></div>
+      <!-- Next button area - shown after answer -->
+      <div id="nextArea" style="display:none;margin-top:12px;">
+        <button id="nextBtnEl" class="next-btn" onclick="nextQuestion()">அடுத்த கேள்வி →</button>
+        <button class="bookmark-btn" onclick="showToast('🔖 சேமிக்கப்பட்டது!')">🔖 சேமி</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="scoreScreen" style="display:none;">
+    <div class="score-wrap">
+      <div style="font-size:56px;margin-bottom:10px;" id="scoreEmoji">🎉</div>
+      <div class="score-big" id="scoreNum">0</div>
+      <div class="score-denom">/ <span id="scoreTot">0</span> சரியான விடைகள்</div>
+      <div class="s-row">
+        <div class="s-box"><div class="s-val" style="color:#16a34a;" id="statCorrect">0</div><div class="s-lbl">✅ சரி</div></div>
+        <div class="s-box"><div class="s-val" style="color:#dc2626;" id="statWrong">0</div><div class="s-lbl">❌ தவறு</div></div>
+        <div class="s-box"><div class="s-val" id="statTime">0s</div><div class="s-lbl">⏱️ நேரம்</div></div>
+      </div>
+      <button class="start-btn" onclick="retryQuiz()" style="width:100%;">🔄 மீண்டும் முயற்சி</button>
+      <button onclick="exitQuiz()" style="margin-top:10px;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;color:var(--text);font-family:inherit;">← Quiz பட்டியல்</button>
+    </div>
+  </div>
+
+  <script>
+    var CURRENT_CAT="freedom";
+    const FREEDOM_QUIZ_DATA = [
+  { q:"Who led the Vedaranyam Salt Satyagraha of 1930?", qta:"1930 வேதாரண்யம் உப்பு சத்யாகிரகத்தை வழிநடத்தியவர் யார்?", opts:["Kamarajar","Rajaji","VOC","Periyar"], optsTA:["காமராஜர்","இராஜாஜி","வ.உ.சி.","பெரியார்"], ans:1, diff:"easy", expl:"Rajaji (C. Rajagopalachari) led the Vedaranyam Salt Satyagraha starting April 13, 1930 from Tiruchirappalli, reaching Vedaranyam on April 28, 1930.", explTA:"இராஜாஜி 1930 ஏப்ரல் 13 அன்று திருச்சியிலிருந்து தொடங்கி ஏப்ரல் 28 அன்று வேதாரண்யம் சென்று உப்பு சத்யாகிரகம் நடத்தினார்." },
+  { q:"VOC Chidambaram Pillai is known as:", qta:"வ.உ. சிதம்பரம் பிள்ளை என்று அழைக்கப்படுகிறார்:", opts:["Desabhaktha","Kappalottiya Tamizhan","Kodi Kaththa Kumaran","Veerapandiya"], optsTA:["தேசபக்தர்","கப்பலோட்டிய தமிழன்","கொடி காத்த குமரன்","வீரபாண்டிய"], ans:1, diff:"easy", expl:"VOC is celebrated as 'Kappalottiya Tamizhan' — The Tamil who steered the ship — for founding the Swadeshi Steam Navigation Company in 1906.", explTA:"வ.உ.சி. ஸ்வதேசி கப்பல் நிறுவனம் 1906ல் நிறுவியதால் 'கப்பலோட்டிய தமிழன்' என்று கொண்டாடப்படுகிறார்." },
+  { q:"Tiruppur Kumaran is called 'Kodi Kaththa Kumaran' because:", qta:"திருப்பூர் குமரன் 'கொடி காத்த குமரன்' என்று ஏன் அழைக்கப்படுகிறார்:", opts:["He designed the national flag","He died holding the national flag during British lathi charge on Jan 11, 1932","He hoisted flag on Independence Day","He won a flag design competition"], optsTA:["தேசியக் கொடியை வடிவமைத்தார்","ஜனவரி 11, 1932 பிரிட்டிஷ் தடியடியில் தேசியக் கொடியை பிடித்தவாறே இறந்தார்","சுதந்திர தினத்தில் கொடி ஏற்றினார்","கொடி வடிவமைப்பு போட்டியில் வென்றார்"], ans:1, diff:"easy", expl:"Tiruppur Kumaran (1904-1932) held the national flag and died without releasing it during a British police lathi charge on January 11, 1932.", explTA:"திருப்பூர் குமரன் (1904-1932) ஜனவரி 11, 1932 அன்று பிரிட்டிஷ் தடியடியில் தேசியக் கொடியை விடாமல் இறந்தார்." },
+  { q:"Kuyili sacrificed herself to destroy British weapons on:", qta:"குயிலி பிரிட்டிஷ் ஆயுதங்களை அழிக்க தன்னை தியாகம் செய்தது:", opts:["Jan 3, 1780","Sep 30, 1780","Oct 17, 1799","June 25, 1772"], optsTA:["ஜனவரி 3, 1780","செப்டம்பர் 30, 1780","அக்டோபர் 17, 1799","ஜூன் 25, 1772"], ans:1, diff:"medium", expl:"Kuyili poured ghee on herself and jumped into the British ammunition depot on September 30, 1780, destroying all weapons. She is India's first suicide bomber in the freedom struggle.", explTA:"குயிலி செப்டம்பர் 30, 1780 அன்று தன்மீது நெய் ஊற்றிக்கொண்டு ஆயுதக் கிடங்கில் குதித்தார். இந்திய சுதந்திர போராட்டத்தின் முதல் தற்கொலை வீராங்கனை." },
+  { q:"Sambutheevu Declaration (1801) was issued by:", qta:"சம்புதீவு அறிவிப்பை (1801) வெளியிட்டவர்கள்:", opts:["Kattabomman","Marudhu Brothers","Puli Thevar","Dheeran Chinnamalai"], optsTA:["கட்டபொம்மன்","மருது சகோதரர்கள்","புலிதேவர்","தீரன் சின்னமலை"], ans:1, diff:"medium", expl:"The Sambutheevu Declaration was issued by the Marudhu Brothers on June 16, 1801 — the first pan-India call to unite against British rule.", explTA:"சம்புதீவு அறிவிப்பை மருது சகோதரர்கள் ஜூன் 16, 1801 அன்று வெளியிட்டனர் — பிரிட்டிஷாருக்கு எதிராக ஒன்றிணையும் முதல் அகில இந்திய அழைப்பு." },
+  { q:"Captain Lakshmi commanded which regiment in the INA?", qta:"கேப்டன் லட்சுமி INA-வில் எந்த படையை வழிநடத்தினார்?", opts:["Bengal Regiment","Rani of Jhansi Regiment","Azad Hind Fauj","Tamil Brigade"], optsTA:["வங்காள படை","ராணி ஜான்சி படை","ஆஜாத் ஹிந்த் படை","தமிழ் படை"], ans:1, diff:"medium", expl:"Captain Lakshmi (1914-2012) was appointed by Netaji as commander of the Rani of Jhansi Regiment. 80% of the 1,000 women soldiers were Tamil women.", explTA:"கேப்டன் லட்சுமி (1914-2012) நேதாஜியால் ராணி ஜான்சி படையின் கேப்டனாக நியமிக்கப்பட்டார். 80% தமிழ் பெண்கள்." },
+  { q:"Vellore Mutiny (1806) was significant as:", qta:"வேலூர் கலகம் (1806) ஏன் முக்கியத்துவம் வாய்ந்தது?", opts:["Last revolt in Tamil Nadu","FIRST armed revolt against British in India — 51 years before 1857","A French-led mutiny","A successful revolt"], optsTA:["தமிழ்நாட்டில் கடைசி கிளர்ச்சி","இந்தியாவில் பிரிட்டிஷாருக்கு எதிரான முதல் ஆயுத கிளர்ச்சி — 1857க்கு 51 ஆண்டுகள் முன்பு","பிரெஞ்சு கலகம்","வெற்றிகரமான கிளர்ச்சி"], ans:1, diff:"easy", expl:"Vellore Mutiny (July 10, 1806) was the FIRST major armed revolt against British in India — 51 years before the 1857 First War of Independence.", explTA:"வேலூர் கலகம் (ஜூலை 10, 1806) இந்தியாவில் பிரிட்டிஷாருக்கு எதிரான முதல் பெரிய ஆயுத கிளர்ச்சி — 1857க்கு 51 ஆண்டுகள் முன்பு." },
+  { q:"Periyar led which satyagraha in Kerala in 1924?", qta:"பெரியார் 1924 ஆம் ஆண்டு கேரளாவில் எந்த சத்யாகிரகம் நடத்தினார்?", opts:["Salt Satyagraha","Vaikom Temple Entry Satyagraha","Non-cooperation Movement","Quit India Movement"], optsTA:["உப்பு சத்யாகிரகம்","வைக்கம் கோவில் நுழைவு சத்யாகிரகம்","ஒத்துழையாமை இயக்கம்","வெள்ளையனே வெளியேறு"], ans:1, diff:"easy", expl:"Periyar E.V.R. led the Vaikom Satyagraha in Kerala (1924-25) demanding the right of lower castes to walk on public roads near the Vaikom temple.", explTA:"பெரியார் ஈ.வெ.இரா. 1924-25 கேரளாவில் வைக்கம் கோவிலுக்கு அருகில் தாழ்த்தப்பட்டோர் நடந்து செல்ல உரிமை கோரி சத்யாகிரகம் நடத்தினார்." },
+  { q:"Vanchinathan shot which British Collector at Maniachi junction in 1911?", qta:"1911 மணியாச்சியில் வாஞ்சிநாதன் யாரை சுட்டார்?", opts:["Collector Jackson","Collector Robert Ashe","General Pansoor","Colonel Heron"], optsTA:["கலெக்டர் ஜாக்சன்","கலெக்டர் ராபர்ட் ஆஷ்","ஜெனரல் பன்சூர்","கர்னல் ஹெரான்"], ans:1, diff:"medium", expl:"Vanchinathan shot and killed Collector Robert Ashe at Maniachi junction on June 17, 1911, then shot himself to avoid arrest.", explTA:"வாஞ்சிநாதன் ஜூன் 17, 1911 அன்று மணியாச்சியில் கலெக்டர் ராபர்ட் ஆஷை சுட்டுக் கொன்றார், பின்னர் தன்னையே சுட்டுக்கொண்டார்." },
+  { q:"Tamil Nadu contributed how much in the 1971 Indo-Pak War vs all other states' combined 18 crore?", qta:"1971 போரில் தமிழ்நாடு எவ்வளவு வழங்கியது, மற்ற மாநிலங்கள் சேர்ந்து 18 கோடி வழங்கியபோது?", opts:["3 crore","6 crore","18 crore","50 crore"], optsTA:["3 கோடி","6 கோடி","18 கோடி","50 கோடி"], ans:1, diff:"medium", expl:"Tamil Nadu contributed 6 crore rupees in the 1971 Indo-Pak War under Kamarajar, while all other states combined contributed only 18 crore.", explTA:"1971 போரில் தமிழ்நாடு காமராஜர் தலைமையில் 6 கோடி ரூபாய் வழங்கியது, மற்ற அனைத்து மாநிலங்களும் சேர்ந்து 18 கோடி மட்டுமே." },
+  { q:"Subramania Bharati (1882-1921) was a:", qta:"சுப்பிரமணிய பாரதி (1882-1921) ஒரு:", opts:["Military general","Revolutionary Tamil poet whose songs inspired millions","Trade union leader","Politician who negotiated with British"], optsTA:["இராணுவ தளபதி","மில்லியன் கணக்கானவர்களை ஊக்குவித்த புரட்சிகர தமிழ் கவிஞர்","தொழிற்சங்க தலைவர்","பிரிட்டிஷாருடன் பேரம் பேசிய அரசியல்வாதி"], ans:1, diff:"easy", expl:"Subramania Bharati's fiery patriotic songs inspired millions in the freedom struggle. British confiscated his writings as seditious literature.", explTA:"சுப்பிரமணிய பாரதியின் தேசபக்தி பாடல்கள் சுதந்திர போராட்டத்தில் மில்லியன் கணக்கானவர்களை ஊக்குவித்தன." },
+  { q:"Rajaji became Tamil Nadu Chief Minister for the first time in:", qta:"இராஜாஜி முதன்முறையாக தமிழ்நாடு முதலமைச்சர் ஆனது:", opts:["1930","1937","1947","1952"], optsTA:["1930","1937","1947","1952"], ans:1, diff:"medium", expl:"Rajaji became Chief Minister of Madras Province in 1937 when Congress won elections under British rule. He also served as CM in 1948 after Independence.", explTA:"இராஜாஜி 1937 ஆம் ஆண்டு பிரிட்டிஷ் ஆட்சியில் காங்கிரஸ் தேர்தலில் வென்றபோது மதராஸ் மாகாண முதலமைச்சர் ஆனார்." },
+  { q:"Rukmini Lakshmipathi became in 1937:", qta:"ருக்மணி லட்சுமிபதி 1937ல் ஆனார்:", opts:["First woman CM","First woman Deputy Speaker of Madras Legislative Council","First woman IAS officer","First woman voter in Tamil Nadu"], optsTA:["முதல் பெண் முதலமைச்சர்","மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் துணை சபாநாயகர்","முதல் பெண் IAS அதிகாரி","தமிழ்நாட்டின் முதல் பெண் வாக்காளர்"], ans:1, diff:"hard", expl:"Rukmini Lakshmipathi (1892-1951) became the first woman Deputy Speaker of the Madras Legislative Council in 1937 and joined the Constituent Assembly in 1946.", explTA:"ருக்மணி லட்சுமிபதி (1892-1951) 1937ல் மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் துணை சபாநாயகர் ஆனார், 1946ல் நிர்ணய சபை உறுப்பினர் ஆனார்." },
+  { q:"Women in Madras Presidency got voting rights in:", qta:"மதராஸ் பிரசிடென்சியில் பெண்களுக்கு வாக்குரிமை கிடைத்தது:", opts:["1919","1921","1928","1947"], optsTA:["1919","1921","1928","1947"], ans:1, diff:"hard", expl:"Women in Madras Presidency got voting rights in 1921 — before England gave women full voting rights in 1928! Dorothy Jinarajadasa voted in Madras in 1921.", explTA:"மதராஸ் பிரசிடென்சியில் 1921ல் பெண்களுக்கு வாக்குரிமை கிடைத்தது — இங்கிலாந்தில் 1928ல் கிடைப்பதற்கு முன்பே!" },
+  { q:"The Bharata Matha Sangam that inspired the Ashe murder was founded by:", qta:"ஆஷ் படுகொலைக்கு ஊக்கமளித்த 'பாரத மாதா சங்கம்' நிறுவியவர்:", opts:["Vanchinathan","Nilakanta Brahmachari of Sengottai","Subramania Bharati","Rajaji"], optsTA:["வாஞ்சிநாதன்","செங்கோட்டை நீலகண்ட பிரம்மச்சாரி","சுப்பிரமணிய பாரதி","இராஜாஜி"], ans:1, diff:"hard", expl:"Nilakanta Brahmachari of Sengottai (1886-1911) founded the secret 'Bharata Matha Sangam' in 1904 to inspire patriotism. His ideals inspired Vanchinathan to kill Collector Ashe in 1911.", explTA:"செங்கோட்டை நீலகண்ட பிரம்மச்சாரி (1886-1911) 1904ல் 'பாரத மாதா சங்கம்' நிறுவினார். அவரது கொள்கைகள் வாஞ்சிநாதனை ஊக்குவித்தன." },
+  { q:"Alagumuthukon (king of Katalangulam) was killed in 1759 by:", qta:"கதலாங்குளம் அழகுமுத்துக்கோன் 1759ல் எவ்வாறு கொல்லப்பட்டார்?", opts:["Hanged","Tied with 248 others in front of a cannon and blasted","Beheaded","Drowned"], optsTA:["தூக்கிலிடப்பட்டார்","248 பேருடன் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர்","தலை வெட்டப்பட்டார்","மூழ்கடிக்கப்பட்டார்"], ans:1, diff:"hard", expl:"Alagumuthukon and 248 others were tied in front of a cannon and blasted to death in 1759 — one of the most brutal executions by the British in Tamil Nadu.", explTA:"அழகுமுத்துக்கோன் மற்றும் 248 பேர் 1759ல் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர்." },
+  { q:"Kamarajar was elected Tamil Nadu Congress President in:", qta:"காமராஜர் எந்த ஆண்டில் தமிழ்நாடு காங்கிரஸ் தலைவர் ஆனார்?", opts:["1937","1940","1947","1952"], optsTA:["1937","1940","1947","1952"], ans:1, diff:"medium", expl:"Kamarajar (1903-1975) was elected Tamil Nadu Congress President in 1940. He was imprisoned multiple times during the freedom struggle.", explTA:"காமராஜர் (1903-1975) 1940ல் தமிழ்நாடு காங்கிரஸ் தலைவர் ஆனார், பலமுறை சிறை சென்றார்." },
+  { q:"K.B. Sundarambal contributed to freedom movement through:", qta:"கே.பி. சுந்தராம்பாள் சுதந்திர இயக்கத்திற்கு பங்களித்தது:", opts:["Armed resistance","Patriotic songs and stage performances","Newspaper editing","Trade union work"], optsTA:["ஆயுத எதிர்ப்பு","தேசபக்தி பாடல்கள் மற்றும் நாடக நடிப்புகள்","செய்தித்தாள் ஆசிரியர் பணி","தொழிற்சங்க பணி"], ans:1, diff:"medium", expl:"K.B. Sundarambal of Coimbatore used patriotic songs and performances to inspire Tamil people. She was elected to the Tamil Nadu Legislative Council in 1958.", explTA:"கோயம்புத்தூர் கே.பி. சுந்தராம்பாள் தேசபக்தி பாடல்கள் மூலம் மக்களை ஊக்குவித்தார். 1958ல் சட்டமன்ற மேலவை உறுப்பினர் ஆனார்." },
+  { q:"Rajaji became India's first Indian Governor-General in:", qta:"இராஜாஜி இந்தியாவின் முதல் இந்திய கவர்னர் ஜெனரல் ஆனது:", opts:["1947","1948","1950","1952"], optsTA:["1947","1948","1950","1952"], ans:1, diff:"medium", expl:"C. Rajagopalachari became India's first and last Indian Governor-General in 1948 after Lord Mountbatten. He had led the Vedaranyam Salt March in 1930.", explTA:"சி. இராஜகோபாலாசாரி 1948ல் லார்ட் மவுண்ட்பேட்டனுக்கு பிறகு இந்தியாவின் முதல் மற்றும் கடைசி இந்திய கவர்னர் ஜெனரல் ஆனார்." },
+  { q:"The 1937 Congress government in Tamil Nadu resigned in 1939 because:", qta:"1937 தமிழ்நாடு காங்கிரஸ் அரசு 1939ல் பதவி விலகியதன் காரணம்:", opts:["Famine crisis","Protest against Britain dragging India into WW2 without consent","Gandhi's instructions","Rajaji's health"], optsTA:["பஞ்ச நெருக்கடி","சம்மதமின்றி இரண்டாம் உலகப் போரில் இழுத்ததற்கு எதிர்ப்பு","காந்தியின் உத்தரவு","இராஜாஜியின் உடல்நலம்"], ans:1, diff:"medium", expl:"All Congress ministries including Rajaji's resigned in 1939 protesting Britain's decision to drag India into World War II without Indians' consent.", explTA:"1939ல் இந்தியர்களின் சம்மதமின்றி இரண்டாம் உலகப் போரில் இழுத்ததற்கு எதிர்ப்பாக இராஜாஜி உட்பட அனைத்து காங்கிரஸ் அமைச்சரவைகளும் பதவி விலகின." }
+];
+    var QUIZ_BANK={};
+    QUIZ_BANK["freedom"]=FREEDOM_QUIZ_DATA;
+    
+function shuffleArray(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function showToast(m){var t=document.getElementById('_toast');if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.3s;';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2500);}
+var QS={cat:null,questions:[],index:0,score:0,answered:false,timer:null,timeLeft:30,startTime:0};
+function startQuiz(catId){
+  var bank=QUIZ_BANK[catId]||[];
+  QS.cat=catId;QS.questions=shuffleArray(bank);
+  QS.index=0;QS.score=0;QS.answered=false;QS.startTime=Date.now();
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('quizEngine').style.display='block';
+  document.getElementById('scoreScreen').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderQ();
+}
+function renderQ(){
+  var cur=QS.questions[QS.index];if(!cur)return;
+  var total=QS.questions.length;
+  document.getElementById('qProg').textContent='கேள்வி '+(QS.index+1)+' / '+total;
+  document.getElementById('qScoreLabel').textContent='மதிப்பெண்: '+QS.score;
+  document.getElementById('progFill').style.width=((QS.index/total)*100)+'%';
+  // Hide next area
+  document.getElementById('nextArea').style.display='none';
+  var nums=['அ','ஆ','இ','ஈ'];
+  var opts=cur.optsTA||cur.opts;
+  var qText=cur.qta?'<div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.q+'</div><div class="q-text">'+cur.qta+'</div>':'<div class="q-text">'+cur.q+'</div>';
+  var diffLabel=cur.diff==='easy'?'🟢 எளிது':cur.diff==='hard'?'🔴 கடினம்':'🟡 நடுத்தரம்';
+  var optHTML='';
+  for(var i=0;i<opts.length;i++){
+    optHTML+='<button class="opt-btn" onclick="checkAnswer(this,'+i+','+cur.ans+')">'+'<span class="ob-num">'+nums[i]+'</span><span>'+opts[i]+'</span></button>';
+  }
+  document.getElementById('questionContainer').innerHTML='<div class="q-card"><div class="q-num">கேள்வி '+(QS.index+1)+'</div>'+qText+'<span class="q-diff diff-'+(cur.diff||'medium')+'">'+diffLabel+'</span><div class="opts-list">'+optHTML+'</div><div class="expl-box" id="explBox"></div></div>';
+  startTimer();
+}
+function startTimer(){
+  QS.timeLeft=30;QS.answered=false;
+  if(QS.timer)clearInterval(QS.timer);
+  updateTimer(30);
+  QS.timer=setInterval(function(){QS.timeLeft--;updateTimer(QS.timeLeft);if(QS.timeLeft<=0){clearInterval(QS.timer);autoSubmit();}},1000);
+}
+function updateTimer(v){var el=document.getElementById('timerDisplay');if(el){el.textContent=v;el.style.background=v<=10?'#dc2626':'var(--accent)';}}
+function showNextBtn(){
+  var na=document.getElementById('nextArea');
+  var nb=document.getElementById('nextBtnEl');
+  var isLast=QS.index+1>=QS.questions.length;
+  nb.textContent=isLast?'📊 முடிவு காண்க':'அடுத்த கேள்வி →';
+  na.style.display='block';
+}
+function autoSubmit(){
+  var cur=QS.questions[QS.index];QS.answered=true;
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  var btns=document.querySelectorAll('.opt-btn');
+  if(btns[cur.ans])btns[cur.ans].classList.add('correct');
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">⏱️ நேரம் முடிந்தது</div>'+(cur.explTA?'<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function checkAnswer(btn,chosen,correct){
+  if(QS.answered)return;QS.answered=true;clearInterval(QS.timer);
+  var cur=QS.questions[QS.index];
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  document.querySelectorAll('.opt-btn')[correct].classList.add('correct');
+  if(chosen===correct){QS.score++;showToast('✅ சரியான விடை!');}else{btn.classList.add('wrong');showToast('❌ தவறான விடை!');}
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">📖 விளக்கம்</div>'+(cur.explTA?'<div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function nextQuestion(){
+  QS.index++;
+  if(QS.index<QS.questions.length){renderQ();}else{showScore();}
+}
+function showScore(){
+  var total=QS.questions.length;var wrong=total-QS.score;
+  var pct=Math.round((QS.score/total)*100);var elapsed=Math.round((Date.now()-QS.startTime)/1000);
+  var emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'👍':'💪';
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='block';
+  document.getElementById('scoreEmoji').textContent=emoji;
+  document.getElementById('scoreNum').textContent=QS.score;
+  document.getElementById('scoreTot').textContent=total;
+  document.getElementById('statCorrect').textContent=QS.score;
+  document.getElementById('statWrong').textContent=wrong;
+  document.getElementById('statTime').textContent=elapsed+'s';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function retryQuiz(){document.getElementById('scoreScreen').style.display='none';startQuiz(QS.cat);}
+function exitQuiz(){
+  if(QS.timer)clearInterval(QS.timer);
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='none';
+  document.getElementById('startScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startThisQuiz(){document.getElementById('startScreen').style.display='none';startQuiz(CURRENT_CAT);}
+function goBack(){
+  if(document.getElementById('quizEngine').style.display!=='none'||document.getElementById('scoreScreen').style.display!=='none'){exitQuiz();}
+  else{window.location.href='quiz.html';}
+}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme')||'light';
+  var n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('tnpsc-theme',n);
+  document.getElementById('themeBtn').textContent=n==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var t=localStorage.getItem('tnpsc-theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
+});
+
+  </script>
+</body>
+</html>

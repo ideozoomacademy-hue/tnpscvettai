@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>பாளையக்காரர் கிளர்ச்சி | TNPSC வேட்டை</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+/* ── KaarKalvi-style bouncing card design ── */
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+
+.articles-hero {
+  background: linear-gradient(135deg, #0c4b76 0%, #083a5c 50%, #0f5a8c 100%);
+  padding: 20px 16px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.articles-hero::before {
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  top:-60px; right:-40px;
+}
+.articles-hero::after {
+  content:'';
+  position:absolute;
+  width:120px; height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  bottom:-30px; left:20px;
+}
+.hero-nav {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.hero-back {
+  width:36px; height:36px; border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  border:none; color:white; font-size:18px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  text-decoration:none; flex-shrink:0;
+  transition: background 0.2s;
+}
+.hero-back:hover { background:rgba(255,255,255,0.25); }
+.hero-title { color:white; font-size:22px; font-weight:800; margin:0; }
+.hero-sub { color:rgba(255,255,255,0.65); font-size:12px; margin:4px 0 0; }
+
+.hero-stats {
+  display:flex; gap:12px; margin-top:16px;
+}
+.hero-stat {
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:10px; padding:8px 14px; text-align:center;
+}
+.hero-stat-num { font-size:16px; font-weight:800; color:white; }
+.hero-stat-label { font-size:10px; color:rgba(255,255,255,0.65); }
+
+/* Filter pills */
+.filter-wrap {
+  padding:14px 16px 0;
+  display:flex; gap:8px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.filter-wrap::-webkit-scrollbar { display:none; }
+.filter-pill {
+  flex-shrink:0; padding:6px 14px;
+  border-radius:20px; border:1.5px solid var(--border);
+  background:var(--card); font-size:12px; font-weight:600;
+  color:var(--text-muted); cursor:pointer;
+  transition:all 0.2s; white-space:nowrap;
+}
+.filter-pill.active {
+  background:var(--primary); border-color:var(--primary);
+  color:white;
+}
+
+/* Article cards */
+.cards-grid {
+  padding:16px;
+  display:flex; flex-direction:column; gap:16px;
+}
+
+/* ── BOUNCING CARD ── */
+.art-bounce-card {
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(0) scale(1);
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.18s ease;
+  position:relative;
+}
+.art-bounce-card:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.art-bounce-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+/* Card slide-in animation */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.art-bounce-card { animation: slideUp 0.4s ease forwards; opacity:0; }
+.art-bounce-card:nth-child(1) { animation-delay:0.05s; }
+.art-bounce-card:nth-child(2) { animation-delay:0.12s; }
+.art-bounce-card:nth-child(3) { animation-delay:0.19s; }
+.art-bounce-card:nth-child(4) { animation-delay:0.26s; }
+.art-bounce-card:nth-child(5) { animation-delay:0.33s; }
+
+.card-cover {
+  padding:20px 18px 16px;
+  position:relative;
+  min-height:120px;
+}
+.card-cover-orb {
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  top:-20px; right:-20px;
+  pointer-events:none;
+}
+.card-cover-orb2 {
+  position:absolute;
+  width:60px; height:60px; border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  bottom:10px; right:40px;
+  pointer-events:none;
+}
+.card-series {
+  font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:1px; text-transform:uppercase;
+  margin-bottom:6px;
+}
+.card-title-en {
+  font-size:16px; font-weight:800; color:white;
+  line-height:1.3; margin-bottom:4px;
+}
+.card-title-ta {
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.8);
+  font-family:'Noto Sans Tamil',sans-serif;
+}
+.card-chips {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;
+}
+.card-chip {
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.9);
+  font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:20px;
+}
+.card-chip.live {
+  background:rgba(34,197,94,0.25);
+  border-color:rgba(34,197,94,0.4);
+  color:#86efac;
+}
+
+.card-footer {
+  background:var(--card);
+  padding:12px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.card-meta-items { display:flex; gap:12px; align-items:center; }
+.card-meta-item { font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+.card-arrow {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700;
+}
+
+/* Coming soon card */
+.art-bounce-card.coming-soon {
+  opacity:0.5 !important;
+  cursor:default;
+  pointer-events:none;
+  animation-delay:0s !important;
+}
+
+/* Section label */
+.section-label {
+  font-size:11px; font-weight:800;
+  color:var(--text-muted); letter-spacing:0.5px;
+  text-transform:uppercase;
+  padding:16px 16px 0;
+}
+</style>
+  <style>
+    body{margin:0;}
+    .quiz-hero{background:linear-gradient(135deg,#7f1d1d,#dc2626,#ef4444);padding:24px 16px 28px;position:relative;overflow:hidden;}
+    .quiz-hero::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06);top:-50px;right:-40px;}
+    .quiz-hero::after{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.04);bottom:-20px;left:30px;}
+    .hero-icon{font-size:44px;margin-bottom:10px;display:block;position:relative;z-index:1;}
+    .hero-title{font-size:22px;font-weight:900;color:white;margin-bottom:4px;font-family:var(--font-serif);position:relative;z-index:1;}
+    .hero-sub{font-size:12px;color:rgba(255,255,255,0.65);position:relative;z-index:1;}
+    .hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1;}
+    .h-chip{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;}
+    .start-body{padding:16px;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
+    .i-box{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:12px 8px;text-align:center;}
+    .i-val{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:3px;}
+    .i-lbl{font-size:10px;color:var(--text-muted);font-weight:600;}
+    .start-btn{width:100%;padding:16px;background:#dc2626;color:white;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:14px;font-family:inherit;}
+    .start-btn:active{transform:scale(0.97);}
+    .tips-box{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:14px 16px;}
+    .tips-title{font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.4px;text-transform:uppercase;margin-bottom:10px;}
+    .tip{display:flex;gap:10px;font-size:12.5px;color:var(--text);margin-bottom:8px;line-height:1.5;}
+    .quiz-topbar{position:sticky;top:0;z-index:100;background:var(--primary-dark);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+    .q-back{background:rgba(255,255,255,0.15);border:none;color:white;width:34px;height:34px;border-radius:9px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .score-wrap{padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .score-big{font-size:56px;font-weight:900;color:var(--primary);line-height:1;}
+    .score-denom{font-size:16px;color:var(--text-muted);margin-bottom:16px;}
+    .s-row{display:flex;gap:10px;width:100%;margin-bottom:20px;}
+    .s-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;}
+    .s-val{font-size:20px;font-weight:800;margin-bottom:4px;}
+    .s-lbl{font-size:10px;color:var(--text-muted);}
+    
+    .q-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .q-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+    .q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;}
+    .q-diff{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+    .diff-easy{background:#dcfce7;color:#16a34a;}
+    .diff-medium{background:#fef9c3;color:#ca8a04;}
+    .diff-hard{background:#fee2e2;color:#dc2626;}
+    .opts-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+    .opt-btn{width:100%;text-align:left;display:flex;align-items:center;gap:12px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.15s ease;font-family:inherit;line-height:1.4;}
+    .opt-btn:active:not(:disabled){transform:scale(0.98);}
+    .ob-num{width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);transition:all 0.15s;}
+    .opt-btn.correct{background:#dcfce7 !important;border-color:#16a34a !important;color:#14532d !important;}
+    .opt-btn.correct .ob-num{background:#16a34a !important;color:white !important;}
+    .opt-btn.wrong{background:#fee2e2 !important;border-color:#dc2626 !important;color:#7f1d1d !important;}
+    .opt-btn.wrong .ob-num{background:#dc2626 !important;color:white !important;}
+    .expl-box{display:none;margin-top:12px;background:var(--bg2);border-radius:12px;border-left:4px solid var(--primary);padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7;}
+    .expl-box.show{display:block;}
+    .expl-title{font-size:12px;font-weight:800;color:var(--primary);letter-spacing:0.4px;margin-bottom:8px;}
+    .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s ease;}
+    .next-btn{width:100%;padding:15px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;}
+    .next-btn:active{transform:scale(0.98);}
+    .bookmark-btn{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text);}
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button onclick="goBack()" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;">←</button>
+    <div style="flex:1;margin-left:10px;">
+      <div style="font-size:14px;font-weight:700;color:white;">பாளையக்காரர் கிளர்ச்சி</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">TNPSC வேட்டை Quiz</div>
+    </div>
+    <button onclick="toggleTheme()" id="themeBtn" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:15px;cursor:pointer;">🌙</button>
+  </header>
+
+  <div id="startScreen">
+    <div class="quiz-hero">
+      <span class="hero-icon">⚔️</span>
+      <div class="hero-title">பாளையக்காரர் கிளர்ச்சி</div>
+      <div class="hero-sub">Unit 8 · Kattabomman · Velu Nachiyar · Marudhu</div>
+      <div class="hero-chips">
+        <span class="h-chip">⏱️ 30 வினாடி / கேள்வி</span>
+        <span class="h-chip">🎯 குரூப் 2, 4</span>
+        <span class="h-chip">76 கேள்விகள்</span>
+      </div>
+    </div>
+    <div class="start-body">
+      <div class="info-grid">
+        <div class="i-box"><div class="i-val">76</div><div class="i-lbl">கேள்விகள்</div></div>
+        <div class="i-box"><div class="i-val">30s</div><div class="i-lbl">ஒவ்வொரு கேள்விக்கும்</div></div>
+        <div class="i-box"><div class="i-val">🔀</div><div class="i-lbl">Random</div></div>
+      </div>
+      <button class="start-btn" onclick="startThisQuiz()">🎯 தேர்வு தொடங்கு</button>
+      <div class="tips-box">
+        <div class="tips-title">📋 தேர்வு விவரங்கள்</div>
+        <div class="tip"><span>✅</span><span>விடைக்கு Tamil & English விளக்கம்</span></div>
+        <div class="tip"><span>⏱️</span><span>நேரம் முடிந்தால் Auto submit</span></div>
+        <div class="tip"><span>🔀</span><span>ஒவ்வொரு முறையும் Random வரிசை</span></div>
+        <div class="tip"><span>📊</span><span>முடிவில் மதிப்பெண் காண்பீர்கள்</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizEngine" style="display:none;">
+    <div class="quiz-topbar">
+      <button class="q-back" onclick="exitQuiz()">←</button>
+      <div style="flex:1;text-align:center;font-size:12px;font-weight:700;color:white;">பாளையக்காரர் கிளர்ச்சி</div>
+      <div style="background:var(--accent);color:white;font-weight:800;font-size:14px;padding:5px 13px;border-radius:18px;" id="timerDisplay">30</div>
+    </div>
+    <div style="padding:12px 16px 24px;">
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin:6px 0 14px;">
+        <span id="qProg">கேள்வி 1/1</span>
+        <span id="qScoreLabel">மதிப்பெண்: 0</span>
+      </div>
+      <div id="questionContainer"></div>
+      <!-- Next button area - shown after answer -->
+      <div id="nextArea" style="display:none;margin-top:12px;">
+        <button id="nextBtnEl" class="next-btn" onclick="nextQuestion()">அடுத்த கேள்வி →</button>
+        <button class="bookmark-btn" onclick="showToast('🔖 சேமிக்கப்பட்டது!')">🔖 சேமி</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="scoreScreen" style="display:none;">
+    <div class="score-wrap">
+      <div style="font-size:56px;margin-bottom:10px;" id="scoreEmoji">🎉</div>
+      <div class="score-big" id="scoreNum">0</div>
+      <div class="score-denom">/ <span id="scoreTot">0</span> சரியான விடைகள்</div>
+      <div class="s-row">
+        <div class="s-box"><div class="s-val" style="color:#16a34a;" id="statCorrect">0</div><div class="s-lbl">✅ சரி</div></div>
+        <div class="s-box"><div class="s-val" style="color:#dc2626;" id="statWrong">0</div><div class="s-lbl">❌ தவறு</div></div>
+        <div class="s-box"><div class="s-val" id="statTime">0s</div><div class="s-lbl">⏱️ நேரம்</div></div>
+      </div>
+      <button class="start-btn" onclick="retryQuiz()" style="width:100%;">🔄 மீண்டும் முயற்சி</button>
+      <button onclick="exitQuiz()" style="margin-top:10px;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;color:var(--text);font-family:inherit;">← Quiz பட்டியல்</button>
+    </div>
+  </div>
+
+  <script>
+    var CURRENT_CAT="palayam";
+    const PALAYAM_QUIZ_DATA = [
+
+  // ══ SECTION 1: PALAIYAKKARAR SYSTEM (Q1–15) ══
+
+  {
+    q: "The Palaiyakkarar system was first established in Tamil Nadu by which Nayak ruler?",
+    qta: "தமிழ்நாட்டில் பாளையக்காரர் முறையை முதன்முதலில் நிறுவியவர் யார்?",
+    opts: ["Thirumalai Nayaka", "Viswanatha Nayaka", "Muthu Krishnappa Nayaka", "Chandra Sekhara Nayaka"],
+    optsTA: ["திருமலை நாயக்கர்", "விஸ்வநாத நாயக்கர்", "முத்து கிருஷ்ணப்ப நாயக்கர்", "சந்திரசேகர நாயக்கர்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Viswanatha Nayaka established the Palaiyakkarar (Poligar) system in Tamil Nadu in 1529 AD when he became the Nayak ruler of Madurai, with the support of his minister Ariyanathar.",
+    explTA: "விஸ்வநாத நாயக்கர் 1529 ஆம் ஆண்டில் மதுரையின் நாயக்க ஆட்சியாளராக ஆனபோது, அமைச்சர் ஆரியநாதரின் ஆதரவுடன் தமிழ்நாட்டில் பாளையக்காரர் முறையை நிறுவினார்."
+  },
+  {
+    q: "What does the word 'Palayam' literally mean?",
+    qta: "'பாளையம்' என்ற சொல்லின் உண்மையான பொருள் என்ன?",
+    opts: ["A large army", "Domain, a military camp, or a small kingdom", "A tax collection unit", "A fort boundary"],
+    optsTA: ["ஒரு பெரிய படை", "ஆட்சி, இராணுவ முகாம் அல்லது சிறு ராஜ்யம்", "வரி வசூல் அலகு", "கோட்டை எல்லை"],
+    ans: 1,
+    diff: "easy",
+    expl: "The word 'Palayam' means a domain, a military camp, or a small kingdom. It was given for valuable military services rendered by any individual.",
+    explTA: "'பாளையம்' என்ற சொல்லுக்கு ஆட்சி, இராணுவ முகாம் அல்லது சிறிய ராஜ்யம் என்று பொருள். மதிப்புமிக்க இராணுவ சேவைக்கு வழங்கப்பட்டது."
+  },
+  {
+    q: "In which year did Viswanatha Nayaka formally institute the Poligar system?",
+    qta: "விஸ்வநாத நாயக்கர் பாளையக்காரர் முறையை முறையாக நிறுவிய ஆண்டு எது?",
+    opts: ["1529 AD", "1535 AD", "1550 AD", "1600 AD"],
+    optsTA: ["1529 கி.பி.", "1535 கி.பி.", "1550 கி.பி.", "1600 கி.பி."],
+    ans: 1,
+    diff: "hard",
+    expl: "Viswanatha Nayaka formally instituted the Poligar system in 1535 AD. He divided responsibility for the defence of each of the 72 bastions of the Madurai Fort.",
+    explTA: "விஸ்வநாத நாயக்கர் 1535 கி.பி.யில் பாளையக்காரர் முறையை முறைப்படுத்தினார். மதுரை கோட்டையின் 72 கோபுரங்கள் ஒவ்வொன்றின் பாதுகாப்பையும் பிரித்து கொடுத்தார்."
+  },
+  {
+    q: "How many Palayams were traditionally created under the Madurai Nayaka system?",
+    qta: "மதுரை நாயக்க முறையில் பாரம்பரியமாக எத்தனை பாளையங்கள் உருவாக்கப்பட்டன?",
+    opts: ["52", "62", "72", "82"],
+    optsTA: ["52", "62", "72", "82"],
+    ans: 2,
+    diff: "easy",
+    expl: "Traditionally there were 72 Palayakkarars under the Nayaka system. During the time of Thirumalai Nayaka, the number of Palayams enhanced up to 82.",
+    explTA: "நாயக்க முறையில் பாரம்பரியமாக 72 பாளையக்காரர்கள் இருந்தனர். திருமலை நாயக்கரின் காலத்தில் பாளையங்களின் எண்ணிக்கை 82 ஆக உயர்ந்தது."
+  },
+  {
+    q: "What was the revenue sharing ratio between Madurai Nayaks and Palaiyakarars?",
+    qta: "மதுரை நாயக்கர்களுக்கும் பாளையக்காரர்களுக்கும் இடையிலான வருவாய் பகிர்வு விகிதம் என்ன?",
+    opts: ["1/2 each", "1/3 Nayaks, 2/3 Palaiyakarars", "2/3 Nayaks, 1/3 Palaiyakarars", "Equal with extra levy"],
+    optsTA: ["தலா 1/2", "1/3 நாயக்கர்கள், 2/3 பாளையக்காரர்கள்", "2/3 நாயக்கர்கள், 1/3 பாளையக்காரர்கள்", "சமம் மற்றும் கூடுதல் வரி"],
+    ans: 1,
+    diff: "medium",
+    expl: "Under the Madurai Nayaks, the tax collection was split: 1/3 share went to Madurai Nayaks and 2/3 share was retained by the Palaiyakarars.",
+    explTA: "மதுரை நாயக்கர்களின் கீழ், வரி வசூல் பிரிக்கப்பட்டது: 1/3 பங்கு மதுரை நாயக்கர்களுக்கும், 2/3 பங்கு பாளையக்காரர்களுக்கும் சென்றது."
+  },
+  {
+    q: "The Palaiyakkarar system had its origins in which earlier kingdom's practice?",
+    qta: "பாளையக்காரர் முறை எந்த முந்தைய ராஜ்யத்தின் நடைமுறையில் தோன்றியது?",
+    opts: ["Chola Kingdom", "Pandya Kingdom", "Kakatiya Kingdom of Warangal", "Hoysala Kingdom"],
+    optsTA: ["சோழ ராஜ்யம்", "பாண்டிய ராஜ்யம்", "வாரங்கல்லின் காகதீய ராஜ்யம்", "ஹொய்சள ராஜ்யம்"],
+    ans: 2,
+    diff: "hard",
+    expl: "This type of Palayakkarars system was in practice during the rule of Pratapa Rudhra of Warangal in the Kakatiya Kingdom, before it was established in Tamil Nadu.",
+    explTA: "இந்த பாளையக்காரர் முறை வாரங்கல்லின் காகதீய ராஜ்யத்தில் பிரதாப ருத்ரரின் ஆட்சியில் நடைமுறையில் இருந்தது, பின்னர் தமிழ்நாட்டில் நிறுவப்பட்டது."
+  },
+  {
+    q: "The police force maintained by Palaiyakarars was known as:",
+    qta: "பாளையக்காரர்களால் பராமரிக்கப்பட்ட காவல் படை எவ்வாறு அழைக்கப்பட்டது?",
+    opts: ["Padaikkara", "Kavalkara", "Marakkal", "Silamba"],
+    optsTA: ["படைக்கார", "காவல்காரா", "மரக்கால்", "சிலம்பு"],
+    ans: 1,
+    diff: "hard",
+    expl: "The Palaiyakarars also maintained police forces called Kavalkara (Police). Their police duties were known as Padikaval or Arasu Kaval.",
+    explTA: "பாளையக்காரர்கள் காவல்காரா என்று அழைக்கப்படும் காவல் படைகளையும் பராமரித்தனர். அவர்களின் காவல் கடமைகள் படிக்காவல் அல்லது அரசு காவல் என்று அறியப்பட்டன."
+  },
+  {
+    q: "Under which treaty did the British gain rights to collect taxes from Palayakkarars?",
+    qta: "எந்த ஒப்பந்தத்தின் கீழ் பிரிட்டிஷார் பாளையக்காரர்களிடமிருந்து வரி வசூலிக்கும் உரிமை பெற்றனர்?",
+    opts: ["Treaty of 1781", "Treaty of 1787", "Treaty of 1792", "Treaty of 1801"],
+    optsTA: ["1781 ஒப்பந்தம்", "1787 ஒப்பந்தம்", "1792 ஒப்பந்தம்", "1801 ஒப்பந்தம்"],
+    ans: 2,
+    diff: "medium",
+    expl: "In 1792, the British East India Company entered into an agreement with the Nawab of Arcot, acquiring the right to collect taxes from the Palayakkarars. This was strongly opposed by the Palaiyakkarars.",
+    explTA: "1792 ஆம் ஆண்டில், பிரிட்டிஷ் கிழக்கிந்திய கம்பெனி அர்காட் நவாபுடன் ஒப்பந்தம் செய்து, பாளையக்காரர்களிடமிருந்து வரி வசூலிக்கும் உரிமை பெற்றது. இதை பாளையக்காரர்கள் கடுமையாக எதிர்த்தனர்."
+  },
+  {
+    q: "Which Nawab was the 1st Nawab of Arcot who was killed at the Battle of Ambur (1749)?",
+    qta: "1749 இல் அம்பூர் போரில் கொல்லப்பட்ட அர்காட்டின் முதல் நவாப் யார்?",
+    opts: ["Muhammad Ali Khan", "Mahfuz Khan", "Anwaruddin Khan", "Umdad-ul-Umra"],
+    optsTA: ["முகம்மது அலி கான்", "மஹ்பூஸ் கான்", "அன்வருதீன் கான்", "உம்தாத்-உல்-உம்ரா"],
+    ans: 2,
+    diff: "medium",
+    expl: "Anwaruddin Khan (1672–1749), also known as Muhammad Anwaruddin, was the 1st Nawab of Arcot. He was killed at the Battle of Ambur on 3 August 1749 at the age of 77, fighting the French army.",
+    explTA: "அன்வருதீன் கான் (1672–1749), முகம்மது அன்வருதீன் என்றும் அழைக்கப்படுபவர், அர்காட்டின் 1வது நவாப். 77 வயதில் 3 ஆகஸ்ட் 1749 அன்று அம்பூர் போரில் பிரெஞ்சு படையுடன் போரிட்டு கொல்லப்பட்டார்."
+  },
+  {
+    q: "What fraction of revenue did Muhammad Ali agree to pay to the British under the 1787 Treaty?",
+    qta: "1787 ஒப்பந்தத்தின் கீழ் முகம்மது அலி பிரிட்டிஷாருக்கு எவ்வளவு வருவாய் செலுத்த சம்மதித்தார்?",
+    opts: ["1/5 of annual revenue", "2/5 of annual revenue", "3/5 of annual revenue", "4/5 of annual revenue"],
+    optsTA: ["ஆண்டு வருவாயில் 1/5", "ஆண்டு வருவாயில் 2/5", "ஆண்டு வருவாயில் 3/5", "ஆண்டு வருவாயில் 4/5"],
+    ans: 3,
+    diff: "hard",
+    expl: "Under the Treaty of 1787 signed with Muhammad Ali, he accepted to pay 4/5 of his annual revenue to the British. He also surrendered his forts to the British and accepted their supremacy.",
+    explTA: "1787 ஒப்பந்தத்தின் கீழ் முகம்மது அலி தனது ஆண்டு வருவாயில் 4/5ஐ பிரிட்டிஷாருக்கு செலுத்த சம்மதித்தார். மேலும் தனது கோட்டைகளை ஒப்படைத்தார்."
+  },
+  {
+    q: "What was Travancore's unique position in the Palayam system?",
+    qta: "பாளையம் முறையில் திருவிதாங்கூரின் தனித்துவமான நிலை என்ன?",
+    opts: ["It was the 71st Palayam", "It was the 72nd Palayam", "It was the 73rd Palayam", "It was not part of the system"],
+    optsTA: ["இது 71வது பாளையம்", "இது 72வது பாளையம்", "இது 73வது பாளையம்", "இது முறையில் இல்லை"],
+    ans: 2,
+    diff: "hard",
+    expl: "Travancore was included as the 73rd Palayam as it was a feudatory under the Vijayanagar rule, extending beyond the original 72 Palayams created by the Nayakas.",
+    explTA: "திருவிதாங்கூர் விஜயநகர ஆட்சியின் கீழ் ஒரு சாமந்த நாடாக இருந்ததால் 73வது பாளையமாக சேர்க்கப்பட்டது."
+  },
+  {
+    q: "After the fall of the Nayak dynasty in which year were the Palayams disturbed?",
+    qta: "நாயக்க வம்சம் வீழ்ந்த பிறகு எந்த ஆண்டில் பாளையங்கள் கலக்கமடைந்தன?",
+    opts: ["1726", "1736", "1746", "1756"],
+    optsTA: ["1726", "1736", "1746", "1756"],
+    ans: 1,
+    diff: "medium",
+    expl: "After the fall of the Nayak dynasty in 1736, the palayams were disturbed. After the fall of the Vijayanagara Empire, the Mughals established control and the Nawab of Arcot acted as their representative.",
+    explTA: "1736 ஆம் ஆண்டில் நாயக்க வம்சம் வீழ்ந்த பிறகு பாளையங்கள் கலக்கமடைந்தன. விஜயநகர சாம்ராஜ்யம் வீழ்ந்த பிறகு முகலாயர்கள் கட்டுப்பாட்டை நிறுவி, அர்காட் நவாப் அவர்களின் பிரதிநிதியாக செயல்பட்டார்."
+  },
+  {
+    q: "The Kongu country had the _____ number of Palayams in South India:",
+    qta: "கொங்கு நாட்டில் தென்னிந்தியாவில் _____ பாளையங்கள் இருந்தன:",
+    opts: ["Smallest", "Second largest", "Largest", "Equal to Madurai"],
+    optsTA: ["மிகக் குறைந்த", "இரண்டாவது அதிக", "மிக அதிக", "மதுரைக்கு சமம்"],
+    ans: 2,
+    diff: "medium",
+    expl: "The Kongu country in South India had the largest number of Palayams. In the Kongu country alone there were ten strong Palayams.",
+    explTA: "தென்னிந்தியாவில் கொங்கு நாட்டில் அதிக எண்ணிக்கையிலான பாளையங்கள் இருந்தன. கொங்கு நாட்டில் மட்டுமே பத்து வலிமையான பாளையங்கள் இருந்தன."
+  },
+  {
+    q: "Which two blocs of Eastern and Western Palayams were among the prominent ones?",
+    qta: "கிழக்கு மற்றும் மேற்கு பாளையங்களில் முக்கியமான இரண்டு குழுக்கள் யாவை?",
+    opts: ["Sattur/Ettayapuram (East) & Uthumalai/Singampatti (West)", "Madurai/Trichy (East) & Coimbatore/Salem (West)", "Tanjore/Nagapattinam (East) & Tirunelveli/Kanyakumari (West)", "None of the above"],
+    optsTA: ["சாத்தூர்/எட்டயபுரம் (கிழக்கு) & ஊத்துமலை/சிங்கம்பட்டி (மேற்கு)", "மதுரை/திருச்சி (கிழக்கு) & கோவை/சேலம் (மேற்கு)", "தஞ்சாவூர்/நாகப்பட்டினம் (கிழக்கு) & திருநெல்வேலி/கன்னியாகுமரி (மேற்கு)", "மேற்கூறிய எதுவும் இல்லை"],
+    ans: 0,
+    diff: "hard",
+    expl: "The prominent Eastern Palayams were Sattur, Nagalapuram, Ettayapuram, and Panchalamkurichi. The prominent Western Palayams were Uthumalai, Thalavankottai, Naduvakurichi, Singampatti, and Seithur.",
+    explTA: "முக்கியமான கிழக்கு பாளையங்கள்: சாத்தூர், நாகலாபுரம், எட்டயபுரம், பஞ்சலங்குறிச்சி. முக்கியமான மேற்கு பாளையங்கள்: ஊத்துமலை, தலவான்கோட்டை, நடுவக்குறிச்சி, சிங்கம்பட்டி, சீத்தூர்."
+  },
+  {
+    q: "In which year did the Palaiyakkarars' Revolution formally break out?",
+    qta: "பாளையக்காரர்கள் புரட்சி எந்த ஆண்டில் முறையாக வெடித்தது?",
+    opts: ["1795", "1797", "1799", "1801"],
+    optsTA: ["1795", "1797", "1799", "1801"],
+    ans: 2,
+    diff: "easy",
+    expl: "In 1799, the Palaiyakkarars' Revolution broke out. The First Poligar War in 1799 was sparked by the British imposition of a new land tax system.",
+    explTA: "1799 ஆம் ஆண்டில் பாளையக்காரர்கள் புரட்சி வெடித்தது. 1799 இல் நடந்த முதல் பாளையக்காரர் போர் பிரிட்டிஷ் புதிய நில வரி முறையால் தூண்டப்பட்டது."
+  },
+
+  // ══ SECTION 2: PULI THEVAR (Q16–25) ══
+
+  {
+    q: "Puli Thevar ruled which Palayam near Sankarankovil?",
+    qta: "புலிதேவர் சங்கரன்கோவிலுக்கு அருகிலுள்ள எந்த பாளையத்தை ஆட்சி செய்தார்?",
+    opts: ["Panchalankurichi", "Sivaganga", "Audaiyapuram (Nelkattum Seval)", "Virupatchi"],
+    optsTA: ["பஞ்சலங்குறிச்சி", "சிவகங்கை", "ஒடையாபுரம் (நெல்கட்டும்செவல்)", "விருபாட்சி"],
+    ans: 2,
+    diff: "medium",
+    expl: "Puli Thevar ruled Audaiyapuram near Sankarankovil, also known as Nelkattum Sewal. He was born on September 1, 1715.",
+    explTA: "புலிதேவர் சங்கரன்கோவிலுக்கு அருகிலுள்ள ஒடையாபுரத்தை (நெல்கட்டும்செவல்) ஆட்சி செய்தார். அவர் செப்டம்பர் 1, 1715 அன்று பிறந்தார்."
+  },
+  {
+    q: "Who were the two generals of Puli Thevar?",
+    qta: "புலிதேவரின் இரண்டு தளபதிகள் யார்?",
+    opts: ["Sundaralingam and Sivasubramaniam", "Ondiveeran and Venni Kaladi/Periya Kaladi", "Kumaraswamy and Duraisingam", "Marudu and Chinna Marudu"],
+    optsTA: ["சுந்தரலிங்கம் மற்றும் சிவசுப்பிரமணியம்", "ஒண்டிவீரன் மற்றும் வெண்ணி களடி/பெரிய களடி", "குமாரசாமி மற்றும் துரைசிங்கம்", "மருது மற்றும் சின்ன மருது"],
+    ans: 1,
+    diff: "hard",
+    expl: "Puli Thevar's generals were Ondiveeran and Venni Kaladi (also called Periya Kaladi). Ondiveeran led one of the army units of Puli Thevar and caused much damage to the Company's army.",
+    explTA: "புலிதேவரின் தளபதிகள் ஒண்டிவீரன் மற்றும் வெண்ணி களடி (பெரிய களடி என்றும் அழைக்கப்பட்டனர்). ஒண்டிவீரன் புலிதேவரின் படை பிரிவை வழிநடத்தி கம்பெனி படைக்கு பெரும் சேதம் விளைவித்தார்."
+  },
+  {
+    q: "Puli Thevar ascended the throne in which year at what age?",
+    qta: "புலிதேவர் எந்த ஆண்டில் எத்தனை வயதில் அரியணை ஏறினார்?",
+    opts: ["1726 at age 11", "1726 at age 12", "1730 at age 15", "1740 at age 25"],
+    optsTA: ["1726 ல் 11 வயதில்", "1726 ல் 12 வயதில்", "1730 ல் 15 வயதில்", "1740 ல் 25 வயதில்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Puli Thevar ascended the throne in 1726 at the age of 12. He was born on September 1, 1715.",
+    explTA: "புலிதேவர் 1726 ஆம் ஆண்டில் 12 வயதில் அரியணை ஏறினார். அவர் செப்டம்பர் 1, 1715 அன்று பிறந்தார்."
+  },
+  {
+    q: "In the Battle of Kalakadu (1755), who was defeated by Puli Thevar?",
+    qta: "கலக்காடு போரில் (1755) புலிதேவரால் யார் தோற்கடிக்கப்பட்டார்?",
+    opts: ["Colonel Heron", "Muhammad Ali", "Mahfuz Khan", "Robert Clive"],
+    optsTA: ["கர்னல் ஹெரான்", "முகம்மது அலி", "மஹ்பூஸ் கான்", "ராபர்ட் கிளைவ்"],
+    ans: 2,
+    diff: "medium",
+    expl: "In the 1755 Battle of Kalakadu (Siege of Kalakadu), there was a battle between Mahfuz Khan and Puli Thevar (Bhulidevar), and Puli Thevar won. The Nawab's reinforced troops were routed.",
+    explTA: "1755 கலக்காடு போரில் மஹ்பூஸ் கான் மற்றும் புலிதேவருக்கு இடையே போர் நடந்தது, புலிதேவர் வெற்றி பெற்றார். நவாபின் வலுவூட்டப்பட்ட படைகள் தோற்கடிக்கப்பட்டன."
+  },
+  {
+    q: "Yusuf Khan (Khan Sahib) who fought Puli Thevar was earlier known by what Hindu name?",
+    qta: "புலிதேவருடன் போர் செய்த யூசுப் கான் (கான் சாகிப்) முன்பு எந்த இந்து பெயரில் அறியப்பட்டார்?",
+    opts: ["Sivasubramaniam Pillai", "Marudhanayagam Pillai", "Thandavaraya Pillai", "Gopala Nayak"],
+    optsTA: ["சிவசுப்பிரமணிய பிள்ளை", "மருதநாயகம் பிள்ளை", "தண்டவராய பிள்ளை", "கோபால நாயக்கர்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Yusuf Khan (also known as Khan Sahib) was, before his conversion to Islam, known as Marudhanayagam Pillai. He was sent by the Company to fight the palayakkarars.",
+    explTA: "யூசுப் கான் (கான் சாகிப் என்றும் அழைக்கப்பட்டார்) இஸ்லாமுக்கு மதமாற்றத்திற்கு முன்பு மருதநாயகம் பிள்ளை என்று அறியப்பட்டார். பாளையக்காரர்களை எதிர்க்க கம்பெனியால் அனுப்பப்பட்டார்."
+  },
+  {
+    q: "On what date was Yusuf Khan hanged after being accused of treachery?",
+    qta: "துரோகம் செய்தனர் என்று குற்றம்சாட்டப்பட்டு யூசுப் கான் தூக்கிலிடப்பட்ட தேதி என்ன?",
+    opts: ["15 October 1763", "15 October 1764", "15 October 1765", "15 October 1766"],
+    optsTA: ["15 அக்டோபர் 1763", "15 அக்டோபர் 1764", "15 அக்டோபர் 1765", "15 அக்டோபர் 1766"],
+    ans: 1,
+    diff: "hard",
+    expl: "Yusuf Khan was accused of negotiating with the palayakkarars without consulting the British officials and was sentenced to death. He was hanged on 15 October 1764.",
+    explTA: "யூசுப் கான் பிரிட்டிஷ் அதிகாரிகளை கலந்தாலோசிக்காமல் பாளையக்காரர்களுடன் பேரம் பேசியதற்காக குற்றம்சாட்டப்பட்டு மரண தண்டனை விதிக்கப்பட்டார். 15 அக்டோபர் 1764 அன்று தூக்கிலிடப்பட்டார்."
+  },
+  {
+    q: "After Yusuf Khan's death, Puli Thevar recaptured Nelkattum Sevel in which year?",
+    qta: "யூசுப் கான் மரணத்திற்குப் பிறகு புலிதேவர் எந்த ஆண்டில் நெல்கட்டும்செவலை மீண்டும் கைப்பற்றினார்?",
+    opts: ["1763", "1764", "1765", "1767"],
+    optsTA: ["1763", "1764", "1765", "1767"],
+    ans: 1,
+    diff: "medium",
+    expl: "After the death of Khan Sahib (Yusuf Khan), Puli Thevar returned from exile and recaptured Nerkattumseval in 1764. He ruled till 1767 before his defeat by Captain Campbell.",
+    explTA: "கான் சாகிப் (யூசுப் கான்) மரணத்திற்குப் பிறகு புலிதேவர் நாடுகடத்தலிலிருந்து திரும்பி 1764 இல் நெல்கட்டும்செவலை மீண்டும் கைப்பற்றினார். கேப்டன் கேம்பெல்லால் தோற்கடிக்கப்படுவதற்கு முன்பு 1767 வரை ஆட்சி செய்தார்."
+  },
+  {
+    q: "Puli Thevar sought alliance with which of the following leaders against the British?",
+    qta: "புலிதேவர் பிரிட்டிஷாருக்கு எதிராக பின்வருவோரில் யாரிடம் கூட்டணி தேடினார்?",
+    opts: ["Tipu Sultan only", "Hyder Ali and the French", "Marudhu Brothers only", "The Marathas"],
+    optsTA: ["திப்பு சுல்தான் மட்டும்", "ஹைதர் அலி மற்றும் பிரஞ்சுக்காரர்கள்", "மருது சகோதரர்கள் மட்டும்", "மராத்தியர்கள்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Puli Thevar tried to get the support of Hyder Ali of Mysore and the French against the British. However, Hyder Ali could not help Puli Thevar as he was locked in a serious conflict with the Marathas.",
+    explTA: "புலிதேவர் மைசூரின் ஹைதர் அலி மற்றும் பிரஞ்சுக்காரர்களின் ஆதரவை பிரிட்டிஷாருக்கு எதிராக பெற முயன்றார். ஆனால் ஹைதர் அலி மராத்தியர்களுடன் தீவிர மோதலில் இருந்ததால் உதவ முடியவில்லை."
+  },
+  {
+    q: "Who was Colonel Heron's replacement who was also later recalled and dismissed?",
+    qta: "கர்னல் ஹெரானுக்கு பதிலாக வந்தவர் யார், அவரும் பின்னர் திரும்ப அழைக்கப்பட்டு பணிநீக்கம் செய்யப்பட்டார்?",
+    opts: ["Major Bannerman", "Colonel Heron himself was recalled", "The same Colonel Heron was recalled and dismissed", "Colonel Maxwell"],
+    optsTA: ["மேஜர் பேன்னர்மன்", "கர்னல் ஹெரானே திரும்ப அழைக்கப்பட்டார்", "அதே கர்னல் ஹெரான் திரும்ப அழைக்கப்பட்டு பணிநீக்கம் செய்யப்பட்டார்", "கர்னல் மேக்ஸ்வெல்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Colonel Heron, who was urged to deal with Puli Thevar but abandoned the plan for want of cannon and supplies, was recalled and dismissed from service by the British.",
+    explTA: "புலிதேவரை கையாள உந்தப்பட்ட கர்னல் ஹெரான், பீரங்கி மற்றும் பொருட்கள் இல்லாத காரணத்தால் திட்டத்தை கைவிட்டார். பிரிட்டிஷாரால் திரும்ப அழைக்கப்பட்டு பணிநீக்கம் செய்யப்பட்டார்."
+  },
+  {
+    q: "Venni Kaladi of Puli Thevar's army was killed in which year?",
+    qta: "புலிதேவரின் படையில் வெண்ணி களடி எந்த ஆண்டில் கொல்லப்பட்டார்?",
+    opts: ["1758", "1759", "1760", "1761"],
+    optsTA: ["1758", "1759", "1760", "1761"],
+    ans: 2,
+    diff: "hard",
+    expl: "In 1759, Yusuf Khan waged a war against Pulithevar. In this battle, Venni Kaladi was killed on 20 December 1760.",
+    explTA: "1759 இல் யூசுப் கான் புலிதேவருக்கு எதிராக போர் தொடுத்தார். இந்த போரில் வெண்ணி களடி 20 டிசம்பர் 1760 அன்று கொல்லப்பட்டார்."
+  },
+
+  // ══ SECTION 3: KATTABOMMAN (Q26–45) ══
+
+  {
+    q: "What is the meaning of 'Keti Pommu' (Kattabomman's title)?",
+    qta: "'கேடி பொம்மு' (கட்டபொம்மனின் பட்டம்) என்பதன் பொருள் என்ன?",
+    opts: ["Great warrior", "Brave/courageous", "Lion of the South", "Ruler of Panchalankurichi"],
+    optsTA: ["மாவீரன்", "தைரியமானவன்/துணிச்சல்மிக்கவன்", "தென்னிந்தியாவின் சிங்கம்", "பஞ்சலங்குறிச்சியின் ஆட்சியாளர்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Keti Pommu means brave/courageous. Kattabomman's original name was Karuthaiya. His father's name was Jaga Veerapandiya Kattabomman.",
+    explTA: "கேடி பொம்மு என்றால் 'தைரியமான' என்று பொருள். கட்டபொம்மனின் உண்மையான பெயர் கருத்தையா. அவரது தந்தையின் பெயர் ஜகவீரபாண்டிய கட்டபொம்மன்."
+  },
+  {
+    q: "On what date was Veerapandiya Kattabomman born?",
+    qta: "வீரபாண்டிய கட்டபொம்மன் எந்த தேதியில் பிறந்தார்?",
+    opts: ["January 3, 1760", "January 3, 1730", "October 17, 1760", "February 2, 1760"],
+    optsTA: ["ஜனவரி 3, 1760", "ஜனவரி 3, 1730", "அக்டோபர் 17, 1760", "பிப்ரவரி 2, 1760"],
+    ans: 0,
+    diff: "medium",
+    expl: "Veerapandiya Kattabomman was born on 3rd January 1760. Note: Velunachiyar was born 30 years before on 3rd January 1730 — same date, different year.",
+    explTA: "வீரபாண்டிய கட்டபொம்மன் 3 ஜனவரி 1760 அன்று பிறந்தார். குறிப்பு: வேலு நாச்சியார் 30 ஆண்டுகள் முன்பு 3 ஜனவரி 1730 அன்று பிறந்தார் — ஒரே தேதி, வெவ்வேறு ஆண்டுகள்."
+  },
+  {
+    q: "On which date did Kattabomman take over the reins of Panchalankurichi Palayam?",
+    qta: "கட்டபொம்மன் எந்த தேதியில் பஞ்சலங்குறிச்சி பாளையத்தின் ஆட்சியை ஏற்றுக்கொண்டார்?",
+    opts: ["January 3, 1790", "February 2, 1790", "March 1, 1792", "May 31, 1798"],
+    optsTA: ["ஜனவரி 3, 1790", "பிப்ரவரி 2, 1790", "மார்ச் 1, 1792", "மே 31, 1798"],
+    ans: 1,
+    diff: "hard",
+    expl: "On February 2, 1790, Veerapandiya Kattabomman, aged 30, took over the reins of Panchalangurichi Palayam after the death of his father.",
+    explTA: "பிப்ரவரி 2, 1790 அன்று 30 வயதான வீரபாண்டிய கட்டபொம்மன் தனது தந்தையின் மரணத்திற்குப் பிறகு பஞ்சலங்குறிச்சி பாளையத்தின் ஆட்சியை ஏற்றுக்கொண்டார்."
+  },
+  {
+    q: "What was the tax demand (in pagodas) sent to Kattabomman by Collector Jackson?",
+    qta: "கலெக்டர் ஜாக்சன் கட்டபொம்மனுக்கு அனுப்பிய வரி கோரிக்கை (பகோடாக்களில்) என்ன?",
+    opts: ["1080 pagodas", "2000 pagodas", "3310 pagodas", "4000 rupees"],
+    optsTA: ["1080 பகோடாக்கள்", "2000 பகோடாக்கள்", "3310 பகோடாக்கள்", "4000 ரூபாய்"],
+    ans: 2,
+    diff: "medium",
+    expl: "On 31 May 1798, Veerapandiya Kattabomman received a letter from Colin Jackson stating that 3310 pagodas (varagans) were to be paid.",
+    explTA: "31 மே 1798 அன்று வீரபாண்டிய கட்டபொம்மன் கோலின் ஜாக்சனிடமிருந்து 3310 பகோடாக்கள் (வராகன்கள்) செலுத்தப்பட வேண்டும் என்று கடிதம் பெற்றார்."
+  },
+  {
+    q: "Where did the famous meeting between Kattabomman and Collector Jackson take place on 19 September 1798?",
+    qta: "19 செப்டம்பர் 1798 அன்று கட்டபொம்மனும் கலெக்டர் ஜாக்சனும் சந்தித்த பிரசித்தமான இடம் எது?",
+    opts: ["Panchalankurichi Fort", "Palayankottai Court", "Ramalinga Vilasam, Ramanathapuram", "Tirunelveli Collectorate"],
+    optsTA: ["பஞ்சலங்குறிச்சி கோட்டை", "பாளையங்கோட்டை நீதிமன்றம்", "ராமலிங்க விலாசம், இராமநாதபுரம்", "திருநெல்வேலி கலெக்டரேட்"],
+    ans: 2,
+    diff: "medium",
+    expl: "On 19 September 1798, Kattabomman met Jackson at Ramalinga Vilasam, the palace of Ramanathapuram Setumathi in Ramanathapuram. Kattabomman was accompanied by his minister Sivasubramania Pillai.",
+    explTA: "19 செப்டம்பர் 1798 அன்று கட்டபொம்மன் இராமநாதபுரத்தில் சேதுபதியின் அரண்மனையான ராமலிங்க விலாசத்தில் ஜாக்சனை சந்தித்தார். கட்டபொம்மனுடன் அவரது அமைச்சர் சிவசுப்பிரமணிய பிள்ளை இருந்தார்."
+  },
+  {
+    q: "Who was the English officer killed during the riot at Ramanathapuram fort?",
+    qta: "இராமநாதபுரம் கோட்டையில் நடந்த கலகத்தில் கொல்லப்பட்ட ஆங்கிலேய அதிகாரி யார்?",
+    opts: ["Captain Heron", "Lieutenant Clarke", "Major Bannerman", "Collector Jackson"],
+    optsTA: ["கேப்டன் ஹெரான்", "லெப்டினன்ட் கிளார்க்", "மேஜர் பேன்னர்மன்", "கலெக்டர் ஜாக்சன்"],
+    ans: 1,
+    diff: "medium",
+    expl: "During the riot at Ramanathapuram fort, an English officer named Lieutenant Clarke was stabbed to death. Oomai Durai and his warriors who were hiding outside helped Kattabomman escape.",
+    explTA: "இராமநாதபுரம் கோட்டையில் நடந்த கலகத்தில் லெப்டினன்ட் கிளார்க் என்ற ஆங்கிலேய அதிகாரி குத்திக் கொல்லப்பட்டார். வெளியே மறைந்திருந்த ஊமைத்துரை மற்றும் அவரது வீரர்கள் கட்டபொம்மன் தப்பிக்க உதவினர்."
+  },
+  {
+    q: "Who was the Governor of Madras who ordered an inquiry into the Ramanathapuram incident?",
+    qta: "இராமநாதபுரம் சம்பவத்தில் விசாரணை உத்தரவிட்ட மதராஸ் கவர்னர் யார்?",
+    opts: ["Lord Wellesley", "Edward Clive", "Sir George Harris", "Lord Cornwallis"],
+    optsTA: ["லார்ட் வெல்லெஸ்லி", "எட்வர்ட் கிளைவ்", "சர் ஜார்ஜ் ஹாரிஸ்", "லார்ட் கார்ன்வாலிஸ்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Edward Clive, the Governor of Madras, registered Kattabomman's letter and set up a commission of inquiry headed by William Brown, William Orr and John Kasmeyer to investigate the Ramanathapuram incident.",
+    explTA: "மதராஸ் கவர்னர் எட்வர்ட் கிளைவ் கட்டபொம்மனின் கடிதத்தை பதிவு செய்து, இராமநாதபுரம் சம்பவத்தை விசாரிக்க வில்லியம் பிரவுன், வில்லியம் ஓர் மற்றும் ஜான் காஸ்மேயர் தலைமையில் ஒரு விசாரணை ஆணையம் அமைத்தார்."
+  },
+  {
+    q: "What was the verdict of the inquiry committee on Kattabomman?",
+    qta: "கட்டபொம்மன் மீதான விசாரணை குழுவின் தீர்ப்பு என்ன?",
+    opts: ["Guilty of treason", "Acquitted (not guilty)", "Fined 4000 rupees", "Banished to Penang"],
+    optsTA: ["தேசத்துரோகி என்று குற்றவாளி", "விடுவிக்கப்பட்டார் (குற்றமில்லை)", "4000 ரூபாய் அபராதம்", "பினாங்கிற்கு நாடு கடத்தப்பட்டார்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Kattabomman appeared before the Committee on 15 December 1798 and was acquitted (found not guilty). Jackson was dismissed from service and a new Collector S.R. Lushington was appointed.",
+    explTA: "கட்டபொம்மன் 15 டிசம்பர் 1798 அன்று குழுவின் முன் ஆஜரானார் மற்றும் விடுவிக்கப்பட்டார் (குற்றமில்லை என்று கண்டறியப்பட்டது). ஜாக்சன் பணிநீக்கம் செய்யப்பட்டு புதிய கலெக்டர் எஸ்.ஆர். லஷிங்டன் நியமிக்கப்பட்டார்."
+  },
+  {
+    q: "Who did Kattabomman meet on 1st June 1799 to form a confederacy?",
+    qta: "கட்டபொம்மன் கூட்டணி உருவாக்க 1 ஜூன் 1799 அன்று யாரை சந்தித்தார்?",
+    opts: ["Gopala Nayak", "Marudu Pandyan of Sivaganga", "Dheeran Chinnamalai", "Kerala Varma"],
+    optsTA: ["கோபால நாயக்கர்", "சிவகங்கையின் மருது பாண்டியன்", "தீரன் சின்னமலை", "கேரள வர்மா"],
+    ans: 1,
+    diff: "medium",
+    expl: "Concluding that the company officer could not be trusted, Kattabomman left for Sivaganga on 1st June 1799 with his soldiers to meet Marudu Pandyan and form a confederacy.",
+    explTA: "கம்பெனி அதிகாரியை நம்ப முடியாது என்று முடிவு செய்து, கட்டபொம்மன் 1 ஜூன் 1799 அன்று மருது பாண்டியனை சந்திக்க சிவகங்கை சென்றார்."
+  },
+  {
+    q: "Who informed the British about the secrets of Panchalankurichi fort?",
+    qta: "பஞ்சலங்குறிச்சி கோட்டையின் இரகசியங்களை பிரிட்டிஷாருக்கு யார் தெரிவித்தார்?",
+    opts: ["Sivasubramaniam Pillai", "Ramalinga Mudaliar", "Pudukottai King", "Ettayapuram Raja"],
+    optsTA: ["சிவசுப்பிரமணிய பிள்ளை", "ராமலிங்க முதலியார்", "புதுக்கோட்டை ராஜா", "எட்டயபுரம் ராஜா"],
+    ans: 1,
+    diff: "hard",
+    expl: "Ramalinga Mudaliar is said to have given information about the Panchalankurichi fort to the British. He first sent an emissary to Kattabomman asking him to surrender, and when Kattabomman refused, the British attacked.",
+    explTA: "ராமலிங்க முதலியார் பஞ்சலங்குறிச்சி கோட்டையின் தகவல்களை பிரிட்டிஷாருக்கு வழங்கியதாக கூறப்படுகிறது. முதலில் கட்டபொம்மனை சரணடையுமாறு கேட்டார், மறுத்தபோது பிரிட்டிஷார் தாக்கினர்."
+  },
+  {
+    q: "What heroic act did Commander Sundaralingam perform on 8 September 1799?",
+    qta: "தளபதி சுந்தரலிங்கம் 8 செப்டம்பர் 1799 அன்று என்ன வீர செயல் செய்தார்?",
+    opts: ["Led a cavalry charge against Bannerman", "Disguised as cowherd and blew up British ammunition depot", "Captured Bannerman's cannon", "Rescued Kattabomman from capture"],
+    optsTA: ["பேன்னர்மனுக்கு எதிராக குதிரைப் படை தாக்குதல் நடத்தினார்", "மாட்டிடையன் வேடம் போட்டு பிரிட்டிஷ் வெடிமருந்து கிடங்கை தகர்த்தார்", "பேன்னர்மனின் பீரங்கியை கைப்பற்றினார்", "கட்டபொம்மனை கைது ஆவதிலிருந்து காப்பாற்றினார்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On 8 September 1799, Sundaralingam disguised as a cowherd with a female relative Vadivu, went to the British ammunition depot. They jumped into the depot after creating fire — the warehouse burst into flames. Sundaralingam and Vadivu became the first suicide bombers of the Indian War of Independence.",
+    explTA: "8 செப்டம்பர் 1799 அன்று சுந்தரலிங்கம் பெண் உறவினர் வடிவுவுடன் மாட்டிடையன் வேடமிட்டு பிரிட்டிஷ் வெடிமருந்து கிடங்கிற்கு சென்றார். தீ வைத்த பிறகு இருவரும் கிடங்கிற்குள் குதித்தனர் — கிடங்கு வெடித்தது. இந்திய சுதந்திரப் போரின் முதல் தற்கொலை வீரர்கள் ஆனார்கள்."
+  },
+  {
+    q: "Who arrested Kattabomman after he escaped and handed him over to Bannerman?",
+    qta: "தப்பிச்சென்ற கட்டபொம்மனை கைது செய்து பேன்னர்மனிடம் ஒப்படைத்தவர் யார்?",
+    opts: ["Ettayapuram Raja", "Pudukottai King Vijayaranganathar Thondaiman", "Travancore King", "Thanjavur Raja"],
+    optsTA: ["எட்டயபுரம் ராஜா", "புதுக்கோட்டை ராஜா விஜயரங்கநாதர் தொண்டைமான்", "திருவிதாங்கூர் ராஜா", "தஞ்சாவூர் ராஜா"],
+    ans: 1,
+    diff: "medium",
+    expl: "The fugitive Kattabomman was caught by Pudukottai King Vijayaranganathar Thondaiman from the Kalapur forest and arrested and handed over to Commander Bannerman.",
+    explTA: "தப்பியோடும் கட்டபொம்மன் களபுர் காட்டிலிருந்து புதுக்கோட்டை ராஜா விஜயரங்கநாதர் தொண்டைமானால் கைது செய்யப்பட்டு தளபதி பேன்னர்மனிடம் ஒப்படைக்கப்பட்டார்."
+  },
+  {
+    q: "On which date was Veerapandiya Kattabomman hanged, and where?",
+    qta: "வீரபாண்டிய கட்டபொம்மன் எந்த தேதியில் எங்கே தூக்கிலிடப்பட்டார்?",
+    opts: ["September 9, 1799 at Panchalankurichi", "October 1, 1799 at Palayankottai", "October 16, 1799 at Ramanathapuram", "October 17, 1799 at Kayathar"],
+    optsTA: ["செப்டம்பர் 9, 1799 பஞ்சலங்குறிச்சியில்", "அக்டோபர் 1, 1799 பாளையங்கோட்டையில்", "அக்டோபர் 16, 1799 இராமநாதபுரத்தில்", "அக்டோபர் 17, 1799 காயத்தாரில்"],
+    ans: 3,
+    diff: "medium",
+    expl: "Kattabomman was hanged from a tamarind tree in the old fort of Kayathar, close to Tirunelveli, on October 17, 1799. The inquest was held on October 16. Panchalankurichi was captured on September 9, 1799.",
+    explTA: "கட்டபொம்மன் அக்டோபர் 17, 1799 அன்று திருநெல்வேலிக்கு அருகில் உள்ள காயத்தார் பழைய கோட்டையில் புளியமரத்தில் தூக்கிலிடப்பட்டார். விசாரணை அக்டோபர் 16 அன்று நடந்தது. பஞ்சலங்குறிச்சி செப்டம்பர் 9, 1799 அன்று கைப்பற்றப்பட்டது."
+  },
+  {
+    q: "How many members were in Kattabomman's family (siblings)?",
+    qta: "கட்டபொம்மனின் குடும்பத்தில் (உடன்பிறந்தவர்கள்) எத்தனை பேர் இருந்தனர்?",
+    opts: ["2 brothers and 1 sister", "3 brothers and 1 sister", "4 brothers and 1 sister", "2 brothers and 2 sisters"],
+    optsTA: ["2 சகோதரர்கள் மற்றும் 1 சகோதரி", "3 சகோதரர்கள் மற்றும் 1 சகோதரி", "4 சகோதரர்கள் மற்றும் 1 சகோதரி", "2 சகோதரர்கள் மற்றும் 2 சகோதரிகள்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Veerapandiya Kattabomman's siblings were: Kumaraswamy/Omaithurai, Duraisingam/Sevathaiya, Eswara Vadivu, Thuraikannu (4 brothers), and Jakkammal (1 sister). His wife Jakkammal had no heir.",
+    explTA: "வீரபாண்டிய கட்டபொம்மனின் உடன்பிறந்தவர்கள்: குமாரசாமி/ஊமைத்துரை, துரைசிங்கம்/சேவத்தையா, ஈஸ்வர வடிவு, துரைக்கண்ணு (4 சகோதரர்கள்), மற்றும் ஜக்கம்மாள் (1 சகோதரி)."
+  },
+  {
+    q: "Which paddy granary was looted by Kattabomman's minister Sivasubramaniam Pillai?",
+    qta: "கட்டபொம்மனின் அமைச்சர் சிவசுப்பிரமணிய பிள்ளை எந்த நெல் கிடங்கை சூறையாடினார்?",
+    opts: ["Sivagiri granary", "Tiruvaikundam rice granary", "Panchalankurichi granary", "Kayathar granary"],
+    optsTA: ["சிவகிரி கிடங்கு", "திருவைகுண்டம் நெல் கிடங்கு", "பஞ்சலங்குறிச்சி கிடங்கு", "காயத்தார் கிடங்கு"],
+    ans: 1,
+    diff: "hard",
+    expl: "Kattabomman's minister Sivasubramaniam Pillai looted the Tiruvaikundam rice granary. 700 kottai of paddy were looted (worth Rs 3300). The British demanded Kattabomman pay a fine of 4000 rupees and hand over Sivasubramaniam Pillai.",
+    explTA: "கட்டபொம்மனின் அமைச்சர் சிவசுப்பிரமணிய பிள்ளை திருவைகுண்டம் நெல் கிடங்கை சூறையாடினார். 700 கொட்டை நெல் (3300 ரூபாய் மதிப்பு) சூறையாடப்பட்டது. பிரிட்டிஷார் 4000 ரூபாய் அபராதம் கட்டி சிவசுப்பிரமணிய பிள்ளையை ஒப்படைக்க கோரினர்."
+  },
+
+  // ══ SECTION 4: VELU NACHIYAR (Q46–60) ══
+
+  {
+    q: "Why is Rani Velu Nachiyar known as India's 'Joan of Arc'?",
+    qta: "ராணி வேலு நாச்சியார் இந்தியாவின் 'ஜோன் ஆஃப் ஆர்க்' என்று ஏன் அழைக்கப்படுகிறார்?",
+    opts: ["She was a religious martyr", "She was the first woman from a royal family to fight against the British", "She led the Vellore Mutiny", "She founded the first women's army in India"],
+    optsTA: ["அவர் ஒரு மத தியாகி", "பிரிட்டிஷாருக்கு எதிராக போரிட்ட முதல் அரச குடும்பப் பெண்", "அவர் வேலூர் கிளர்ச்சியை வழிநடத்தினார்", "இந்தியாவில் முதல் மகளிர் படையை நிறுவினார்"],
+    ans: 1,
+    diff: "easy",
+    expl: "Rani Velu Nachiyar is known as India's Joan of Arc because she was the first woman from a royal family to fight against the British colonial power in India.",
+    explTA: "ராணி வேலு நாச்சியார் இந்தியாவில் பிரிட்டிஷ் காலனி ஆட்சிக்கு எதிராக போரிட்ட முதல் அரச குடும்பப் பெண்ணாக இருந்ததால் இந்தியாவின் 'ஜோன் ஆஃப் ஆர்க்' என்று அழைக்கப்படுகிறார்."
+  },
+  {
+    q: "Velu Nachiyar was born on which date and to which royal family?",
+    qta: "வேலு நாச்சியார் எந்த தேதியில் எந்த அரச குடும்பத்தில் பிறந்தார்?",
+    opts: ["January 3, 1720, Sivaganga", "January 3, 1730, Ramanathapuram", "March 1, 1740, Madurai", "October 11, 1730, Trichy"],
+    optsTA: ["ஜனவரி 3, 1720, சிவகங்கை", "ஜனவரி 3, 1730, இராமநாதபுரம்", "மார்ச் 1, 1740, மதுரை", "அக்டோபர் 11, 1730, திருச்சி"],
+    ans: 1,
+    diff: "medium",
+    expl: "Velu Nachiyar was born on January 3, 1730 to Chellamuthu Vijaya Raghunatha Sethupathi and Muthatthal Nachiyar who ruled Ramanathapuram. She was the only daughter of this royal family.",
+    explTA: "வேலு நாச்சியார் ஜனவரி 3, 1730 அன்று இராமநாதபுரம் ஆண்ட செல்லமுத்து விஜய ரகுநாத சேதுபதி மற்றும் முத்தத்தாள் நாச்சியார் தம்பதியினருக்கு பிறந்தார். இந்த அரச குடும்பத்தின் ஒரே மகள்."
+  },
+  {
+    q: "At what age did Velunachiyar marry Muthu Vadukanathar of Sivaganga?",
+    qta: "வேலு நாச்சியார் சிவகங்கையின் முத்து வடுகநாதரை எத்தனை வயதில் திருமணம் செய்துகொண்டார்?",
+    opts: ["14 years", "16 years", "18 years", "20 years"],
+    optsTA: ["14 வயது", "16 வயது", "18 வயது", "20 வயது"],
+    ans: 1,
+    diff: "medium",
+    expl: "In 1746, at the age of 16, Velunachiyar married Muthu Vadukanathar, the ruler of the Sivaganga region. She was well-trained in martial arts, valari, stick fighting, horse riding, and archery.",
+    explTA: "1746 ஆம் ஆண்டில் 16 வயதில் வேலு நாச்சியார் சிவகங்கை பகுதியின் ஆட்சியாளர் முத்து வடுகநாதரை திருமணம் செய்துகொண்டார். அவர் வாலாரி, தடிசண்டை, குதிரையேற்றம், வில்வித்தை ஆகியவற்றில் நன்கு பயிற்சி பெற்றிருந்தார்."
+  },
+  {
+    q: "How was Muthu Vadukanathar killed in 1772?",
+    qta: "1772 ல் முத்து வடுகநாதர் எவ்வாறு கொல்லப்பட்டார்?",
+    opts: ["In a direct battle with British forces", "Ambushed at Kaliswarar shrine in Kalaiyar temple", "Betrayed by the Marudhu brothers", "Poisoned by the Nawab of Arcot"],
+    optsTA: ["பிரிட்டிஷ் படையுடன் நேரடி போரில்", "கலையார் கோவிலில் கலீஸ்வரர் கோவிலில் புதைக்கப்பட்டார்", "மருது சகோதரர்களால் காட்டிக்கொடுக்கப்பட்டார்", "அர்காட் நவாபால் விஷம் வைக்கப்பட்டார்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On June 25, 1772, the Nawab's forces received information that Muthu Vadukanatha would visit the Kaliswarar shrine in Kalaiyar temple without weapons. The Nawab's forces surrounded him and both Muthu Vadukanatha and Gauri Nachiyar were killed in the battle.",
+    explTA: "ஜூன் 25, 1772 அன்று நவாபின் படைகள் முத்து வடுகநாதர் ஆயுதமின்றி கலையார் கோவிலில் கலீஸ்வரர் கோவிலுக்கு செல்வார் என்ற தகவல் பெற்று சூழ்ந்து கொண்டு போரில் அவரையும் கௌரி நாச்சியாரையும் கொன்றனர்."
+  },
+  {
+    q: "Velunachiyar wrote a letter to Hyder Ali on which date seeking military assistance?",
+    qta: "வேலு நாச்சியார் ஹைதர் அலிக்கு இராணுவ உதவி கோரி எந்த தேதியில் கடிதம் எழுதினார்?",
+    opts: ["8-12-1772", "8-12-1773", "8-12-1780", "8-12-1778"],
+    optsTA: ["8-12-1772", "8-12-1773", "8-12-1780", "8-12-1778"],
+    ans: 0,
+    diff: "hard",
+    expl: "Velunachiyar wrote a letter to Hyder Ali on 8-12-1772 requesting military assistance. Her military chief Dalavay Thandavarayanar wrote the letter on her behalf, explaining all problems with the East India Company in Urdu.",
+    explTA: "வேலு நாச்சியார் 8-12-1772 அன்று ஹைதர் அலிக்கு இராணுவ உதவி கோரி கடிதம் எழுதினார். அவரது தளபதி தண்டவராயனார் அவர் சார்பாக கடிதம் எழுதி, கிழக்கிந்திய கம்பெனியுடனான அனைத்து பிரச்சினைகளையும் உர்து மொழியில் விளக்கினார்."
+  },
+  {
+    q: "How did the Marudhu brothers earn Hyder Ali's military support for Velunachiyar?",
+    qta: "மருது சகோதரர்கள் வேலு நாச்சியாருக்கு ஹைதர் அலியின் இராணுவ ஆதரவை எவ்வாறு பெற்றனர்?",
+    opts: ["By paying tribute to Hyder Ali", "By killing tigers in Watalagundu forests as Hyder Ali requested", "By sending soldiers to Hyder Ali's army", "By capturing a fort for Hyder Ali"],
+    optsTA: ["ஹைதர் அலிக்கு காணிக்கை செலுத்துவதன் மூலம்", "ஹைதர் அலி கேட்டபடி வட்டலகுண்டு காடுகளில் புலிகளை கொல்வதன் மூலம்", "ஹைதர் அலியின் படைக்கு வீரர்களை அனுப்புவதன் மூலம்", "ஹைதர் அலிக்கு ஒரு கோட்டையை கைப்பற்றுவதன் மூலம்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Hyder Ali announced that those who helped control the tigers in the Watalagundu forests would be rewarded with whatever they asked for. The Marudu brothers killed the tigers and in return requested military assistance for Velunachiyar. Hyder Ali sent 5000 cavalry and 5000 infantry.",
+    explTA: "ஹைதர் அலி வட்டலகுண்டு காடுகளில் புலிகளை கட்டுப்படுத்தும் உதவி செய்வோருக்கு அவர்கள் கேட்பதை தருவதாக அறிவித்தார். மருது சகோதரர்கள் புலிகளை கொன்று, வேலு நாச்சியாருக்கு இராணுவ உதவி கோரினர். ஹைதர் அலி 5000 குதிரைப் படை மற்றும் 5000 காலாட் படை அனுப்பினார்."
+  },
+  {
+    q: "What was the name of the brave woman commander who set herself on fire to destroy the British arsenal?",
+    qta: "பிரிட்டிஷ் ஆயுதக் கிடங்கை அழிக்க தன்னை தீக்கொளுத்திக்கொண்ட வீர மகளிர் தளபதியின் பெயர் என்ன?",
+    opts: ["Vellachi Nachiyar", "Udaiyaal", "Kuyili", "Jakkammal"],
+    optsTA: ["வெள்ளாச்சி நாச்சியார்", "உடையாள்", "குயிலி", "ஜக்கம்மாள்"],
+    ans: 2,
+    diff: "easy",
+    expl: "Kuyili, fondly addressed as Veerthalapathy (The Brave Commander) or Veeramangai (The Brave Woman), set herself on fire after pouring ghee and oil on herself and walked into the British arsenal on September 30, 1780, destroying all British weapons.",
+    explTA: "குயிலி, வீர்த்தலபதி (வீர தளபதி) அல்லது வீரமங்கை என்று அன்போடு அழைக்கப்படுபவர், 30 செப்டம்பர் 1780 அன்று தன் மீது நெய் மற்றும் எண்ணெய் ஊற்றிக்கொண்டு பிரிட்டிஷ் ஆயுதக் கிடங்கில் புகுந்து அனைத்து ஆயுதங்களையும் அழித்தார்."
+  },
+  {
+    q: "What was the significance of the Navaratri festival for Kuyili's plan?",
+    qta: "நவராத்திரி திருவிழா குயிலியின் திட்டத்திற்கு என்ன முக்கியத்துவம் வாய்ந்தது?",
+    opts: ["The British reduced their guards during the festival", "Women were allowed inside the Sivagangai fort for Vijayadasami celebration", "The festival provided cover to smuggle weapons into the fort", "British troops were celebrating and distracted"],
+    optsTA: ["திருவிழாவின் போது பிரிட்டிஷார் காவல்காரர்களை குறைத்தனர்", "விஜயதசமி கொண்டாட்டத்திற்காக பெண்கள் சிவகங்கை கோட்டைக்குள் அனுமதிக்கப்பட்டனர்", "திருவிழா ஆயுதங்களை கோட்டைக்கு கடத்த மறைவு வழங்கியது", "பிரிட்டிஷ் படை கொண்டாடி திசைதிரிக்கப்பட்டனர்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On the 10th day of Navaratri (Vijayadasami), women across the kingdom were allowed inside the Sivagangai fort to celebrate the festival in the Rajarajeswari Amman temple. Kuyili used this golden opportunity — her army dressed as civilians entered with weapons hidden in flower and fruit baskets.",
+    explTA: "நவராத்திரியின் 10வது நாளில் (விஜயதசமி), ராஜராஜேஸ்வரி அம்மன் கோவிலில் திருவிழா கொண்டாட பெண்கள் சிவகங்கை கோட்டைக்குள் அனுமதிக்கப்பட்டனர். குயிலி இந்த தங்கமான வாய்ப்பை பயன்படுத்தி, மலர் மற்றும் பழக் கூடைகளில் மறைத்த ஆயுதங்களுடன் சாதாரண மக்களாக வேடமிட்ட படையை உள்ளே அழைத்துச் சென்றார்."
+  },
+  {
+    q: "In which year did Velunachiyar become the ruler of Sivaganga?",
+    qta: "வேலு நாச்சியார் சிவகங்கையின் ஆட்சியாளர் ஆன ஆண்டு எது?",
+    opts: ["1772", "1778", "1780", "1785"],
+    optsTA: ["1772", "1778", "1780", "1785"],
+    ans: 2,
+    diff: "medium",
+    expl: "In 1780, Velunachiyar became the ruler of Sivaganga after defeating General Pansoor and other Nawab forces with the assistance of Hyder Ali's troops. She was the first female ruler to resist British colonial power in India.",
+    explTA: "1780 ஆம் ஆண்டில் வேலு நாச்சியார் ஹைதர் அலியின் படையின் உதவியுடன் ஜெனரல் பன்சூர் மற்றும் பிற நவாப் படைகளை தோற்கடித்து சிவகங்கையின் ஆட்சியாளர் ஆனார். இந்தியாவில் பிரிட்டிஷ் காலனி ஆட்சியை எதிர்த்த முதல் மகளிர் ஆட்சியாளர்."
+  },
+  {
+    q: "On what date did Rani Velu Nachiyar die?",
+    qta: "ராணி வேலு நாச்சியார் எந்த தேதியில் இறந்தார்?",
+    opts: ["December 25, 1790", "December 25, 1793", "December 25, 1796", "January 3, 1800"],
+    optsTA: ["டிசம்பர் 25, 1790", "டிசம்பர் 25, 1793", "டிசம்பர் 25, 1796", "ஜனவரி 3, 1800"],
+    ans: 2,
+    diff: "medium",
+    expl: "Rani Velu Nachiyar died on December 25, 1796. After her granddaughter's death in 1793, she was depressed and stayed in the Virupatchi palace until her death.",
+    explTA: "ராணி வேலு நாச்சியார் டிசம்பர் 25, 1796 அன்று இறந்தார். 1793 ல் அவரது பேத்தியின் மரணத்திற்குப் பிறகு மனச்சோர்வடைந்து விருபாட்சி அரண்மனையில் இறுதி வரை தங்கியிருந்தார்."
+  },
+  {
+    q: "How long did Velu Nachiyar live in exile before recapturing Sivaganga?",
+    qta: "சிவகங்கையை மீண்டும் கைப்பற்றுவதற்கு முன்பு வேலு நாச்சியார் எத்தனை ஆண்டுகள் நாடுகடத்தலில் வாழ்ந்தார்?",
+    opts: ["5 years", "6 years", "8 years", "10 years"],
+    optsTA: ["5 ஆண்டுகள்", "6 ஆண்டுகள்", "8 ஆண்டுகள்", "10 ஆண்டுகள்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Velu Nachiyar stayed for eight years in exile in Dindigul, Vidhachi and Ayyambalayam under the protection of Gopala Nayak after her husband was killed in 1772, before recapturing Sivaganga in 1780.",
+    explTA: "வேலு நாச்சியார் 1772 ல் கணவர் கொல்லப்பட்ட பிறகு, 1780 ல் சிவகங்கையை மீண்டும் கைப்பற்றுவதற்கு முன்பு கோபால நாயக்கரின் பாதுகாப்பில் தினிகல், விதாச்சி மற்றும் ஐயம்பலயம் ஆகிய இடங்களில் எட்டு ஆண்டுகள் நாடுகடத்தலில் வாழ்ந்தார்."
+  },
+
+  // ══ SECTION 5: MARUDHU BROTHERS (Q61–72) ══
+
+  {
+    q: "Where were the Marudhu brothers born?",
+    qta: "மருது சகோதரர்கள் எங்கு பிறந்தனர்?",
+    opts: ["Sivaganga", "Aruppukottai", "Mukkulam near Narikudi, Virudhunagar district", "Madurai"],
+    optsTA: ["சிவகங்கை", "ஆருப்புக்கோட்டை", "விருதுநகர் மாவட்டத்தில் நரிக்குடிக்கு அருகில் உள்ள முக்குளம்", "மதுரை"],
+    ans: 2,
+    diff: "medium",
+    expl: "Periya and Chinna Marudhu were sons of Mookiah Palaniappan Servai and were native of Mukkulam, near Narikudi, 18 miles away from Aruppukottai in Virudhunagar district.",
+    explTA: "பெரிய மற்றும் சின்ன மருது, மூக்கையா பழனியப்பன் செர்வாயின் மகன்கள். விருதுநகர் மாவட்டத்தில் ஆருப்புக்கோட்டையிலிருந்து 18 மைல் தொலைவில் நரிக்குடிக்கு அருகில் உள்ள முக்குளத்தை சேர்ந்தவர்கள்."
+  },
+  {
+    q: "What weapon were both Marudhu brothers talented in using?",
+    qta: "இரண்டு மருது சகோதரர்களும் எந்த ஆயுதத்தை பயன்படுத்துவதில் திறமை மிக்கவர்கள்?",
+    opts: ["Sword (Vaal)", "Valari (a type of throwing weapon)", "Spear (Vel)", "Bow and Arrow"],
+    optsTA: ["வாள்", "வாலாரி (ஒரு வகை எறியும் ஆயுதம்)", "வேல்", "வில் மற்றும் அம்பு"],
+    ans: 1,
+    diff: "hard",
+    expl: "Both the Marudu brothers were talented in using VALARI — a traditional South Indian throwing weapon. King Vijayaragunatha Sethupathi of Ramanathapuram gave them the name Pandyas.",
+    explTA: "இரண்டு மருது சகோதரர்களும் வாலாரி என்ற பாரம்பரிய தென்னிந்திய எறியும் ஆயுதத்தை பயன்படுத்துவதில் திறமை மிக்கவர்கள். இராமநாதபுரத்தின் விஜயரகுநாத சேதுபதி அரசர் அவர்களுக்கு பாண்டியர்கள் என்று பெயர் கொடுத்தார்."
+  },
+  {
+    q: "When were Periya Marudhu and Chinna Marudhu born?",
+    qta: "பெரிய மருது மற்றும் சின்ன மருது பிறந்த ஆண்டுகள் யாவை?",
+    opts: ["1748 and 1750", "1748 and 1753", "1750 and 1755", "1745 and 1750"],
+    optsTA: ["1748 மற்றும் 1750", "1748 மற்றும் 1753", "1750 மற்றும் 1755", "1745 மற்றும் 1750"],
+    ans: 1,
+    diff: "medium",
+    expl: "Periya Marudhu (Vella Marudhu) was born on 15 December 1748, and Chinna Marudhu was born in 1753. They were the sons of Mookaiah Palaniappan Servai.",
+    explTA: "பெரிய மருது (வெள்ள மருது) 15 டிசம்பர் 1748 அன்று பிறந்தார், சின்ன மருது 1753 இல் பிறந்தார். அவர்கள் மூக்கையா பழனியப்பன் செர்வாயின் மகன்கள்."
+  },
+  {
+    q: "What was the Sambutheevu Declaration and why was it significant?",
+    qta: "சம்புதீவு அறிவிப்பு என்றால் என்ன, அது ஏன் முக்கியத்துவம் வாய்ந்தது?",
+    opts: ["A peace treaty with the British", "First proclamation calling all Indians to unite against British rule", "A land reform declaration", "A trade agreement with France"],
+    optsTA: ["பிரிட்டிஷாருடன் சமாதான ஒப்பந்தம்", "அனைத்து இந்தியர்களையும் பிரிட்டிஷ் ஆட்சிக்கு எதிராக ஒன்றிணையும்படி அழைத்த முதல் பிரகடனம்", "நில சீர்திருத்த அறிவிப்பு", "பிரான்சுடன் வர்த்தக ஒப்பந்தம்"],
+    ans: 1,
+    diff: "hard",
+    expl: "The Sambutheevu Declaration (16 June 1801) was issued by the Marudhu brothers in response to Agnew's defamatory report. It was pasted on fort walls in Trichy and Tiruvarangam temple, calling all to unite against the British. 'Sambutheevu' or 'Navalantheevu' referred to the Indian subcontinent.",
+    explTA: "சம்புதீவு அறிவிப்பு (16 ஜூன் 1801) மருது சகோதரர்களால் அக்னியுவின் அவதூறு அறிக்கைக்கு பதிலாக வெளியிடப்பட்டது. திருச்சி நவாபின் அரண்மனை கோட்டை சுவர்களிலும் திருவரங்கம் கோவில் சுவர்களிலும் ஒட்டப்பட்டு அனைவரையும் பிரிட்டிஷாருக்கு எதிராக ஒன்றிணையுமாறு கோரியது. 'சம்புதீவு' அல்லது 'நவலந்தீவு' என்பது இந்திய துணைக்கண்டத்தை குறிக்கும்."
+  },
+  {
+    q: "On what date were the Marudhu Brothers hanged and where?",
+    qta: "மருது சகோதரர்கள் எந்த தேதியில் எங்கே தூக்கிலிடப்பட்டனர்?",
+    opts: ["October 19, 1801 at Kalaiyar Kovil", "October 24, 1801 at Tirupattur Fort, Sivaganga", "November 16, 1801 at Panchalankurichi", "November 24, 1801 at Ramanathapuram"],
+    optsTA: ["அக்டோபர் 19, 1801 கலையார்கோவிலில்", "அக்டோபர் 24, 1801 சிவகங்கையில் திருப்பத்தூர் கோட்டையில்", "நவம்பர் 16, 1801 பஞ்சலங்குறிச்சியில்", "நவம்பர் 24, 1801 இராமநாதபுரத்தில்"],
+    ans: 1,
+    diff: "medium",
+    expl: "On October 24, 1801, both Periya Marudhu and Chinna Marudhu were hanged at Tirupattur Fort near Ramanathapuram along with more than 500 others. Their bodies were cremated in front of Kalayar temple as per their wish.",
+    explTA: "அக்டோபர் 24, 1801 அன்று பெரிய மருது மற்றும் சின்ன மருது இருவரும் இராமநாதபுரத்திற்கு அருகில் உள்ள திருப்பத்தூர் கோட்டையில் 500க்கும் மேற்பட்டோருடன் தூக்கிலிடப்பட்டனர். அவர்களது விருப்பப்படி உடல்கள் கலையார் கோவில் முன்பாக தகனம் செய்யப்பட்டன."
+  },
+  {
+    q: "Who was the British officer who had a close friendship with Chinna Marudhu but later executed them?",
+    qta: "சின்ன மருதுவுடன் நெருங்கிய நட்பு வைத்திருந்தும் பின்னர் அவர்களை கொலை செய்த பிரிட்டிஷ் அதிகாரி யார்?",
+    opts: ["Colonel Agnew", "Colonel Maxwell", "Colonel Welsh", "Colonel Macaulay"],
+    optsTA: ["கர்னல் அக்னியூ", "கர்னல் மேக்ஸ்வெல்", "கர்னல் வெல்ஷ்", "கர்னல் மேக்காலே"],
+    ans: 2,
+    diff: "hard",
+    expl: "Colonel Welsh was monitoring Tamil Nadu dominated by the Marudu brothers. He and Chinna Marudhu were especially close friends — it was Chinna Marudu who trained him to throw the javelin. Welsh first met Chinna Marudhu in February 1795. However, later under his leadership, the British army executed the Marudu brothers.",
+    explTA: "கர்னல் வெல்ஷ் மருது சகோதரர்களால் ஆதிக்கம் செலுத்தப்பட்ட தமிழ்நாட்டை கண்காணித்தார். அவரும் சின்ன மருதுவும் நெருங்கிய நண்பர்கள் — சின்ன மருதுவே அவருக்கு ஈட்டி எறிவதை கற்றுக்கொடுத்தார். வெல்ஷ் 1795 பிப்ரவரியில் சின்ன மருதுவை முதன்முதலில் சந்தித்தார். ஆனால் பின்னர் அவரது தலைமையில் பிரிட்டிஷ் படை மருது சகோதரர்களை கொன்றது."
+  },
+  {
+    q: "How many people were exiled to Penang (Malaya) after the Marudhu brothers' revolt?",
+    qta: "மருது சகோதரர்கள் கிளர்ச்சிக்குப் பிறகு எத்தனை பேர் பினாங்கிற்கு (மலேசியா) நாடு கடத்தப்பட்டனர்?",
+    opts: ["51", "62", "73", "100"],
+    optsTA: ["51", "62", "73", "100"],
+    ans: 2,
+    diff: "hard",
+    expl: "Seventy-three rebels were exiled to Penang in Malaya after the rebellion. Colonel Welsh writes that 71 people (another account says 73) from Tamil Nadu were taken to Penang Island as political prisoners.",
+    explTA: "கிளர்ச்சிக்குப் பிறகு 73 கிளர்ச்சியாளர்கள் மலேசியாவின் பினாங்கிற்கு நாடு கடத்தப்பட்டனர். கர்னல் வெல்ஷ் தமிழ்நாட்டிலிருந்து 71 பேர் (மற்றொரு கணக்கில் 73 பேர்) பினாங்கிற்கு அரசியல் கைதிகளாக அழைத்துச் செல்லப்பட்டதாக எழுதுகிறார்."
+  },
+  {
+    q: "What was unique about Oomaiturai and Sevathaiah's execution?",
+    qta: "ஊமைத்துரை மற்றும் சேவத்தையாவின் தூக்கிலிடுதலில் என்ன தனித்துவம் இருந்தது?",
+    opts: ["They were hanged at Tirupattur", "They escaped twice before final capture", "They were beheaded at Panchalankurichi on 16 November 1801", "They surrendered voluntarily"],
+    optsTA: ["அவர்கள் திருப்பத்தூரில் தூக்கிலிடப்பட்டனர்", "இறுதி கைதிற்கு முன்பு இரண்டு முறை தப்பினர்", "நவம்பர் 16, 1801 அன்று பஞ்சலங்குறிச்சியில் கொல்லப்பட்டனர்", "தாமாக சரணடைந்தனர்"],
+    ans: 2,
+    diff: "medium",
+    expl: "Oomathurai and Sevathaiah were captured after escaping from Palayankottai prison (2 February 1801) and later hiding with Marudhu brothers. They were beheaded (not hanged) at Panchalankurichi on 16 November 1801.",
+    explTA: "ஊமைத்துரை மற்றும் சேவத்தையா பாளையங்கோட்டை சிறையிலிருந்து தப்பி (2 பிப்ரவரி 1801) பின்னர் மருது சகோதரர்களுடன் மறைந்திருந்தனர். அவர்கள் நவம்பர் 16, 1801 அன்று பஞ்சலங்குறிச்சியில் கொல்லப்பட்டனர்."
+  },
+
+  // ══ SECTION 6: DHEERAN CHINNAMALAI (Q73–82) ══
+
+  {
+    q: "Dheeran Chinnamalai was born on which date and where?",
+    qta: "தீரன் சின்னமலை எந்த தேதியில் எங்கு பிறந்தார்?",
+    opts: ["April 17, 1756, Melapalayam near Kangeyam, Erode district", "January 3, 1760, Coimbatore", "April 17, 1750, Salem", "March 1, 1760, Tiruchengode"],
+    optsTA: ["ஏப்ரல் 17, 1756, ஈரோடு மாவட்டம் காங்கேயத்திற்கு அருகில் மேலப்பாளையம்", "ஜனவரி 3, 1760, கோயம்புத்தூர்", "ஏப்ரல் 17, 1750, சேலம்", "மார்ச் 1, 1760, திருச்செங்கோடு"],
+    ans: 0,
+    diff: "medium",
+    expl: "Dheeran Chinnamalai was born on April 17, 1756, as the son of Ratnaswamy and Periyathal couple in Melapalayam town near Kangeyam in Erode district. His original name was Theertagiri.",
+    explTA: "தீரன் சின்னமலை ஏப்ரல் 17, 1756 அன்று ஈரோடு மாவட்டத்தில் காங்கேயத்திற்கு அருகில் மேலப்பாளையம் நகரில் ரத்னசாமி மற்றும் பெரியதாள் தம்பதியினருக்கு பிறந்தார். அவரது உண்மையான பெயர் தீர்த்தகிரி."
+  },
+  {
+    q: "Why did Dheeran Chinnamalai's fame first spread throughout Kongu country?",
+    qta: "தீரன் சின்னமலையின் புகழ் கொங்கு நாட்டில் முதலில் ஏன் பரவியது?",
+    opts: ["He won a battle against the British", "He snatched tax money from Hyder Ali's soldiers going to Sangakiri fort", "He killed a tiger threatening the village", "He defeated the Nawab of Arcot's forces"],
+    optsTA: ["பிரிட்டிஷாருக்கு எதிராக போரில் வென்றதால்", "சங்ககிரி கோட்டைக்கு செல்லும் ஹைதர் அலியின் வீரர்களிடமிருந்து வரி பணத்தை பிடுங்கியதால்", "கிராமத்தை அச்சுறுத்திய புலியை கொன்றதால்", "அர்காட் நவாபின் படைகளை தோற்கடித்ததால்"],
+    ans: 1,
+    diff: "medium",
+    expl: "When Hyder Ali's soldiers were collecting taxes for Sangakiri fort, Chinnamalai intercepted them and grabbed the money bag, declaring 'Between Shivanmalai and Chennimalai, a Chinnamalai has come and collected the tax money.' Since then his fame spread.",
+    explTA: "ஹைதர் அலியின் வீரர்கள் சங்ககிரி கோட்டைக்கு வரி வசூலிக்க வந்தபோது, சின்னமலை அவர்களை தடுத்து பணப் பையை பிடுங்கி, 'சிவன்மலைக்கும் செண்ணிமலைக்கும் இடையே ஒரு சின்னமலை வந்து வரி பணம் வசூலித்தான்' என்று அறிவித்தார். அன்றிலிருந்து அவரது புகழ் பரவியது."
+  },
+  {
+    q: "Which war was Dheeran Chinnamalai part of alongside Tipu Sultan?",
+    qta: "தீரன் சின்னமலை திப்பு சுல்தானுடன் எந்த போரில் பங்கேற்றார்?",
+    opts: ["First Anglo-Mysore War", "Second Anglo-Mysore War", "Battle of Malavalli (Third/Fourth Mysore War)", "First Carnatic War"],
+    optsTA: ["முதல் ஆங்கிலோ-மைசூர் போர்", "இரண்டாம் ஆங்கிலோ-மைசூர் போர்", "மலவல்லி போர் (மூன்றாம்/நான்காம் மைசூர் போர்)", "முதல் கர்நாடக போர்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Along with 1,000 Kongu youths, Chinnamalai went to Seringapatnam and met Tipu Sultan. At Tipu's behest, Chinnamalai acted as one of the commanders. The English army fought fiercely against Chinnamalai's army in the Battle of Malavalli. Tipu Sultan was killed by the British on May 4, 1799.",
+    explTA: "1,000 கொங்கு இளைஞர்களுடன் சின்னமலை சேரன்மகாதேவிக்கு சென்று திப்பு சுல்தானை சந்தித்தார். திப்புவின் உத்தரவால் சின்னமலை தளபதிகளில் ஒருவராக செயல்பட்டார். ஆங்கிலேய படை மலவல்லி போரில் சின்னமலையின் படையுடன் கடுமையாக போரிட்டது. திப்பு சுல்தான் மே 4, 1799 அன்று பிரிட்டிஷாரால் கொல்லப்பட்டார்."
+  },
+  {
+    q: "What was the Odanilai War (1802)?",
+    qta: "ஒடனிலை போர் (1802) என்றால் என்ன?",
+    opts: ["Battle where British Colonel Maxwell was defeated and beheaded by Chinnamalai", "Battle where Chinnamalai surrendered to the British", "Battle at the Cauvery river banks", "Battle between Chinnamalai and Tipu Sultan"],
+    optsTA: ["பிரிட்டிஷ் கர்னல் மேக்ஸ்வெல் தோற்கடிக்கப்பட்டு சின்னமலையால் தலை வெட்டப்பட்ட போர்", "சின்னமலை பிரிட்டிஷாரிடம் சரணடைந்த போர்", "காவேரி ஆற்றின் கரையில் நடந்த போர்", "சின்னமலைக்கும் திப்பு சுல்தானுக்கும் இடையிலான போர்"],
+    ans: 0,
+    diff: "medium",
+    expl: "In the Odanilai War (1802), a large British force of 10,000 men from Sangakiri came towards Odanilai. The British army was scattered by Chinnamalai's soldiers. British Colonel Maxwell, who commanded the force, was beheaded by Chinnamalai. The head was garlanded with sandalwood and displayed in many towns of Kongunath.",
+    explTA: "ஒடனிலை போரில் (1802) சங்ககிரியிலிருந்து 10,000 படையினருடன் வந்த பிரிட்டிஷ் படை சின்னமலையின் வீரர்களால் சிதறடிக்கப்பட்டது. படையை வழிநடத்திய பிரிட்டிஷ் கர்னல் மேக்ஸ்வெல் சின்னமலையால் தலை வெட்டப்பட்டார். தலையை சந்தனத்தால் அலங்கரித்து கொங்கு நாட்டின் பல நகரங்களில் கொண்டு சென்று காட்டினர்."
+  },
+  {
+    q: "Who betrayed Dheeran Chinnamalai to the British for money?",
+    qta: "தீரன் சின்னமலையை பணத்திற்காக பிரிட்டிஷாருக்கு காட்டிக்கொடுத்தவர் யார்?",
+    opts: ["Pollan", "Velappan", "Nallappan the cook", "Karuppu Servai"],
+    optsTA: ["பொல்லன்", "வேலப்பன்", "சமையல்காரன் நல்லப்பன்", "கருப்பு செர்வை"],
+    ans: 2,
+    diff: "hard",
+    expl: "When Chinnamalai and his brothers came to eat at the foot of Karumalai, Nallappan the cook was converted by the British with money. He dug a tunnel near the house, forced them to put down their guns to eat, then moved a box blocking the tunnel and British troops came inside. Chinnamalai slapped Nallappan and he collapsed and died.",
+    explTA: "சின்னமலை மற்றும் அவரது சகோதரர்கள் கருமலையின் அடிவாரத்தில் சாப்பிட வந்தபோது, சமையல்காரன் நல்லப்பன் பிரிட்டிஷாரால் பணத்தால் மாற்றப்பட்டிருந்தான். வீட்டிற்கு அருகில் சுரங்கம் தோண்டி, ஆயுதங்களை வைக்கவைத்து, சுரங்கத்தை மறைத்த பெட்டியை நகர்த்தினான் — பிரிட்டிஷ் படை உள்ளே வந்தது. சின்னமலை நல்லப்பனை அறைந்தார், அவன் சரிந்து இறந்தான்."
+  },
+  {
+    q: "On which date was Dheeran Chinnamalai hanged and at which fort?",
+    qta: "தீரன் சின்னமலை எந்த தேதியில் எந்த கோட்டையில் தூக்கிலிடப்பட்டார்?",
+    opts: ["31 July 1804 at Odanilai fort", "31 July 1805 at Sangakiri fort", "15 August 1805 at Coimbatore", "1 October 1804 at Arachalur"],
+    optsTA: ["31 ஜூலை 1804 ஒடனிலை கோட்டையில்", "31 ஜூலை 1805 சங்ககிரி கோட்டையில்", "15 ஆகஸ்ட் 1805 கோயம்புத்தூரில்", "1 அக்டோபர் 1804 அரச்சலூரில்"],
+    ans: 1,
+    diff: "medium",
+    expl: "31st July 1805 was the festival day of Aadi Perukku — a sorrow day in Kongunathu history. Four gallows were ready at Sangakiri fort. Chinnamalai, Periyathambi, Kiledhar and Karuppu Servai were all hanged.",
+    explTA: "31 ஜூலை 1805 ஆடி பெருக்கு திருவிழா நாள் — கொங்கு நாட்டு வரலாற்றில் சோகமான நாள். சங்ககிரி கோட்டையில் நான்கு தூக்கு மேடைகள் தயார் செய்யப்பட்டன. சின்னமலை, பெரியத்தம்பி, கிலேதார் மற்றும் கருப்பு செர்வை அனைவரும் தூக்கிலிடப்பட்டனர்."
+  },
+  {
+    q: "What was Dheeran Chinnamalai's memorable last words when British offered to spare his life?",
+    qta: "பிரிட்டிஷார் உயிர் மன்னிக்க முன்வந்தபோது தீரன் சின்னமலையின் நினைவிற்குரிய கடைசி வார்த்தைகள் என்ன?",
+    opts: ["I will fight till my last breath", "It is better to die than to live as a slave — Thousands of Chinnamalais will appear", "I bow to no foreign power", "Death before surrender"],
+    optsTA: ["கடைசி மூச்சு வரை போரிடுவேன்", "அடிமையாக வாழ்வதை விட மரணமே மேல் — ஆயிரம் சின்னமலைகள் தோன்றுவர்", "நான் எந்த அன்னிய சக்திக்கும் தலை வணங்க மாட்டேன்", "சரணடைவதை விட மரணம் மேல்"],
+    ans: 1,
+    diff: "medium",
+    expl: "Chinnamalai said: 'My mind does not give room to live a life of slavery. It is better for you to die than to live as a slave. Thousands of Chinnamalais will appear. The bonds of slavery of our country will be untied.' These prophetic words inspired future generations.",
+    explTA: "சின்னமலை கூறினார்: 'அடிமை வாழ்க்கை வாழ என் மனம் இடமளிக்கவில்லை. அடிமையாக வாழ்வதை விட மரணமே மேல். ஆயிரம் சின்னமலைகள் தோன்றுவர். நம் நாட்டின் அடிமைச் சங்கிலி அறுபடும்.' இந்த தீர்க்கதரிசன வார்த்தைகள் எதிர்கால தலைமுறைகளை ஊக்குவித்தன."
+  },
+
+  // ══ SECTION 7: REGIONAL LEAGUES & SOUTH INDIAN REVOLT (Q83–92) ══
+
+  {
+    q: "How many regional confederations were formed between 1795 to 1799?",
+    qta: "1795 முதல் 1799 வரை எத்தனை பிராந்திய கூட்டணிகள் உருவாக்கப்பட்டன?",
+    opts: ["Two", "Three", "Four", "Five"],
+    optsTA: ["இரண்டு", "மூன்று", "நான்கு", "ஐந்து"],
+    ans: 2,
+    diff: "medium",
+    expl: "From 1795 to 1799, four regional confederations were formed: Ramanathapuram, Tirunelveli, Dindigul, and Malabar-Coimbatore. These were precursors to the South Indian Rebellion of 1800-1801.",
+    explTA: "1795 முதல் 1799 வரை நான்கு பிராந்திய கூட்டணிகள் உருவாக்கப்பட்டன: இராமநாதபுரம், திருநெல்வேலி, தினிகல் மற்றும் மலபார்-கோயம்புத்தூர். இவை 1800-1801 தென்னிந்திய கிளர்ச்சியின் முன்னோடிகள்."
+  },
+  {
+    q: "Who was the leader of the Dindigul League?",
+    qta: "தினிகல் லீக்கின் தலைவர் யார்?",
+    opts: ["Marudhu Pandyar", "Kerala Varma", "Gopala Nayak of Virupatchi", "Khan-e-Jagan"],
+    optsTA: ["மருது பாண்டியர்", "கேரள வர்மா", "விருபாட்சியின் கோபால நாயக்கர்", "கான்-இ-ஜகான்"],
+    ans: 2,
+    diff: "medium",
+    expl: "Gopala Nayak of Virupatchi was the founder of the Dindigul League. He spearheaded the Dindigul League formed with Lakshmi Nayak of Manaparai and Poojai Nayak of Devadanapatti.",
+    explTA: "விருபாட்சியின் கோபால நாயக்கர் தினிகல் லீக்கின் நிறுவனர். மனபாறையின் லக்ஷ்மி நாயக்கர் மற்றும் தேவதானப்பட்டியின் பூஜை நாயக்கருடன் சேர்ந்து தினிகல் லீக்கை உருவாக்கினார்."
+  },
+  {
+    q: "What was the Palani Conspiracy (Virupatchi Conference) of April 29, 1800?",
+    qta: "ஏப்ரல் 29, 1800 இன் பாலனி சதி (விருபாட்சி மாநாடு) என்றால் என்ன?",
+    opts: ["A peace negotiation with the British", "A meeting of anti-British forces to plan simultaneous rebellion using guerrilla tactics", "A religious gathering at the Palani temple", "A conference to elect the next Palayakkarar leader"],
+    optsTA: ["பிரிட்டிஷாருடன் சமாதான பேச்சு", "ஒரே நேரத்தில் கிளர்ச்சி மற்றும் கெரில்லா தந்திரங்களை திட்டமிட பிரிட்டிஷ் எதிர்ப்பு படைகளின் கூட்டம்", "பழனி கோவிலில் மத கூட்டம்", "அடுத்த பாளையக்காரர் தலைவரை தேர்ந்தெடுக்கும் மாநாடு"],
+    ans: 1,
+    diff: "hard",
+    expl: "On April 29, 1800, anti-British forces gathered at Virupatchi under Gopala Nayak. Three major decisions: (1) Start rebellion simultaneously in many areas; (2) Rebels fight unitedly; (3) Adopt guerrilla hide-and-attack method. It was decided to attack Coimbatore on 3 June 1800.",
+    explTA: "ஏப்ரல் 29, 1800 அன்று கோபால நாயக்கரின் தலைமையில் விருபாட்சியில் பிரிட்டிஷ் எதிர்ப்பு படைகள் கூடின. மூன்று முக்கிய முடிவுகள்: (1) பல இடங்களில் ஒரே நேரத்தில் கிளர்ச்சி; (2) கிளர்ச்சியாளர்கள் ஒன்றிணைந்து போரிடுவது; (3) கெரில்லா முறை பயன்படுத்துவது. ஜூன் 3, 1800 அன்று கோயம்புத்தூரை தாக்க திட்டம் தீட்டப்பட்டது."
+  },
+  {
+    q: "Why was Coimbatore Fort specifically chosen as the target for the 3 June 1800 attack?",
+    qta: "3 ஜூன் 1800 தாக்குதலுக்கு கோயம்புத்தூர் கோட்டை ஏன் குறிப்பாக இலக்காக தேர்ந்தெடுக்கப்பட்டது?",
+    opts: ["It was the weakest British fort", "It was the last day of Mukarram festival and served as a bridge between North and South Indian factions", "It had the largest ammunition store", "The British Governor resided there"],
+    optsTA: ["அது மிகவும் பலவீனமான பிரிட்டிஷ் கோட்டை", "அது முகர்ரம் திருவிழாவின் கடைசி நாளாக இருந்தது மற்றும் வட-தென் இந்திய குழுக்களுக்கு இடையில் பாலமாக செயல்பட்டது", "அது மிகப்பெரிய வெடிமருந்து கிடங்கை கொண்டிருந்தது", "பிரிட்டிஷ் கவர்னர் அங்கு வாழ்ந்தார்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Coimbatore was chosen because: (1) It served as a bridge between the South and North Indian revolutionary factions; (2) 3 June 1800 was the last day of Mukarram festival, when soldiers were expected to be tired from celebrations; (3) The fort's fifth corps consisted mostly of Muslim soldiers who might not oppose.",
+    explTA: "கோயம்புத்தூர் தேர்ந்தெடுக்கப்பட்டதற்கான காரணங்கள்: (1) தென் மற்றும் வட இந்திய புரட்சிகர குழுக்களுக்கு இடையில் பாலமாக செயல்பட்டது; (2) ஜூன் 3, 1800 முகர்ரம் திருவிழாவின் கடைசி நாளாக இருந்ததால் வீரர்கள் கொண்டாட்டத்தில் சோர்ந்திருப்பார்கள் என்று எதிர்பார்க்கப்பட்டது; (3) கோட்டையின் ஐந்தாம் படை பெரும்பாலும் முஸ்லீம் வீரர்களைக் கொண்டிருந்தது."
+  },
+  {
+    q: "The Carnatic Treaty of 1801 was signed between whom?",
+    qta: "1801 இன் கர்நாடக ஒப்பந்தம் யார் யாருக்கிடையில் கையெழுத்திடப்பட்டது?",
+    opts: ["British and Marudhu Brothers", "Nawab of Arcot and the East India Company", "British and Kattabomman's successors", "Dheeran Chinnamalai and the British"],
+    optsTA: ["பிரிட்டிஷ் மற்றும் மருது சகோதரர்கள்", "அர்காட் நவாப் மற்றும் கிழக்கிந்திய கம்பெனி", "பிரிட்டிஷ் மற்றும் கட்டபொம்மனின் வாரிசுகள்", "தீரன் சின்னமலை மற்றும் பிரிட்டிஷ்"],
+    ans: 1,
+    diff: "medium",
+    expl: "The Poligar War concluded with the signing of the Carnatic Treaty in 1801 between the Nawab of Arcot and the East India Company. This treaty marked the British assumption of direct control over Tamil Nadu, effectively ending the Poligar System.",
+    explTA: "1801 இல் அர்காட் நவாப் மற்றும் கிழக்கிந்திய கம்பெனிக்கு இடையில் கர்நாடக ஒப்பந்தம் கையெழுத்திடப்பட்டதுடன் பாளையக்காரர் போர் முடிவுக்கு வந்தது. இந்த ஒப்பந்தம் தமிழ்நாட்டின் மீது பிரிட்டிஷ் நேரடி கட்டுப்பாட்டை குறிக்கிறது."
+  },
+
+  // ══ SECTION 8: VELLORE MUTINY & MISC (Q93–100) ══
+
+  {
+    q: "Who was Veera Alagu Muthukon and what was his unique death?",
+    qta: "வீர அழகு முத்துக்கோன் யார், அவரது தனித்துவமான மரணம் என்ன?",
+    opts: ["A Poligar of Madurai who died in battle", "King of Katalangulam who was tied with 248 others in front of a cannon and blasted to death", "Commander of Kattabomman who was hanged", "A follower of Marudhu brothers exiled to Penang"],
+    optsTA: ["மதுரையின் பாளையக்காரர், போரில் இறந்தார்", "கதலாங்குளத்தின் ஆட்சியாளர், 248 பேருடன் பீரங்கி முன்பு கட்டி வெடிக்கச் செய்யப்பட்டார்", "கட்டபொம்மனின் தளபதி, தூக்கிலிடப்பட்டார்", "மருது சகோதரர்களின் தொண்டர், பினாங்கிற்கு நாடு கடத்தப்பட்டார்"],
+    ans: 1,
+    diff: "hard",
+    expl: "Veera Alagu Muthukon was born in 1728 as king of Katalangulam. In 1759, through Maruthanayakam's trick, Alagumuthukon and 248 others were tied in front of a cannon and blasted to death — a particularly cruel method of execution.",
+    explTA: "வீர அழகு முத்துக்கோன் 1728 இல் கதலாங்குளத்தின் ஆட்சியாளராக பிறந்தார். 1759 இல் மருதநாயகத்தின் தந்திரத்தால் அழகுமுத்துக்கோன் மற்றும் 248 பேர் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர் — மிகவும் கொடுமையான மரண தண்டனை முறை."
+  },
+  {
+    q: "Who was the first Indian King to be exiled by the British?",
+    qta: "பிரிட்டிஷாரால் நாடுகடத்தப்பட்ட முதல் இந்திய அரசர் யார்?",
+    opts: ["Chinna Marudhu", "Periya Marudhu", "Vengai Periya Udayana Devar (King of Sivaganga)", "Kattabomman"],
+    optsTA: ["சின்ன மருது", "பெரிய மருது", "வேங்கை பெரிய உடையன் தேவர் (சிவகங்கை ஆட்சியாளர்)", "கட்டபொம்மன்"],
+    ans: 2,
+    diff: "hard",
+    expl: "Vengai Periya Udayana Devar (Venkan Periya Wodeyar Devar), the King of Sivaganga and Periya Marudhu's son-in-law, was the first Indian King to be exiled by the British. He was exiled to Penang and later to Bencoolen Prison in Sumatra. He died on 19 September 1802.",
+    explTA: "வேங்கை பெரிய உடையன் தேவர் (வேங்கை பெரிய வொடையர் தேவர்), சிவகங்கை ஆட்சியாளர் மற்றும் பெரிய மருதுவின் மருமகன், பிரிட்டிஷாரால் நாடுகடத்தப்பட்ட முதல் இந்திய அரசர். பினாங்கிற்கும் பின்னர் சுமத்ரா தீவில் உள்ள பெங்குலன் சிறைக்கும் நாடுகடத்தப்பட்டார். செப்டம்பர் 19, 1802 அன்று இறந்தார்."
+  },
+  {
+    q: "What was the significance of the ship 'Admiral Nelson' on February 11, 1802?",
+    qta: "பிப்ரவரி 11, 1802 அன்று 'அட்மிரல் நெல்சன்' கப்பலின் முக்கியத்துவம் என்ன?",
+    opts: ["It brought British reinforcements to Tuticorin", "It carried 73 prisoners including the King of Sivaganga from Tuticorin to Penang", "It was captured by the Marudhu brothers", "It brought the Carnatic Treaty documents"],
+    optsTA: ["அது கோயம்புத்தூருக்கு பிரிட்டிஷ் வலுவூட்டப்பட்ட படை கொண்டு வந்தது", "அது தூத்துக்குடியிலிருந்து சிவகங்கை ஆட்சியாளர் உட்பட 73 கைதிகளை பினாங்கிற்கு கொண்டு சென்றது", "மருது சகோதரர்களால் கைப்பற்றப்பட்டது", "கர்நாடக ஒப்பந்த ஆவணங்கள் கொண்டு வந்தது"],
+    ans: 1,
+    diff: "hard",
+    expl: "On February 11, 1802, the ship Admiral Nelson started her voyage from Tuticorin harbour to Penang, Malaysia, carrying 73 prisoners, including Vengai Periya Udayana Devar, the ruler of Sivaganga and first Indian king to be exiled by the British.",
+    explTA: "பிப்ரவரி 11, 1802 அன்று 'அட்மிரல் நெல்சன்' கப்பல் தூத்துக்குடி துறைமுகத்திலிருந்து பினாங்கிற்கு புறப்பட்டது. சிவகங்கை ஆட்சியாளர் வேங்கை பெரிய உடையன் தேவர் உட்பட 73 கைதிகளை கொண்டு சென்றது."
+  },
+  {
+    q: "What was the Sundaralingam and Vadivu's act called in Indian history?",
+    qta: "இந்திய வரலாற்றில் சுந்தரலிங்கம் மற்றும் வடிவுவின் செயல் என்று அழைக்கப்படுகிறது?",
+    opts: ["The first revolutionary act", "The first suicide bombers of the Indian War of Independence", "The first guerrilla attack", "The first spy mission"],
+    optsTA: ["முதல் புரட்சிகர செயல்", "இந்திய சுதந்திரப் போரின் முதல் தற்கொலை வீரர்கள்", "முதல் கெரில்லா தாக்குதல்", "முதல் உளவு நடவடிக்கை"],
+    ans: 1,
+    diff: "medium",
+    expl: "Sundaralingam, disguised as a cowherd, and his female relative Vadivu, jumped into the British ammunition depot after setting it on fire on September 8, 1799. They are considered the first suicide bombers of the Indian War of Independence. Panchalankurichi was captured by the British the very next day.",
+    explTA: "சுந்தரலிங்கம் மாட்டிடையன் வேடமிட்டு, அவரது பெண் உறவினர் வடிவுவுடன், செப்டம்பர் 8, 1799 அன்று பிரிட்டிஷ் வெடிமருந்து கிடங்கில் தீ வைத்த பிறகு குதித்தனர். அவர்கள் இந்திய சுதந்திரப் போரின் முதல் தற்கொலை வீரர்கள் என்று கருதப்படுகின்றனர். மறுநாளே பஞ்சலங்குறிச்சி பிரிட்டிஷாரால் கைப்பற்றப்பட்டது."
+  },
+  {
+    q: "Which of the following statements about the Palayakkarar system is INCORRECT?",
+    qta: "பாளையக்காரர் முறையைப் பற்றிய பின்வரும் கூற்றுகளில் எது தவறானது?",
+    opts: ["The Nayakas were vassals of the Vijayanagar ruler", "The Palayakkarars maintained police forces called Kavalkara", "The Carnatic Treaty of 1801 strengthened the Palayakkarar system", "Visvanatha Nayaka was the founding father of the Nayaka kingdom at Madurai"],
+    optsTA: ["நாயக்கர்கள் விஜயநகர ஆட்சியாளரின் சாமந்தர்கள்", "பாளையக்காரர்கள் காவல்காரா என்ற காவல் படைகளை பராமரித்தனர்", "1801 இன் கர்நாடக ஒப்பந்தம் பாளையக்காரர் முறையை வலுப்படுத்தியது", "விஸ்வநாத நாயக்கர் மதுரையில் நாயக்க ராஜ்யத்தின் நிறுவன தந்தை"],
+    ans: 2,
+    diff: "medium",
+    expl: "The Carnatic Treaty of 1801 did NOT strengthen the Palayakkarar system — it actually ENDED it. The treaty marked British assumption of direct control over Tamil Nadu, effectively ending the Poligar System.",
+    explTA: "1801 இன் கர்நாடக ஒப்பந்தம் பாளையக்காரர் முறையை வலுப்படுத்தவில்லை — இது அதை முடித்துவிட்டது. இந்த ஒப்பந்தம் தமிழ்நாட்டின் மீது பிரிட்டிஷ் நேரடி கட்டுப்பாட்டை குறிக்கிறது, பாளையக்காரர் முறையை முடிவுக்கு கொண்டுவந்தது."
+  }
+
+];
+    var QUIZ_BANK={};
+    QUIZ_BANK["palayam"]=PALAYAM_QUIZ_DATA;
+    
+function shuffleArray(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function showToast(m){var t=document.getElementById('_toast');if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.3s;';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2500);}
+var QS={cat:null,questions:[],index:0,score:0,answered:false,timer:null,timeLeft:30,startTime:0};
+function startQuiz(catId){
+  var bank=QUIZ_BANK[catId]||[];
+  QS.cat=catId;QS.questions=shuffleArray(bank);
+  QS.index=0;QS.score=0;QS.answered=false;QS.startTime=Date.now();
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('quizEngine').style.display='block';
+  document.getElementById('scoreScreen').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderQ();
+}
+function renderQ(){
+  var cur=QS.questions[QS.index];if(!cur)return;
+  var total=QS.questions.length;
+  document.getElementById('qProg').textContent='கேள்வி '+(QS.index+1)+' / '+total;
+  document.getElementById('qScoreLabel').textContent='மதிப்பெண்: '+QS.score;
+  document.getElementById('progFill').style.width=((QS.index/total)*100)+'%';
+  // Hide next area
+  document.getElementById('nextArea').style.display='none';
+  var nums=['அ','ஆ','இ','ஈ'];
+  var opts=cur.optsTA||cur.opts;
+  var qText=cur.qta?'<div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.q+'</div><div class="q-text">'+cur.qta+'</div>':'<div class="q-text">'+cur.q+'</div>';
+  var diffLabel=cur.diff==='easy'?'🟢 எளிது':cur.diff==='hard'?'🔴 கடினம்':'🟡 நடுத்தரம்';
+  var optHTML='';
+  for(var i=0;i<opts.length;i++){
+    optHTML+='<button class="opt-btn" onclick="checkAnswer(this,'+i+','+cur.ans+')">'+'<span class="ob-num">'+nums[i]+'</span><span>'+opts[i]+'</span></button>';
+  }
+  document.getElementById('questionContainer').innerHTML='<div class="q-card"><div class="q-num">கேள்வி '+(QS.index+1)+'</div>'+qText+'<span class="q-diff diff-'+(cur.diff||'medium')+'">'+diffLabel+'</span><div class="opts-list">'+optHTML+'</div><div class="expl-box" id="explBox"></div></div>';
+  startTimer();
+}
+function startTimer(){
+  QS.timeLeft=30;QS.answered=false;
+  if(QS.timer)clearInterval(QS.timer);
+  updateTimer(30);
+  QS.timer=setInterval(function(){QS.timeLeft--;updateTimer(QS.timeLeft);if(QS.timeLeft<=0){clearInterval(QS.timer);autoSubmit();}},1000);
+}
+function updateTimer(v){var el=document.getElementById('timerDisplay');if(el){el.textContent=v;el.style.background=v<=10?'#dc2626':'var(--accent)';}}
+function showNextBtn(){
+  var na=document.getElementById('nextArea');
+  var nb=document.getElementById('nextBtnEl');
+  var isLast=QS.index+1>=QS.questions.length;
+  nb.textContent=isLast?'📊 முடிவு காண்க':'அடுத்த கேள்வி →';
+  na.style.display='block';
+}
+function autoSubmit(){
+  var cur=QS.questions[QS.index];QS.answered=true;
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  var btns=document.querySelectorAll('.opt-btn');
+  if(btns[cur.ans])btns[cur.ans].classList.add('correct');
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">⏱️ நேரம் முடிந்தது</div>'+(cur.explTA?'<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function checkAnswer(btn,chosen,correct){
+  if(QS.answered)return;QS.answered=true;clearInterval(QS.timer);
+  var cur=QS.questions[QS.index];
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  document.querySelectorAll('.opt-btn')[correct].classList.add('correct');
+  if(chosen===correct){QS.score++;showToast('✅ சரியான விடை!');}else{btn.classList.add('wrong');showToast('❌ தவறான விடை!');}
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">📖 விளக்கம்</div>'+(cur.explTA?'<div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function nextQuestion(){
+  QS.index++;
+  if(QS.index<QS.questions.length){renderQ();}else{showScore();}
+}
+function showScore(){
+  var total=QS.questions.length;var wrong=total-QS.score;
+  var pct=Math.round((QS.score/total)*100);var elapsed=Math.round((Date.now()-QS.startTime)/1000);
+  var emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'👍':'💪';
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='block';
+  document.getElementById('scoreEmoji').textContent=emoji;
+  document.getElementById('scoreNum').textContent=QS.score;
+  document.getElementById('scoreTot').textContent=total;
+  document.getElementById('statCorrect').textContent=QS.score;
+  document.getElementById('statWrong').textContent=wrong;
+  document.getElementById('statTime').textContent=elapsed+'s';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function retryQuiz(){document.getElementById('scoreScreen').style.display='none';startQuiz(QS.cat);}
+function exitQuiz(){
+  if(QS.timer)clearInterval(QS.timer);
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='none';
+  document.getElementById('startScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startThisQuiz(){document.getElementById('startScreen').style.display='none';startQuiz(CURRENT_CAT);}
+function goBack(){
+  if(document.getElementById('quizEngine').style.display!=='none'||document.getElementById('scoreScreen').style.display!=='none'){exitQuiz();}
+  else{window.location.href='quiz.html';}
+}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme')||'light';
+  var n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('tnpsc-theme',n);
+  document.getElementById('themeBtn').textContent=n==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var t=localStorage.getItem('tnpsc-theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
+});
+
+  </script>
+</body>
+</html>
