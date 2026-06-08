@@ -1,4 +1,3 @@
-<!-- TNPSC-VETTAI-v3-FINAL-SC-FREEDOM -->
 <!DOCTYPE html>
 <html lang="ta" data-theme="light">
 <head>
@@ -1280,10 +1279,10 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
         </div>
       </div>
       <div class="hero-cta">
-        <button class="btn-hero primary" onclick="navigate('quiz')" aria-label="மாதிரித் தேர்வு தொடங்கு">
+        <button class="btn-hero primary" onclick="goQuiz()" aria-label="மாதிரித் தேர்வு தொடங்கு">
           📝 தேர்வு தொடங்கு
         </button>
-        <button class="btn-hero secondary" onclick="navigate('ebooks')" aria-label="இலவச நூல்கள் பார்">
+        <button class="btn-hero secondary" onclick="goQuiz()" aria-label="இலவச நூல்கள் பார்">
           📚 இலவச நூல்கள்
         </button>
       </div>
@@ -1321,22 +1320,22 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
       <div class="sec-title">விரைவு அணுகல்</div>
     </div>
     <div class="quick-grid" role="navigation" aria-label="விரைவு அணுகல்">
-      <div class="qcard" onclick="navigate('quiz')" role="button" tabindex="0" aria-label="மாதிரித் தேர்வு">
+      <div class="qcard" onclick="goQuiz()" role="button" tabindex="0" aria-label="மாதிரித் தேர்வு">
         <div class="qi" aria-hidden="true">📝</div>
         <div class="ql">மாதிரித் தேர்வு</div>
         <div class="qn">9 பிரிவுகள்</div>
       </div>
-      <div class="qcard" onclick="navigate('polity')" role="button" tabindex="0" aria-label="கட்டுரைகள்">
+      <div class="qcard" onclick="goArticles()" role="button" tabindex="0" aria-label="கட்டுரைகள்">
         <div class="qi" aria-hidden="true">📖</div>
         <div class="ql">கட்டுரைகள்</div>
         <div class="qn">அரசியல் & வரலாறு</div>
       </div>
-      <div class="qcard" onclick="navigate('ebooks')" role="button" tabindex="0" aria-label="இலவச நூல்கள்">
+      <div class="qcard" onclick="goQuiz()" role="button" tabindex="0" aria-label="இலவச நூல்கள்">
         <div class="qi" aria-hidden="true">📚</div>
         <div class="ql">இலவச நூல்கள்</div>
         <div class="qn">6 புத்தகங்கள்</div>
       </div>
-      <div class="qcard" onclick="navigate('paid')" role="button" tabindex="0" aria-label="கட்டண நூல்கள்">
+      <div class="qcard" onclick="goQuiz()" role="button" tabindex="0" aria-label="கட்டண நூல்கள்">
         <div class="qi" aria-hidden="true">⭐</div>
         <div class="ql">கட்டண நூல்கள்</div>
         <div class="qn">4 வழிகாட்டிகள்</div>
@@ -1346,7 +1345,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
     <!-- Subjects -->
     <div class="sec-head">
       <div class="sec-title">பாடப் பிரிவுகள்</div>
-      <div class="sec-link" onclick="navigate('quiz')">அனைத்தும் →</div>
+      <div class="sec-link" onclick="goQuiz()">அனைத்தும் →</div>
     </div>
     <div class="subject-grid" id="subjectGrid" role="list">
       <!-- Injected by JS -->
@@ -1392,7 +1391,107 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
         <a href="#">தனியுரிமை கொள்கை</a>
         <a href="#">பயன்பாட்டு நிபந்தனைகள்</a>
         <a href="#">DMCA</a>
-        <a href="https://wa.me/918122826152" target="_blank" rel="noopener">WhatsApp</a>
+      <!-- ══ OUR PLATFORMS ══ -->
+    <div style="margin:20px 0 8px;">
+      <div class="sec-head">
+        <div class="sec-title">எங்கள் தளங்கள்</div>
+        <div class="sec-sub">Our Platforms</div>
+      </div>
+
+      <!-- Websites -->
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase;">🌐 இணையதளங்கள்</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+
+        <a href="https://www.schooltag.in" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#0c4b76,#1a6fa8);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🏷️</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:var(--primary);">SchoolTag.in</div>
+            <div style="font-size:11px;color:var(--text-muted);">மாணவர் பெயர் லேபிள் & கல்வி கருவிகள்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+        <a href="https://www.singamstartup.com" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#dc2626,#ef4444);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🦁</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#dc2626;">SingamStartup.com</div>
+            <div style="font-size:11px;color:var(--text-muted);">தொழில் நுண்ணறிவு & வணிக திட்டங்கள்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+        <a href="https://kaarkalvi.vercel.app" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#d97706,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🚗</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#d97706;">KaarKalvi</div>
+            <div style="font-size:11px;color:var(--text-muted);">கார் கல்வி — வாகன கல்வி தளம்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+        <a href="https://invitezoom.vercel.app" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🎉</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#7c3aed;">InviteZoom</div>
+            <div style="font-size:11px;color:var(--text-muted);">பிறந்தநாள் & திருமண அழைப்பிதழ்கள்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+      </div>
+
+      <!-- YouTube Channels -->
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase;">📺 YouTube சேனல்கள்</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+
+        <a href="https://www.youtube.com/@LandLawTamil" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#dc2626,#ff0000);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">▶️</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#dc2626;">LandLaw Tamil</div>
+            <div style="font-size:11px;color:var(--text-muted);">நில சட்டம் & பதிவு சுற்றறிக்கைகள் | 1000+ சந்தாதாரர்கள்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+        <a href="https://www.youtube.com/@IdeazoomAcademy-t3l" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#0891b2,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">▶️</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#0891b2;">Ideazoom Academy</div>
+            <div style="font-size:11px;color:var(--text-muted);">அறிவியல், கல்வி & பல்துறை தமிழ் சேனல்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+        <a href="https://www.youtube.com/@BdayZone" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;text-decoration:none;box-shadow:var(--shadow-sm);">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#e85d04,#fb923c);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">▶️</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#e85d04;">Bday Zone</div>
+            <div style="font-size:11px;color:var(--text-muted);">பிறந்தநாள் வாழ்த்துகள் சேனல் | ~1610 சந்தாதாரர்கள்</div>
+          </div>
+          <div style="color:var(--text-muted);font-size:16px;">›</div>
+        </a>
+
+      </div>
+
+      <!-- DJ Groups badge -->
+      <div style="background:linear-gradient(135deg,#0c4b76,#1a6fa8);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+        <div style="font-size:28px;">🎯</div>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:white;">DJ Groups / Ideazoom Academy</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.7);">Digital Products & Educational Content</div>
+        </div>
+      </div>
+    </div>
+    <!-- ══ END OUR PLATFORMS ══ -->
+
+      <a href="https://wa.me/918122826152" target="_blank" rel="noopener">WhatsApp</a>
       </nav>
       <div class="footer-copy">© 2025 TNPSC வேட்டை. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</div>
     </footer>
@@ -1705,1121 +1804,6 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
     </div>
   </section>
 
-  <!-- ════════════════════
-       POLITY SECTION
-  ════════════════════ -->
-  <section id="polity" class="section" aria-label="அரசியல் கட்டுரைகள்">
-
-    <!-- Article List View -->
-    <div id="polityListView">
-      <div class="sec-head">
-        <div class="sec-title">அரசியல் கட்டுரைகள்</div>
-      </div>
-
-      <!-- Subject filter pills -->
-      <div class="subject-nav" role="tablist" aria-label="பாடப்பிரிவு வடிகட்டி">
-        <button class="subject-pill active" onclick="filterSubject(this,'polity')" role="tab">⚖️ அரசியல்</button>
-        <button class="subject-pill" onclick="filterSubject(this,'history')" role="tab">🏛️ வரலாறு</button>
-        <button class="subject-pill" onclick="filterSubject(this,'geo')" role="tab">🗺️ புவியியல்</button>
-        <button class="subject-pill" onclick="filterSubject(this,'science')" role="tab">🔬 அறிவியல்</button>
-        <button class="subject-pill" onclick="filterSubject(this,'economics')" role="tab">💹 பொருளியல்</button>
-        <button class="subject-pill" onclick="filterSubject(this,'tamil')" role="tab">அ தமிழ்</button>
-        <button class="subject-pill" onclick="startQuiz('palayam')" style="background:#fef2f2;color:#dc2626;border-color:#dc2626;" role="tab">⚔️ பாளையக்காரர்</button>
-      </div>
-
-      <!-- Coming soon chips -->
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-        <span style="background:#eff6ff;color:var(--primary);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid #bfdbfe;">📚 8 கட்டுரைகள் திட்டமிடப்பட்டுள்ளன</span>
-        <span style="background:var(--green-bg);color:var(--green);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid #bbf7d0;">✅ 3 வெளியிடப்பட்டது</span>
-      </div>
-
-      <!-- Article cards -->
-      <div id="articleList" role="list">
-
-        <!-- Article 01 — LIVE -->
-        <div class="article-card" onclick="openArticle('constitution')" role="listitem" tabindex="0" aria-label="இந்திய அரசியல்அமைப்பு கட்டுரை திறக்க">
-          <div class="article-card-stripe" style="background:linear-gradient(180deg,#0c4b76,#1a6fa8);"></div>
-          <div class="article-card-body">
-            <span class="article-card-tag" style="background:#eff6ff;color:#1d4ed8;">⚖️ அரசியல் அமைப்பு</span>
-            <div class="article-card-num">கட்டுரை 01 · POLITY SERIES</div>
-            <div class="article-card-title-en">The Making of the Indian Constitution</div>
-            <div class="article-card-title-ta">இந்திய அரசியல்அமைப்பு உருவான கதை</div>
-            <div class="article-card-meta">
-              <span>📖 15 நிமிட வாசிப்பு</span>
-              <span>🎯 அனைத்து குரூப்</span>
-              <span style="color:var(--green);font-weight:700;">✅ Live</span>
-            </div>
-          </div>
-          <div class="article-card-arrow">›</div>
-        </div>
-
-        <!-- Article 02 — LIVE (Vedanayagam) -->
-        <div class="article-card" onclick="openArticle('vedanayagam')" role="listitem" tabindex="0" aria-label="மாயூரம் வேதநாயகம் பிள்ளை கட்டுரை திறக்க">
-          <div class="article-card-stripe" style="background:linear-gradient(180deg,#7c3aed,#a855f7);"></div>
-          <div class="article-card-body">
-            <span class="article-card-tag" style="background:#f5f3ff;color:#6d28d9;">📜 தமிழ் இலக்கிய வரலாறு</span>
-            <div class="article-card-num">கட்டுரை 02 · TAMIL LITERATURE SERIES</div>
-            <div class="article-card-title-en">Mayuram Vedanayagam Pillai — Father of Tamil Novel</div>
-            <div class="article-card-title-ta">மாயூரம் வேதநாயகம் பிள்ளை — தமிழ் நாவலின் தந்தை</div>
-            <div class="article-card-meta">
-              <span>📖 18 நிமிட வாசிப்பு</span>
-              <span>🎯 குரூப் 2, 4</span>
-              <span style="color:var(--green);font-weight:700;">✅ Live</span>
-            </div>
-          </div>
-          <div class="article-card-arrow">›</div>
-        </div>
-
-        <div class="article-card" onclick="openArticle('supremecourt')" role="listitem" tabindex="0">          <div class="article-card-stripe" style="background:linear-gradient(180deg,#7c3aed,#a855f7);"></div>
-          <div class="article-card-body">
-            <span class="article-card-tag" style="background:#f5f3ff;color:#6d28d9;">⚖️ நீதித்துறை</span>
-            <div class="article-card-num">கட்டுரை 03 · POLITY SERIES</div>
-            <div class="article-card-title-en">Supreme Court of India — Guardian of the Constitution</div>
-            <div class="article-card-title-ta">இந்திய உச்ச நீதிமன்றம் — அரசியலமைப்பின் காவலன்</div>
-            <div class="article-card-meta">
-              <span>📖 20 நிமிட வாசிப்பு</span>
-              <span>🎯 குரூப் 1, 2, 4</span>
-              <span style="color:var(--green);font-weight:700;">✅ Live</span>
-            </div>
-          </div>
-          <div class="article-card-arrow">›</div>
-        </div>
-
-        <div class="article-card" style="opacity:0.55;cursor:default;" role="listitem">
-          <div class="article-card-stripe" style="background:#9ca3af;"></div>
-          <div class="article-card-body">
-            <span class="article-card-tag" style="background:#f3f4f6;color:#6b7280;">⚖️ அரசியல் அமைப்பு</span>
-            <div class="article-card-num">கட்டுரை 04 · POLITY SERIES</div>
-            <div class="article-card-title-en">Parliament of India — Lok Sabha & Rajya Sabha</div>
-            <div class="article-card-title-ta">இந்திய நாடாளுமன்றம் — மக்களவை & ராஜ்யசபை</div>
-            <div class="article-card-meta">
-              <span>📖 14 நிமிட வாசிப்பு</span>
-              <span style="color:#6b7280;font-weight:700;">🔜 விரைவில்</span>
-            </div>
-          </div>
-          <div class="article-card-arrow" style="color:#9ca3af;">›</div>
-        </div>
-
-      </div>
-      <div class="ad-slot"><span>விளம்பர இடம்</span></div>
-    </div>
-
-    <!-- ── ARTICLE READER ── -->
-    <div class="article-reader" id="articleReader">
-
-      <!-- Top bar -->
-      <div class="article-reader-topbar">
-        <button class="back-btn" onclick="closeArticle()" aria-label="கட்டுரை பட்டியலுக்கு திரும்பு">←</button>
-        <div style="flex:1;">
-          <div style="font-size:14px;font-weight:700;color:var(--primary);">அரசியல் கட்டுரைகள்</div>
-          <div style="font-size:11px;color:var(--text-muted);">TNPSC வேட்டை · Polity Series</div>
-        </div>
-        <button class="icon-btn" style="background:var(--card);border:1px solid var(--border);color:var(--text);" onclick="shareArticle()" aria-label="பகிர்">🔗</button>
-      </div>
-
-      <!-- Article meta -->
-      <div class="article-reader-meta">
-        <span>⚖️ அரசியல் அமைப்பு</span>
-        <span>·</span>
-        <span>📖 15 நிமிட வாசிப்பு</span>
-        <span>·</span>
-        <span>🎯 குரூப் 1, 2, 4</span>
-        <span>·</span>
-        <span style="color:var(--green);font-weight:700;">✅ Article 01</span>
-      </div>
-
-      <!-- Cover -->
-      <div class="art-cover" style="background:linear-gradient(135deg,#0c4b76 0%,#083a5c 60%,#0f5a8c 100%);">
-        <div class="art-cover-orb"></div>
-        <div class="art-series">POLITY SERIES · கட்டுரை 01</div>
-        <h1>The Making of the Indian Constitution</h1>
-        <h2>இந்திய அரசியல்அமைப்பு உருவான கதை</h2>
-        <div class="art-cover-chips">
-          <span class="art-chip">395 → 448 Articles</span>
-          <span class="art-chip">2 yrs 11 months</span>
-          <span class="art-chip">Dr. Ambedkar</span>
-          <span class="art-chip">26 Jan 1950</span>
-        </div>
-      </div>
-
-      <!-- Article body -->
-      <div class="art-body">
-
-        <!-- Opening -->
-        <div class="art-para">
-          <div class="en">Imagine buying a brand-new car without a user manual. No instructions. No rules. Sooner or later, confusion and accidents would occur.</div>
-          <div class="ta">ஒரு புதிய காரை வாங்கிய பிறகு அதற்கான வழிகாட்டி புத்தகம் இல்லையென்றால் என்ன ஆகும்? எதை எப்படிப் பயன்படுத்த வேண்டும் என்பது தெரியாது. குழப்பம் ஏற்படும், தவறுகள் நடக்கும்.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Similarly, a nation needs a guidebook. That guidebook is called the <strong>Constitution (அரசியல்அமைப்பு)</strong>.</div>
-          <div class="ta">அதேபோல், ஒரு நாட்டிற்கும் ஒரு வழிகாட்டி புத்தகம் தேவை. அந்த வழிகாட்டி புத்தகம்தான் <strong>அரசியல்அமைப்பு (Constitution)</strong>.</div>
-        </div>
-
-        <!-- What is Constitution -->
-        <div class="art-section-head">
-          <div class="en">What is a Constitution?</div>
-          <div class="ta">அரசியல்அமைப்பு என்றால் என்ன?</div>
-        </div>
-        <div class="art-para">
-          <div class="en">A Constitution is the supreme law of a country — the rulebook that explains how a nation should function.</div>
-          <div class="ta">அரசியல்அமைப்பு என்பது ஒரு நாட்டின் உச்சக்கட்ட சட்டமாகும் — ஒரு நாடு எவ்வாறு செயல்பட வேண்டும் என்பதை விளக்கும் விதிமுறைகளின் தொகுப்பு.</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Who makes laws</div><div class="ta">சட்டங்களை யார் இயற்ற வேண்டும்?</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Who implements laws</div><div class="ta">யார் நடைமுறைப்படுத்த வேண்டும்?</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">Who interprets laws</div><div class="ta">சட்டத்தை யார் விளக்க வேண்டும்?</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">What rights citizens enjoy</div><div class="ta">மக்களுக்கு என்ன உரிமைகள் இருக்க வேண்டும்?</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">5</div><div class="art-bullet-content"><div class="en">How the government is structured</div><div class="ta">அரசாங்கம் எவ்வாறு கட்டமைக்கப்பட வேண்டும்?</div></div></div>
-        </div>
-        <div class="art-fact">
-          <div class="fact-star">★</div>
-          <div class="fact-body">
-            <div class="en">The Indian Constitution is the longest written constitution in the world — originally 395 Articles, 8 Schedules, 22 Parts. Today: 448+ Articles, 12 Schedules, 106+ Amendments.</div>
-            <div class="ta">இந்திய அரசியல்அமைப்பு உலகிலேயே மிக நீளமான எழுதப்பட்ட அரசியல்அமைப்பு. அசல்: 395 கட்டுரைகள், 8 அட்டவணைகள். இன்று: 448+ கட்டுரைகள், 12 அட்டவணைகள், 106+ திருத்தங்கள்.</div>
-          </div>
-        </div>
-
-        <!-- Why India needed -->
-        <div class="art-section-head">
-          <div class="en">Why Did India Need a Constitution?</div>
-          <div class="ta">இந்தியாவுக்கு ஏன் அரசியல்அமைப்பு தேவைப்பட்டது?</div>
-        </div>
-        <div class="art-para">
-          <div class="en">When India became independent in 1947, the country faced an enormous challenge. India was not a small, homogeneous nation — it was a vast land with different languages, religions, cultures, and communities.</div>
-          <div class="ta">1947 ஆம் ஆண்டு இந்தியா சுதந்திரம் பெற்றபோது மிகப் பெரிய சவால் ஒன்றை எதிர்கொண்டது. நூற்றுக்கணக்கான மொழிகள், பல்வேறு மதங்கள், ஆயிரக்கணக்கான சமூகங்கள் கொண்ட மிகப் பெரிய நாடு.</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">22 Scheduled Languages + 1600+ dialects</div><div class="ta">22 அட்டவணை மொழிகள் + 1600+ வட்டார மொழிகள்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">562+ Princely States needed integration</div><div class="ta">562+ சமஸ்தானங்களை ஒருங்கிணைக்க வேண்டியிருந்தது</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">Multiple religions — Hindu, Muslim, Christian, Sikh, Buddhist, Jain</div><div class="ta">இந்து, இஸ்லாம், கிறித்தவம், சீக்கியம், பௌத்தம், ஜைனம்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">•</div><div class="art-bullet-content"><div class="en">Partition trauma and massive refugee crisis</div><div class="ta">பிரிவினை அதிர்ச்சி மற்றும் மிகப்பெரிய அகதிகள் நெருக்கடி</div></div></div>
-        </div>
-
-        <!-- Historical Timeline -->
-        <div class="art-section-head">
-          <div class="en">The Long Historical Journey</div>
-          <div class="ta">நீண்ட வரலாற்றுப் பயணம்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The Constitution was not written overnight. Its roots go back almost 200 years into British rule.</div>
-          <div class="ta">அரசியல்அமைப்பு ஒரே இரவில் எழுதப்படவில்லை. அதன் வேர்கள் கிட்டத்தட்ட 200 ஆண்டுகளுக்கு முன்பே தொடங்குகின்றன.</div>
-        </div>
-        <div class="art-timeline">
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1773</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">Regulating Act</div><div class="ev-ta">ஒழுங்குமுறை சட்டம்</div><div class="desc">First step to regulate British rule. Created the post of Governor-General.</div><div class="desc-ta">பிரிட்டிஷ் ஆட்சியை ஒழுங்குபடுத்திய முதல் சட்டம். கவர்னர் ஜெனரல் பதவி உருவானது.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1935</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">Government of India Act</div><div class="ev-ta">இந்திய அரசாங்கச் சட்டம்</div><div class="desc">Most influential British Act — the blueprint for the Indian Constitution. Introduced Federal Structure, Governor System, Emergency Provisions.</div><div class="desc-ta">இந்திய அரசியல்அமைப்பின் அடிப்படை. கூட்டாட்சி அமைப்பு, ஆளுநர் முறை, அவசரகால ஏற்பாடுகள் இதிலிருந்து பெறப்பட்டன.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1934</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">M.N. Roy's Idea</div><div class="ev-ta">எம்.என். ராய் யோசனை</div><div class="desc">First demand that Indians themselves should write their own Constitution.</div><div class="desc-ta">இந்தியர்களே தமது அரசியல்அமைப்பை எழுத வேண்டும் என்ற முதல் கோரிக்கை.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1946</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">Constituent Assembly Formed</div><div class="ev-ta">நிர்ணய சபை உருவாக்கம்</div><div class="desc">Cabinet Mission Plan. 389 members (reduced to 299 after Partition). 15 women members included.</div><div class="desc-ta">Cabinet Mission திட்டம். 389 உறுப்பினர்கள் (பிரிவினைக்குப் பிறகு 299). 15 பெண் உறுப்பினர்கள்.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">9 Dec<br>1946</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">First Meeting</div><div class="ev-ta">முதல் கூட்டம்</div><div class="desc">Dr. Sachchidananda Sinha — temporary President. Dr. Rajendra Prasad — permanent President (elected 2 days later).</div><div class="desc-ta">டாக்டர் சச்சிதானந்த சின்ஹா தற்காலிகத் தலைவர். 2 நாட்களுக்குப் பிறகு டாக்டர் ராஜேந்திர பிரசாத் நிரந்தரத் தலைவர்.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">29 Aug<br>1947</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">Drafting Committee</div><div class="ev-ta">வரைவுக் குழு</div><div class="desc">Dr. B.R. Ambedkar appointed Chairman of the 7-member Drafting Committee. 7,635 amendments proposed; 2,473 accepted.</div><div class="desc-ta">டாக்டர் அம்பேத்கர் 7 உறுப்பினர் வரைவுக் குழுவின் தலைவர். 7,635 திருத்தங்கள் முன்மொழிவு; 2,473 ஏற்கப்பட்டன.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">26 Nov<br>1949</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content"><div class="ev">Constitution Adopted</div><div class="ev-ta">ஏற்றுக்கொள்ளல்</div><div class="desc">284 members signed. Now celebrated as Constitution Day (Samvidhan Divas). Time taken: 2 years, 11 months, 18 days.</div><div class="desc-ta">284 உறுப்பினர்கள் கையொப்பமிட்டனர். இன்று அரசியல்அமைப்பு தினமாக கொண்டாடப்படுகிறது.</div></div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">26 Jan<br>1950</div><div class="art-tl-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent);"></div></div>
-            <div class="art-tl-content" style="border-color:var(--accent);"><div class="ev" style="color:var(--accent);">Republic Day 🇮🇳</div><div class="ev-ta">குடியரசு தினம்</div><div class="desc">Constitution came into force. India became a Sovereign Democratic Republic. This date chosen because it was the anniversary of Purna Swaraj Declaration (1930).</div><div class="desc-ta">அரசியல்அமைப்பு நடைமுறைக்கு வந்தது. இந்தியா இறையாண்மை ஜனநாயக குடியரசு நாடானது. 1930 பூர்ண சுராஜ் தீர்மான நினைவாக இந்நாள் தேர்ந்தெடுக்கப்பட்டது.</div></div>
-          </div>
-        </div>
-
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">Most asked: "When was the Constitution <em>adopted</em>?" → <strong>26 Nov 1949</strong> vs "When did it <em>come into force</em>?" → <strong>26 Jan 1950</strong>. These are TWO different dates — never confuse them!</div>
-            <div class="ta">"ஏற்றுக்கொள்ளல்" = 26 நவம்பர் 1949 மற்றும் "நடைமுறைக்கு வந்தது" = 26 ஜனவரி 1950 — இந்த இரண்டும் வேறு வேறு தேதிகள்!</div>
-          </div>
-        </div>
-
-        <!-- Ambedkar -->
-        <div class="art-section-head">
-          <div class="en">Dr. B.R. Ambedkar — Father of the Constitution</div>
-          <div class="ta">டாக்டர் அம்பேத்கர் — அரசியல்அமைப்பின் தந்தை</div>
-        </div>
-        <div class="art-para">
-          <div class="en">One name stands above all others — Dr. B.R. Ambedkar. As Chairman of the Drafting Committee, he transformed 7,635 proposed amendments into a coherent constitutional document over 166 days of debate.</div>
-          <div class="ta">அரசியல்அமைப்பு உருவாக்கத்தில் எல்லோரையும் விட முக்கியமாக நினைவுகூரப்படுபவர் டாக்டர் அம்பேத்கர். 166 நாட்கள் விவாதத்தில் 7,635 திருத்தங்களை ஒருங்கிணைத்த அவர் அரசியல்அமைப்பின் தந்தை என்று அழைக்கப்படுகிறார்.</div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">Ambedkar resigned as Law Minister in 1951 over the Hindu Code Bill. He converted to Buddhism on <strong>14 October 1956</strong> with 6 lakh followers — frequently asked in TNPSC!</div>
-            <div class="ta">அம்பேத்கர் 1951ல் சட்ட அமைச்சர் பதவியிலிருந்து விலகினார். <strong>14 அக்டோபர் 1956</strong> அன்று 6 லட்சம் பேருடன் புத்தமதத்திற்கு மாறினார் — TNPSC-ல் அடிக்கடி கேட்கப்படும்!</div>
-          </div>
-        </div>
-
-        <!-- Preamble -->
-        <div class="art-section-head">
-          <div class="en">The Preamble — Soul of the Constitution</div>
-          <div class="ta">முன்னுரை — அரசியல்அமைப்பின் ஆத்மா</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The Preamble is the "soul" of the Constitution, drafted by Jawaharlal Nehru as the "Objectives Resolution" in 1946. It declares India to be:</div>
-          <div class="ta">முன்னுரையை அரசியல்அமைப்பின் "ஆத்மா" என்று கூறுவர். நேரு 1946ல் "நோக்கங்கள் தீர்மானம்" ஆக வரைந்தார். இந்தியாவை இவ்வாறு அறிவிக்கிறது:</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Sovereign (இறையாண்மை) — Free from external control</div><div class="ta">வெளி நாடுகளின் கட்டுப்பாட்டில் இல்லாத சுதந்திர நாடு</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Socialist (சமதர்மம்) — Equal distribution of resources ★ Added 1976</div><div class="ta">வளங்களின் சம பகிர்வு ★ 1976ல் சேர்க்கப்பட்டது</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">Secular (மதசார்பற்ற) — No official State religion ★ Added 1976</div><div class="ta">அரசுக்கு எந்த அதிகாரப்பூர்வ மதமும் இல்லை ★ 1976ல் சேர்க்கப்பட்டது</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">Democratic (ஜனநாயக) — Government by the people</div><div class="ta">மக்களால் தேர்ந்தெடுக்கப்படும் அரசு</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">5</div><div class="art-bullet-content"><div class="en">Republic (குடியரசு) — Elected Head of State, not hereditary</div><div class="ta">தேர்ந்தெடுக்கப்பட்ட குடியரசுத் தலைவர், பரம்பரை அல்ல</div></div></div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">"Socialist" & "Secular" were NOT in the original 1949 Preamble. They were added by the <strong>42nd Constitutional Amendment, 1976</strong> during Emergency under Indira Gandhi.</div>
-            <div class="ta">"சமதர்மம்" & "மதசார்பற்ற" அசல் 1949 முன்னுரையில் இல்லை. இந்திரா காந்தி ஆட்சியில் அவசரகால காலத்தில் <strong>42வது திருத்தம் 1976</strong> மூலம் சேர்க்கப்பட்டன.</div>
-          </div>
-        </div>
-
-        <!-- Sources table -->
-        <div class="art-section-head">
-          <div class="en">Sources of the Indian Constitution</div>
-          <div class="ta">இந்திய அரசியல்அமைப்பின் ஆதாரங்கள்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The framers borrowed the best features from successful democracies around the world:</div>
-          <div class="ta">உலகின் வெற்றிகரமான ஜனநாயக நாடுகளிலிருந்து சிறந்த அம்சங்களை எடுத்தனர்:</div>
-        </div>
-        <div style="overflow-x:auto;margin:12px 0;">
-          <table class="art-table">
-            <thead><tr><th>Country | நாடு</th><th>Feature Borrowed | எடுத்தது</th><th>Tamil | தமிழ்</th></tr></thead>
-            <tbody>
-              <tr><td>🇬🇧 UK</td><td>Parliamentary System, Rule of Law, Cabinet</td><td>நாடாளுமன்ற முறை, சட்டாட்சி</td></tr>
-              <tr><td>🇺🇸 USA</td><td>Fundamental Rights, Judicial Review</td><td>அடிப்படை உரிமைகள், நீதிமன்ற மறுஆய்வு</td></tr>
-              <tr><td>🇮🇪 Ireland</td><td>Directive Principles of State Policy</td><td>நெறிமுறைக் கோட்பாடுகள்</td></tr>
-              <tr><td>🇫🇷 France</td><td>Liberty, Equality, Fraternity</td><td>சுதந்திரம், சமத்துவம், சகோதரத்துவம்</td></tr>
-              <tr><td>🇨🇦 Canada</td><td>Federal System with strong Centre</td><td>வலுவான மைய அரசுடன் கூட்டாட்சி</td></tr>
-              <tr><td>🇦🇺 Australia</td><td>Concurrent List, Joint Sitting</td><td>கூட்டுப் பட்டியல், கூட்டு அமர்வு</td></tr>
-              <tr><td>🇩🇪 Germany</td><td>Emergency Provisions</td><td>அவசரகால ஏற்பாடுகள்</td></tr>
-              <tr><td>🇿🇦 S.Africa</td><td>Amendment Procedure (Art.368)</td><td>திருத்த முறை</td></tr>
-              <tr><td>🇷🇺 USSR</td><td>Fundamental Duties, Five Year Plans</td><td>அடிப்படைக் கடமைகள்</td></tr>
-              <tr><td>🇯🇵 Japan</td><td>Procedure Established by Law</td><td>சட்டத்தால் நிறுவப்பட்ட நடைமுறை</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Why So Long -->
-        <div class="art-section-head">
-          <div class="en">Why Is the Constitution So Long?</div>
-          <div class="ta">இந்திய அரசியல்அமைப்பு ஏன் இவ்வளவு பெரியது?</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Many wonder why India's Constitution is one of the longest in the world. The answer lies in India's diversity — the framers wanted to protect different communities, languages, cultures, and regions through detailed provisions.</div>
-          <div class="ta">இந்திய அரசியல்அமைப்பு உலகிலேயே மிக நீளமான அரசியல்அமைப்புகளில் ஒன்றாக இருப்பதற்குக் காரணம் இந்தியாவின் பல்வகைமை. பல்வேறு சமூகங்கள், மொழிகள், பண்பாடுகள் மற்றும் பிராந்தியங்களின் உரிமைகளை விரிவான ஏற்பாடுகள் மூலம் பாதுகாக்க அவர்கள் விரும்பினர்.</div>
-        </div>
-
-        <!-- Conclusion -->
-        <div class="art-section-head">
-          <div class="en">Conclusion — A Living Document</div>
-          <div class="ta">முடிவுரை — உயிரோட்டமான ஆவணம்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The Indian Constitution is not merely a legal document. It is the collective dream of millions who fought for freedom. It protects our rights, limits government power, and ensures democracy survives.</div>
-          <div class="ta">இந்திய அரசியல்அமைப்பு ஒரு சட்டப் புத்தகம் மட்டுமல்ல. சுதந்திரத்திற்காக போராடிய கோடிக்கணக்கான மக்களின் கனவுகளின் தொகுப்பு. நமது உரிமைகளைப் பாதுகாக்கிறது, அரசின் அதிகாரங்களுக்கு வரம்பு விதிக்கிறது.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">More than seventy-five years later — through 106+ amendments — it remains the living foundation upon which modern India stands.</div>
-          <div class="ta">75 ஆண்டுகளுக்கும் மேலாக, 106+ திருத்தங்கள் மூலம் மாறிவந்தாலும், நவீன இந்தியா நின்று கொண்டிருக்கும் உயிரோட்டமான அடித்தளமாக அரசியல்அமைப்பு தொடர்ந்து விளங்குகிறது.</div>
-        </div>
-
-        <!-- Quick Revision -->
-        <div class="art-revision">
-          <div class="art-revision-title">⚡ TNPSC விரைவு திருப்பல் மூலை</div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Adopted: 26 Nov 1949 | In force: 26 Jan 1950</div><div class="ta">ஏற்றுக்கொள்ளல்: 26 நவம்பர் 1949 | நடைமுறை: 26 ஜனவரி 1950</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Drafting Committee Chairman: Dr. B.R. Ambedkar</div><div class="ta">வரைவுக் குழு தலைவர்: டாக்டர் அம்பேத்கர்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Constituent Assembly President: Dr. Rajendra Prasad</div><div class="ta">நிர்ணய சபை தலைவர்: டாக்டர் ராஜேந்திர பிரசாத்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Original: 395 Articles, 8 Schedules | Now: 448+ Articles, 12 Schedules</div><div class="ta">அசல்: 395 கட்டுரைகள், 8 அட்டவணைகள் | இன்று: 448+, 12 அட்டவணைகள்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Time: 2 years, 11 months, 18 days | 166 sitting days</div><div class="ta">எடுத்த நேரம்: 2 ஆண்டுகள் 11 மாதங்கள் 18 நாட்கள் | 166 நாட்கள் கூட்டம்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">"Socialist" & "Secular" added by 42nd Amendment 1976</div><div class="ta">"சமதர்மம்" & "மதசார்பற்ற" 42வது திருத்தம் 1976ல் சேர்க்கப்பட்டன</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Longest written constitution in the world</div><div class="ta">உலகின் மிக நீளமான எழுதப்பட்ட அரசியல்அமைப்பு</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Ambedkar converted to Buddhism: 14 October 1956</div><div class="ta">அம்பேத்கர் புத்தமதம்: 14 அக்டோபர் 1956</div></div></div>
-        </div>
-
-        <!-- Ad slot inside article -->
-        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
-
-        <!-- Next article teaser -->
-        <div class="card" style="border:2px dashed var(--border);text-align:center;padding:20px;" onclick="showToast('விரைவில் வரும்!')">
-          <div style="font-size:28px;margin-bottom:8px;">📖</div>
-          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">அடுத்த கட்டுரை விரைவில்</div>
-          <div style="font-size:12px;color:var(--text-muted);">Article 02: Fundamental Rights — Your Constitutional Shield</div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">அடிப்படை உரிமைகள் — உங்கள் அரசியலமைப்பு கவசம்</div>
-        </div>
-
-      </div><!-- /.art-body -->
-    </div><!-- /#articleReader -->
-
-    <!-- ── VEDANAYAGAM ARTICLE READER ── -->
-    <div class="article-reader" id="articleReaderVeda">
-
-      <div class="article-reader-topbar">
-        <button class="back-btn" onclick="closeArticle()" aria-label="கட்டுரை பட்டியலுக்கு திரும்பு">←</button>
-        <div style="flex:1;">
-          <div style="font-size:14px;font-weight:700;color:var(--primary);">தமிழ் இலக்கிய வரலாறு</div>
-          <div style="font-size:11px;color:var(--text-muted);">TNPSC வேட்டை · Tamil Literature Series</div>
-        </div>
-        <button class="icon-btn" style="background:var(--card);border:1px solid var(--border);color:var(--text);" onclick="shareArticle()" aria-label="பகிர்">🔗</button>
-      </div>
-
-      <div class="article-reader-meta">
-        <span>📜 தமிழ் இலக்கிய வரலாறு</span>
-        <span>·</span><span>📖 18 நிமிட வாசிப்பு</span>
-        <span>·</span><span>🎯 குரூப் 2, 4</span>
-        <span>·</span><span style="color:var(--green);font-weight:700;">✅ Article 02</span>
-      </div>
-
-      <!-- Cover -->
-      <div class="art-cover" style="background:linear-gradient(135deg,#4c1d95 0%,#6d28d9 60%,#7c3aed 100%);">
-        <div class="art-cover-orb"></div>
-        <div class="art-series">TAMIL LITERATURE SERIES · கட்டுரை 02</div>
-        <h1>Mayuram Vedanayagam Pillai</h1>
-        <h2>மாயூரம் வேதநாயகம் பிள்ளை — தமிழ் நாவலின் தந்தை</h2>
-        <div class="art-cover-chips">
-          <span class="art-chip">பிறப்பு: 1826</span>
-          <span class="art-chip">முதல் நாவல்: 1879</span>
-          <span class="art-chip">ஞானாம்பாள்</span>
-          <span class="art-chip">பெண் கல்வி</span>
-        </div>
-      </div>
-
-      <div class="art-body">
-
-        <!-- Opening hook -->
-        <div class="art-para">
-          <div class="en">Imagine a world where Tamil literature existed only as poetry — grand, classical, but entirely written in verse. No stories told in flowing prose. No novels. No characters you could follow page after page through real-life dilemmas.</div>
-          <div class="ta">தமிழ் இலக்கியம் முழுவதும் கவிதை வடிவிலேயே மட்டும் இருந்த ஒரு உலகை கற்பனை செய்து பாருங்கள் — பிரம்மாண்டமான, செம்மையான, ஆனால் முழுவதும் செய்யுளில் எழுதப்பட்டது. உரைநடையில் ஒரு கதையும் இல்லை. நாவல்கள் இல்லை.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">One man changed that forever. His name was <strong>Mayuram Vedanayagam Pillai (மாயூரம் வேதநாயகம் பிள்ளை)</strong> — judge, musician, social reformer, and the father of the Tamil novel.</div>
-          <div class="ta">அதை என்றென்றும் மாற்றிய ஒருவர் இருந்தார். அவர் பெயர் <strong>மாயூரம் வேதநாயகம் பிள்ளை</strong> — நீதிபதி, இசைக் கலைஞர், சமூக சீர்திருத்தவாதி, மற்றும் தமிழ் நாவலின் தந்தை.</div>
-        </div>
-
-        <!-- Section 1: Early Life -->
-        <div class="art-section-head">
-          <div class="en">Early Life & Judicial Career</div>
-          <div class="ta">இளமைக்காலமும் நீதித்துறைப் பணியும்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Born on <strong>October 11, 1826</strong>, in Inathur — a small village near Trichy — Vedanayagam Pillai showed remarkable intellectual ability from a young age. Under his tutor Tyagaraja Pillai, he mastered both Tamil and English, an unusual combination that would shape his entire life.</div>
-          <div class="ta"><strong>அக்டோபர் 11, 1826</strong> அன்று திருச்சிராப்பள்ளிக்கு அருகிலுள்ள இனாத்தூர் கிராமத்தில் பிறந்தார். தியாகராஜ பிள்ளை என்ற ஆசிரியரிடம் தமிழையும் ஆங்கிலத்தையும் கற்றுத் தேர்ந்தார். இந்த இரண்டு மொழிகளிலும் புலமை அவரது வாழ்க்கையையே வடிவமைத்தது.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">His linguistic talent brought him into the judicial service. He began as a <strong>Record Keeper</strong> at the Trichy court, then rose to become a <strong>Translator</strong>. After passing the law examinations, he served as a <strong>District Munsif (judge)</strong> — first in Tarangambadi and later in <strong>Mayiladuthurai</strong> (then known as Mayuram). This posting gave him his famous title: Mayuram Vedanayagam Pillai.</div>
-          <div class="ta">அவரது மொழித் திறன் அவரை நீதித்துறைக்கு அழைத்தது. திருச்சி நீதிமன்றத்தில் <strong>ஆவணக் காப்பாளராக</strong> தொடங்கி, பின்னர் <strong>மொழிபெயர்ப்பாளராக</strong> உயர்ந்தார். சட்டத் தேர்வுகளில் தேர்ச்சி பெற்று, தரங்கம்பாடியிலும் பின்னர் <strong>மாயூரத்திலும்</strong> (இன்றைய மயிலாடுதுறை) <strong>மாவட்ட முன்சீபாக (நீதிபதியாக)</strong> பணியாற்றினார். இந்தப் பணியிடமே அவருக்கு "மாயூரம் வேதநாயகம் பிள்ளை" என்ற நிரந்தரமான பெயரை வழங்கியது.</div>
-        </div>
-        <div class="art-fact">
-          <div class="fact-star">★</div>
-          <div class="fact-body">
-            <div class="en">Vedanayagam Pillai lived from <strong>1826 to 1889</strong>. He served as a judge while simultaneously writing literature, composing music, and organizing famine relief — a true renaissance man of 19th-century Tamil Nadu.</div>
-            <div class="ta">வேதநாயகம் பிள்ளை <strong>1826 முதல் 1889</strong> வரை வாழ்ந்தார். நீதிபதியாகப் பணியாற்றியபடியே இலக்கியம் எழுதி, இசை இயற்றி, பஞ்ச நிவாரணம் அளித்த 19ஆம் நூற்றாண்டின் பல்துறை மேதை.</div>
-          </div>
-        </div>
-
-        <!-- Section 2: Father of Tamil Novel -->
-        <div class="art-section-head">
-          <div class="en">The Father of the Tamil Novel — Prathapa Mudaliar Charithram (1879)</div>
-          <div class="ta">தமிழ் நாவலின் தந்தை — பிரதாப முதலியார் சரித்திரம் (1879)</div>
-        </div>
-        <div class="art-para">
-          <div class="en">In <strong>1879</strong>, Vedanayagam Pillai published <em>Prathapa Mudaliar Charithram (பிரதாப முதலியார் சரித்திரம்)</em> — a work that broke every rule of Tamil literary tradition. Before this book, Tamil literature was almost entirely composed in verse. He dared to tell a story in flowing prose — and changed Tamil literature forever.</div>
-          <div class="ta"><strong>1879</strong> ஆம் ஆண்டில் <em>பிரதாப முதலியார் சரித்திரம்</em> வெளியிட்டார். அதுவரை தமிழ் இலக்கியம் கிட்டத்தட்ட முழுவதும் செய்யுள் வடிவத்திலேயே இருந்தது. அவர் தைரியமாக உரைநடையில் கதை சொன்னார் — தமிழ் இலக்கியத்தையே என்றென்றும் மாற்றினார்.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">But this was not merely a stylistic revolution. The novel was a <strong>reformist manifesto disguised as an entertaining story</strong>. Through the adventures of Prathapa Mudaliar and the brilliant heroine Gnanambal, Vedanayagam Pillai addressed the most urgent social questions of his time: women's education, moral integrity, religious harmony, and Tamil pride.</div>
-          <div class="ta">ஆனால் இது வெறும் பாணி மாற்றம் மட்டுமல்ல. இந்த நாவல் <strong>ஒரு சுவாரஸ்யமான கதையாக மறைத்து வைக்கப்பட்ட சீர்திருத்த அறிக்கை</strong>. பிரதாப முதலியார் மற்றும் மேதாவி நாயகி ஞானாம்பாளின் சாகசங்கள் வழியாக பெண் கல்வி, ஒழுக்க நெறி, சமய நல்லிணக்கம், தமிழ் பெருமை ஆகிய அன்றைய முக்கியமான சமூகக் கேள்விகளை எழுப்பினார்.</div>
-        </div>
-
-        <!-- Themes -->
-        <div class="art-section-head">
-          <div class="en">Themes & Social Messages of the Novel</div>
-          <div class="ta">நாவலின் கருப்பொருள்களும் சமூக செய்திகளும்</div>
-        </div>
-
-        <!-- Theme 1 -->
-        <div class="art-highlight">
-          <div class="en"><strong>1. Women's Education & Empowerment (பெண் கல்வி & உரிமை)</strong></div>
-          <div class="ta"><strong>பெண்களின் கல்வி உரிமை மற்றும் சக்தியூட்டல்</strong></div>
-        </div>
-        <div class="art-para">
-          <div class="en">The heroine <strong>Gnanambal</strong> — whose name literally means "Goddess of Wisdom" — is not a passive character waiting to be rescued. She is educated, razor-sharp, and intellectually superior to every male character in the novel. She consistently outperforms Prathapa Mudaliar and his friend Kanakasabai in understanding literature, philosophy, and law.</div>
-          <div class="ta">நாயகி <strong>ஞானாம்பாள்</strong> — அவரது பெயருக்கே "அறிவின் தேவி" என்று பொருள் — காப்பாற்றப்படக் காத்திருக்கும் பாத்திரமல்ல. கல்வியறிவுடன், கூர்மையான அறிவுடன், நாவலில் உள்ள எல்லா ஆண் பாத்திரங்களையும் விட அறிவுத்திறன் மிக்கவளாக விளங்குகிறாள். இலக்கியம், தத்துவம், சட்டம் என அனைத்திலும் பிரதாப முதலியார் மற்றும் கனகசபையை விட திறமை மிக்கவளாக தொடர்ந்து நிரூபிக்கிறாள்.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">In a dramatic allegorical sequence, Gnanambal disguises herself as a man and is unexpectedly crowned ruler of a kingdom in chaos. Through her governance, she resolves complex legal disputes with analytical clarity — proving that <strong>administrative ability, judicial fairness, and strategic policy are not gender-dependent</strong>. This was a radical argument in 1879.</div>
-          <div class="ta">நாவலின் ஒரு நாடகத்தன்மை வாய்ந்த அலங்கார காட்சியில், ஞானாம்பாள் ஆணாக மாறுவேடமிட்டு குழப்பத்தில் உள்ள ஒரு ராஜ்யத்தின் ஆட்சியாளராக பட்டம் பெறுகிறாள். சிக்கலான சட்டச் சிக்கல்களை தெளிவான பகுப்பாய்வுடன் தீர்க்கிறாள் — <strong>நிர்வாகத் திறன், நீதிமன்ற நீதி, கொள்கை உருவாக்கம் ஆகியவை பாலினத்தை சார்ந்தவை அல்ல</strong> என நிரூபிக்கிறாள். 1879ல் இது மிகவும் தீவிரமான வாதம்.</div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">Gnanambal rejects her father's demand to surrender her son for adoption — invoking her right to personal autonomy. She uses traditional family logic itself to argue against patriarchal overreach. This is 19th-century feminism in Tamil prose.</div>
-            <div class="ta">ஞானாம்பாள் தனது மகனை தத்தெடுக்கக் கோரும் தந்தையின் கோரிக்கையை நிராகரிக்கிறாள் — தனது சுய தீர்மான உரிமையை நிலைநாட்டுகிறாள். 19ஆம் நூற்றாண்டு தமிழ் உரைநடையில் பெண்ணியவாதம்.</div>
-          </div>
-        </div>
-
-        <!-- Theme 2 -->
-        <div class="art-highlight">
-          <div class="en"><strong>2. Moral & Ethical Integrity (ஒழுக்க நெறிகள்)</strong></div>
-          <div class="ta"><strong>ஒழுக்கமும் நேர்மையும்</strong></div>
-        </div>
-        <div class="art-para">
-          <div class="en">Drawing from his own career as a judge, Vedanayagam Pillai weaves ethical dilemmas into the story: the importance of truth, anti-corruption, and absolute justice in public service. Characters who act with integrity thrive. Those driven by greed or ego face downfall. This was not abstract morality — it was a lesson directly aimed at the educated elite of the colonial era.</div>
-          <div class="ta">நீதிபதியாக தனது வாழ்க்கையிலிருந்து கற்ற பாடங்களை கதையில் பின்னுகிறார். சத்தியத்தின் முக்கியத்துவம், ஊழலுக்கு எதிர்ப்பு, பொதுச் சேவையில் முழுமையான நீதி. நேர்மையாக செயல்படுவோர் வளர்கின்றனர். பேராசை அல்லது அகங்காரத்தால் இயங்குவோர் வீழ்கின்றனர். இது குறியீட்டு அறம் மட்டுமல்ல — காலனிய காலத்தின் கல்வியறிவுடைய தலித்துக்களை நேரடியாக இலக்கு வைத்த பாடம்.</div>
-        </div>
-
-        <!-- Theme 3 -->
-        <div class="art-highlight">
-          <div class="en"><strong>3. Secularism & Religious Harmony (சமய நல்லிணக்கம்)</strong></div>
-          <div class="ta"><strong>மதச் சார்பின்மையும் சமய நல்லிணக்கமும்</strong></div>
-        </div>
-        <div class="art-para">
-          <div class="en">Vedanayagam Pillai deliberately avoids the narrow sectarian rivalries — Shaivism vs. Vaishnavism — that dominated 19th-century Tamil Nadu. His characters focus on a universal, benevolent God and argue that <strong>true spirituality lies in humanitarian service</strong>, not rigid rituals. This was the same philosophy he expressed in his musical compositions, the <em>Sarva Samaya Samarasa Kirthanaigal</em>.</div>
-          <div class="ta">19ஆம் நூற்றாண்டு தமிழகத்தில் ஆதிக்கம் செலுத்திய சைவம் மற்றும் வைஷ்ணவம் இடையிலான குறுகிய பிரிவினைகளை வேதநாயகம் பிள்ளை வேண்டுமென்றே தவிர்க்கிறார். அவரது பாத்திரங்கள் பொதுவான, அன்பான கடவுளை மையமாகக் கொண்டு, <strong>உண்மையான ஆன்மீகம் மனிதநேயப் பணியில் உள்ளது</strong> என்று வாதிடுகின்றன. இதுவே அவர் <em>சர்வ சமய சமரச கீர்த்தனைகளில்</em> வெளிப்படுத்திய தத்துவம்.</div>
-        </div>
-
-        <!-- Theme 4 -->
-        <div class="art-highlight">
-          <div class="en"><strong>4. Tamil Language Pride (தாய்மொழிப் பற்று)</strong></div>
-          <div class="ta"><strong>தமிழ் மொழியின் மேன்மை</strong></div>
-        </div>
-        <div class="art-para">
-          <div class="en">Although fluent in English and working within the colonial judicial system, Vedanayagam Pillai used his novel as an active critique of the growing neglect of Tamil among the educated elite. Through the narrative itself — complex legal reasoning, philosophical debate, psychological portrayal — all in Tamil prose — he demonstrated that <strong>the Tamil language is fully capable of expressing every modern concept</strong>.</div>
-          <div class="ta">ஆங்கிலத்தில் சரளமாக பேசும் திறன் கொண்டு, காலனிய நீதி முறையில் பணியாற்றியபோதும், கல்வியறிவுடையவர்களிடையே தமிழ் மீதான அலட்சியம் வளர்வதை நாவல் மூலம் கண்டித்தார். சிக்கலான சட்ட வாதங்கள், தத்துவ விவாதங்கள், உளவியல் சித்தரிப்பு — அனைத்தும் தமிழ் உரைநடையில் — <strong>தமிழ் மொழி ஒவ்வொரு நவீன கருத்தையும் வெளிப்படுத்தும் திறன் கொண்டது</strong> என நிரூபித்தார்.</div>
-        </div>
-
-        <!-- Theme 5 -->
-        <div class="art-highlight">
-          <div class="en"><strong>5. Critique of Social Evils & Superstitions</strong></div>
-          <div class="ta"><strong>சமூக தீமைகள் மற்றும் மூடநம்பிக்கை மீதான விமர்சனம்</strong></div>
-        </div>
-        <div class="art-para">
-          <div class="en">With sharp satire and humour, the novel attacks blind faith in astrology and omens — showing how over-reliance on predictions can be exploited by fraudsters. It also critiques the toxic culture of vanity spending for social status, and endless intra-family legal disputes over property — problems that remain relevant even today.</div>
-          <div class="ta">கூர்மையான நகைச்சுவையுடன் நாவல் ஜோதிடம் மற்றும் சகுனங்களில் குருட்டு நம்பிக்கையை தாக்குகிறது — கணிப்புகளை மோசடியாளர்கள் எப்படி சுரண்டுகிறார்கள் என்று காட்டுகிறது. சமூக அந்தஸ்துக்காக வீண் செலவும், சொத்துக்காக குடும்பத்திற்குள் முடிவற்ற வழக்குகளும் விமர்சிக்கப்படுகின்றன — இன்றும் பொருத்தமான பிரச்சினைகள்.</div>
-        </div>
-
-        <!-- Section 3: Other Works -->
-        <div class="art-section-head">
-          <div class="en">His Complete Literary Works</div>
-          <div class="ta">அவரது முழுமையான இலக்கியப் படைப்புகள்</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">1</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Prathapa Mudaliar Charithram (1879)</strong> — First Tamil novel. Social reform through prose fiction.</div>
-              <div class="ta"><strong>பிரதாப முதலியார் சரித்திரம் (1879)</strong> — தமிழின் முதல் நாவல். உரைநடை கதையின் மூலம் சமூக சீர்திருத்தம்.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">2</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Suguna Sundari (சுகுண சுந்தரி)</strong> — Second major novel. Focuses on women's character, family values, social customs.</div>
-              <div class="ta"><strong>சுகுண சுந்தரி</strong> — இரண்டாவது முக்கிய நாவல். பெண்களின் பண்புகள், குடும்ப ஒற்றுமை, சமூக நடைமுறைகள்.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">3</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Penmathi Malai (பெண்மதி மாலை)</strong> — Dedicated treatise on women's education and dignity in society.</div>
-              <div class="ta"><strong>பெண்மதி மாலை</strong> — பெண்களின் கல்வி உரிமை மற்றும் சமூகத்தில் அவர்களது கண்ணியத்திற்காக அர்ப்பணிக்கப்பட்ட நூல்.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">4</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Sarva Samaya Samarasa Kirthanaigal (சர்வ சமய சமரச கீர்த்தனைகள்)</strong> — Hundreds of Carnatic compositions addressing a universal God beyond all religious boundaries. Interfaith harmony in music.</div>
-              <div class="ta"><strong>சர்வ சமய சமரச கீர்த்தனைகள்</strong> — எல்லா மத எல்லைகளையும் கடந்த பொதுவான கடவுளை உருகிப் பாடும் நூற்றுக்கணக்கான கர்நாடக இசை பாடல்கள். இசையில் சமய நல்லிணக்கம்.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">5</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Nititool (நீதி நூல்)</strong> — A work on moral codes, righteous living, and ethical conduct in society.</div>
-              <div class="ta"><strong>நீதி நூல்</strong> — சமூகத்தில் நெறிமுறை நடத்தை, நீதியான வாழ்க்கை, ஒழுக்க விதிகளை பற்றிய நூல்.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">6</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Devotional Songs & Essays</strong> — Hundreds of simple, accessible bhajans and prose essays on society, education, and public welfare.</div>
-              <div class="ta"><strong>பக்திப் பாடல்களும் கட்டுரைகளும்</strong> — எளிய மொழியில் பக்திப் பாடல்கள் மற்றும் சமூகம், கல்வி, பொதுநலன் பற்றிய உரைநடை கட்டுரைகள்.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 4: Humanitarian -->
-        <div class="art-section-head">
-          <div class="en">The Great Famine Relief — Kanjithotti (1876–1878)</div>
-          <div class="ta">தாது வருடப் பஞ்சம் — கஞ்சித் தொட்டிகள் (1876–1878)</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Between 1876 and 1878, the devastating <strong>Great Famine of Madras</strong> (also known as the Deccan Famine or Datu Varuda Panjam) killed millions across South India. Vedanayagam Pillai did not stand aside. He spent his own personal savings, raised public funds, and organized large-scale free feeding centres called <strong>Kanjithotti (கஞ்சித் தொட்டிகள்)</strong> across the Mayuram region — saving thousands of starving people.</div>
-          <div class="ta">1876 முதல் 1878 வரை <strong>தக்காணப் பஞ்சம்</strong> (தாது வருடப் பஞ்சம்) தென்னிந்தியா முழுவதும் மில்லியன் கணக்கானோரை கொன்றது. வேதநாயகம் பிள்ளை பக்கத்தில் நின்று பார்க்கவில்லை. தனது சொந்தச் சேமிப்பை செலவழித்து, பொது நிதி திரட்டி, மாயூரம் பகுதி முழுவதும் <strong>கஞ்சித் தொட்டிகள்</strong> அமைத்து பல்லாயிரக்கணக்கான பசியுற்றவர்களை காப்பாற்றினார்.</div>
-        </div>
-        <div class="art-fact">
-          <div class="fact-star">★</div>
-          <div class="fact-body">
-            <div class="en">His humanitarian work during the famine directly reflects the same compassion he preached in his novel — that true spirituality is humanitarian service, not ritual worship. He lived what he wrote.</div>
-            <div class="ta">பஞ்சகாலத்தில் அவரது மனிதாபிமான செயல், நாவலில் அவர் போதித்த அதே கருணையை நேரடியாக பிரதிபலிக்கிறது — உண்மையான ஆன்மீகம் மனிதநேயப் பணியே, சடங்கு வழிபாடல்ல. அவர் எழுதியதை வாழ்ந்தார்.</div>
-          </div>
-        </div>
-
-        <!-- Section 5: Literary Contemporaries -->
-        <div class="art-section-head">
-          <div class="en">His Era — The 19th Century Tamil Literary Landscape</div>
-          <div class="ta">அவரது காலம் — 19ஆம் நூற்றாண்டு தமிழ் இலக்கிய உலகம்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Vedanayagam Pillai did not work in isolation. He was part of a remarkable ecosystem of scholars, musicians, and saints — all working simultaneously to transform Tamil culture. Two great movements ran in parallel in this era:</div>
-          <div class="ta">வேதநாயகம் பிள்ளை தனியாக செயல்படவில்லை. தமிழ் கலாச்சாரத்தை மாற்றுவதற்காக ஒரே நேரத்தில் பணியாற்றிய அறிஞர்கள், இசைக் கலைஞர்கள், புனிதர்களின் ஒரு குறிப்பிடத்தக்க சூழலின் ஒரு பகுதியாக இருந்தார். இந்த காலகட்டத்தில் இரண்டு மகத்தான இயக்கங்கள் இணையாக நடந்தன:</div>
-        </div>
-        <div style="overflow-x:auto;margin:12px 0;">
-          <table class="art-table">
-            <thead><tr><th>The Modernizers | புதுமைப்படுத்துவோர்</th><th>The Revivalists | மீட்பாளர்கள்</th></tr></thead>
-            <tbody>
-              <tr><td>Vedanayagam Pillai — First Tamil Novel</td><td>C.W. Damodaram Pillai — Printed Sangam texts</td></tr>
-              <tr><td>Gopalakrishna Bharathiyar — Tamil Musical Opera (Nandanar Charithram)</td><td>Arumuka Navalar — Father of Modern Tamil Prose (non-fiction)</td></tr>
-              <tr><td>Ramalinga Vallalar — Spiritual Humanism, Thiruvarutpa</td><td>U.V. Swaminatha Iyer — Rescued Cilappatikaram, Manimekalai</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">🎵</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Gopalakrishna Bharathiyar (1810–1896)</strong> — Musical contemporary. Vedanayagam Pillai used to sing his newly composed <em>Kirthanas</em> before Bharathiyar to receive feedback. Bharathiyar's <em>Nandanar Charithram</em> addressed spiritual equality and social exclusion.</div>
-              <div class="ta"><strong>கோபாலகிருஷ்ண பாரதியார் (1810–1896)</strong> — இசை தோழர். வேதநாயகம் பிள்ளை தனது புதிய கீர்த்தனைகளை பாரதியாரிடம் பாடி அவரின் அனுமதி பெற்றார். பாரதியாரின் <em>நந்தனார் சரித்திரம்</em> ஆன்மீக சமத்துவத்தை பற்றியது.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">🕊️</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Ramalinga Vallalar (1823–1874)</strong> — Spiritual contemporary. Like Vedanayagam Pillai, Vallalar rejected rigid religious sectarianism and promoted <em>Jeeva Karunyam</em> (compassion for all living beings). Both ran public feeding centers. His <em>Thiruvarutpa</em> is a masterpiece of 19th-century Tamil devotional literature.</div>
-              <div class="ta"><strong>இராமலிங்க வள்ளலார் (1823–1874)</strong> — ஆன்மீக தோழர். வேதநாயகம் பிள்ளையைப் போலவே, வள்ளலாரும் குறுகிய மதப் பிரிவினைகளை நிராகரித்து <em>ஜீவ கருண்யம்</em> (எல்லா உயிரினங்கள் மீதும் கருணை) வலியுறுத்தினார். இருவரும் பொது உணவு மையங்கள் நடத்தினர். அவரின் <em>திருவருட்பா</em> தமிழ் பக்தி இலக்கியத்தின் மகத்தான படைப்பு.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">📚</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>U.V. Swaminatha Iyer (1855–1942)</strong> — Known as <em>Tamil Thatha</em> (Grandfather of Tamil). He single-handedly rescued most of the Sangam literature — including <em>Cilappatikaram</em> and <em>Manimekalai</em> — from decaying palm-leaf manuscripts and brought them into print.</div>
-              <div class="ta"><strong>உ.வே. சாமிநாத ஐயர் (1855–1942)</strong> — <em>தமிழ் தாத்தா</em> என அழைக்கப்பட்டவர். சிதிலமடைந்து கொண்டிருந்த ஓலை சுவடிகளிலிருந்து <em>சிலப்பதிகாரம்</em>, <em>மணிமேகலை</em> உட்பட பெரும்பாலான சங்க இலக்கியங்களை மீட்டெடுத்து அச்சிடச் செய்தார்.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 6: Legacy -->
-        <div class="art-section-head">
-          <div class="en">Legacy — Where He Stands in Tamil History</div>
-          <div class="ta">நிலையான புகழ் — தமிழ் வரலாற்றில் அவரது இடம்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">If Thiruvalluvar gave Tamil its moral foundation, and Kamban enriched its poetic grandeur, then <strong>Mayuram Vedanayagam Pillai opened the door to modern Tamil prose fiction</strong>. He gave Tamil a new form — the novel — and filled that form with ideas that were radical, progressive, and urgently necessary for his time.</div>
-          <div class="ta">திருவள்ளுவர் தமிழிற்கு அறப்படை கொடுத்தார், கம்பர் அதற்கு கவிதை மாட்சி கொடுத்தார் என்றால், <strong>மாயூரம் வேதநாயகம் பிள்ளை நவீன தமிழ் உரைநடை கதைக்கான கதவை திறந்தார்</strong>. தமிழிற்கு ஒரு புதிய வடிவம் — நாவல் — கொடுத்தார். அந்த வடிவத்தை அவரது காலத்திற்கு தீவிரமான, முற்போக்கான, மிகவும் அவசியமான கருத்துக்களால் நிரப்பினார்.</div>
-        </div>
-        <div class="art-fact">
-          <div class="fact-star">★</div>
-          <div class="fact-body">
-            <div class="en">"தமிழ் நாவல் இலக்கியத்தின் கதவை முதன்முதலாகத் திறந்தவர் மாயூரம் வேதநாயகம் பிள்ளை." — He who first opened the door of Tamil novel literature was Mayuram Vedanayagam Pillai.</div>
-            <div class="ta">அவரது இந்த பங்களிப்பு TNPSC குரூப் 2, 4 தேர்வுகளில் திரும்பத் திரும்ப கேட்கப்படும் முக்கியமான தலைப்பு.</div>
-          </div>
-        </div>
-
-        <!-- ── TRICKS TO REMEMBER ── -->
-        <div class="art-section-head">
-          <div class="en">Memory Tricks — Years, Names & Books</div>
-          <div class="ta">நினைவில் வைக்கும் தந்திரங்கள் — ஆண்டுகள், பெயர்கள், புத்தகங்கள்</div>
-        </div>
-
-        <div class="art-tip">
-          <div class="tip-label">TRICK 1</div>
-          <div class="tip-body">
-            <div class="en"><strong>Birth Year 1826</strong> → "18-26 = 1826. Think: He was born when India was still under the East India Company (Company Rule: 1757–1857). He grew up watching the 1857 revolt at age 31."</div>
-            <div class="ta"><strong>பிறப்பு ஆண்டு 1826</strong> → "1857 கிளர்ச்சி நடந்தபோது அவருக்கு 31 வயது. கம்பெனி ஆட்சியில் பிறந்தவர், பிரிட்டிஷ் கிரீடத்தின் கீழ் வாழ்ந்தவர்."</div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TRICK 2</div>
-          <div class="tip-body">
-            <div class="en"><strong>First Tamil Novel — 1879</strong> → Remember: "7+9 = 16 → sweet 16 → a novel debut!" Or simpler: <strong>"1879 = 18+79 = 97 → Almost a century after 1773 Regulating Act."</strong> Key: The novel came out when Vedanayagam Pillai was <strong>53 years old</strong> (1826 + 53 = 1879).</div>
-            <div class="ta"><strong>முதல் நாவல் — 1879</strong> → எளிதான trick: வேதநாயகம் பிள்ளைக்கு 53 வயதில் (1826 + 53 = 1879) முதல் நாவல். "53 வயதிலும் சரித்திரம் படைக்கலாம்!"</div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TRICK 3</div>
-          <div class="tip-body">
-            <div class="en"><strong>Book Names Mnemonic — "P-S-P-S-N"</strong><br>
-            <strong>P</strong>rathapa Mudaliar Charithram (1879) — First Novel<br>
-            <strong>S</strong>uguna Sundari — Second Novel<br>
-            <strong>P</strong>enmathi Malai — Women's Education<br>
-            <strong>S</strong>arva Samaya Samarasa — Music/Interfaith<br>
-            <strong>N</strong>ititool — Moral codes<br>
-            → <em>"Please Send Pretty Students Now"</em></div>
-            <div class="ta"><strong>நூல் பெயர்கள் மனப்பாடம் — "ப-சு-பெ-சர்-நீ"</strong><br>
-            <strong>ப</strong>ிரதாப முதலியார் சரித்திரம் → முதல் நாவல்<br>
-            <strong>சு</strong>குண சுந்தரி → இரண்டாம் நாவல்<br>
-            <strong>பெ</strong>ண்மதி மாலை → பெண் கல்வி<br>
-            <strong>சர்</strong>வ சமய சமரச → இசை/மத நல்லிணக்கம்<br>
-            <strong>நீ</strong>தி நூல் → ஒழுக்க நெறி</div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TRICK 4</div>
-          <div class="tip-body">
-            <div class="en"><strong>Name "Gnanambal" = Goddess of Wisdom</strong> → Think: <em>"Gnana = Knowledge (like Jnana Yoga). Ambal = Goddess."</em> She rules a kingdom → Women's governance = proven. She defeats men in debate → Women's intellect = proven. Easy to remember because her name itself IS her character.</div>
-            <div class="ta"><strong>"ஞானாம்பாள்" = அறிவின் தேவி</strong> → ஞானம் = அறிவு + அம்பாள் = தேவி. அவள் ஒரு ராஜ்யத்தை ஆட்சி செய்கிறாள் = பெண்களின் ஆட்சி திறன் நிரூபிக்கப்பட்டது. அவள் பெயரே அவளது பாத்திரம்!</div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TRICK 5</div>
-          <div class="tip-body">
-            <div class="en"><strong>Famine Years 1876–1878</strong> → "Great Famine = Great Misery. 1876 = 1+8+7+6 = 22. Two years of devastation (76, 77, 78). Vedanayagam was 50 years old in 1876."<br><strong>Kanjithotti</strong> = "Kanji (rice gruel) + Thotti (pot/tank)" → Free food pot. Simple visual: a large pot of rice gruel for the starving.</div>
-            <div class="ta"><strong>பஞ்ச ஆண்டுகள் 1876–1878</strong> → "கஞ்சி + தொட்டி = கஞ்சித் தொட்டி" — பசியுற்றோருக்கான இலவச உணவு பாத்திரம். எளிய காட்சி: ஒரு பெரிய கஞ்சிப் பாத்திரம். வேதநாயகம் பிள்ளைக்கு 1876ல் 50 வயது.</div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TRICK 6</div>
-          <div class="tip-body">
-            <div class="en"><strong>Title "Mayuram"</strong> → Mayuram (மாயூரம்) = Mayil (மயில் = Peacock) + Uram (ஊர் = Town) = Peacock Town = Today's <strong>Mayiladuthurai</strong>. He served there as judge, so "Mayuram" became part of his name. Remember: <em>Peacock judge who wrote the first Tamil novel.</em></div>
-            <div class="ta"><strong>"மாயூரம்" என்ற பெயர்</strong> → மாயூரம் = மயில் + ஊர் = மயில்களின் ஊர் = இன்றைய <strong>மயிலாடுதுறை</strong>. அங்கு நீதிபதியாக பணி செய்தார், எனவே "மாயூரம்" அவர் பெயரின் ஒரு பகுதியானது. நினைவு: <em>மயில் நகரத்தின் நீதிபதி, முதல் தமிழ் நாவல் எழுதினார்.</em></div>
-          </div>
-        </div>
-
-        <!-- Quick Revision -->
-        <div class="art-revision">
-          <div class="art-revision-title">⚡ TNPSC விரைவு திருப்பல் — மாயூரம் வேதநாயகம் பிள்ளை</div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Born: October 11, 1826, Inathur (near Trichy) | Died: 1889</div><div class="ta">பிறப்பு: அக்டோபர் 11, 1826, இனாத்தூர் (திருச்சி அருகில்) | மறைவு: 1889</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Father of Tamil Novel — First Tamil Novel: Prathapa Mudaliar Charithram (1879)</div><div class="ta">தமிழ் நாவலின் தந்தை — முதல் தமிழ் நாவல்: பிரதாப முதலியார் சரித்திரம் (1879)</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Served as District Munsif (Judge) in Mayiladuthurai (Mayuram) → hence the title</div><div class="ta">மயிலாடுதுறையில் (மாயூரம்) மாவட்ட முன்சீபாக (நீதிபதியாக) பணி → அதனால் "மாயூரம்" பெயர்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Key themes: Women's Education, Secularism, Moral Integrity, Tamil Pride, Anti-superstition</div><div class="ta">முக்கிய கருப்பொருள்கள்: பெண் கல்வி, சமய நல்லிணக்கம், ஒழுக்க நெறி, தமிழ் பெருமை, மூடநம்பிக்கை எதிர்ப்பு</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Heroine Gnanambal = Goddess of Wisdom — disguised as man, ruled a kingdom</div><div class="ta">நாயகி ஞானாம்பாள் = அறிவின் தேவி — ஆண் வேடம் போட்டு ஒரு ராஜ்யத்தை ஆட்சி செய்தாள்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Other works: Suguna Sundari, Penmathi Malai, Sarva Samaya Samarasa Kirthanaigal, Nititool</div><div class="ta">மற்ற நூல்கள்: சுகுண சுந்தரி, பெண்மதி மாலை, சர்வ சமய சமரச கீர்த்தனைகள், நீதி நூல்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Famine relief: Kanjithotti (1876–1878) — Great Famine of Madras / Datu Varuda Panjam</div><div class="ta">பஞ்ச நிவாரணம்: கஞ்சித் தொட்டிகள் (1876–1878) — தாது வருடப் பஞ்சம்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Mnemonic for books: P-S-P-S-N → "Please Send Pretty Students Now"</div><div class="ta">நூல்கள் நினைவுக்கு: ப-சு-பெ-சர்-நீ → "பிரதாப, சுகுண, பெண்மதி, சர்வசமய, நீதிநூல்"</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Literary contemporaries: Gopalakrishna Bharathiyar, Ramalinga Vallalar, U.V. Swaminatha Iyer</div><div class="ta">இலக்கிய தோழர்கள்: கோபாலகிருஷ்ண பாரதியார், ராமலிங்க வள்ளலார், உ.வே. சாமிநாத ஐயர்</div></div></div>
-        </div>
-
-        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
-
-        <div class="card" style="border:2px dashed var(--border);text-align:center;padding:20px;" onclick="showToast('விரைவில் வரும்!')">
-          <div style="font-size:28px;margin-bottom:8px;">📖</div>
-          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">அடுத்த கட்டுரை விரைவில்</div>
-          <div style="font-size:12px;color:var(--text-muted);">Article 03: Supreme Court of India — Guardian of the Constitution</div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">இந்திய உச்ச நீதிமன்றம் — அரசியலமைப்பின் காவலன்</div>
-        </div>
-
-      </div><!-- /.art-body -->
-    </div><!-- /#articleReaderVeda -->
-
-    <!-- ── SUPREME COURT ARTICLE READER ── -->
-    <div class="article-reader" id="articleReaderSC">
-
-      <div class="article-reader-topbar">
-        <button class="back-btn" onclick="closeArticle()" aria-label="பட்டியலுக்கு திரும்பு">←</button>
-        <div style="flex:1;">
-          <div style="font-size:14px;font-weight:700;color:var(--primary);">நீதித்துறை | Polity Series</div>
-          <div style="font-size:11px;color:var(--text-muted);">TNPSC வேட்டை · Article 03</div>
-        </div>
-        <button class="icon-btn" style="background:var(--card);border:1px solid var(--border);color:var(--text);" onclick="shareArticle()">🔗</button>
-      </div>
-
-      <div class="article-reader-meta">
-        <span>⚖️ நீதித்துறை</span><span>·</span>
-        <span>📖 20 நிமிட வாசிப்பு</span><span>·</span>
-        <span>🎯 குரூப் 1, 2, 4</span><span>·</span>
-        <span style="color:var(--green);font-weight:700;">✅ Article 03</span>
-      </div>
-
-      <!-- Cover -->
-      <div class="art-cover" style="background:linear-gradient(135deg,#4c1d95 0%,#6d28d9 60%,#7c3aed 100%);">
-        <div class="art-cover-orb"></div>
-        <div class="art-series">POLITY SERIES · கட்டுரை 03</div>
-        <h1>Supreme Court of India</h1>
-        <h2>இந்திய உச்ச நீதிமன்றம் — அரசியலமைப்பின் காவலன்</h2>
-        <div class="art-cover-chips">
-          <span class="art-chip">Article 124–147</span>
-          <span class="art-chip">1950 ஜனவரி 28</span>
-          <span class="art-chip">34 நீதிபதிகள்</span>
-          <span class="art-chip">Collegium</span>
-        </div>
-      </div>
-
-      <div class="art-body">
-
-        <!-- Opening -->
-        <div class="art-para">
-          <div class="en">Imagine a country where the government itself could break the rules it was supposed to follow. Who would stop it? Who would protect ordinary citizens from the misuse of power? The answer, in India's democracy, is the Supreme Court.</div>
-          <div class="ta">அரசாங்கமே தான் பின்பற்ற வேண்டிய விதிகளை மீறும் ஒரு நாட்டை கற்பனை செய்யுங்கள். அதை யார் தடுப்பார்கள்? சாதாரண குடிமக்களை அதிகார துஷ்பிரயோகத்திலிருந்து யார் காப்பார்கள்? இந்தியா ஜனநாயகத்தில் அந்த பதில் தான் உச்ச நீதிமன்றம்.</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The Supreme Court of India is the highest judicial body in the country — the final authority on law, the protector of fundamental rights, and the guardian of the Constitution itself.</div>
-          <div class="ta">இந்திய உச்ச நீதிமன்றம் நாட்டின் மிக உயர்ந்த நீதித்துறை அமைப்பு — சட்டத்தின் இறுதி அதிகாரம், அடிப்படை உரிமைகளின் பாதுகாவலன், அரசியலமைப்பின் காவலன்.</div>
-        </div>
-
-        <!-- Historical Background -->
-        <div class="art-section-head">
-          <div class="en">Historical Background — The Road to 1950</div>
-          <div class="ta">வரலாற்றுப் பின்னணி — 1950 வரையிலான பயணம்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The Supreme Court did not emerge suddenly. It was the result of nearly 200 years of legal evolution under British rule — from the Regulating Act of 1773 to Independence in 1947.</div>
-          <div class="ta">உச்ச நீதிமன்றம் திடீரென உருவாகவில்லை. 1773 ஆம் ஆண்டு ஒழுங்குமுறைச் சட்டம் முதல் 1947 சுதந்திரம் வரை கிட்டத்தட்ட 200 ஆண்டுகால சட்ட பரிணாமத்தின் விளைவு இது.</div>
-        </div>
-        <div class="art-timeline">
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1773</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content">
-              <div class="ev">Regulating Act</div><div class="ev-ta">ஒழுங்குமுறைச் சட்டம்</div>
-              <div class="desc">Supreme Court of Judicature established at Calcutta — first court of record in India, handling civil and criminal cases in Bengal, Bihar, and Orissa.</div>
-              <div class="desc-ta">கல்கத்தாவில் உயர்நீதிமன்றம் நிறுவப்பட்டது — பெங்கால், பீகார், ஒரிசாவில் வழக்குகளை கையாண்டது.</div>
-            </div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1800<br>1823</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content">
-              <div class="ev">Madras & Bombay Courts</div><div class="ev-ta">மதராஸ் & பம்பாய் நீதிமன்றங்கள்</div>
-              <div class="desc">King George III established Madras (1800) and Bombay (1823) Supreme Courts. Converted to High Courts under Indian High Courts Act, 1861.</div>
-              <div class="desc-ta">1861 சட்டத்தின் கீழ் உயர் நீதிமன்றங்களாக மாற்றப்பட்டன.</div>
-            </div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year">1935</div><div class="art-tl-dot"></div></div>
-            <div class="art-tl-content">
-              <div class="ev">Federal Court of India</div><div class="ev-ta">இந்திய கூட்டாட்சி நீதிமன்றம்</div>
-              <div class="desc">Government of India Act 1935 created the Federal Court to resolve provincial disputes and hear appeals — the immediate predecessor of today's Supreme Court.</div>
-              <div class="desc-ta">மாகாண தகராறுகளை தீர்க்கவும் மேல்முறையீடுகளை விசாரிக்கவும் உருவாக்கப்பட்டது — இன்றைய உச்ச நீதிமன்றத்தின் நேரடி முன்னோடி.</div>
-            </div>
-          </div>
-          <div class="art-tl-item">
-            <div class="art-tl-left"><div class="art-tl-year" style="background:var(--accent);">28 Jan<br>1950</div><div class="art-tl-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent);"></div></div>
-            <div class="art-tl-content" style="border-color:var(--accent);">
-              <div class="ev" style="color:var(--accent);">Supreme Court Established 🏛️</div><div class="ev-ta">உச்ச நீதிமன்றம் நிறுவப்பட்டது</div>
-              <div class="desc">The present Supreme Court was formally constituted on January 28, 1950 — two days after India became a Republic. Justice Harilal J. Kania was the first Chief Justice of India (CJI).</div>
-              <div class="desc-ta">இந்தியா குடியரசு ஆன இரண்டு நாட்களுக்குப் பிறகு ஜனவரி 28, 1950 அன்று இன்றைய உச்ச நீதிமன்றம் நிறுவப்பட்டது. நீதிபதி ஹரிலால் ஜே. கானியா முதல் இந்திய தலைமை நீதிபதி.</div>
-            </div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">Article 130 states the Supreme Court shall sit in Delhi OR at such other place(s) as the CJI may, with the approval of the President, appoint. The original Constitution provided only 8 judges; Parliament has gradually increased this to 34.</div>
-            <div class="ta">விதி 130 படி உச்ச நீதிமன்றம் டெல்லியில் அல்லது குடியரசுத் தலைவரின் ஒப்புதலுடன் தலைமை நீதிபதி தீர்மானிக்கும் இடங்களில் இயங்கலாம். அரசியலமைப்பு ஆரம்பத்தில் 8 நீதிபதிகளை நிர்ணயித்தது; நாடாளுமன்றம் படிப்படியாக 34 ஆக உயர்த்தியது.</div>
-          </div>
-        </div>
-
-        <!-- Constitutional Provisions -->
-        <div class="art-section-head">
-          <div class="en">Constitutional Provisions — Articles 124 to 147</div>
-          <div class="ta">அரசியலமைப்பு விதிகள் — விதி 124 முதல் 147 வரை</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Part V of the Indian Constitution (Articles 124–147) deals entirely with the Union Judiciary. These articles define the composition, independence, jurisdiction, and powers of the Supreme Court.</div>
-          <div class="ta">இந்திய அரசியலமைப்பின் பகுதி V (விதி 124–147) முழுவதும் சங்க நீதித்துறையை பற்றியது. இந்த விதிகள் உச்ச நீதிமன்றத்தின் கட்டமைப்பு, சுதந்திரம், அதிகார வரம்பு மற்றும் அதிகாரங்களை வரையறுக்கின்றன.</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">124</div><div class="art-bullet-content"><div class="en">Establishment, composition (34 judges), qualifications, appointment, removal</div><div class="ta">நிறுவல், கட்டமைப்பு (34 நீதிபதிகள்), தகுதிகள், நியமனம், நீக்கம்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">125</div><div class="art-bullet-content"><div class="en">Salaries, allowances and service conditions of judges</div><div class="ta">நீதிபதிகளின் சம்பளம் மற்றும் சேவை நிபந்தனைகள்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">129</div><div class="art-bullet-content"><div class="en">Supreme Court as Court of Record — power to punish for contempt</div><div class="ta">பதிவு நீதிமன்றம் — நீதிமன்ற அவமதிப்புக்கு தண்டிக்கும் அதிகாரம்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">131</div><div class="art-bullet-content"><div class="en">Original Jurisdiction — Centre vs States / States vs States disputes</div><div class="ta">அசல் அதிகார வரம்பு — மைய அரசு மற்றும் மாநிலங்களுக்கிடையேயான தகராறுகள்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">132–134</div><div class="art-bullet-content"><div class="en">Appellate Jurisdiction — Constitutional, Civil, Criminal appeals from High Courts</div><div class="ta">மேல்முறையீட்டு அதிகார வரம்பு — அரசியலமைப்பு, சிவில், குற்றவியல் மேல்முறையீடுகள்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">136</div><div class="art-bullet-content"><div class="en">Special Leave Petition (SLP) — Supreme Court can grant special leave to appeal from any court</div><div class="ta">சிறப்பு விடுப்பு மனு (SLP) — எந்த நீதிமன்றத்திலிருந்தும் மேல்முறையீட்டை ஏற்கலாம்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">141</div><div class="art-bullet-content"><div class="en">Law declared by Supreme Court is binding on all courts in India</div><div class="ta">உச்ச நீதிமன்றம் அறிவிக்கும் சட்டம் இந்தியாவின் அனைத்து நீதிமன்றங்களுக்கும் கட்டுப்படும்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">143</div><div class="art-bullet-content"><div class="en">Advisory Jurisdiction — President may seek SC's opinion on questions of law or public importance</div><div class="ta">ஆலோசனை அதிகார வரம்பு — குடியரசுத் தலைவர் சட்டச் சிக்கல்களில் ஆலோசனை கோரலாம்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">32</div><div class="art-bullet-content"><div class="en">Writ Jurisdiction — SC issues writs to protect Fundamental Rights (Habeas Corpus, Mandamus, Certiorari, Prohibition, Quo Warranto). Dr. Ambedkar called Article 32 "Heart and Soul of the Constitution"</div><div class="ta">நீதிப்பேராணை அதிகாரம் — அடிப்படை உரிமைகளை பாதுகாக்க 5 பேராணைகள். டாக்டர் அம்பேத்கர் விதி 32ஐ "அரசியலமைப்பின் இதயமும் ஆன்மாவும்" என்று அழைத்தார்</div></div></div>
-        </div>
-
-        <!-- Qualifications & Appointment -->
-        <div class="art-section-head">
-          <div class="en">Qualifications & Appointment of Judges</div>
-          <div class="ta">நீதிபதிகளின் தகுதிகளும் நியமனமும்</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Under Article 124(3), a person can be appointed as a Supreme Court judge if they are an Indian citizen AND meet one of three qualifications:</div>
-          <div class="ta">விதி 124(3) படி இந்தியக் குடிமகன் ஆனவர் மூன்று தகுதிகளில் ஒன்றை பூர்த்தி செய்தால் உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கப்படலாம்:</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en"><strong>Bench Quota:</strong> Minimum 5 years as Judge of one or more High Courts (consecutively)</div><div class="ta"><strong>நீதிபதி கோட்டா:</strong> ஒன்று அல்லது அடுத்தடுத்த உயர் நீதிமன்றங்களில் குறைந்தபட்சம் 5 ஆண்டுகள் நீதிபதியாக பணி</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en"><strong>Bar Quota:</strong> Minimum 10 years as Advocate of one or more High Courts (consecutively)</div><div class="ta"><strong>வழக்கறிஞர் கோட்டா:</strong> ஒன்று அல்லது அடுத்தடுத்த உயர் நீதிமன்றங்களில் குறைந்தபட்சம் 10 ஆண்டுகள் வழக்கறிஞராக பணி</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en"><strong>Distinguished Jurist [Art.124(3)(c)]:</strong> President considers the person an eminent legal scholar. <em>Note: Never used in 75+ years of Supreme Court history!</em></div><div class="ta"><strong>சிறந்த சட்ட நிபுணர்:</strong> குடியரசுத் தலைவரின் கண்ணோட்டத்தில் சிறந்த சட்ட அறிஞர். <em>குறிப்பு: 75+ ஆண்டுகள் இந்த பிரிவு இதுவரை பயன்படுத்தப்படவில்லை!</em></div></div></div>
-        </div>
-        <div class="art-fact">
-          <div class="fact-star">★</div>
-          <div class="fact-body">
-            <div class="en">Retirement Age: 65 years. Judges swear oath before the President. Salary is charged to the Consolidated Fund of India (not voted by Parliament) — ensuring judicial independence.</div>
-            <div class="ta">ஓய்வு வயது: 65 ஆண்டுகள். நீதிபதிகள் குடியரசுத் தலைவர் முன்பு பதவிப்பிரமாணம் எடுக்கின்றனர். சம்பளம் இந்தியாவின் ஒருங்கிணைந்த நிதியிலிருந்து வழங்கப்படுகிறது (நாடாளுமன்ற வாக்கெடுப்பில்லை) — நீதித்துறை சுதந்திரத்தை உறுதிசெய்கிறது.</div>
-          </div>
-        </div>
-
-        <!-- Seniority -->
-        <div class="art-section-head">
-          <div class="en">How Seniority is Calculated</div>
-          <div class="ta">மூப்பு நிலை எவ்வாறு கணக்கிடப்படுகிறது?</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Seniority in the Supreme Court is NOT based on age. It is calculated from the date of appointment as a Supreme Court judge. If two judges are appointed on the same day, seniority is determined by their previous standing in the All-India High Court seniority list.</div>
-          <div class="ta">உச்ச நீதிமன்றத்தில் மூப்பு நிலை வயதை அடிப்படையாக கொண்டதல்ல. உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கப்பட்ட தேதியை அடிப்படையாகக் கொண்டது. ஒரே நாளில் இரண்டு நீதிபதிகள் நியமிக்கப்பட்டால், அகில இந்திய உயர் நீதிமன்ற மூப்பு நிலை பட்டியலில் அவர்களது நிலை கணக்கில் கொள்ளப்படும்.</div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">The <strong>next Chief Justice of India is decided purely by seniority</strong> — the most senior judge of the Supreme Court automatically becomes the CJI. The outgoing CJI recommends the senior-most judge, and the President formalizes the appointment.</div>
-            <div class="ta">இந்தியாவின் அடுத்த தலைமை நீதிபதி <strong>மூப்பு நிலை மட்டுமே அடிப்படையாக</strong> தீர்மானிக்கப்படுகிறார் — உச்ச நீதிமன்றத்தின் மூத்த நீதிபதி தானாகவே தலைமை நீதிபதி ஆகிறார். பதவிவிலகும் CJI மூத்த நீதிபதியை பரிந்துரைக்கிறார், குடியரசுத் தலைவர் நியமனத்தை உறுதிசெய்கிறார்.</div>
-          </div>
-        </div>
-
-        <!-- Collegium System -->
-        <div class="art-section-head">
-          <div class="en">The Collegium System — How Judges Appoint Judges</div>
-          <div class="ta">கொலிஜியம் முறை — நீதிபதிகளை நீதிபதிகளே நியமிக்கும் முறை</div>
-        </div>
-        <div class="art-para">
-          <div class="en">The Collegium System is not mentioned anywhere in the Constitution. It evolved through three landmark Supreme Court cases — known as the "Three Judges Cases."</div>
-          <div class="ta">கொலிஜியம் முறை அரசியலமைப்பில் எங்கும் குறிப்பிடப்படவில்லை. இது மூன்று முக்கிய உச்ச நீதிமன்ற வழக்குகள் மூலம் உருவானது — "மூன்று நீதிபதிகள் வழக்குகள்" என்று அழைக்கப்படும்.</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">1</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>First Judges Case (1982) — S.P. Gupta v. Union of India:</strong> Held that the President was NOT bound by the CJI's advice. Executive had primacy in appointments.</div>
-              <div class="ta"><strong>முதல் நீதிபதிகள் வழக்கு (1982):</strong> குடியரசுத் தலைவர் தலைமை நீதிபதியின் ஆலோசனையால் கட்டுப்படமாட்டார் என்று தீர்மானிக்கப்பட்டது. நியமனத்தில் நிர்வாகத்திற்கு முன்னுரிமை.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">2</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Second Judges Case (1993) — Supreme Court Advocates-on-Record Assn. v. Union of India:</strong> Overruled 1982. CJI's opinion is binding — the President MUST consult the CJI, and CJI's concurrence is mandatory. Judiciary gets primacy.</div>
-              <div class="ta"><strong>இரண்டாம் நீதிபதிகள் வழக்கு (1993):</strong> 1982 தீர்ப்பை தலைகீழாக மாற்றியது. தலைமை நீதிபதியின் கருத்து கட்டுப்படும் — குடியரசுத் தலைவர் கண்டிப்பாக CJI-ஐ கலந்தாலோசிக்க வேண்டும். நீதித்துறைக்கு முன்னுரிமை.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">3</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Third Judges Case (1998) — Presidential Reference:</strong> Formalized the Collegium system. CJI alone cannot decide — must consult the 4 most senior SC judges. Unanimous recommendation by the Collegium is binding on the President.</div>
-              <div class="ta"><strong>மூன்றாம் நீதிபதிகள் வழக்கு (1998):</strong> கொலிஜியம் முறையை முறைப்படுத்தியது. தலைமை நீதிபதி தனியாக முடிவெடுக்கக் கூடாது — 4 மூத்த நீதிபதிகளை கலந்தாலோசிக்க வேண்டும். கொலிஜியத்தின் ஒருமன பரிந்துரை குடியரசுத் தலைவரை கட்டுப்படுத்தும்.</div>
-            </div>
-          </div>
-        </div>
-        <div class="art-highlight">
-          <div class="en"><strong>2015 NJAC Controversy:</strong> Parliament passed the 99th Constitutional Amendment creating the National Judicial Appointments Commission (NJAC) to replace the Collegium. The Supreme Court struck it down in 2015 as unconstitutional — ruling it violated judicial independence, a basic structure element.</div>
-          <div class="ta"><strong>2015 NJAC விவகாரம்:</strong> நாடாளுமன்றம் 99வது திருத்தம் மூலம் கொலிஜியத்திற்கு பதிலாக தேசிய நீதிபதிகள் நியமன ஆணையம் (NJAC) அமைத்தது. உச்ச நீதிமன்றம் 2015ல் அதை அரசியலமைப்பிற்கு எதிரானது என்று ரத்து செய்தது — நீதித்துறை சுதந்திரம் அடிப்படை கட்டமைப்பு என்று தீர்மானித்தது.</div>
-        </div>
-
-        <!-- Removal Process -->
-        <div class="art-section-head">
-          <div class="en">Removal of Judges — A Near-Impossible Process</div>
-          <div class="ta">நீதிபதிகள் நீக்கம் — கிட்டத்தட்ட சாத்தியமற்ற செயல்முறை</div>
-        </div>
-        <div class="art-para">
-          <div class="en">A judge can be removed ONLY on grounds of <strong>misbehaviour or incapacity</strong>. The process is deliberately made very difficult to ensure judicial independence. In 75 years, no Supreme Court judge has ever been successfully removed.</div>
-          <div class="ta">ஒரு நீதிபதியை <strong>முறையற்ற நடத்தை அல்லது தகுதியின்மை</strong> மட்டுமே காரணமாக நீக்க முடியும். நீதித்துறை சுதந்திரத்தை உறுதி செய்ய இந்த செயல்முறை வேண்டுமென்றே மிகவும் கடினமாக்கப்பட்டுள்ளது. 75 ஆண்டுகளில் எந்த உச்ச நீதிமன்ற நீதிபதியும் வெற்றிகரமாக நீக்கப்படவில்லை.</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Motion signed by 100+ Lok Sabha members OR 50+ Rajya Sabha members, submitted to Speaker/Chairman</div><div class="ta">100+ மக்களவை உறுப்பினர்கள் அல்லது 50+ மாநிலங்களவை உறுப்பினர்கள் கையெழுத்திட்ட தீர்மானம் சபாநாயகரிடம் சமர்ப்பிக்கவும்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Speaker/Chairman admits the motion and forms a 3-member inquiry committee (SC judge + HC Chief Justice + eminent jurist)</div><div class="ta">சபாநாயகர் தீர்மானத்தை ஏற்று 3 பேர் விசாரணை குழு அமைக்கிறார் (SC நீதிபதி + HC தலைமை நீதிபதி + சிறந்த சட்ட நிபுணர்)</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">If committee confirms misbehaviour, BOTH Houses of Parliament must pass the motion by Special Majority (2/3 members present + voting AND absolute majority of total membership)</div><div class="ta">குழு குற்றத்தை உறுதிசெய்தால், நாடாளுமன்றத்தின் இரு அவைகளிலும் சிறப்பு பெரும்பான்மை மூலம் தீர்மானம் நிறைவேற வேண்டும்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">President issues the order of removal. Governed by Judges (Inquiry) Act, 1968.</div><div class="ta">குடியரசுத் தலைவர் நீக்கம் செய்யும் உத்தரவை வெளியிடுகிறார். நீதிபதிகள் (விசாரணை) சட்டம், 1968 படி நடைமுறை.</div></div></div>
-        </div>
-
-        <!-- Jurisdiction Types -->
-        <div class="art-section-head">
-          <div class="en">Jurisdiction of the Supreme Court</div>
-          <div class="ta">உச்ச நீதிமன்றத்தின் அதிகார வரம்புகள்</div>
-        </div>
-        <div style="overflow-x:auto;margin:12px 0;">
-          <table class="art-table">
-            <thead><tr><th>Jurisdiction | அதிகார வரம்பு</th><th>Article</th><th>Description | விளக்கம்</th></tr></thead>
-            <tbody>
-              <tr><td>Original | அசல்</td><td>131</td><td>Centre vs State / State vs State disputes exclusively | மைய-மாநில, மாநில-மாநில தகராறுகள் மட்டும்</td></tr>
-              <tr><td>Appellate | மேல்முறையீட்டு</td><td>132–134</td><td>Constitutional, Civil, Criminal appeals from HCs | உயர் நீதிமன்றங்களிலிருந்து மேல்முறையீடுகள்</td></tr>
-              <tr><td>Special Leave | சிறப்பு விடுப்பு</td><td>136</td><td>SC can grant leave to appeal from ANY court/tribunal | எந்த நீதிமன்றத்திலிருந்தும் மேல்முறையீடு</td></tr>
-              <tr><td>Writ | பேராணை</td><td>32</td><td>5 writs for Fundamental Rights protection | அடிப்படை உரிமை பாதுகாப்புக்கு 5 பேராணைகள்</td></tr>
-              <tr><td>Advisory | ஆலோசனை</td><td>143</td><td>President seeks SC opinion (not binding) | குடியரசுத்தலைவர் கோரும் ஆலோசனை (கட்டுப்படாது)</td></tr>
-              <tr><td>Court of Record</td><td>129</td><td>Contempt powers; precedents binding all courts | அவமதிப்பு அதிகாரம்; முன்மாதிரிகள் கட்டுப்படும்</td></tr>
-              <tr><td>Review | மறுஆய்வு</td><td>137</td><td>SC can review its own judgments | தனது சொந்த தீர்ப்புகளை மறுஆய்வு செய்யலாம்</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Women in SC -->
-        <div class="art-section-head">
-          <div class="en">Women in the Supreme Court</div>
-          <div class="ta">உச்ச நீதிமன்றத்தில் பெண்கள்</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">1</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Justice Fathima Beevi (1989)</strong> — First woman judge of the Supreme Court of India.</div>
-              <div class="ta"><strong>நீதிபதி பாத்திமா பீவி (1989)</strong> — இந்திய உச்ச நீதிமன்றத்தின் முதல் பெண் நீதிபதி.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">2</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Justice Leila Seth (1991)</strong> — First woman Chief Justice of a High Court (Himachal Pradesh HC).</div>
-              <div class="ta"><strong>நீதிபதி லைலா சேத் (1991)</strong> — உயர் நீதிமன்றத்தின் முதல் பெண் தலைமை நீதிபதி (இமாச்சல பிரதேசம்).</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">3</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Justice Indu Malhotra (2018)</strong> — First woman directly elevated from the Bar (advocate) to the Supreme Court bench.</div>
-              <div class="ta"><strong>நீதிபதி இந்து மல்ஹோத்ரா (2018)</strong> — வழக்கறிஞர் கோட்டாவிலிருந்து நேரடியாக உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கப்பட்ட முதல் பெண்.</div>
-            </div>
-          </div>
-          <div class="art-bullet-item">
-            <div class="art-bullet-dot">★</div>
-            <div class="art-bullet-content">
-              <div class="en"><strong>Justice B.V. Nagarathna</strong> — Expected to become India's first woman Chief Justice of India (CJI) in <strong>2027</strong>. As of 2026, India has had NO woman CJI yet.</div>
-              <div class="ta"><strong>நீதிபதி பி.வி. நாகரத்னா</strong> — <strong>2027</strong> ஆம் ஆண்டு இந்தியாவின் முதல் பெண் தலைமை நீதிபதியாக பொறுப்பேற்க எதிர்பார்க்கப்படுகிறார். 2026 வரை இந்தியாவில் ஒரு பெண் CJI கூட இல்லை.</div>
-            </div>
-          </div>
-        </div>
-        <div class="art-tip">
-          <div class="tip-label">TNPSC TIP</div>
-          <div class="tip-body">
-            <div class="en">Total women judges appointed to SC in 75 years: <strong>only 11</strong>. This is a frequently asked diversity-related question in TNPSC exams.</div>
-            <div class="ta">75 ஆண்டுகளில் உச்ச நீதிமன்றத்தில் நியமிக்கப்பட்ட மொத்த பெண் நீதிபதிகள்: <strong>11 மட்டுமே</strong>. TNPSC தேர்வுகளில் பல்வகைத்தன்மை தொடர்பான அடிக்கடி கேட்கப்படும் கேள்வி.</div>
-          </div>
-        </div>
-
-        <!-- AOR System -->
-        <div class="art-section-head">
-          <div class="en">Advocate-on-Record (AOR) — The Exclusive Gateway to Supreme Court</div>
-          <div class="ta">பதிவு பெற்ற வழக்கறிஞர் (AOR) — உச்ச நீதிமன்றத்தின் பிரத்தியேக நுழைவு</div>
-        </div>
-        <div class="art-para">
-          <div class="en">Only an <strong>Advocate-on-Record (AOR)</strong> can file cases, appear, and act for parties in the Supreme Court. Other advocates can only argue if briefed through an AOR.</div>
-          <div class="ta">உச்ச நீதிமன்றத்தில் வழக்குகளை தாக்கல் செய்யவும், ஆஜராகவும் <strong>பதிவு பெற்ற வழக்கறிஞர் (AOR)</strong>-களுக்கு மட்டுமே பிரத்தியேக அதிகாரம். மற்ற வழக்கறிஞர்கள் AOR மூலமாகவே வழக்காட முடியும்.</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">1</div><div class="art-bullet-content"><div class="en">Must be enrolled in the Bar Council of India</div><div class="ta">இந்திய பார் கவுன்சிலில் பதிவு செய்யப்பட்டவராக இருக்க வேண்டும்</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">2</div><div class="art-bullet-content"><div class="en">Minimum 4 years of continuous legal practice in any court</div><div class="ta">எந்த நீதிமன்றத்திலும் குறைந்தபட்சம் 4 ஆண்டுகள் தொடர் வழக்கறிஞர் பயிற்சி</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">3</div><div class="art-bullet-content"><div class="en">Mandatory 1 year training under a Senior AOR with 10+ years experience</div><div class="ta">10+ ஆண்டுகள் அனுபவமுள்ள மூத்த AOR-இன் கீழ் 1 ஆண்டு கட்டாய பயிற்சி</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">4</div><div class="art-bullet-content"><div class="en">Pass the rigorous AOR Examination (4 papers: Procedural Law, Drafting, Professional Ethics, Leading Cases) — minimum 45% per paper, 50% aggregate</div><div class="ta">கடினமான AOR தேர்வில் தேர்ச்சி (4 தாள்கள்) — ஒவ்வொரு தாளிலும் 45%, மொத்தம் 50%</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">5</div><div class="art-bullet-content"><div class="en">Must have own office within 16 km radius of Supreme Court building in New Delhi + a registered clerk</div><div class="ta">புது தில்லியில் உச்ச நீதிமன்றத்திலிருந்து 16 கி.மீ சுற்றளவுக்குள் சொந்த அலுவலகம் + பதிவு செய்யப்பட்ட எழுத்தர்</div></div></div>
-        </div>
-
-        <!-- Challenges -->
-        <div class="art-section-head">
-          <div class="en">Challenges Facing the Supreme Court</div>
-          <div class="ta">உச்ச நீதிமன்றம் எதிர்கொள்ளும் சவால்கள்</div>
-        </div>
-        <div class="art-bullets">
-          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Pendency Crisis:</strong> As of April 1, 2024 — 80,194 cases pending in Supreme Court alone. India's total judicial pendency exceeds 5 crore cases!</div><div class="ta"><strong>வழக்கு தேக்கம்:</strong> ஏப்ரல் 1, 2024 நிலவரப்படி — உச்ச நீதிமன்றத்தில் மட்டும் 80,194 வழக்குகள் நிலுவையில். இந்தியாவின் மொத்த நிலுவை வழக்குகள் 5 கோடியை தாண்டும்!</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Collegium Opacity:</strong> No transparent criteria for judicial appointments; NJAC attempt struck down. Collegium recommendations are often not explained publicly.</div><div class="ta"><strong>கொலிஜியம் வெளிப்படைத்தன்மை குறைபாடு:</strong> நீதிபதிகள் நியமனத்திற்கு வெளிப்படையான அளவுகோல்கள் இல்லை; NJAC முயற்சி ரத்தானது.</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Judicial Overreach:</strong> Allegations that SC steps into legislative/executive domain — e.g., ban on liquor shops near highways, directions on cricket board management.</div><div class="ta"><strong>நீதித்துறை மீறல்:</strong> உச்ச நீதிமன்றம் சட்டமன்ற/நிர்வாகத் துறையில் தலையிடுகிறது என்ற குற்றச்சாட்டு.</div></div></div>
-          <div class="art-bullet-item"><div class="art-bullet-dot">⚠</div><div class="art-bullet-content"><div class="en"><strong>Diversity Deficit:</strong> Only 11 women judges in 75 years; inadequate representation of marginalized communities among SC judges.</div><div class="ta"><strong>பன்முகத்தன்மை குறைபாடு:</strong> 75 ஆண்டுகளில் 11 பெண் நீதிபதிகள் மட்டுமே; விளிம்பு நிலை சமுதாயங்களின் பிரதிநிதித்துவம் குறைவு.</div></div></div>
-        </div>
-
-        <!-- Ad slot -->
-        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
-
-        <!-- ═══ MAINS QUESTION ═══ -->
-        <div class="art-section-head">
-          <div class="en">TNPSC Group 1 Mains Practice Question</div>
-          <div class="ta">TNPSC குரூப் 1 முதன்மைத் தேர்வு பயிற்சி வினா</div>
-        </div>
-
-        <!-- Question Box -->
-        <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:var(--radius);padding:18px 16px;margin:14px 0;">
-          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.55);letter-spacing:1px;margin-bottom:8px;">GROUP 1 MAINS · 15 MARKS · 250 WORDS</div>
-          <div style="font-size:13px;font-weight:600;color:white;line-height:1.7;margin-bottom:8px;">"Though Article 124(3)(c) of the Indian Constitution provides for the appointment of a 'Distinguished Jurist' as a Judge of the Supreme Court, this provision has never been utilized in the last 75 years. Critically analyze the reasons behind this and suggest measures to operationalize it."</div>
-          <div style="font-size:12.5px;color:rgba(255,255,255,0.8);line-height:1.7;">"இந்திய அரசியலமைப்பின் விதி 124(3)(c) ஒரு 'சிறந்த சட்ட நிபுணரை' உச்ச நீதிமன்ற நீதிபதியாக நியமிக்க வழிவகை செய்திருந்த போதிலும், கடந்த 75 ஆண்டுகளில் இந்த விதி ஒருமுறை கூட பயன்படுத்தப்படவில்லை. இதற்கான காரணங்களை விமர்சன ரீதியாக பகுப்பாய்வு செய்து, இவ்விதியை நடைமுறைப்படுத்துவதற்கான வழிமுறைகளைப் பரிந்துரைக்கவும்."</div>
-        </div>
-
-        <!-- Model Answer -->
-        <div style="background:var(--card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;margin:14px 0;">
-          <div style="background:var(--accent);padding:10px 16px;">
-            <div style="font-size:12px;font-weight:800;color:white;letter-spacing:0.5px;">✍️ மாதிரி விடை | MODEL ANSWER</div>
-          </div>
-          <div style="padding:16px;">
-
-            <!-- Intro -->
-            <div style="background:var(--bg2);border-left:4px solid var(--primary);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;margin-bottom:14px;">
-              <div style="font-size:11px;font-weight:800;color:var(--primary);letter-spacing:0.5px;margin-bottom:6px;">① அறிமுகம் | INTRODUCTION</div>
-              <div style="font-size:13px;color:var(--text);margin-bottom:5px;line-height:1.65;">Article 124(3)(c) of the Indian Constitution includes a progressive clause allowing the President to appoint a <strong>"Distinguished Jurist"</strong> directly to the Supreme Court. Inspired by the US Supreme Court model, the framers introduced this to bring diverse academic and theoretical expertise into the judiciary. However, to date, not a single appointment has been made under this category — a paradox in India's legal system.</div>
-              <div style="font-size:12.5px;color:var(--text-muted);line-height:1.65;">இந்திய அரசியலமைப்பின் விதி 124(3)(c) படி குடியரசுத் தலைவர் ஒரு "சிறந்த சட்ட நிபுணரை" நேரடியாக உச்ச நீதிமன்ற நீதிபதியாக நியமிக்கலாம். அமெரிக்க உச்ச நீதிமன்றத்தை முன்மாதிரியாகக் கொண்டு, சட்டப் பேராசிரியர்கள் மற்றும் ஆராய்ச்சியாளர்களின் கோட்பாட்டு அறிவை நீதித்துறைக்குள் கொண்டுவர அரசியலமைப்பு நிர்ணய சபை இதனை உருவாக்கியது. ஆனால், 75 ஆண்டுகளில் ஒரு நியமனம் கூட நடைபெறவில்லை.</div>
-            </div>
-
-            <!-- Reasons -->
-            <div style="background:var(--red-bg);border-left:4px solid var(--red);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;margin-bottom:14px;">
-              <div style="font-size:11px;font-weight:800;color:var(--red);letter-spacing:0.5px;margin-bottom:8px;">② காரணங்கள் | REASONS FOR NON-UTILIZATION</div>
-              <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>1. அளவுகோல்களில் தெளிவின்மை (Lack of Objective Criteria):</strong><br>
-                <span style="color:var(--text-muted);">'சிறந்த சட்ட நிபுணர்' என்ற வார்த்தைக்கு அரசியலமைப்பில் தெளிவான வரையறை இல்லை. | The term "Distinguished Jurist" is subjective and lacks precise statutory definition.</span></div>
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>2. கொலிஜியம் முறையின் ஆதிக்கம் (Collegium Dominance):</strong><br>
-                <span style="color:var(--text-muted);">1993க்கு பிறகு கொலிஜியம் முறை, நீதிபதிகள் மற்றும் மூத்த வழக்கறிஞர்களை மட்டுமே பரிசீலிக்கும் வழக்கத்தைக் கொண்டுள்ளது. | Collegium favors career judges and senior advocates, neglecting academic jurists.</span></div>
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>3. நடைமுறை அனுபவக் குறைபாடு (Lack of Litigation Experience):</strong><br>
-                <span style="color:var(--text-muted);">கல்வியாளர்களுக்கு நீதிமன்ற நடைமுறை அனுபவம் இல்லை என்ற பொதுவான கருத்து. | Prevailing mindset that academics lack essential courtroom experience.</span></div>
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>4. அரசியல் தலையீடு குறித்த அச்சம் (Fear of Executive Misuse):</strong><br>
-                <span style="color:var(--text-muted);">தெளிவான விதிகள் இல்லாதால் ஆளும் அரசு தனக்கு சாதகமான நபர்களை நியமிக்கக் கூடும் என்ற அச்சம். | Without clear rules, executive could misuse this subjective clause for political appointments.</span></div>
-              </div>
-            </div>
-
-            <!-- Way Forward -->
-            <div style="background:var(--green-bg);border-left:4px solid var(--green);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;margin-bottom:14px;">
-              <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:0.5px;margin-bottom:8px;">③ பரிந்துரைகள் | WAY FORWARD</div>
-              <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>1. தெளிவான வரையறை (Define Criteria):</strong><br><span style="color:var(--text-muted);">சட்டக் கல்வி மற்றும் ஆராய்ச்சியில் 15-20 ஆண்டுகள் அனுபவம், சர்வதேச அளவில் அங்கீகரிக்கப்பட்ட வெளியீடுகள் என்று நாடாளுமன்றம் தகுதிகளை வரையறுக்க வேண்டும். | Parliament should define eligibility: 15-20 years as law professor, peer-reviewed international publications.</span></div>
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>2. கொலிஜியத்தில் மாற்றம் (Reform Collegium Search):</strong><br><span style="color:var(--text-muted);">NLU பேராசிரியர்களின் பெயர்களையும் கொலிஜியம் கட்டாயமாக பரிசீலிக்க வேண்டும். | Collegium must include exceptional legal scholars from National Law Universities in its search.</span></div>
-                <div style="font-size:12.5px;color:var(--text);line-height:1.6;"><strong>3. அமெரிக்க முன்மாதிரி (US Model):</strong><br><span style="color:var(--text-muted);">அமெரிக்காவில் Ruth Bader Ginsburg, Antonin Scalia போன்ற சட்ட அறிஞர்கள் உச்ச நீதிமன்ற நீதிபதிகளாக செயல்பட்டு தலைசிறந்த தீர்ப்புகளை வழங்கியுள்ளனர். | US model shows legal scholars like Ginsburg can deliver landmark judgments enriching constitutional jurisprudence.</span></div>
-              </div>
-            </div>
-
-            <!-- Conclusion -->
-            <div style="background:var(--bg2);border-left:4px solid var(--accent);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:12px 14px;">
-              <div style="font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;margin-bottom:6px;">④ முடிவுரை | CONCLUSION</div>
-              <div style="font-size:13px;color:var(--text);margin-bottom:5px;line-height:1.65;">Activating Article 124(3)(c) is vital to enrich the Supreme Court with deep constitutional jurisprudence. Striking a balance between academic brilliance and judicial experience will enhance the quality of landmark judgments and bring diverse perspectives into India's highest court.</div>
-              <div style="font-size:12.5px;color:var(--text-muted);line-height:1.65;">அமெரிக்கா போன்ற வளர்ந்த நாடுகளைப் போல, இந்திய உச்ச நீதிமன்றத்திலும் சிறந்த அரசியலமைப்புச் சட்டக் கோட்பாடுகளைக் கொண்டுவர விதி 124(3)(c)-ஐ உயிர்ப்பிப்பது அவசியம். நடைமுறை அனுபவத்துடன் கல்வியாளர்களின் மேதைமையையும் இணைப்பது எதிர்கால இந்திய நீதித்துறையின் தரத்தை உயர்த்தும்.</div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Quick Revision -->
-        <div class="art-revision">
-          <div class="art-revision-title">⚡ TNPSC விரைவு திருப்பல் — இந்திய உச்ச நீதிமன்றம்</div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Established: January 28, 1950 | First CJI: Justice Harilal J. Kania</div><div class="ta">நிறுவப்பட்டது: ஜனவரி 28, 1950 | முதல் CJI: நீதிபதி ஹரிலால் ஜே. கானியா</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Constitutional Articles: 124–147 (Part V) | Current strength: 34 judges (including CJI)</div><div class="ta">அரசியலமைப்பு விதிகள்: 124–147 (பகுதி V) | தற்போதைய வலிமை: 34 நீதிபதிகள்</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Retirement age: 65 years | Salary from Consolidated Fund of India</div><div class="ta">ஓய்வு வயது: 65 | சம்பளம் இந்தியாவின் ஒருங்கிணைந்த நிதியிலிருந்து</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Article 32 = Writ jurisdiction = "Heart & Soul of Constitution" (Dr. Ambedkar)</div><div class="ta">விதி 32 = நீதிப்பேராணை அதிகாரம் = "அரசியலமைப்பின் இதயமும் ஆன்மாவும்" (டாக்டர் அம்பேத்கர்)</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Collegium: CJI + 4 senior-most SC judges. Formalized by Third Judges Case (1998)</div><div class="ta">கொலிஜியம்: CJI + 4 மூத்த நீதிபதிகள். மூன்றாம் நீதிபதிகள் வழக்கு (1998) மூலம் முறைப்படுத்தப்பட்டது</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">NJAC (99th Amendment, 2015) struck down as unconstitutional — violates Basic Structure</div><div class="ta">NJAC (99வது திருத்தம், 2015) அரசியலமைப்புக்கு எதிரானது என்று ரத்தானது — அடிப்படை கட்டமைப்பை மீறுகிறது</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">First woman SC judge: Fathima Beevi (1989) | Expected first woman CJI: B.V. Nagarathna (2027)</div><div class="ta">முதல் பெண் SC நீதிபதி: பாத்திமா பீவி (1989) | எதிர்பார்க்கப்படும் முதல் பெண் CJI: B.V. நாகரத்னா (2027)</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Distinguished Jurist [Art.124(3)(c)] — NEVER used in 75+ years of SC history</div><div class="ta">சிறந்த சட்ட நிபுணர் [விதி 124(3)(c)] — 75+ ஆண்டுகளில் ஒருமுறை கூட பயன்படுத்தப்படவில்லை</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">Pending cases in SC (April 2024): 80,194 | Total judicial pendency India: 5 crore+</div><div class="ta">SC-ல் நிலுவை வழக்குகள் (ஏப்ரல் 2024): 80,194 | இந்தியாவின் மொத்த நிலுவை: 5 கோடி+</div></div></div>
-          <div class="art-rev-item"><div class="dot">✓</div><div><div class="en">AOR Examination: 4 papers, 45% per paper, 50% aggregate. Office within 16 km of SC building.</div><div class="ta">AOR தேர்வு: 4 தாள்கள், ஒவ்வொன்றிலும் 45%, மொத்தம் 50%. SC கட்டிடத்திலிருந்து 16 கி.மீ சுற்றளவில் அலுவலகம்.</div></div></div>
-        </div>
-
-        <div class="ad-slot"><span>விளம்பர இடம்</span></div>
-
-        <div class="card" style="border:2px dashed var(--border);text-align:center;padding:20px;" onclick="showToast('விரைவில் வரும்!')">
-          <div style="font-size:28px;margin-bottom:8px;">📖</div>
-          <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">அடுத்த கட்டுரை விரைவில்</div>
-          <div style="font-size:12px;color:var(--text-muted);">Article 04: Fundamental Rights — Your Constitutional Shield</div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">அடிப்படை உரிமைகள் — உங்கள் அரசியலமைப்பு கவசம்</div>
-        </div>
-
-      </div><!-- /.art-body -->
-    </div><!-- /#articleReaderSC -->
-
-  </section>
 
 </main>
 
@@ -2829,10 +1813,10 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 14px 88px; }
     <button class="nav-btn active" id="nav-home" onclick="navigate('home')" aria-label="முகப்பு">
       <span class="nav-icon" aria-hidden="true">🏠</span>முகப்பு
     </button>
-    <button class="nav-btn" id="nav-quiz" onclick="navigate('quiz')" aria-label="மாதிரித் தேர்வுகள்">
+    <button class="nav-btn" id="nav-quiz" onclick="goQuiz()" aria-label="மாதிரித் தேர்வுகள்">
       <span class="nav-icon" aria-hidden="true">📝</span>தேர்வுகள்
     </button>
-    <button class="nav-btn" id="nav-polity" onclick="navigate('polity')" aria-label="கட்டுரைகள்">
+    <button class="nav-btn" id="nav-polity" onclick="goArticles()" aria-label="கட்டுரைகள்">
       <span class="nav-icon" aria-hidden="true">📖</span>கட்டுரைகள்
     </button>
     <button class="nav-btn" id="nav-leaderboard" onclick="navigate('leaderboard')" aria-label="தரவரிசை">
@@ -2902,7 +1886,7 @@ const SUBJECTS = [
   { id:'tamil',      name:'தமிழ்',               icon:'அ',  color:'#dc2626', bg:'#fef2f2', q:90,  progress:50 },
   { id:'current',    name:'நடப்பு நிகழ்வுகள்', icon:'📰', color:'#0f766e', bg:'#f0fdfa', q:60,  progress:80 },
   { id:'palayam',    name:'பாளையக்காரர் கிளர்ச்சி', icon:'⚔️', color:'#dc2626', bg:'#fef2f2', q:100, progress:0 },
-  { id:'freedom',    name:'விடுதலைப் போராட்டம்',      icon:'🇮🇳', color:'#16a34a', bg:'#dcfce7', q:50,  progress:0 },
+  { id:'freedom',    name:'விடுதலைப் போராட்டம்',      icon:'🇮🇳', color:'#16a34a', bg:'#dcfce7', q:20,  progress:0 },
 ];
 
 // Palayakkarar Quiz Bank
@@ -3697,27 +2681,26 @@ const PALAYAM_QUIZ_DATA = [
 
 
 const FREEDOM_QUIZ_DATA = [
-  { q:"Who led the famous Vedaranyam Salt Satyagraha of 1930?", qta:"1930 வேதாரண்யம் உப்பு சத்யாகிரகத்தை வழிநடத்தியவர் யார்?", opts:["Kamarajar","C. Rajagopalachari (Rajaji)","V.O. Chidambaram Pillai","Periyar E.V.R."], optsTA:["காமராஜர்","சி. இராஜகோபாலாசாரி (இராஜாஜி)","வ.உ. சிதம்பரம் பிள்ளை","பெரியார் ஈ.வெ.இரா."], ans:1, diff:"easy", expl:"Rajaji led the Vedaranyam Salt Satyagraha starting from Tiruchirappalli on April 13, 1930, reaching Vedaranyam on April 28, 1930.", explTA:"இராஜாஜி 1930 ஏப்ரல் 13 அன்று திருச்சியிலிருந்து தொடங்கி ஏப்ரல் 28 அன்று வேதாரண்யம் சென்று உப்பு சத்யாகிரகம் நடத்தினார்." },
-  { q:"V.O. Chidambaram Pillai (VOC) founded which company to challenge British shipping monopoly?", qta:"வ.உ. சிதம்பரம் பிள்ளை பிரிட்டிஷ் கப்பல் ஏகபோகத்தை சவால் செய்ய எந்த நிறுவனம் நிறுவினார்?", opts:["Indian Steam Company","Swadeshi Steam Navigation Company","Tamil Shipping Corporation","Desi Maritime Company"], optsTA:["இந்தியன் ஸ்டீம் கம்பெனி","ஸ்வதேசி கப்பல் நிறுவனம்","தமிழ் கப்பல் கழகம்","தேசி கடல் கம்பெனி"], ans:1, diff:"easy", expl:"VOC founded the Swadeshi Steam Navigation Company in Tuticorin in 1906. He was sentenced to double life imprisonment on July 7, 1908.", explTA:"வ.உ.சி. 1906 ஆம் ஆண்டு தூத்துக்குடியில் ஸ்வதேசி கப்பல் நிறுவனம் நிறுவினார். ஜூலை 7, 1908 அன்று இரட்டை ஆயுள் தண்டனை விதிக்கப்பட்டது." },
-  { q:"Vanchinathan shot and killed which British officer at Maniachi railway junction in 1911?", qta:"1911 இல் மணியாச்சி இரயில் நிலையத்தில் வாஞ்சிநாதன் யாரை சுட்டுக் கொன்றார்?", opts:["Collector Jackson","Collector Robert Ashe","General Pansoor","Colonel Wellesley"], optsTA:["கலெக்டர் ஜாக்சன்","கலெக்டர் ராபர்ட் ஆஷ்","ஜெனரல் பன்சூர்","கர்னல் வெல்லெஸ்லி"], ans:1, diff:"medium", expl:"Vanchinathan shot Collector Robert Ashe at Maniachi junction on June 17, 1911, then shot himself to avoid arrest.", explTA:"வாஞ்சிநாதன் ஜூன் 17, 1911 அன்று மணியாச்சி சந்திப்பில் கலெக்டர் ராபர்ட் ஆஷை சுட்டுக் கொன்றார், பின்னர் தன்னையே சுட்டுக்கொண்டார்." },
-  { q:"Kuyili sacrificed herself by jumping into British ammunition depot on which date?", qta:"குயிலி எந்த தேதியில் பிரிட்டிஷ் ஆயுதக் கிடங்கில் குதித்து தன்னை தியாகம் செய்தார்?", opts:["June 25, 1772","September 30, 1780","October 17, 1799","January 3, 1780"], optsTA:["ஜூன் 25, 1772","செப்டம்பர் 30, 1780","அக்டோபர் 17, 1799","ஜனவரி 3, 1780"], ans:1, diff:"medium", expl:"Kuyili poured ghee and oil on herself and jumped into the British ammunition depot on September 30, 1780 (Vijayadasami day), destroying all weapons. She is India's first suicide bomber in the freedom struggle.", explTA:"குயிலி செப்டம்பர் 30, 1780 அன்று (விஜயதசமி நாள்) தன்மீது நெய் ஊற்றிக்கொண்டு ஆயுதக் கிடங்கில் குதித்து அனைத்தையும் அழித்தார். இந்திய சுதந்திர போராட்டத்தின் முதல் தற்கொலை வீராங்கனை." },
-  { q:"What was the 'Sambutheevu Declaration' issued by Marudhu Brothers on June 16, 1801?", qta:"மருது சகோதரர்கள் ஜூன் 16, 1801 அன்று வெளியிட்ட 'சம்புதீவு அறிவிப்பு' என்ன?", opts:["A peace treaty with British","First pan-India call for all Indians to unite against British rule","A land reform decree","A trade agreement"], optsTA:["பிரிட்டிஷாருடன் சமாதான ஒப்பந்தம்","அனைத்து இந்தியர்களையும் பிரிட்டிஷாருக்கு எதிராக ஒன்றிணையுமாறு முதல் அகில இந்திய அழைப்பு","நில சீர்திருத்த ஆணை","வர்த்தக ஒப்பந்தம்"], ans:1, diff:"hard", expl:"The Sambutheevu Declaration (June 16, 1801) was pasted on fort walls in Trichy and Tiruvarangam temple. 'Sambutheevu' means the Indian subcontinent — making it history's first pan-India freedom call.", explTA:"சம்புதீவு அறிவிப்பு திருச்சி கோட்டை மற்றும் திருவரங்கம் கோவில் சுவர்களில் ஒட்டப்பட்டது. 'சம்புதீவு' என்பது இந்திய துணைக்கண்டம் — வரலாற்றில் முதல் அகில இந்திய சுதந்திர அழைப்பு." },
-  { q:"Captain Lakshmi was the commander of which regiment in the Indian National Army?", qta:"கேப்டன் லட்சுமி இந்திய தேசிய இராணுவத்தில் எந்த படையின் கேப்டனாக இருந்தார்?", opts:["Bengal Regiment","Rani of Jhansi Regiment","Azad Hind Regiment","Tamil Nadu Brigade"], optsTA:["வங்காள படை","ராணி ஜான்சி படை","ஆஜாத் ஹிந்த் படை","தமிழ்நாடு படை"], ans:1, diff:"medium", expl:"Captain Lakshmi (1914-2012) from Malabar was appointed by Netaji as commander of the Rani of Jhansi Regiment. About 1,000 women soldiers served, 80% were Tamil women.", explTA:"கேப்டன் லட்சுமி (1914-2012) மலபாரைச் சேர்ந்தவர், நேதாஜியால் ராணி ஜான்சி படையின் கேப்டனாக நியமிக்கப்பட்டார். சுமார் 1,000 பெண் வீரர்களில் 80% தமிழ் பெண்கள்." },
-  { q:"Tiruppur Kumaran died holding the national flag on which date?", qta:"திருப்பூர் குமரன் தேசியக் கொடியை பிடித்தவாறே எந்த தேதியில் இறந்தார்?", opts:["January 11, 1932","August 15, 1942","October 2, 1930","January 25, 1932"], optsTA:["ஜனவரி 11, 1932","ஆகஸ்ட் 15, 1942","அக்டோபர் 2, 1930","ஜனவரி 25, 1932"], ans:0, diff:"easy", expl:"Tiruppur Kumaran (1904-1932), called 'Kodi Kaththa Kumaran', died on January 11, 1932, holding the national flag even during a British police lathi charge.", explTA:"திருப்பூர் குமரன் (1904-1932), 'கொடி காத்த குமரன்' என்று அழைக்கப்படுபவர், ஜனவரி 11, 1932 அன்று பிரிட்டிஷ் போலீசாரின் தடியடியிலும் தேசியக் கொடியை விடாமல் இறந்தார்." },
-  { q:"Subramania Bharati (1882-1921) used which medium to inspire millions in the freedom struggle?", qta:"சுப்பிரமணிய பாரதி (1882-1921) சுதந்திர இயக்கத்தில் மில்லியன் கணக்கானவர்களை ஊக்குவிக்க எந்த ஊடகம் பயன்படுத்தினார்?", opts:["Armed resistance","Revolutionary Tamil patriotic songs and poetry","Newspaper editorials","Trade union organizing"], optsTA:["ஆயுத எதிர்ப்பு","புரட்சிகர தமிழ் தேசபக்தி பாடல்கள் மற்றும் கவிதை","செய்தித்தாள் தலையங்கங்கள்","தொழிற்சங்க ஒழுங்கமைப்பு"], ans:1, diff:"easy", expl:"Subramania Bharati's fiery patriotic songs inspired millions. British confiscated his writings as seditious. He used Pondicherry (French territory) as refuge to write freely against British rule.", explTA:"சுப்பிரமணிய பாரதியின் தேசபக்தி பாடல்கள் மில்லியன் கணக்கானவர்களை ஊக்குவித்தன. பிரிட்டிஷார் அவரது எழுத்துக்களை நாசகார இலக்கியமாக பறிமுதல் செய்தனர்." },
-  { q:"In which year did Rajaji become India's first Indian Governor-General?", qta:"இராஜாஜி எந்த ஆண்டில் இந்தியாவின் முதல் இந்திய கவர்னர் ஜெனரல் ஆனார்?", opts:["1947","1948","1950","1952"], optsTA:["1947","1948","1950","1952"], ans:1, diff:"medium", expl:"C. Rajagopalachari (Rajaji) became India's first and last Indian Governor-General in 1948 after Lord Mountbatten. He also led the Vedaranyam Salt March in 1930 and was Tamil Nadu's Chief Minister in 1937 and 1948.", explTA:"சி. இராஜகோபாலாசாரி (இராஜாஜி) 1948 ஆம் ஆண்டு லார்ட் மவுண்ட்பேட்டனுக்கு பிறகு இந்தியாவின் முதல் மற்றும் கடைசி இந்திய கவர்னர் ஜெனரல் ஆனார்." },
-  { q:"The Vellore Mutiny of 1806 is significant because it was:", qta:"1806 வேலூர் கலகம் ஏன் முக்கியத்துவம் வாய்ந்தது?", opts:["The last revolt in Tamil Nadu","The FIRST major armed revolt against British rule in India — 51 years before 1857","A successful revolt that drove British out","A mutiny by French soldiers"], optsTA:["தமிழ்நாட்டில் கடைசி கிளர்ச்சி","இந்தியாவில் பிரிட்டிஷாருக்கு எதிரான முதல் பெரிய ஆயுத கிளர்ச்சி — 1857க்கு 51 ஆண்டுகள் முன்பு","பிரிட்டிஷாரை விரட்டிய வெற்றிகரமான கிளர்ச்சி","பிரெஞ்சு வீரர்களின் கலகம்"], ans:1, diff:"easy", expl:"The Vellore Mutiny (July 10, 1806) was the FIRST major armed revolt against British rule in India — occurring 51 years before the famous 1857 First War of Independence. The imprisoned Madurai Nayak dynasty members inspired the mutineers.", explTA:"வேலூர் கலகம் (ஜூலை 10, 1806) இந்தியாவில் பிரிட்டிஷாருக்கு எதிரான முதல் பெரிய ஆயுத கிளர்ச்சி — 1857 முதல் சுதந்திர போருக்கு 51 ஆண்டுகள் முன்பு நடந்தது." },
-  { q:"VOC Chidambaram Pillai is also known as:", qta:"வ.உ. சிதம்பரம் பிள்ளை இன்னொரு பெயரில் என்று அழைக்கப்படுகிறார்?", opts:["Desabhaktha","Kappalottiya Tamizhan (Tamil who steered the ship)","Kodi Kaththa Kumaran","Senapathi of Tamil Nadu"], optsTA:["தேசபக்தர்","கப்பலோட்டிய தமிழன்","கொடி காத்த குமரன்","தமிழ்நாடு சேனாபதி"], ans:1, diff:"easy", expl:"V.O. Chidambaram Pillai is celebrated as 'Kappalottiya Tamizhan' — The Tamil who steered the ship — referring to his founding of the Swadeshi Steam Navigation Company that challenged British shipping monopoly.", explTA:"வ.உ. சிதம்பரம் பிள்ளை 'கப்பலோட்டிய தமிழன்' என்று கொண்டாடப்படுகிறார் — பிரிட்டிஷ் கப்பல் ஏகபோகத்தை சவால் செய்த ஸ்வதேசி கப்பல் நிறுவனத்தை நிறுவியதை குறிக்கிறது." },
-  { q:"Periyar E.V.R. led the Vaikom Satyagraha in 1924 demanding:", qta:"பெரியார் ஈ.வெ.இரா. 1924 வைக்கம் சத்யாகிரகத்தில் என்ன கோரினார்?", opts:["Indian independence from British rule","Right of lower castes to walk on public roads near Vaikom temple in Kerala","Women's voting rights","Abolition of zamindari system"], optsTA:["பிரிட்டிஷ் ஆட்சியிலிருந்து இந்திய சுதந்திரம்","கேரளாவில் வைக்கம் கோவிலுக்கு அருகிலுள்ள பொதுச் சாலைகளில் நடந்து செல்ல தாழ்த்தப்பட்ட சாதியினருக்கு உரிமை","பெண்களுக்கு வாக்குரிமை","ஜமீன்தாரி முறை ஒழிப்பு"], ans:1, diff:"easy", expl:"Periyar E.V.R. (1879-1973) led the Vaikom Satyagraha in Kerala (1924-1925) demanding the right of lower castes to walk on public roads near the Vaikom temple. He also led the Erode shop boycott against the Prince of Wales visit in 1922.", explTA:"பெரியார் ஈ.வெ.இரா. (1879-1973) கேரளாவில் (1924-1925) வைக்கம் கோவிலுக்கு அருகிலுள்ள பொதுச் சாலைகளில் நடந்து செல்ல தாழ்த்தப்பட்டோருக்கு உரிமை கோரி வைக்கம் சத்யாகிரகம் நடத்தினார்." },
-  { q:"During the 1971 Indo-Pak War, Tamil Nadu under Kamarajar contributed how much while other states combined gave only 18 crore?", qta:"1971 இந்தோ-பாக் போரில் காமராஜரின் தமிழ்நாடு எவ்வளவு வழங்கியது, மற்ற மாநிலங்கள் சேர்ந்து 18 கோடி மட்டுமே வழங்கியபோது?", opts:["3 crore","6 crore","12 crore","50 crore"], optsTA:["3 கோடி","6 கோடி","12 கோடி","50 கோடி"], ans:1, diff:"medium", expl:"During the 1971 Indo-Pakistan War, Tamil Nadu contributed 6 crore rupees while all other states combined contributed only 18 crore. Tamil Nadu's contribution was extraordinary showing its deep national commitment.", explTA:"1971 இந்தோ-பாகிஸ்தான் போரில் தமிழ்நாடு 6 கோடி ரூபாய் வழங்கியது, மற்ற அனைத்து மாநிலங்களும் சேர்ந்து 18 கோடி மட்டுமே வழங்கினர். தமிழ்நாட்டின் தேசிய அர்ப்பணிப்பு அசாதாரணமானது." },
-  { q:"Kamarajar was elected as Tamil Nadu Congress President in which year?", qta:"காமராஜர் எந்த ஆண்டில் தமிழ்நாடு காங்கிரஸ் தலைவர் ஆனார்?", opts:["1937","1940","1947","1952"], optsTA:["1937","1940","1947","1952"], ans:1, diff:"medium", expl:"Kamarajar (1903-1975) was elected as Tamil Nadu Congress President in 1940. He was imprisoned multiple times during the Civil Disobedience Movement (1930-31) and Quit India Movement (1942).", explTA:"காமராஜர் (1903-1975) 1940 ஆம் ஆண்டில் தமிழ்நாடு காங்கிரஸ் தலைவர் ஆனார். சட்டமறுப்பு இயக்கம் (1930-31) மற்றும் வெள்ளையனே வெளியேறு இயக்கம் (1942) ஆகியவற்றில் பலமுறை சிறை சென்றார்." },
-  { q:"The secret organization 'Bharata Matha Sangam' that inspired the Ashe murder was founded by:", qta:"ஆஷ் படுகொலைக்கு ஊக்கமளித்த 'பாரத மாதா சங்கம்' நிறுவியவர் யார்?", opts:["Vanchinathan","Nilakanta Brahmachari of Sengottai","V.O. Chidambaram Pillai","Subramania Bharati"], optsTA:["வாஞ்சிநாதன்","செங்கோட்டை நீலகண்ட பிரம்மச்சாரி","வ.உ. சிதம்பரம் பிள்ளை","சுப்பிரமணிய பாரதி"], ans:1, diff:"hard", expl:"Nilakanta Brahmachari of Sengottai (1886-1911) founded the secret 'Bharata Matha Sangam' in 1904 to inspire patriotism by killing British officials. His ideals inspired Vanchinathan to kill Collector Ashe in 1911.", explTA:"செங்கோட்டை நீலகண்ட பிரம்மச்சாரி (1886-1911) 1904 ஆம் ஆண்டு 'பாரத மாதா சங்கம்' என்ற இரகசிய அமைப்பை நிறுவினார். அவரது கொள்கைகள் வாஞ்சிநாதனை 1911 இல் கலெக்டர் ஆஷை கொல்ல ஊக்குவித்தன." },
-  { q:"Rukmini Lakshmipathi achieved which historic first in Tamil Nadu politics in 1937?", qta:"ருக்மணி லட்சுமிபதி 1937 ஆம் ஆண்டு தமிழ்நாடு அரசியலில் எந்த வரலாற்று சாதனை படைத்தார்?", opts:["First woman CM of Tamil Nadu","First woman Deputy Speaker of Madras Legislative Council","First woman to vote in India","First woman IAS officer from Tamil Nadu"], optsTA:["தமிழ்நாட்டின் முதல் பெண் முதலமைச்சர்","மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் துணை சபாநாயகர்","இந்தியாவில் வாக்களித்த முதல் பெண்","தமிழ்நாட்டிலிருந்து முதல் பெண் IAS அதிகாரி"], ans:1, diff:"hard", expl:"Rukmini Lakshmipathi (1892-1951) became the first woman Deputy Speaker of the Madras Legislative Council in 1937. She also became a member of the Constituent Assembly in 1946 and participated in the Vedaranyam Salt Satyagraha.", explTA:"ருக்மணி லட்சுமிபதி (1892-1951) 1937 ஆம் ஆண்டு மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் துணை சபாநாயகர் ஆனார். 1946 ஆம் ஆண்டு நிர்ணய சபையின் உறுப்பினரும் ஆனார்." },
-  { q:"Who was Tamil Nadu's first Chief Minister after Independence in 1947?", qta:"1947 சுதந்திரத்திற்குப் பிறகு தமிழ்நாட்டின் முதல் முதலமைச்சர் யார்?", opts:["Kamarajar","Periyar E.V.R.","C. Rajagopalachari (Rajaji)","P. Subbarayan"], optsTA:["காமராஜர்","பெரியார் ஈ.வெ.இரா.","சி. இராஜகோபாலாசாரி (இராஜாஜி)","பி. சுப்பராயன்"], ans:2, diff:"easy", expl:"C. Rajagopalachari (Rajaji) became Tamil Nadu's first Chief Minister after Independence in 1948. He had earlier led the 1930 Vedaranyam Salt March and served as CM in 1937 under British rule. He also became India's first Indian Governor-General in 1948.", explTA:"சி. இராஜகோபாலாசாரி (இராஜாஜி) 1948 ஆம் ஆண்டு சுதந்திரத்திற்குப் பிறகு தமிழ்நாட்டின் முதல் முதலமைச்சர் ஆனார். 1930 வேதாரண்யம் உப்பு மார்ச் வழிநடத்தினார். இந்தியாவின் முதல் இந்திய கவர்னர் ஜெனரலும் ஆனார்." },
-  { q:"The 1937 Tamil Nadu Congress government resigned in 1939 because:", qta:"1937 தமிழ்நாடு காங்கிரஸ் அரசு 1939 இல் பதவி விலகியதன் காரணம் என்ன?", opts:["Due to famine crisis","Protesting Britain dragging India into World War II without Indians' consent","Following Gandhi's instructions to cooperate with British","Due to Rajaji's health problems"], optsTA:["பஞ்ச நெருக்கடி காரணமாக","இந்தியர்களின் சம்மதமின்றி இரண்டாம் உலகப் போரில் இந்தியாவை இழுத்ததற்கு எதிர்ப்பு","பிரிட்டிஷாருடன் ஒத்துழைக்க காந்தியின் உத்தரவை பின்பற்றி","இராஜாஜியின் உடல்நலக் காரணங்களால்"], ans:1, diff:"medium", expl:"In 1939, all Congress ministries including Rajaji's Madras government resigned protesting Britain's decision to drag India into World War II without Indians' consent. This was a major act of civil disobedience.", explTA:"1939 இல் இந்தியர்களின் சம்மதமின்றி இரண்டாம் உலகப் போரில் இந்தியாவை இழுத்ததற்கு எதிர்ப்பு தெரிவிக்க இராஜாஜியின் மதராஸ் அரசு உட்பட அனைத்து காங்கிரஸ் அமைச்சரவைகளும் பதவி விலகின." },
-  { q:"Women in Madras Presidency got voting rights in which year — before even England?", qta:"இங்கிலாந்திற்கும் முன்பே மதராஸ் பிரசிடென்சியில் பெண்களுக்கு வாக்குரிமை எந்த ஆண்டில் கிடைத்தது?", opts:["1919","1921","1928","1935"], optsTA:["1919","1921","1928","1935"], ans:1, diff:"hard", expl:"Women in Madras Presidency got voting rights in 1921 — before England gave women full voting rights in 1928! Dorothy Jinarajadasa voted in Madras in 1921. Annie Besant and others fought vigorously for women's suffrage.", explTA:"மதராஸ் பிரசிடென்சியில் பெண்களுக்கு 1921 ஆம் ஆண்டில் வாக்குரிமை கிடைத்தது — இங்கிலாந்தில் 1928 இல் கிடைப்பதற்கும் முன்பே! டோரோதி ஜினராஜதாஸா 1921 இல் மதராஸில் வாக்களித்தார்." },
-  { q:"Alagumuthukon (king of Katalangulam) was executed in 1759 by which brutal method?", qta:"கதலாங்குளத்தின் ஆட்சியாளர் அழகுமுத்துக்கோன் 1759 இல் எந்த கொடூரமான முறையில் கொல்லப்பட்டார்?", opts:["Hanged at Kayathar fort","Tied with 248 others in front of a cannon and blasted to death","Beheaded at Panchalankurichi","Drowned in Vaigai river"], optsTA:["காயத்தார் கோட்டையில் தூக்கிலிடப்பட்டார்","248 பேருடன் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர்","பஞ்சலங்குறிச்சியில் தலை வெட்டப்பட்டார்","வையை நதியில் மூழ்கடிக்கப்பட்டார்"], ans:1, diff:"hard", expl:"Veera Alagu Muthukon (1728) was captured through the treachery of Marudhanayakam in 1759. He and 248 others were tied in front of a cannon and blasted to death — one of the most brutal executions by the British in Tamil Nadu.", explTA:"வீர அழகு முத்துக்கோன் 1759 இல் மருதநாயகத்தின் தந்திரத்தால் பிடிக்கப்பட்டார். அவரும் 248 பேரும் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர்." },
-  { q:"K.B. Sundarambal (1908-1980) contributed to the freedom movement through:", qta:"கே.பி. சுந்தராம்பாள் (1908-1980) சுதந்திர இயக்கத்திற்கு எவ்வாறு பங்களித்தார்?", opts:["Armed resistance against British","Patriotic songs and stage performances inspiring Tamil masses","Newspaper editing","Organizing farmers' protests"], optsTA:["பிரிட்டிஷாருக்கு எதிரான ஆயுத எதிர்ப்பு","தமிழ் மக்களை ஊக்குவிக்கும் தேசபக்தி பாடல்கள் மற்றும் நாடக நடிப்புகள்","செய்தித்தாள் ஆசிரியர் பணி","விவசாயிகள் போராட்டங்களை ஒழுங்கமைத்தல்"], ans:1, diff:"medium", expl:"K.B. Sundarambal of Coimbatore used patriotic songs and performances to inspire Tamil people in the freedom movement. She was elected to the Tamil Nadu Legislative Council in 1958 under Kamarajar's government.", explTA:"கோயம்புத்தூர் கே.பி. சுந்தராம்பாள் தேசபக்தி பாடல்கள் மற்றும் நடிப்புகள் மூலம் தமிழ் மக்களை ஊக்குவித்தார். காமராஜர் அரசில் 1958 ஆம் ஆண்டு தமிழ்நாடு சட்டமன்ற மேலவை உறுப்பினர் ஆனார்." }
+  { q:"Who led the Vedaranyam Salt Satyagraha of 1930?", qta:"1930 வேதாரண்யம் உப்பு சத்யாகிரகத்தை வழிநடத்தியவர் யார்?", opts:["Kamarajar","Rajaji","VOC","Periyar"], optsTA:["காமராஜர்","இராஜாஜி","வ.உ.சி.","பெரியார்"], ans:1, diff:"easy", expl:"Rajaji (C. Rajagopalachari) led the Vedaranyam Salt Satyagraha starting April 13, 1930 from Tiruchirappalli, reaching Vedaranyam on April 28, 1930.", explTA:"இராஜாஜி 1930 ஏப்ரல் 13 அன்று திருச்சியிலிருந்து தொடங்கி ஏப்ரல் 28 அன்று வேதாரண்யம் சென்று உப்பு சத்யாகிரகம் நடத்தினார்." },
+  { q:"VOC Chidambaram Pillai is known as:", qta:"வ.உ. சிதம்பரம் பிள்ளை என்று அழைக்கப்படுகிறார்:", opts:["Desabhaktha","Kappalottiya Tamizhan","Kodi Kaththa Kumaran","Veerapandiya"], optsTA:["தேசபக்தர்","கப்பலோட்டிய தமிழன்","கொடி காத்த குமரன்","வீரபாண்டிய"], ans:1, diff:"easy", expl:"VOC is celebrated as 'Kappalottiya Tamizhan' — The Tamil who steered the ship — for founding the Swadeshi Steam Navigation Company in 1906.", explTA:"வ.உ.சி. ஸ்வதேசி கப்பல் நிறுவனம் 1906ல் நிறுவியதால் 'கப்பலோட்டிய தமிழன்' என்று கொண்டாடப்படுகிறார்." },
+  { q:"Tiruppur Kumaran is called 'Kodi Kaththa Kumaran' because:", qta:"திருப்பூர் குமரன் 'கொடி காத்த குமரன்' என்று ஏன் அழைக்கப்படுகிறார்:", opts:["He designed the national flag","He died holding the national flag during British lathi charge on Jan 11, 1932","He hoisted flag on Independence Day","He won a flag design competition"], optsTA:["தேசியக் கொடியை வடிவமைத்தார்","ஜனவரி 11, 1932 பிரிட்டிஷ் தடியடியில் தேசியக் கொடியை பிடித்தவாறே இறந்தார்","சுதந்திர தினத்தில் கொடி ஏற்றினார்","கொடி வடிவமைப்பு போட்டியில் வென்றார்"], ans:1, diff:"easy", expl:"Tiruppur Kumaran (1904-1932) held the national flag and died without releasing it during a British police lathi charge on January 11, 1932.", explTA:"திருப்பூர் குமரன் (1904-1932) ஜனவரி 11, 1932 அன்று பிரிட்டிஷ் தடியடியில் தேசியக் கொடியை விடாமல் இறந்தார்." },
+  { q:"Kuyili sacrificed herself to destroy British weapons on:", qta:"குயிலி பிரிட்டிஷ் ஆயுதங்களை அழிக்க தன்னை தியாகம் செய்தது:", opts:["Jan 3, 1780","Sep 30, 1780","Oct 17, 1799","June 25, 1772"], optsTA:["ஜனவரி 3, 1780","செப்டம்பர் 30, 1780","அக்டோபர் 17, 1799","ஜூன் 25, 1772"], ans:1, diff:"medium", expl:"Kuyili poured ghee on herself and jumped into the British ammunition depot on September 30, 1780, destroying all weapons. She is India's first suicide bomber in the freedom struggle.", explTA:"குயிலி செப்டம்பர் 30, 1780 அன்று தன்மீது நெய் ஊற்றிக்கொண்டு ஆயுதக் கிடங்கில் குதித்தார். இந்திய சுதந்திர போராட்டத்தின் முதல் தற்கொலை வீராங்கனை." },
+  { q:"Sambutheevu Declaration (1801) was issued by:", qta:"சம்புதீவு அறிவிப்பை (1801) வெளியிட்டவர்கள்:", opts:["Kattabomman","Marudhu Brothers","Puli Thevar","Dheeran Chinnamalai"], optsTA:["கட்டபொம்மன்","மருது சகோதரர்கள்","புலிதேவர்","தீரன் சின்னமலை"], ans:1, diff:"medium", expl:"The Sambutheevu Declaration was issued by the Marudhu Brothers on June 16, 1801 — the first pan-India call to unite against British rule.", explTA:"சம்புதீவு அறிவிப்பை மருது சகோதரர்கள் ஜூன் 16, 1801 அன்று வெளியிட்டனர் — பிரிட்டிஷாருக்கு எதிராக ஒன்றிணையும் முதல் அகில இந்திய அழைப்பு." },
+  { q:"Captain Lakshmi commanded which regiment in the INA?", qta:"கேப்டன் லட்சுமி INA-வில் எந்த படையை வழிநடத்தினார்?", opts:["Bengal Regiment","Rani of Jhansi Regiment","Azad Hind Fauj","Tamil Brigade"], optsTA:["வங்காள படை","ராணி ஜான்சி படை","ஆஜாத் ஹிந்த் படை","தமிழ் படை"], ans:1, diff:"medium", expl:"Captain Lakshmi (1914-2012) was appointed by Netaji as commander of the Rani of Jhansi Regiment. 80% of the 1,000 women soldiers were Tamil women.", explTA:"கேப்டன் லட்சுமி (1914-2012) நேதாஜியால் ராணி ஜான்சி படையின் கேப்டனாக நியமிக்கப்பட்டார். 80% தமிழ் பெண்கள்." },
+  { q:"Vellore Mutiny (1806) was significant as:", qta:"வேலூர் கலகம் (1806) ஏன் முக்கியத்துவம் வாய்ந்தது?", opts:["Last revolt in Tamil Nadu","FIRST armed revolt against British in India — 51 years before 1857","A French-led mutiny","A successful revolt"], optsTA:["தமிழ்நாட்டில் கடைசி கிளர்ச்சி","இந்தியாவில் பிரிட்டிஷாருக்கு எதிரான முதல் ஆயுத கிளர்ச்சி — 1857க்கு 51 ஆண்டுகள் முன்பு","பிரெஞ்சு கலகம்","வெற்றிகரமான கிளர்ச்சி"], ans:1, diff:"easy", expl:"Vellore Mutiny (July 10, 1806) was the FIRST major armed revolt against British in India — 51 years before the 1857 First War of Independence.", explTA:"வேலூர் கலகம் (ஜூலை 10, 1806) இந்தியாவில் பிரிட்டிஷாருக்கு எதிரான முதல் பெரிய ஆயுத கிளர்ச்சி — 1857க்கு 51 ஆண்டுகள் முன்பு." },
+  { q:"Periyar led which satyagraha in Kerala in 1924?", qta:"பெரியார் 1924 ஆம் ஆண்டு கேரளாவில் எந்த சத்யாகிரகம் நடத்தினார்?", opts:["Salt Satyagraha","Vaikom Temple Entry Satyagraha","Non-cooperation Movement","Quit India Movement"], optsTA:["உப்பு சத்யாகிரகம்","வைக்கம் கோவில் நுழைவு சத்யாகிரகம்","ஒத்துழையாமை இயக்கம்","வெள்ளையனே வெளியேறு"], ans:1, diff:"easy", expl:"Periyar E.V.R. led the Vaikom Satyagraha in Kerala (1924-25) demanding the right of lower castes to walk on public roads near the Vaikom temple.", explTA:"பெரியார் ஈ.வெ.இரா. 1924-25 கேரளாவில் வைக்கம் கோவிலுக்கு அருகில் தாழ்த்தப்பட்டோர் நடந்து செல்ல உரிமை கோரி சத்யாகிரகம் நடத்தினார்." },
+  { q:"Vanchinathan shot which British Collector at Maniachi junction in 1911?", qta:"1911 மணியாச்சியில் வாஞ்சிநாதன் யாரை சுட்டார்?", opts:["Collector Jackson","Collector Robert Ashe","General Pansoor","Colonel Heron"], optsTA:["கலெக்டர் ஜாக்சன்","கலெக்டர் ராபர்ட் ஆஷ்","ஜெனரல் பன்சூர்","கர்னல் ஹெரான்"], ans:1, diff:"medium", expl:"Vanchinathan shot and killed Collector Robert Ashe at Maniachi junction on June 17, 1911, then shot himself to avoid arrest.", explTA:"வாஞ்சிநாதன் ஜூன் 17, 1911 அன்று மணியாச்சியில் கலெக்டர் ராபர்ட் ஆஷை சுட்டுக் கொன்றார், பின்னர் தன்னையே சுட்டுக்கொண்டார்." },
+  { q:"Tamil Nadu contributed how much in the 1971 Indo-Pak War vs all other states' combined 18 crore?", qta:"1971 போரில் தமிழ்நாடு எவ்வளவு வழங்கியது, மற்ற மாநிலங்கள் சேர்ந்து 18 கோடி வழங்கியபோது?", opts:["3 crore","6 crore","18 crore","50 crore"], optsTA:["3 கோடி","6 கோடி","18 கோடி","50 கோடி"], ans:1, diff:"medium", expl:"Tamil Nadu contributed 6 crore rupees in the 1971 Indo-Pak War under Kamarajar, while all other states combined contributed only 18 crore.", explTA:"1971 போரில் தமிழ்நாடு காமராஜர் தலைமையில் 6 கோடி ரூபாய் வழங்கியது, மற்ற அனைத்து மாநிலங்களும் சேர்ந்து 18 கோடி மட்டுமே." },
+  { q:"Subramania Bharati (1882-1921) was a:", qta:"சுப்பிரமணிய பாரதி (1882-1921) ஒரு:", opts:["Military general","Revolutionary Tamil poet whose songs inspired millions","Trade union leader","Politician who negotiated with British"], optsTA:["இராணுவ தளபதி","மில்லியன் கணக்கானவர்களை ஊக்குவித்த புரட்சிகர தமிழ் கவிஞர்","தொழிற்சங்க தலைவர்","பிரிட்டிஷாருடன் பேரம் பேசிய அரசியல்வாதி"], ans:1, diff:"easy", expl:"Subramania Bharati's fiery patriotic songs inspired millions in the freedom struggle. British confiscated his writings as seditious literature.", explTA:"சுப்பிரமணிய பாரதியின் தேசபக்தி பாடல்கள் சுதந்திர போராட்டத்தில் மில்லியன் கணக்கானவர்களை ஊக்குவித்தன." },
+  { q:"Rajaji became Tamil Nadu Chief Minister for the first time in:", qta:"இராஜாஜி முதன்முறையாக தமிழ்நாடு முதலமைச்சர் ஆனது:", opts:["1930","1937","1947","1952"], optsTA:["1930","1937","1947","1952"], ans:1, diff:"medium", expl:"Rajaji became Chief Minister of Madras Province in 1937 when Congress won elections under British rule. He also served as CM in 1948 after Independence.", explTA:"இராஜாஜி 1937 ஆம் ஆண்டு பிரிட்டிஷ் ஆட்சியில் காங்கிரஸ் தேர்தலில் வென்றபோது மதராஸ் மாகாண முதலமைச்சர் ஆனார்." },
+  { q:"Rukmini Lakshmipathi became in 1937:", qta:"ருக்மணி லட்சுமிபதி 1937ல் ஆனார்:", opts:["First woman CM","First woman Deputy Speaker of Madras Legislative Council","First woman IAS officer","First woman voter in Tamil Nadu"], optsTA:["முதல் பெண் முதலமைச்சர்","மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் துணை சபாநாயகர்","முதல் பெண் IAS அதிகாரி","தமிழ்நாட்டின் முதல் பெண் வாக்காளர்"], ans:1, diff:"hard", expl:"Rukmini Lakshmipathi (1892-1951) became the first woman Deputy Speaker of the Madras Legislative Council in 1937 and joined the Constituent Assembly in 1946.", explTA:"ருக்மணி லட்சுமிபதி (1892-1951) 1937ல் மதராஸ் சட்டமன்ற மேலவையின் முதல் பெண் துணை சபாநாயகர் ஆனார், 1946ல் நிர்ணய சபை உறுப்பினர் ஆனார்." },
+  { q:"Women in Madras Presidency got voting rights in:", qta:"மதராஸ் பிரசிடென்சியில் பெண்களுக்கு வாக்குரிமை கிடைத்தது:", opts:["1919","1921","1928","1947"], optsTA:["1919","1921","1928","1947"], ans:1, diff:"hard", expl:"Women in Madras Presidency got voting rights in 1921 — before England gave women full voting rights in 1928! Dorothy Jinarajadasa voted in Madras in 1921.", explTA:"மதராஸ் பிரசிடென்சியில் 1921ல் பெண்களுக்கு வாக்குரிமை கிடைத்தது — இங்கிலாந்தில் 1928ல் கிடைப்பதற்கு முன்பே!" },
+  { q:"The Bharata Matha Sangam that inspired the Ashe murder was founded by:", qta:"ஆஷ் படுகொலைக்கு ஊக்கமளித்த 'பாரத மாதா சங்கம்' நிறுவியவர்:", opts:["Vanchinathan","Nilakanta Brahmachari of Sengottai","Subramania Bharati","Rajaji"], optsTA:["வாஞ்சிநாதன்","செங்கோட்டை நீலகண்ட பிரம்மச்சாரி","சுப்பிரமணிய பாரதி","இராஜாஜி"], ans:1, diff:"hard", expl:"Nilakanta Brahmachari of Sengottai (1886-1911) founded the secret 'Bharata Matha Sangam' in 1904 to inspire patriotism. His ideals inspired Vanchinathan to kill Collector Ashe in 1911.", explTA:"செங்கோட்டை நீலகண்ட பிரம்மச்சாரி (1886-1911) 1904ல் 'பாரத மாதா சங்கம்' நிறுவினார். அவரது கொள்கைகள் வாஞ்சிநாதனை ஊக்குவித்தன." },
+  { q:"Alagumuthukon (king of Katalangulam) was killed in 1759 by:", qta:"கதலாங்குளம் அழகுமுத்துக்கோன் 1759ல் எவ்வாறு கொல்லப்பட்டார்?", opts:["Hanged","Tied with 248 others in front of a cannon and blasted","Beheaded","Drowned"], optsTA:["தூக்கிலிடப்பட்டார்","248 பேருடன் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர்","தலை வெட்டப்பட்டார்","மூழ்கடிக்கப்பட்டார்"], ans:1, diff:"hard", expl:"Alagumuthukon and 248 others were tied in front of a cannon and blasted to death in 1759 — one of the most brutal executions by the British in Tamil Nadu.", explTA:"அழகுமுத்துக்கோன் மற்றும் 248 பேர் 1759ல் பீரங்கி முன்பு கட்டப்பட்டு வெடிக்கச் செய்யப்பட்டனர்." },
+  { q:"Kamarajar was elected Tamil Nadu Congress President in:", qta:"காமராஜர் எந்த ஆண்டில் தமிழ்நாடு காங்கிரஸ் தலைவர் ஆனார்?", opts:["1937","1940","1947","1952"], optsTA:["1937","1940","1947","1952"], ans:1, diff:"medium", expl:"Kamarajar (1903-1975) was elected Tamil Nadu Congress President in 1940. He was imprisoned multiple times during the freedom struggle.", explTA:"காமராஜர் (1903-1975) 1940ல் தமிழ்நாடு காங்கிரஸ் தலைவர் ஆனார், பலமுறை சிறை சென்றார்." },
+  { q:"K.B. Sundarambal contributed to freedom movement through:", qta:"கே.பி. சுந்தராம்பாள் சுதந்திர இயக்கத்திற்கு பங்களித்தது:", opts:["Armed resistance","Patriotic songs and stage performances","Newspaper editing","Trade union work"], optsTA:["ஆயுத எதிர்ப்பு","தேசபக்தி பாடல்கள் மற்றும் நாடக நடிப்புகள்","செய்தித்தாள் ஆசிரியர் பணி","தொழிற்சங்க பணி"], ans:1, diff:"medium", expl:"K.B. Sundarambal of Coimbatore used patriotic songs and performances to inspire Tamil people. She was elected to the Tamil Nadu Legislative Council in 1958.", explTA:"கோயம்புத்தூர் கே.பி. சுந்தராம்பாள் தேசபக்தி பாடல்கள் மூலம் மக்களை ஊக்குவித்தார். 1958ல் சட்டமன்ற மேலவை உறுப்பினர் ஆனார்." },
+  { q:"Rajaji became India's first Indian Governor-General in:", qta:"இராஜாஜி இந்தியாவின் முதல் இந்திய கவர்னர் ஜெனரல் ஆனது:", opts:["1947","1948","1950","1952"], optsTA:["1947","1948","1950","1952"], ans:1, diff:"medium", expl:"C. Rajagopalachari became India's first and last Indian Governor-General in 1948 after Lord Mountbatten. He had led the Vedaranyam Salt March in 1930.", explTA:"சி. இராஜகோபாலாசாரி 1948ல் லார்ட் மவுண்ட்பேட்டனுக்கு பிறகு இந்தியாவின் முதல் மற்றும் கடைசி இந்திய கவர்னர் ஜெனரல் ஆனார்." },
+  { q:"The 1937 Congress government in Tamil Nadu resigned in 1939 because:", qta:"1937 தமிழ்நாடு காங்கிரஸ் அரசு 1939ல் பதவி விலகியதன் காரணம்:", opts:["Famine crisis","Protest against Britain dragging India into WW2 without consent","Gandhi's instructions","Rajaji's health"], optsTA:["பஞ்ச நெருக்கடி","சம்மதமின்றி இரண்டாம் உலகப் போரில் இழுத்ததற்கு எதிர்ப்பு","காந்தியின் உத்தரவு","இராஜாஜியின் உடல்நலம்"], ans:1, diff:"medium", expl:"All Congress ministries including Rajaji's resigned in 1939 protesting Britain's decision to drag India into World War II without Indians' consent.", explTA:"1939ல் இந்தியர்களின் சம்மதமின்றி இரண்டாம் உலகப் போரில் இழுத்ததற்கு எதிர்ப்பாக இராஜாஜி உட்பட அனைத்து காங்கிரஸ் அமைச்சரவைகளும் பதவி விலகின." }
 ];
 
 const QUIZ_BANK = {
@@ -3897,7 +2880,7 @@ function navigate(tab) {
 
   // Map special tabs to nav buttons
   const navMap = { home:'home', quiz:'quiz', ebooks:'quiz', paid:'quiz',
-                   affairs:'polity', leaderboard:'leaderboard', analytics:'profile',
+                   affairs:'affairs', leaderboard:'leaderboard', analytics:'profile',
                    achievements:'profile', profile:'profile',
                    polity:'polity', articleReader:'polity' };
   const navId = 'nav-' + (navMap[tab] || tab);
@@ -3908,17 +2891,7 @@ function navigate(tab) {
   if (tab === 'quiz') {
     exitQuiz();
   }
-  // Reset article reader when navigating away from polity
-  if (tab !== 'polity') {
-    const reader = document.getElementById('articleReader');
-    const readerV = document.getElementById('articleReaderVeda');
-    const readerSC = document.getElementById('articleReaderSC');
-    if (reader) reader.classList.remove('show');
-    if (readerV) readerV.classList.remove('show');
-    if (readerSC) readerSC.classList.remove('show');
-    const lv = document.getElementById('polityListView');
-    if (lv) lv.style.display = 'block';
-  }
+
 
   // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4629,6 +3602,14 @@ function shareArticle() {
   }
 }
 
+
+function goQuiz() {
+  window.location.href = 'quiz.html';
+}
+
+function goArticles() {
+  window.location.href = 'articles.html';
+}
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.getElementById('authModal').classList.remove('show');
