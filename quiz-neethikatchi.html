@@ -9,7 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
 
 /* ── KaarKalvi-style bouncing card design ── */
-body { margin:0; padding-bottom:80px; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
 
 .articles-hero {
   background: linear-gradient(135deg, #0c4b76 0%, #083a5c 50%, #0f5a8c 100%);
@@ -248,7 +248,7 @@ body { margin:0; padding-bottom:80px; font-family:'Noto Sans Tamil',sans-serif; 
     .expl-title{font-size:12px;font-weight:800;color:var(--primary);letter-spacing:0.4px;margin-bottom:8px;}
     .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
     .prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s ease;}
-    .next-btn{width:100%;padding:15px;background:var(--primary);color:white;border:none;border-radius:0;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}
+    .next-btn{width:100%;padding:16px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,0.15);}
     .next-btn:active{transform:scale(0.98);}
     .bookmark-btn{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text);}
 
@@ -302,7 +302,7 @@ body { margin:0; padding-bottom:80px; font-family:'Noto Sans Tamil',sans-serif; 
         <span id="qProg">கேள்வி 1/1</span><span id="qScoreLabel">மதிப்பெண்: 0</span>
       </div>
       <div id="questionContainer"></div>
-      <div id="nextArea" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--card);border-top:1px solid var(--border);padding:12px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.10);">
+      <div id="nextArea" style="display:none;margin-top:14px;">
         <button id="nextBtnEl" class="next-btn" onclick="nextQuestion()">அடுத்த கேள்வி →</button>
         
       </div>
@@ -396,6 +396,7 @@ function showNextBtn(){
   var nb=document.getElementById('nextBtnEl');
   nb.textContent=QS.index+1>=QS.questions.length?'📊 முடிவு காண்க':'அடுத்த கேள்வி →';
   na.style.display='block';
+  setTimeout(function(){na.scrollIntoView({behavior:'smooth',block:'end'});},100);
 }
 function autoSubmit(){
   var cur=QS.questions[QS.index];QS.answered=true;
