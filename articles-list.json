@@ -1,0 +1,38 @@
+[
+  {
+    "file": "article-01.html",
+    "icon": "⚖️",
+    "bg": "#dbeafe",
+    "border": "#3b82f620",
+    "title": "இந்திய அரசியலமைப்பு",
+    "desc": "உருவான கதை · Dr. Ambedkar · 26 Jan 1950",
+    "tag": "📖 POLITY SERIES · கட்டுரை 01"
+  },
+  {
+    "file": "article-02.html",
+    "icon": "📚",
+    "bg": "#fdf4ff",
+    "border": "#a21caf20",
+    "title": "மாயூரம் வேதநாயகம் பிள்ளை",
+    "desc": "தமிழ் நாவலின் தந்தை · 1826–1889",
+    "tag": "📖 TAMIL LITERATURE · கட்டுரை 02"
+  },
+  {
+    "file": "article-03.html",
+    "icon": "🏛️",
+    "bg": "#ede9fe",
+    "border": "#7c3aed20",
+    "title": "இந்திய உச்ச நீதிமன்றம்",
+    "desc": "அரசியலமைப்பின் காவலன் · Article 124–147",
+    "tag": "📖 POLITY SERIES · கட்டுரை 03"
+  },
+  {
+    "file": "article-04.html",
+    "icon": "🔬",
+    "bg": "#e0f2fe",
+    "border": "#0284c720",
+    "title": "பாக்ஸ் சிலிக்கா & குறைக்கடத்தி",
+    "desc": "AI யுகம் · Semiconductor · Critical Minerals · India's Role",
+    "tag": "📖 TECHNOLOGY SERIES · கட்டுரை 04"
+  }
+]

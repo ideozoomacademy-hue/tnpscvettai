@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Main Page -->
+  <url>
+    <loc>https://tnpscvettai.vercel.app/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Articles -->
+  <url>
+    <loc>https://tnpscvettai.vercel.app/article-01.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ta" href="https://tnpscvettai.vercel.app/article-01.html"/>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/article-02.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ta" href="https://tnpscvettai.vercel.app/article-02.html"/>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/article-03.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ta" href="https://tnpscvettai.vercel.app/article-03.html"/>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/article-04.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ta" href="https://tnpscvettai.vercel.app/article-04.html"/>
+  </url>
+
+  <!-- Quiz Pages -->
+  <url>
+    <loc>https://tnpscvettai.vercel.app/quiz-palayam.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/quiz-social.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/quiz-freedom.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/quiz-neethikatchi.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tnpscvettai.vercel.app/thittam-may-2026-quiz.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
