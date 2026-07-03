@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>எங்களைப் பற்றி | TNPSC வேட்டை</title>
+  <meta name="description" content="TNPSC வேட்டை — About Us, Privacy Policy, Contact. Tamil TNPSC exam preparation platform by Abi, Group 1 aspirant and digital creator.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tnpscvettai.vercel.app/info.html">
+  <meta property="og:title" content="எங்களைப் பற்றி | TNPSC வேட்டை">
+  <meta property="og:description" content="TNPSC வேட்டை — Tamil TNPSC exam preparation platform. About Us, Privacy Policy, Contact.">
+  <meta property="og:url" content="https://tnpscvettai.vercel.app/info.html">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+:root{
+  --bg:#f4f1eb;--card:#ffffff;--card2:#faf8f4;
+  --primary:#0c4b76;--primary-dark:#083a5e;
+  --accent:#e85d04;--gold:#c8941a;--green:#15803d;
+  --text:#111827;--text2:#374151;--text-muted:#6b7280;
+  --border:#e5e0d5;--radius:16px;--radius-sm:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Tamil',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--primary-dark);
+  display:flex;align-items:center;gap:12px;padding:0 16px;height:54px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.back-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.15);
+  border:none;color:white;font-size:18px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;}
+.topbar-title{font-size:15px;font-weight:700;color:white;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0c4b76,#083a5c,#1565c0);
+  padding:28px 20px 24px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;
+  background:rgba(255,255,255,0.05);top:-60px;right:-40px;}
+.hero-badge{display:inline-block;background:rgba(244,162,97,0.25);
+  border:1px solid rgba(244,162,97,0.4);color:#f4a261;
+  font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.hero h1{font-size:20px;font-weight:800;color:white;margin-bottom:6px;}
+.hero p{font-size:12px;color:rgba(255,255,255,0.75);}
+
+/* NAV TABS */
+.tab-nav{display:flex;background:white;border-bottom:2px solid var(--border);
+  position:sticky;top:54px;z-index:90;overflow-x:auto;scrollbar-width:none;}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{flex:1;min-width:80px;padding:12px 8px;border:none;background:none;
+  font-family:'Noto Sans Tamil',sans-serif;font-size:12px;font-weight:600;
+  color:var(--text-muted);cursor:pointer;border-bottom:3px solid transparent;
+  margin-bottom:-2px;transition:all 0.2s;white-space:nowrap;}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);}
+
+/* CONTENT */
+.page-wrap{max-width:680px;margin:0 auto;padding:0 16px 80px;}
+.tab-content{display:none;padding-top:20px;}
+.tab-content.active{display:block;}
+
+/* SECTION */
+.sec-title{font-size:16px;font-weight:800;color:var(--primary);
+  border-left:4px solid var(--accent);padding-left:12px;margin-bottom:14px;}
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);
+  padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.card-title{font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;}
+
+/* BILINGUAL TEXT */
+.bi-en{font-size:13.5px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.bi-ta{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:14px;}
+
+/* ABOUT PROFILE */
+.profile-card{background:linear-gradient(135deg,#0c4b76,#1565c0);
+  border-radius:var(--radius);padding:22px 18px;margin-bottom:16px;text-align:center;}
+.profile-icon{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.15);
+  border:3px solid rgba(255,255,255,0.3);display:flex;align-items:center;
+  justify-content:center;font-size:32px;margin:0 auto 12px;}
+.profile-name{font-size:18px;font-weight:800;color:white;margin-bottom:4px;}
+.profile-role-en{font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:2px;}
+.profile-role-ta{font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:14px;}
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.profile-tag{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;
+  padding:3px 12px;border-radius:20px;}
+
+/* MISSION CARD */
+.mission{background:#fef9ec;border-left:4px solid var(--gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:14px 16px;margin-bottom:14px;}
+.mission-en{font-size:13px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.mission-ta{font-size:12.5px;color:#78350f;line-height:1.8;}
+
+/* CONTACT */
+.contact-item{display:flex;align-items:center;gap:14px;
+  background:var(--card);border-radius:var(--radius-sm);
+  border:1px solid var(--border);padding:14px 16px;margin-bottom:10px;
+  text-decoration:none;transition:all 0.2s;}
+.contact-item:hover{border-color:var(--primary);transform:translateX(3px);}
+.contact-icon{width:42px;height:42px;border-radius:12px;display:flex;
+  align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.contact-info .label-en{font-size:11px;color:var(--text-muted);font-weight:600;margin-bottom:2px;}
+.contact-info .label-ta{font-size:10px;color:var(--text-muted);margin-bottom:4px;}
+.contact-info .value{font-size:13px;font-weight:700;color:var(--primary);}
+
+/* PRIVACY SECTIONS */
+.privacy-item{margin-bottom:18px;}
+.privacy-head-en{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:3px;}
+.privacy-head-ta{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:8px;}
+.privacy-body-en{font-size:13px;color:var(--text);line-height:1.75;margin-bottom:5px;}
+.privacy-body-ta{font-size:12.5px;color:var(--text2);line-height:1.8;margin-bottom:10px;}
+
+/* UPDATE DATE */
+.update-chip{display:inline-block;background:#e8f5e9;color:var(--green);
+  font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:16px;}
+
+/* BOTTOM NAV */
+.bottom-link{display:flex;align-items:center;gap:10px;
+  background:var(--primary);color:white;border-radius:14px;
+  padding:14px 16px;text-decoration:none;margin-top:20px;}
+.bottom-link span{font-size:20px;}
+.bottom-link div{font-size:13px;font-weight:700;}
+.bottom-link small{font-size:11px;opacity:0.7;}
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="back-btn" onclick="history.back()">←</button>
+  <div class="topbar-title">TNPSC வேட்டை</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">📋 Information</div>
+  <h1>TNPSC வேட்டை</h1>
+  <p>வெற்றியை வேட்டையாடுங்கள் · Hunt for Success</p>
+</div>
+
+<!-- Tab Navigation -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('about')">👤 எங்களைப் பற்றி</button>
+  <button class="tab-btn" onclick="showTab('privacy')">🔒 தனியுரிமை</button>
+  <button class="tab-btn" onclick="showTab('contact')">📧 தொடர்பு</button>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══ ABOUT TAB ══ -->
+  <div class="tab-content active" id="tab-about">
+
+    <div class="profile-card">
+      <div class="profile-icon">👩‍💻</div>
+      <div class="profile-name">Abi</div>
+      <div class="profile-role-en">TNPSC Group 1 Aspirant & Digital Creator</div>
+      <div class="profile-role-ta">TNPSC குரூப் 1 ஆர்வலர் & டிஜிட்டல் உள்ளடக்க உருவாக்குனர்</div>
+      <div class="profile-tags">
+        <span class="profile-tag">🎯 Group 1 Aspirant</span>
+        <span class="profile-tag">💻 Digital Creator</span>
+        <span class="profile-tag">📚 Tamil Education</span>
+        <span class="profile-tag">🎬 YouTube</span>
+      </div>
+    </div>
+
+    <div class="sec-title">எங்களைப் பற்றி / About Us</div>
+
+    <div class="mission">
+      <div class="mission-en">TNPSC வேட்டை was created by Abi — a TNPSC Group 1 aspirant and passionate digital creator — with one simple goal: to make TNPSC preparation accessible, enjoyable, and effective for every Tamil-speaking student, regardless of their background or resources.</div>
+      <div class="mission-ta">TNPSC வேட்டை என்பதை Abi உருவாக்கினார் — ஒரு TNPSC குரூப் 1 ஆர்வலரும் ஆர்வமிக்க டிஜிட்டல் உள்ளடக்க உருவாக்குனரும் — ஒரே ஒரு எளிய நோக்கத்துடன்: ஒவ்வொரு தமிழ் பேசும் மாணவருக்கும், அவர்களின் பின்னணி அல்லது வளங்களைப் பொருட்படுத்தாமல், TNPSC தயாரிப்பை அணுகக்கூடியதாகவும், மகிழ்ச்சிகரமாகவும், பயனுள்ளதாகவும் மாற்றுவதற்காக.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎯 Our Mission / எங்கள் நோக்கம்</div>
+      <div class="bi-en">As a fellow aspirant, I understand the challenges of TNPSC preparation — the vast syllabus, limited quality resources in Tamil, and the pressure of competitive exams. TNPSC வேட்டை bridges this gap with free quizzes, bilingual articles, and current affairs content — all in Tamil and English.</div>
+      <div class="bi-ta">ஒரு தோழர் ஆர்வலராக, நான் TNPSC தயாரிப்பின் சவால்களை புரிந்துகொள்கிறேன் — பரந்த பாடத்திட்டம், தமிழில் தரமான ஆதாரங்களின் பற்றாக்குறை, மற்றும் போட்டித் தேர்வுகளின் அழுத்தம். TNPSC வேட்டை இலவச வினாடி வினாக்கள், இரு மொழி கட்டுரைகள் மற்றும் நடப்பு நிகழ்வு உள்ளடக்கத்துடன் இந்த இடைவெளியை நிரப்புகிறது — தமிழ் மற்றும் ஆங்கிலம் இரண்டிலும்.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">✨ What We Offer / நாங்கள் வழங்புவது</div>
+      <div class="bi-en">
+        📝 <strong>Free Quizzes</strong> — History, Social Reform, Freedom Struggle, Current Affairs<br>
+        📖 <strong>Bilingual Articles</strong> — Deep-dive explanations in Tamil & English<br>
+        🧠 <strong>Memory Tricks</strong> — Smart shortcuts to remember facts faster<br>
+        📰 <strong>Current Affairs</strong> — Monthly magazine-based quiz content<br>
+        🌙 <strong>Dark Mode</strong> — Study comfortably at any time
+      </div>
+      <div class="bi-ta" style="margin-top:10px;">
+        📝 <strong>இலவச வினாடி வினாக்கள்</strong> — வரலாறு, சமூக மறுமலர்ச்சி, விடுதலைப் போராட்டம், நடப்பு நிகழ்வுகள்<br>
+        📖 <strong>இரு மொழி கட்டுரைகள்</strong> — தமிழ் & ஆங்கிலத்தில் ஆழமான விளக்கங்கள்<br>
+        🧠 <strong>நினைவு குறுக்குவழிகள்</strong> — உண்மைகளை விரைவாக நினைவில் வைக்க சிறந்த குறுக்குவழிகள்<br>
+        📰 <strong>நடப்பு நிகழ்வுகள்</strong> — மாதாந்திர இதழ் சார்ந்த வினாடி வினா உள்ளடக்கம்<br>
+        🌙 <strong>இருண்ட பயன்முறை</strong> — எந்த நேரத்திலும் வசதியாக படிக்கவும்
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💡 From the Creator / உருவாக்குனரிடமிருந்து</div>
+      <div class="bi-en">"I am both a TNPSC aspirant and a digital creator. I believe that the best way to learn is to teach — and the best way to teach is to make learning feel less like a burden and more like an adventure. Every quiz, every article on this platform is crafted with that belief in mind. Let's crack TNPSC together!"</div>
+      <div class="bi-ta">"நான் ஒரே நேரத்தில் TNPSC ஆர்வலரும் டிஜிட்டல் உள்ளடக்க உருவாக்குனரும் ஆவேன். கற்பதற்கான சிறந்த வழி கற்பிப்பது என்று நம்புகிறேன் — கற்பிப்பதற்கான சிறந்த வழி கற்றலை சுமையாக உணர்வதை விட சாகசமாக உணரவைப்பது. இந்த தளத்திலுள்ள ஒவ்வொரு வினாடி வினாவும், ஒவ்வொரு கட்டுரையும் அந்த நம்பிக்கையுடன் உருவாக்கப்பட்டது. நாம் இணைந்து TNPSC-ஐ வெல்வோம்!"</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">— Abi, Creator · TNPSC வேட்டை</div>
+    </div>
+
+  </div>
+
+  <!-- ══ PRIVACY TAB ══ -->
+  <div class="tab-content" id="tab-privacy">
+
+    <div class="update-chip">📅 Last Updated: July 2026</div>
+    <div class="sec-title">தனியுரிமைக் கொள்கை / Privacy Policy</div>
+
+    <div class="card">
+
+      <div class="privacy-item">
+        <div class="privacy-head-en">1. Information We Collect</div>
+        <div class="privacy-head-ta">1. நாங்கள் சேகரிக்கும் தகவல்கள்</div>
+        <div class="privacy-body-en">TNPSC வேட்டை does not collect any personally identifiable information. We do not require you to create an account, provide your name, phone number, or any personal details to use this platform.</div>
+        <div class="privacy-body-ta">TNPSC வேட்டை எந்த தனிப்பட்ட அடையாளம் காணக்கூடிய தகவல்களையும் சேகரிக்கவில்லை. இந்த தளத்தைப் பயன்படுத்த நீங்கள் கணக்கு உருவாக்க, உங்கள் பெயர், தொலைபேசி எண் அல்லது தனிப்பட்ட விவரங்களை வழங்க தேவையில்லை.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-head-en">2. Quiz Progress & Local Storage</div>
+        <div class="privacy-head-ta">2. வினாடி வினா முன்னேற்றம் & உள்ளூர் சேமிப்பு</div>
+        <div class="privacy-body-en">Your quiz scores and progress are stored locally on your device using browser localStorage. This data never leaves your device and is not sent to any server.</div>
+        <div class="privacy-body-ta">உங்கள் வினாடி வினா மதிப்பெண்கள் மற்றும் முன்னேற்றம் browser localStorage-ஐப் பயன்படுத்தி உங்கள் சாதனத்தில் உள்ளூரில் சேமிக்கப்படுகின்றன. இந்த தரவு உங்கள் சாதனத்தை விட்டு வெளியேறாது மற்றும் எந்த சேவையகத்திற்கும் அனுப்பப்படாது.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-head-en">3. Google Analytics & AdSense</div>
+        <div class="privacy-head-ta">3. Google Analytics & AdSense</div>
+        <div class="privacy-body-en">We use Google Analytics to understand how users interact with our platform (page views, session duration, etc.) — all in anonymous, aggregated form. Google AdSense may display relevant advertisements. Google's privacy policy governs their data collection practices.</div>
+        <div class="privacy-body-ta">பயனர்கள் எவ்வாறு இந்த தளத்துடன் தொடர்பு கொள்கிறார்கள் என்பதை புரிந்துகொள்ள Google Analytics-ஐ பயன்படுத்துகிறோம் — அனைத்தும் அநாமதேய, தொகுக்கப்பட்ட வடிவில். Google AdSense தொடர்புடைய விளம்பரங்களை காட்டலாம். Google-ன் தனியுரிமைக் கொள்கை அவர்களின் தரவு சேகரிப்பு நடைமுறைகளை நிர்வகிக்கிறது.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-head-en">4. Third-Party Services</div>
+        <div class="privacy-head-ta">4. மூன்றாம் தரப்பு சேவைகள்</div>
+        <div class="privacy-body-en">Our platform uses Google Fonts for typography. These are loaded from Google's servers. We do not share any user data with third parties for marketing or commercial purposes.</div>
+        <div class="privacy-body-ta">எழுத்துரு வடிவமைப்பிற்கு எங்கள் தளம் Google Fonts-ஐப் பயன்படுத்துகிறது. இவை Google-ன் சேவையகங்களிலிருந்து ஏற்றப்படுகின்றன. சந்தைப்படுத்தல் அல்லது வணிக நோக்கங்களுக்காக மூன்றாம் தரப்பினருடன் எந்த பயனர் தரவையும் பகிர்வதில்லை.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-head-en">5. Children's Privacy</div>
+        <div class="privacy-head-ta">5. குழந்தைகளின் தனியுரிமை</div>
+        <div class="privacy-body-en">TNPSC வேட்டை is designed for students preparing for competitive exams. We do not knowingly collect any information from children under 13 years of age.</div>
+        <div class="privacy-body-ta">TNPSC வேட்டை போட்டித் தேர்வுகளுக்கு தயாரிக்கும் மாணவர்களுக்காக வடிவமைக்கப்பட்டுள்ளது. 13 வயதுக்கு குறைவான குழந்தைகளிடமிருந்து தெரிந்தே எந்த தகவலையும் சேகரிப்பதில்லை.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-head-en">6. Changes to This Policy</div>
+        <div class="privacy-head-ta">6. இந்தக் கொள்கையில் மாற்றங்கள்</div>
+        <div class="privacy-body-en">We may update this Privacy Policy occasionally. Any changes will be reflected on this page with an updated date. Continued use of the platform constitutes acceptance of the updated policy.</div>
+        <div class="privacy-body-ta">இந்த தனியுரிமைக் கொள்கையை சில நேரங்களில் புதுப்பிக்கலாம். எந்த மாற்றங்களும் புதுப்பிக்கப்பட்ட தேதியுடன் இந்த பக்கத்தில் பிரதிபலிக்கும். தளத்தை தொடர்ந்து பயன்படுத்துவது புதுப்பிக்கப்பட்ட கொள்கையை ஏற்றுக்கொள்வதாகும்.</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ══ CONTACT TAB ══ -->
+  <div class="tab-content" id="tab-contact">
+
+    <div class="sec-title">தொடர்பு கொள்ளுங்கள் / Contact Us</div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="bi-en">Have a question, suggestion, or feedback? We'd love to hear from you! Whether it's about quiz content, article topics, technical issues, or collaboration — feel free to reach out.</div>
+      <div class="bi-ta">கேள்வி, பரிந்துரை அல்லது கருத்து இருக்கிறதா? உங்களிடமிருந்து கேட்க விரும்புகிறோம்! வினாடி வினா உள்ளடக்கம், கட்டுரை தலைப்புகள், தொழில்நுட்ப சிக்கல்கள் அல்லது ஒத்துழைப்பு பற்றியோ — தயங்காமல் தொடர்பு கொள்ளுங்கள்.</div>
+    </div>
+
+    <!-- Email -->
+    <a href="mailto:ideozoomacademy@gmail.com" class="contact-item">
+      <div class="contact-icon" style="background:#fee2e2;">📧</div>
+      <div class="contact-info">
+        <div class="label-en">Email / மின்னஞ்சல்</div>
+        <div class="label-ta">எந்த நேரமும் எழுதலாம் · Write anytime</div>
+        <div class="value">ideozoomacademy@gmail.com</div>
+      </div>
+    </a>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">📬 Response Time / பதில் நேரம்</div>
+      <div class="bi-en">We typically respond within 2–3 working days. For quiz content errors or factual corrections, we aim to respond and fix them as quickly as possible.</div>
+      <div class="bi-ta">நாங்கள் பொதுவாக 2–3 வேலை நாட்களுக்குள் பதிலளிக்கிறோம். வினாடி வினா உள்ளடக்க பிழைகள் அல்லது உண்மை திருத்தங்களுக்கு, முடிந்தவரை விரைவாக பதிலளித்து சரிசெய்ய முயற்சிக்கிறோம்.</div>
+    </div>
+
+    <div class="card" style="background:#e8f5e9;border-color:#86efac;">
+      <div class="card-title" style="color:#15803d;">💡 Contribute / பங்களிக்கவும்</div>
+      <div class="bi-en">Are you a TNPSC aspirant with subject expertise? Want to contribute quiz questions or article content? We welcome quality contributions from fellow aspirants. Write to us!</div>
+      <div class="bi-ta">நீங்கள் பாட நிபுணத்துவம் கொண்ட TNPSC ஆர்வலரா? வினாடி வினா கேள்விகள் அல்லது கட்டுரை உள்ளடக்கத்தை பங்களிக்க விரும்புகிறீர்களா? தோழர் ஆர்வலர்களிடமிருந்து தரமான பங்களிப்புகளை வரவேற்கிறோம். எங்களுக்கு எழுதுங்கள்!</div>
+    </div>
+
+  </div>
+
+  <!-- Back to home -->
+  <a href="index.html" class="bottom-link">
+    <span>🏠</span>
+    <div>
+      <div>முகப்புக்கு திரும்பு</div>
+      <small>Back to Home</small>
+    </div>
+  </a>
+
+</div>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
