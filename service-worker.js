@@ -3,9 +3,9 @@
  * Offline-first strategy with cache versioning
  */
 
-const CACHE_NAME = 'tnpsc-guide-v2';
-const STATIC_CACHE = 'tnpsc-static-v2';
-const DYNAMIC_CACHE = 'tnpsc-dynamic-v2';
+const CACHE_NAME = 'tnpsc-guide-v3';
+const STATIC_CACHE = 'tnpsc-static-v3';
+const DYNAMIC_CACHE = 'tnpsc-dynamic-v3';
 
 // Files to cache immediately on install
 const STATIC_ASSETS = [
@@ -66,7 +66,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for HTML/CSS/JS
+  // Network-first for HTML files (always get latest)
+  if (url.pathname.endsWith('.html') || url.pathname === '/') {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  // Stale-while-revalidate for CSS/JS/images
   event.respondWith(staleWhileRevalidate(request));
 });
 
