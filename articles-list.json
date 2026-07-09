@@ -34,5 +34,32 @@
     "title": "பாக்ஸ் சிலிக்கா & குறைக்கடத்தி",
     "desc": "AI யுகம் · Semiconductor · Critical Minerals · India's Role",
     "tag": "📖 TECHNOLOGY SERIES · கட்டுரை 04"
+  },
+  {
+    "file": "article-05.html",
+    "icon": "🚨",
+    "bg": "#fee2e2",
+    "border": "#dc262620",
+    "title": "அவசரநிலை விதிகள்",
+    "desc": "Article 352, 356, 360 · 44th Amendment · Bommai · Jabalpur",
+    "tag": "📖 POLITY SERIES · கட்டுரை 05"
+  },
+  {
+    "file": "article-06.html",
+    "icon": "📜",
+    "bg": "#ffedd5",
+    "border": "#ea580c20",
+    "title": "FCRA — வெளிநாட்டு நன்கொடை சட்டம்",
+    "desc": "1976–2026 திருத்தங்கள் · Noel Harper வழக்கு · Waqf இணைப்பு சர்ச்சை",
+    "tag": "📖 CURRENT AFFAIRS · கட்டுரை 06"
+  },
+  {
+    "file": "article-07.html",
+    "icon": "⚖️",
+    "bg": "#e2e8f0",
+    "border": "#47556920",
+    "title": "இந்திய நீதித்துறை — Collegium & NJAC",
+    "desc": "நீதிபதிகள் நியமனம் · 4 Judges Cases · நீக்கும் முறை · பிராந்திய அமர்வுகள்",
+    "tag": "📖 POLITY SERIES · கட்டுரை 07"
   }
 ]
