@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta name="theme-color" content="#0c4b76">
+  <title>பொருளியல் — இந்தியப் பொருளாதாரம் | TNPSC வேட்டை</title>
+  <style>
+:root{--bg:#f4f1eb;--bg2:#ede9e0;--card:#ffffff;--card2:#faf8f4;--primary:#0c4b76;--primary-light:#1a6fa8;--primary-dark:#083a5e;--accent:#e85d04;--accent2:#f4a261;--gold:#c8941a;--green:#15803d;--green-bg:#dcfce7;--red:#b91c1c;--red-bg:#fee2e2;--text:#111827;--text2:#374151;--text-muted:#6b7280;--border:#e5e0d5;--border2:#d1cbc0;--shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow:0 4px 16px rgba(12,75,118,0.10);--radius:18px;--radius-sm:12px;--radius-xs:8px;--font-serif:"Noto Sans Tamil",sans-serif;}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap');
+
+body { margin:0; font-family:'Noto Sans Tamil',sans-serif; background:var(--bg); }
+.topbar{background:linear-gradient(135deg,#92400e,#d97706);padding:10px 14px;display:flex;align-items:center;position:sticky;top:0;z-index:100;}
+  </style>
+  <style>
+    body{margin:0;}
+    .quiz-hero{background:linear-gradient(135deg,#92400e,#d97706,#f59e0b);padding:24px 16px 28px;position:relative;overflow:hidden;}
+    .quiz-hero::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06);top:-50px;right:-40px;}
+    .quiz-hero::after{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.04);bottom:-20px;left:30px;}
+    .hero-icon{font-size:44px;margin-bottom:10px;display:block;position:relative;z-index:1;}
+    .hero-title{font-size:22px;font-weight:900;color:white;margin-bottom:4px;font-family:var(--font-serif);position:relative;z-index:1;}
+    .hero-sub{font-size:12px;color:rgba(255,255,255,0.7);position:relative;z-index:1;}
+    .hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1;}
+    .h-chip{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;}
+    .start-body{padding:16px;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
+    .i-box{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:12px 8px;text-align:center;}
+    .i-val{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:3px;}
+    .i-lbl{font-size:10px;color:var(--text-muted);font-weight:600;}
+    .start-btn{width:100%;padding:16px;background:#d97706;color:white;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:14px;font-family:inherit;}
+    .start-btn:active{transform:scale(0.97);}
+    .tips-box{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:14px 16px;}
+    .tips-title{font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.4px;text-transform:uppercase;margin-bottom:10px;}
+    .tip{display:flex;gap:10px;font-size:12.5px;color:var(--text);margin-bottom:8px;line-height:1.5;}
+    .quiz-topbar{position:sticky;top:0;z-index:100;background:var(--primary-dark);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+    .q-back{background:rgba(255,255,255,0.15);border:none;color:white;width:34px;height:34px;border-radius:9px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .score-wrap{padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .score-big{font-size:56px;font-weight:900;color:var(--primary);line-height:1;}
+    .score-denom{font-size:16px;color:var(--text-muted);margin-bottom:16px;}
+    .s-row{display:flex;gap:10px;width:100%;margin-bottom:20px;}
+    .s-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;}
+    .s-val{font-size:20px;font-weight:800;margin-bottom:4px;}
+    .s-lbl{font-size:10px;color:var(--text-muted);}
+
+    .q-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .q-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+    .q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;}
+    .q-diff{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+    .diff-easy{background:#dcfce7;color:#16a34a;}
+    .diff-medium{background:#fef9c3;color:#ca8a04;}
+    .diff-hard{background:#fee2e2;color:#dc2626;}
+    .opts-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+    .opt-btn{width:100%;text-align:left;display:flex;align-items:center;gap:12px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.15s ease;font-family:inherit;line-height:1.4;}
+    .opt-btn:active:not(:disabled){transform:scale(0.98);}
+    .ob-num{width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);transition:all 0.15s;}
+    .opt-btn.correct{background:#dcfce7 !important;border-color:#16a34a !important;color:#14532d !important;}
+    .opt-btn.correct .ob-num{background:#16a34a !important;color:white !important;}
+    .opt-btn.wrong{background:#fee2e2 !important;border-color:#dc2626 !important;color:#7f1d1d !important;}
+    .opt-btn.wrong .ob-num{background:#dc2626 !important;color:white !important;}
+    .expl-box{display:none;margin-top:12px;background:var(--bg2);border-radius:12px;border-left:4px solid var(--primary);padding:12px 14px;font-size:13px;color:var(--text);line-height:1.7;}
+    .expl-box.show{display:block;}
+    .expl-title{font-size:12px;font-weight:800;color:var(--primary);letter-spacing:0.4px;margin-bottom:8px;}
+    .trick-line{margin-top:8px;background:#fffbeb;border:1px dashed #d97706;border-radius:8px;padding:8px 10px;font-size:12.5px;color:#92400e;font-weight:600;line-height:1.6;}
+    .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s ease;}
+    .next-btn{width:100%;padding:16px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,0.15);}
+    .next-btn:active{transform:scale(0.98);}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button onclick="goBack()" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;">←</button>
+    <div style="flex:1;margin-left:10px;">
+      <div style="font-size:14px;font-weight:700;color:white;">பொருளியல் — இந்தியப் பொருளாதாரம்</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">TNPSC வேட்டை Quiz</div>
+    </div>
+    <button onclick="toggleTheme()" id="themeBtn" style="background:rgba(255,255,255,0.15);border:none;color:white;width:36px;height:36px;border-radius:10px;font-size:15px;cursor:pointer;">🌙</button>
+  </header>
+
+  <div id="startScreen">
+    <div class="quiz-hero">
+      <span class="hero-icon">💹</span>
+      <div class="hero-title">பொருளியல் — இந்தியப் பொருளாதாரம்</div>
+      <div class="hero-sub">National Income · Five Year Plans · Banking · GST · Unemployment</div>
+      <div class="hero-chips">
+        <span class="h-chip">⏱️ 30 வினாடி / கேள்வி</span>
+        <span class="h-chip">🎯 குரூப் 1, 2, 4 · SSC</span>
+        <span class="h-chip">33 கேள்விகள்</span>
+      </div>
+    </div>
+    <div class="start-body">
+      <div class="info-grid">
+        <div class="i-box"><div class="i-val">33</div><div class="i-lbl">கேள்விகள்</div></div>
+        <div class="i-box"><div class="i-val">30s</div><div class="i-lbl">ஒவ்வொரு கேள்விக்கும்</div></div>
+        <div class="i-box"><div class="i-val">🧠</div><div class="i-lbl">Memory Tricks</div></div>
+      </div>
+      <button class="start-btn" onclick="startThisQuiz()">🎯 தேர்வு தொடங்கு</button>
+      <div class="tips-box">
+        <div class="tips-title">📋 தேர்வு விவரங்கள்</div>
+        <div class="tip"><span>✅</span><span>விடைக்கு Tamil & English விளக்கம்</span></div>
+        <div class="tip"><span>🧠</span><span>ஒவ்வொரு விடைக்கும் நினைவு டிரிக் (Memory Trick)</span></div>
+        <div class="tip"><span>⏱️</span><span>நேரம் முடிந்தால் Auto submit</span></div>
+        <div class="tip"><span>🔀</span><span>ஒவ்வொரு முறையும் Random வரிசை</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizEngine" style="display:none;">
+    <div class="quiz-topbar">
+      <button class="q-back" onclick="exitQuiz()">←</button>
+      <div style="flex:1;text-align:center;font-size:12px;font-weight:700;color:white;">பொருளியல்</div>
+      <div style="background:var(--accent);color:white;font-weight:800;font-size:14px;padding:5px 13px;border-radius:18px;" id="timerDisplay">30</div>
+    </div>
+    <div style="padding:12px 16px 24px;">
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin:6px 0 14px;">
+        <span id="qProg">கேள்வி 1/1</span>
+        <span id="qScoreLabel">மதிப்பெண்: 0</span>
+      </div>
+      <div id="questionContainer"></div>
+      <div id="nextArea" style="display:none;margin-top:14px;">
+        <button id="nextBtnEl" class="next-btn" onclick="nextQuestion()">அடுத்த கேள்வி →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="scoreScreen" style="display:none;">
+    <div class="score-wrap">
+      <div style="font-size:56px;margin-bottom:10px;" id="scoreEmoji">🎉</div>
+      <div class="score-big" id="scoreNum">0</div>
+      <div class="score-denom">/ <span id="scoreTot">0</span> சரியான விடைகள்</div>
+      <div class="s-row">
+        <div class="s-box"><div class="s-val" style="color:#16a34a;" id="statCorrect">0</div><div class="s-lbl">✅ சரி</div></div>
+        <div class="s-box"><div class="s-val" style="color:#dc2626;" id="statWrong">0</div><div class="s-lbl">❌ தவறு</div></div>
+        <div class="s-box"><div class="s-val" id="statTime">0s</div><div class="s-lbl">⏱️ நேரம்</div></div>
+      </div>
+      <button class="start-btn" onclick="retryQuiz()" style="width:100%;">🔄 மீண்டும் முயற்சி</button>
+      <button onclick="exitQuiz()" style="margin-top:10px;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;color:var(--text);font-family:inherit;">← Quiz பட்டியல்</button>
+    </div>
+  </div>
+
+  <script>
+    var CURRENT_CAT="economics";
+    const ECONOMICS_QUIZ_DATA = [
+  { q:"Who is called the 'Father of Economics'?", qta:"'பொருளியலின் தந்தை' என்று அழைக்கப்படுபவர் யார்?", opts:["Alfred Marshall","J.M. Keynes","Adam Smith","Amartya Sen"], optsTA:["ஆல்பிரட் மார்ஷல்","ஜே.எம். கீன்ஸ்","ஆடம் ஸ்மித்","அமர்த்தியா சென்"], ans:2, diff:"easy",
+    expl:"Adam Smith defined economics as the 'science of wealth' in his book 'Wealth of Nations' (1776).<div class='trick-line'>🧠 TRICK: ADAM = the FIRST man → the FIRST (Father of) Economics. Book year 1776 = same year as American Independence!</div>", explTA:"ஆடம் ஸ்மித் தனது 'Wealth of Nations' (1776) நூலில் பொருளியலை 'செல்வத்தின் அறிவியல்' என வரையறுத்தார்.<div class='trick-line'>🧠 டிரிக்: ஆதாம் = முதல் மனிதன் → பொருளியலின் முதல் தந்தை! நூல் ஆண்டு 1776 = அமெரிக்க சுதந்திர ஆண்டு!</div>" },
+
+  { q:"Who is known as the 'Father of New Economics'?", qta:"'நவீன பொருளியலின் தந்தை' யார்?", opts:["John Maynard Keynes","Adam Smith","Alfred Marshall","Dadabhai Naoroji"], optsTA:["ஜான் மேனார்ட் கீன்ஸ்","ஆடம் ஸ்மித்","ஆல்பிரட் மார்ஷல்","தாதாபாய் நௌரோஜி"], ans:0, diff:"easy",
+    expl:"John Maynard Keynes is called the Father of New Economics. Alfred Marshall wrote 'Principles of Economics'.<div class='trick-line'>🧠 TRICK: NEW sounds like 'NEW-Keynes' → Keynes = NEW Economics. Old = Adam, New = Keynes.</div>", explTA:"ஜான் மேனார்ட் கீன்ஸ் நவீன பொருளியலின் தந்தை. ஆல்பிரட் மார்ஷல் 'Principles of Economics' எழுதினார்.<div class='trick-line'>🧠 டிரிக்: 'நியூ' → 'நியூ-கீன்ஸ்' என ஒலிக்கிறது! பழையது = ஆடம், புதியது = கீன்ஸ்.</div>" },
+
+  { q:"Agriculture, forestry and fishing belong to which sector?", qta:"விவசாயம், வனவியல், மீன்பிடித்தல் எந்தத் துறையைச் சேர்ந்தவை?", opts:["Secondary sector","Primary sector","Tertiary sector","Quaternary sector"], optsTA:["இரண்டாம் நிலைத் துறை","முதன்மைத் துறை","மூன்றாம் நிலைத் துறை","நான்காம் நிலைத் துறை"], ans:1, diff:"easy",
+    expl:"Primary sector = raw materials directly from nature (agriculture, forestry, fishing). Secondary = manufacturing, Tertiary = services.<div class='trick-line'>🧠 TRICK: P-S-T ladder → Primary = Plants/Ponds (nature), Secondary = Steel (factory), Tertiary = Transport (service).</div>", explTA:"முதன்மைத் துறை = இயற்கையிலிருந்து நேரடி மூலப்பொருட்கள் (விவசாயம், வனம், மீன்). இரண்டாம் நிலை = உற்பத்தி, மூன்றாம் நிலை = சேவை.<div class='trick-line'>🧠 டிரிக்: மு-இ-மூ ஏணி → முதன்மை = மண் (இயற்கை), இரண்டாம் = இயந்திரம் (தொழிற்சாலை), மூன்றாம் = சேவை (Bank, Bus).</div>" },
+
+  { q:"India is the best example of which type of economy?", qta:"இந்தியா எந்த வகைப் பொருளாதாரத்திற்கு சிறந்த எடுத்துக்காட்டு?", opts:["Capitalist economy","Socialist economy","Traditional economy","Mixed economy"], optsTA:["முதலாளித்துவப் பொருளாதாரம்","சோசலிசப் பொருளாதாரம்","பாரம்பரியப் பொருளாதாரம்","கலப்புப் பொருளாதாரம்"], ans:3, diff:"easy",
+    expl:"India has a mixed economy — public and private sectors co-exist. Capitalist eg: US, UK; Socialist eg: China, North Korea.<div class='trick-line'>🧠 TRICK: MIXED = Masala mix! India = Public + Private கலந்த masala economy. US = Capital(ist), China = Social(ist).</div>", explTA:"இந்தியா கலப்புப் பொருளாதாரம் — பொது & தனியார் துறைகள் இணைந்து செயல்படும். முதலாளித்துவம்: அமெரிக்கா; சோசலிசம்: சீனா.<div class='trick-line'>🧠 டிரிக்: கலப்பு = மசாலா கலவை! இந்தியா = பொது + தனியார் கலந்த மசாலா. அமெரிக்கா = முதலாளி, சீனா = சோசலிசம்.</div>" },
+
+  { q:"When was GST launched in India?", qta:"இந்தியாவில் GST எப்போது அமல்படுத்தப்பட்டது?", opts:["1 July 2017","1 April 2016","1 January 2017","15 August 2017"], optsTA:["1 ஜூலை 2017","1 ஏப்ரல் 2016","1 ஜனவரி 2017","15 ஆகஸ்ட் 2017"], ans:0, diff:"easy",
+    expl:"GST was launched on 1 July 2017 through the 101st Constitutional Amendment. Tax slabs: 0%, 5%, 12%, 18%, 28%.<div class='trick-line'>🧠 TRICK: 1-7-17 → 'ONE nation, SEVEN-teen' — One Nation One Tax started on 1/7/17!</div>", explTA:"GST 1 ஜூலை 2017 அன்று 101வது அரசியலமைப்புத் திருத்தம் மூலம் அமலானது. வரி விகிதங்கள்: 0%, 5%, 12%, 18%, 28%.<div class='trick-line'>🧠 டிரிக்: 1-7-17 → 'ஒரு நாடு, ஒரு வரி' தொடங்கியது 1/7/17! (ஒன்று-ஏழு-பதினேழு).</div>" },
+
+  { q:"RBI was established in ____ and nationalized in ____.", qta:"RBI நிறுவப்பட்ட ஆண்டு ____ , தேசியமயமாக்கப்பட்ட ஆண்டு ____.", opts:["1949, 1955","1935, 1949","1921, 1935","1947, 1950"], optsTA:["1949, 1955","1935, 1949","1921, 1935","1947, 1950"], ans:1, diff:"easy",
+    expl:"RBI: Established 1935, Nationalized 1949, HQ Mumbai, known as Banker's Bank & Lender of Last Resort.<div class='trick-line'>🧠 TRICK: '35-ல் பிறந்து, 49-ல் அரசு சொந்தம்' → 3+5=8, 4+9=13... simpler: RBI born 1935 (before Independence), became Government's after Independence → 1949.</div>", explTA:"RBI: நிறுவப்பட்டது 1935, தேசியமயம் 1949, தலைமையகம் மும்பை. 'வங்கிகளின் வங்கி' & 'இறுதிக் கடன் வழங்குநர்'.<div class='trick-line'>🧠 டிரிக்: '35-ல் பிறப்பு (சுதந்திரத்திற்கு முன்), சுதந்திரத்திற்குப் பின் அரசு சொந்தம் → 49'. SBI-க்கு: 1921 Imperial → 1955 SBI.</div>" },
+
+  { q:"Green Revolution was introduced in India in 1967 by:", qta:"பசுமைப் புரட்சி 1967இல் இந்தியாவில் அறிமுகப்படுத்தியவர்:", opts:["V.K.R.V. Rao","Norman Borlaug","M.S. Swaminathan","Verghese Kurien"], optsTA:["வி.கே.ஆர்.வி. ராவ்","நார்மன் போர்லாக்","எம்.எஸ். சுவாமிநாதன்","வர்கீஸ் குரியன்"], ans:2, diff:"easy",
+    expl:"M.S. Swaminathan introduced the Green Revolution (1967) — High Yielding Variety (HYV) seeds + improved irrigation → increased food grain production.<div class='trick-line'>🧠 TRICK: SWAMI-nathan = 'Saamy' who blessed our fields GREEN! Green = Food grain revolution.</div>", explTA:"எம்.எஸ். சுவாமிநாதன் பசுமைப் புரட்சியை (1967) அறிமுகப்படுத்தினார் — அதிக மகசூல் விதைகள் (HYV) + மேம்பட்ட நீர்ப்பாசனம் → உணவு தானிய உற்பத்தி அதிகரிப்பு.<div class='trick-line'>🧠 டிரிக்: 'சுவாமி'நாதன் = வயலுக்கு பச்சை வரம் கொடுத்த சாமி! பசுமை = உணவு தானியப் புரட்சி.</div>" },
+
+  { q:"MGNREGA (2006) guarantees how many days of employment in rural areas?", qta:"MGNREGA (2006) கிராமப்புறங்களில் எத்தனை நாட்கள் வேலை உறுதி அளிக்கிறது?", opts:["150 days","365 days","100 days","90 days"], optsTA:["150 நாட்கள்","365 நாட்கள்","100 நாட்கள்","90 நாட்கள்"], ans:2, diff:"easy",
+    expl:"MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act, 2006) guarantees 100 days of employment per year in rural areas.<div class='trick-line'>🧠 TRICK: Gandhi's photo is on the ₹100-feel → Mahatma Gandhi scheme = 100 days!</div>", explTA:"MGNREGA (மகாத்மா காந்தி தேசிய ஊரக வேலை உறுதித் திட்டம், 2006) ஆண்டுக்கு 100 நாட்கள் வேலை உறுதி.<div class='trick-line'>🧠 டிரிக்: காந்தி படம் = நூறு ரூபாய் நோட்டு நினைவு → காந்தி திட்டம் = 100 நாட்கள்!</div>" },
+
+  { q:"Who was the first Indian to receive the Nobel Prize in Economics?", qta:"பொருளியலுக்காக நோபல் பரிசு பெற்ற முதல் இந்தியர் யார்?", opts:["Amartya Sen","Abhijit Banerjee","C. Rangarajan","Raghuram Rajan"], optsTA:["அமர்த்தியா சென்","அபிஜித் பானர்ஜி","சி. ரங்கராஜன்","ரகுராம் ராஜன்"], ans:0, diff:"easy",
+    expl:"Amartya Sen was the first Indian to receive the Nobel Prize in Economics (1998), for his work on welfare economics.<div class='trick-line'>🧠 TRICK: 'SEN' sent India's name to Nobel first! Sen = Welfare (நலன்) economics.</div>", explTA:"அமர்த்தியா சென் பொருளியலுக்கான நோபல் பரிசு பெற்ற முதல் இந்தியர் (1998) — நலப் பொருளியலுக்காக.<div class='trick-line'>🧠 டிரிக்: 'சென்' முதலில் நோபலுக்கு 'சென்'றார்! சென் = நலன் (Welfare) பொருளியல்.</div>" },
+
+  { q:"The interest rate at which RBI lends money to commercial banks (against securities, short term) is:", qta:"RBI வணிக வங்கிகளுக்கு (பத்திரங்களை வைத்து, குறுகிய காலம்) கடன் தரும் வட்டி விகிதம்:", opts:["Reverse Repo Rate","Repo Rate","CRR","SLR"], optsTA:["ரிவர்ஸ் ரெப்போ விகிதம்","ரெப்போ விகிதம்","CRR","SLR"], ans:1, diff:"easy",
+    expl:"Repo Rate = RBI lends to banks. Reverse Repo = RBI borrows from banks. CRR = minimum deposit banks keep with RBI. SLR = cash/gold/securities banks must maintain.<div class='trick-line'>🧠 TRICK: REPO = RBI POdukirathu (RBI gives). REVERSE = reverse-ஆ, banks give to RBI!</div>", explTA:"ரெப்போ = RBI வங்கிகளுக்கு கடன் தருவது. ரிவர்ஸ் ரெப்போ = RBI வங்கிகளிடம் கடன் வாங்குவது. CRR = வங்கிகள் RBI-யில் வைக்கும் குறைந்தபட்ச வைப்பு.<div class='trick-line'>🧠 டிரிக்: ரெப்போ = 'RBI போடுது' (கடன் தருது). ரிவர்ஸ் = தலைகீழ் — வங்கிகள் RBI-க்கு தருது!</div>" },
+
+  { q:"Who was the FIRST to calculate the National Income of India?", qta:"இந்தியாவின் தேசிய வருமானத்தை முதன்முதலில் கணக்கிட்டவர் யார்?", opts:["V.K.R.V. Rao","M. Visweswarayya","Dadabhai Naoroji","P.C. Mahalanobis"], optsTA:["வி.கே.ஆர்.வி. ராவ்","எம். விஸ்வேஸ்வரய்யா","தாதாபாய் நௌரோஜி","பி.சி. மகலனோபிஸ்"], ans:2, diff:"medium",
+    expl:"Dadabhai Naoroji first calculated India's national income. Book: 'Poverty and UnBritish Rule in India'; gave the Economic Drain Theory. V.K.R.V. Rao made the first scientific calculation in 1931-32.<div class='trick-line'>🧠 TRICK: N & N → Naoroji = National income FIRST. Rao = Research-ஆ scientific-ஆ (1931-32).</div>", explTA:"தாதாபாய் நௌரோஜி முதலில் தேசிய வருமானம் கணக்கிட்டார். நூல்: 'Poverty and UnBritish Rule in India'; 'செல்வம் வெளியேற்றக் கோட்பாடு' (Drain Theory). வி.கே.ஆர்.வி. ராவ் 1931-32ல் அறிவியல்பூர்வமாக கணக்கிட்டார்.<div class='trick-line'>🧠 டிரிக்: 'ந' & 'ந' → நௌரோஜி = தேசிய (National) வருமானம் முதல்! ராவ் = ஆராய்ச்சி முறை (1931-32).</div>" },
+
+  { q:"Net Domestic Product (NDP) = ?", qta:"நிகர உள்நாட்டு உற்பத்தி (NDP) = ?", opts:["GDP + Depreciation","GDP − Depreciation","GNP + Exports","GDP − Imports"], optsTA:["GDP + தேய்மானம்","GDP − தேய்மானம்","GNP + ஏற்றுமதி","GDP − இறக்குமதி"], ans:1, diff:"medium",
+    expl:"NDP = GDP − Depreciation; NNP = GNP − Depreciation. GDP = goods & services produced WITHIN the country; GNP = produced by NATIONALS of the country.<div class='trick-line'>🧠 TRICK: NET = 'Neekiya' (removed) → Net-ல் எப்போதும் Depreciation-ஐ கழிக்கவும். D for Domestic = 'inside Desam'; N for National = 'Nationals anywhere'.</div>", explTA:"NDP = GDP − தேய்மானம்; NNP = GNP − தேய்மானம். GDP = நாட்டிற்குள் உற்பத்தி; GNP = நாட்டு மக்களால் (உலகில் எங்கும்) உற்பத்தி.<div class='trick-line'>🧠 டிரிக்: 'நிகர' = நீக்கியது → நிகர என்றால் தேய்மானத்தை கழிக்கவும். D = தேசத்திற்குள்; N = நாட்டு மக்கள் (எங்கிருந்தாலும்).</div>" },
+
+  { q:"Planning Commission was changed to NITI Aayog on:", qta:"திட்டக் குழு NITI ஆயோக் ஆக மாற்றப்பட்ட நாள்:", opts:["15 March 1950","26 January 2015","1 January 2015","1 April 2014"], optsTA:["15 மார்ச் 1950","26 ஜனவரி 2015","1 ஜனவரி 2015","1 ஏப்ரல் 2014"], ans:2, diff:"medium",
+    expl:"Planning Commission (est. 15 March 1950) became NITI Aayog on 1 January 2015. Chairman = Prime Minister.<div class='trick-line'>🧠 TRICK: 'New Year → New Aayog' — NITI Aayog started on New Year's Day 1/1/2015!</div>", explTA:"திட்டக் குழு (15 மார்ச் 1950) 1 ஜனவரி 2015 அன்று NITI ஆயோக் ஆனது. தலைவர் = பிரதமர்.<div class='trick-line'>🧠 டிரிக்: 'புத்தாண்டு → புதிய ஆயோக்' — NITI ஆயோக் தொடங்கியது புத்தாண்டு நாள் 1/1/2015!</div>" },
+
+  { q:"Who is the 'Father of Indian Planning'?", qta:"'இந்தியத் திட்டமிடலின் தந்தை' யார்?", opts:["Jawaharlal Nehru","M. Visweswarayya","P.C. Mahalanobis","Dadabhai Naoroji"], optsTA:["ஜவஹர்லால் நேரு","எம். விஸ்வேஸ்வரய்யா","பி.சி. மகலனோபிஸ்","தாதாபாய் நௌரோஜி"], ans:1, diff:"medium",
+    expl:"M. Visweswarayya is the Father of Indian Planning. Book: 'Planned Economy of India'. His birthday (Sep 15) is Engineer's Day.<div class='trick-line'>🧠 TRICK: The ENGINEER designed India's PLAN → Visweswarayya (Engineer's Day hero) = Planning Father.</div>", explTA:"எம். விஸ்வேஸ்வரய்யா இந்தியத் திட்டமிடலின் தந்தை. நூல்: 'Planned Economy of India'. அவர் பிறந்தநாள் (செப் 15) = பொறியாளர் தினம்.<div class='trick-line'>🧠 டிரிக்: பொறியாளர்தான் 'பிளான்' போடுவார் → விஸ்வேஸ்வரய்யா (பொறியாளர் தின நாயகன்) = திட்டமிடல் தந்தை.</div>" },
+
+  { q:"The main objective of the First Five Year Plan (1951-56) was:", qta:"முதல் ஐந்தாண்டுத் திட்டத்தின் (1951-56) முக்கிய நோக்கம்:", opts:["Rapid Industrialization","Agriculture","Self reliance","Removal of poverty"], optsTA:["விரைவு தொழில்மயமாக்கல்","விவசாயம்","தன்னிறைவு","வறுமை ஒழிப்பு"], ans:1, diff:"medium",
+    expl:"1st Plan (1951-56) = Agriculture; 2nd = Rapid Industrialization; 3rd = Self reliance; 5th = Removal of poverty (Garibi Hatao).<div class='trick-line'>🧠 TRICK: 'First Food, Second Steel, Fifth Garibi' → 1st feed the people (Agri), 2nd build factories, 5th = ஐந்தில் ஏழை ஒழிப்பு (Garibi Hatao).</div>", explTA:"1வது திட்டம் (1951-56) = விவசாயம்; 2வது = விரைவு தொழில்மயம்; 3வது = தன்னிறைவு; 5வது = வறுமை ஒழிப்பு (கரீபி ஹடாவோ).<div class='trick-line'>🧠 டிரிக்: 'முதலில் சோறு, இரண்டில் இரும்பு, ஐந்தில் ஏழை ஒழிப்பு' → 1=விவசாயம், 2=தொழிற்சாலை, 5=Garibi Hatao.</div>" },
+
+  { q:"'Garibi Hatao' (Removal of Poverty) was the objective of which Five Year Plan?", qta:"'கரீபி ஹடாவோ' (வறுமை ஒழிப்பு) எந்த ஐந்தாண்டுத் திட்டத்தின் நோக்கம்?", opts:["Fourth Plan","Sixth Plan","Fifth Plan","Seventh Plan"], optsTA:["நான்காவது திட்டம்","ஆறாவது திட்டம்","ஐந்தாவது திட்டம்","ஏழாவது திட்டம்"], ans:2, diff:"medium",
+    expl:"Fifth Plan (1974-78) = Removal of poverty (Garibi Hatao). Interestingly it achieved 4.8% growth against 4.4% target.<div class='trick-line'>🧠 TRICK: 'ஐந்து விரல் ஏழைக்கு உதவும் கை' → 5th Plan = Garibi Hatao (Indira Gandhi's slogan).</div>", explTA:"ஐந்தாவது திட்டம் (1974-78) = வறுமை ஒழிப்பு (கரீபி ஹடாவோ). இலக்கு 4.4%, அடைந்தது 4.8%.<div class='trick-line'>🧠 டிரிக்: 'ஐந்து விரல்கள் ஏழைக்கு உதவும் கை' → 5வது திட்டம் = கரீபி ஹடாவோ (இந்திரா காந்தி முழக்கம்).</div>" },
+
+  { q:"The 'Plan Holiday' period (three annual plans) in India was:", qta:"இந்தியாவில் 'திட்ட விடுமுறை' (மூன்று ஆண்டுத் திட்டங்கள்) காலம்:", opts:["1966-1969","1978-1980","1961-1966","1990-1992"], optsTA:["1966-1969","1978-1980","1961-1966","1990-1992"], ans:0, diff:"medium",
+    expl:"Plan Holiday = 1966-69 (three annual plans) — due to wars with China (1962) & Pakistan (1965) and drought. Rolling Plan = 1978-80.<div class='trick-line'>🧠 TRICK: 'போருக்குப் பின் ஓய்வு' → After WAR (62 China, 65 Pak) → Plan took a HOLIDAY (66-69). Rolling = Janata rolled it (78-80).</div>", explTA:"திட்ட விடுமுறை = 1966-69 (மூன்று ஆண்டுத் திட்டங்கள்) — சீனா (1962) & பாகிஸ்தான் (1965) போர்கள், வறட்சி காரணம். சுழல் திட்டம் = 1978-80.<div class='trick-line'>🧠 டிரிக்: 'போருக்குப் பின் ஓய்வு' → போர் (62, 65) முடிந்ததும் திட்டம் விடுமுறை (66-69). சுழல் திட்டம் = ஜனதா அரசு (78-80).</div>" },
+
+  { q:"In 1969, the Government of India nationalized how many banks?", qta:"1969இல் இந்திய அரசு எத்தனை வங்கிகளை தேசியமயமாக்கியது?", opts:["6 banks","20 banks","14 banks","10 banks"], optsTA:["6 வங்கிகள்","20 வங்கிகள்","14 வங்கிகள்","10 வங்கிகள்"], ans:2, diff:"medium",
+    expl:"1969 → 14 banks nationalized; 1980 → 6 more banks. Total = 20. SBI was formed from Imperial Bank in 1955.<div class='trick-line'>🧠 TRICK: '69-ல் 14, 80-ல் 6 = மொத்தம் 20'. Remember: 1+4=5... simpler: 69 reversed digits ≈ 14+6=20 total!</div>", explTA:"1969 → 14 வங்கிகள் தேசியமயம்; 1980 → மேலும் 6 வங்கிகள். மொத்தம் = 20. SBI: 1921 இம்பீரியல் வங்கி → 1955 SBI ஆனது.<div class='trick-line'>🧠 டிரிக்: '69-ல் பதினான்கு, 80-ல் ஆறு = மொத்தம் இருபது'. (14 + 6 = 20 வங்கிகள்).</div>" },
+
+  { q:"Wheat, barley and mustard are examples of which crop season?", qta:"கோதுமை, பார்லி, கடுகு எந்தப் பயிர் பருவத்தைச் சேர்ந்தவை?", opts:["Kharif crops","Zaid crops","Cash crops","Rabi crops"], optsTA:["காரீஃப் பயிர்கள்","ஜாயத் பயிர்கள்","பணப் பயிர்கள்","ரபி பயிர்கள்"], ans:3, diff:"medium",
+    expl:"Rabi = Winter crops (wheat, barley, mustard). Kharif = Summer/monsoon crops (rice, cotton, maize). Zaid = vegetables, pulses. Cash crops = cotton, jute, sugarcane.<div class='trick-line'>🧠 TRICK: 'RaBi = RoTTi' → Rabi gives wheat for rotti (winter). 'Kharif = Kanmazhai' → rainy season rice!</div>", explTA:"ரபி = குளிர்காலப் பயிர்கள் (கோதுமை, பார்லி, கடுகு). காரீஃப் = கோடை/பருவமழைப் பயிர்கள் (நெல், பருத்தி, மக்காச்சோளம்). ஜாயத் = காய்கறி, பருப்பு.<div class='trick-line'>🧠 டிரிக்: 'ரபி = ரொட்டி' → ரொட்டிக்கு கோதுமை தரும் குளிர்காலப் பயிர்! 'காரீஃப் = கார்காலம் (மழை)' → நெல்!</div>" },
+
+  { q:"'Golden Fibre Revolution' is related to:", qta:"'தங்க நார் புரட்சி' (Golden Fibre Revolution) எதனுடன் தொடர்புடையது?", opts:["Cotton","Jute","Silk","Oil seeds"], optsTA:["பருத்தி","சணல்","பட்டு","எண்ணெய் வித்துக்கள்"], ans:1, diff:"medium",
+    expl:"Golden Fibre = Jute; Silver Fibre = Cotton; Blue = Fish; Pink = Onion/Prawn; Silver = Egg; Yellow = Oil seeds; Golden = Horticulture; Black = Petroleum; Red = Meat/Tomato.<div class='trick-line'>🧠 TRICK: Jute is golden-brown in colour → GOLDEN fibre. Cotton is white like silver → SILVER fibre. முட்டை வெள்ளை = Silver Revolution!</div>", explTA:"தங்க நார் = சணல்; வெள்ளி நார் = பருத்தி; நீலம் = மீன்; இளஞ்சிவப்பு = வெங்காயம்/இறால்; வெள்ளி = முட்டை; மஞ்சள் = எண்ணெய் வித்து; தங்கம் = தோட்டக்கலை; கருப்பு = பெட்ரோலியம்.<div class='trick-line'>🧠 டிரிக்: சணல் நிறமே தங்க-பழுப்பு → தங்க நார்! பருத்தி வெண்மை = வெள்ளி நார். முட்டை வெள்ளை = வெள்ளிப் புரட்சி!</div>" },
+
+  { q:"GST was introduced through which Constitutional Amendment?", qta:"GST எந்த அரசியலமைப்புத் திருத்தம் மூலம் அறிமுகப்படுத்தப்பட்டது?", opts:["100th Amendment","102nd Amendment","101st Amendment","97th Amendment"], optsTA:["100வது திருத்தம்","102வது திருத்தம்","101வது திருத்தம்","97வது திருத்தம்"], ans:2, diff:"medium",
+    expl:"GST = 101st Constitutional Amendment (launched 1 July 2017). SGST-State, CGST-Centre, IGST-Integrated (Centre), UTGST-Union Territory.<div class='trick-line'>🧠 TRICK: GST = '1 Nation 0 confusion 1 Tax' → 101! One-Zero-One.</div>", explTA:"GST = 101வது அரசியலமைப்புத் திருத்தம் (1 ஜூலை 2017). SGST-மாநிலம், CGST-மத்தியம், IGST-ஒருங்கிணைந்த, UTGST-யூனியன் பிரதேசம்.<div class='trick-line'>🧠 டிரிக்: GST = '1 நாடு, 0 குழப்பம், 1 வரி' → 101! (ஒன்று-பூஜ்யம்-ஒன்று).</div>" },
+
+  { q:"Fiscal Deficit = ?", qta:"நிதிப் பற்றாக்குறை (Fiscal Deficit) = ?", opts:["Total Revenue Expenditure − Total Revenue Receipts","Total Expenditure − Total Receipts excluding borrowings","GDP − Depreciation","Exports − Imports"], optsTA:["மொத்த வருவாய் செலவு − மொத்த வருவாய் வரவு","மொத்த செலவு − கடன் நீங்கலாக மொத்த வரவு","GDP − தேய்மானம்","ஏற்றுமதி − இறக்குமதி"], ans:1, diff:"medium",
+    expl:"Fiscal Deficit = Total Expenditure − Total Receipts (excluding borrowings). Revenue Deficit = Revenue Expenditure − Revenue Receipts. Primary Deficit = Fiscal Deficit − Interest payments.<div class='trick-line'>🧠 TRICK: FISCAL = FULL picture (total, minus borrowings). REVENUE = only Revenue side. PRIMARY = remove interest ('P' = 'Poka' interest — interest போக மீதி).</div>", explTA:"நிதிப் பற்றாக்குறை = மொத்த செலவு − மொத்த வரவு (கடன் நீங்கலாக). வருவாய் பற்றாக்குறை = வருவாய் செலவு − வருவாய் வரவு. முதன்மை பற்றாக்குறை = நிதிப் பற்றாக்குறை − வட்டி.<div class='trick-line'>🧠 டிரிக்: நிதி = 'நிறைவான' கணக்கு (மொத்தம், கடன் தவிர). வருவாய் = வருவாய் பக்கம் மட்டும். முதன்மை = 'வட்டி போக' மீதி!</div>" },
+
+  { q:"SEBI and NSE were both established in which year?", qta:"SEBI மற்றும் NSE இரண்டும் நிறுவப்பட்ட ஆண்டு?", opts:["1988","1992","1995","1975"], optsTA:["1988","1992","1995","1975"], ans:1, diff:"medium",
+    expl:"SEBI (regulates financial markets, HQ Mumbai) — statutory in 1992; NSE also established in 1992, Mumbai — third largest in the world. Both came after the 1991 reforms.<div class='trick-line'>🧠 TRICK: '92 TWINS' → After 1991 reforms, the twins SEBI & NSE were born in 1992!</div>", explTA:"SEBI (நிதிச் சந்தைகளை ஒழுங்குபடுத்தும், தலைமையகம் மும்பை) — 1992; NSE-யும் 1992, மும்பை — உலகில் மூன்றாவது பெரியது. இரண்டும் 1991 சீர்திருத்தங்களுக்குப் பிறகு.<div class='trick-line'>🧠 டிரிக்: '92 இரட்டையர்கள்' → 1991 சீர்திருத்தத்திற்குப் பின் பிறந்த இரட்டையர்: SEBI & NSE = 1992!</div>" },
+
+  { q:"The 1991 New Economic Policy (LPG) stands for:", qta:"1991 புதிய பொருளாதாரக் கொள்கை (LPG) என்பது:", opts:["Liberalisation, Privatisation, Globalisation","Loan, Payment, Growth","Labour, Production, Goods","Land, Property, GST"], optsTA:["தாராளமயம், தனியார்மயம், உலகமயம்","கடன், கட்டணம், வளர்ச்சி","தொழிலாளர், உற்பத்தி, பொருட்கள்","நிலம், சொத்து, GST"], ans:0, diff:"medium",
+    expl:"1991 reforms = Liberalisation (free market), Privatisation (public → private), Globalisation (link with world market). Cause: external debt crisis; India got $7 billion loan from World Bank & IMF.<div class='trick-line'>🧠 TRICK: LPG cylinder came into every Indian kitchen — 1991 LPG came into Indian economy! L-P-G = Liberal, Private, Global.</div>", explTA:"1991 சீர்திருத்தங்கள் = தாராளமயம் (சுதந்திர சந்தை), தனியார்மயம் (பொது→தனியார்), உலகமயம் (உலக சந்தையுடன் இணைப்பு). காரணம்: வெளிநாட்டுக் கடன் நெருக்கடி; உலக வங்கி & IMF-இடம் $7 பில்லியன் கடன்.<div class='trick-line'>🧠 டிரிக்: LPG சிலிண்டர் வீட்டுக்கு வந்தது போல — 1991ல் LPG பொருளாதாரத்துக்கு வந்தது! L-P-G = தாராள, தனியார், உலக மயம்.</div>" },
+
+  { q:"Primary Deficit = ?", qta:"முதன்மைப் பற்றாக்குறை (Primary Deficit) = ?", opts:["Fiscal Deficit + Interest payments","Revenue Deficit − Subsidies","Fiscal Deficit − Interest payments","Budget Deficit + Borrowings"], optsTA:["நிதிப் பற்றாக்குறை + வட்டி","வருவாய் பற்றாக்குறை − மானியம்","நிதிப் பற்றாக்குறை − வட்டி","பட்ஜெட் பற்றாக்குறை + கடன்"], ans:2, diff:"hard",
+    expl:"Primary Deficit = Fiscal Deficit − Interest payments. It shows the deficit created by CURRENT year's spending, removing the burden of PAST loans' interest.<div class='trick-line'>🧠 TRICK: PRIMARY = 'Pure' deficit → remove old interest baggage. Primary school = basics only; Primary deficit = basics only (no interest)!</div>", explTA:"முதன்மைப் பற்றாக்குறை = நிதிப் பற்றாக்குறை − வட்டி செலுத்துதல். பழைய கடன்களின் வட்டியை நீக்கி, நடப்பு ஆண்டின் உண்மையான பற்றாக்குறையைக் காட்டும்.<div class='trick-line'>🧠 டிரிக்: முதன்மை = 'தூய' பற்றாக்குறை → பழைய வட்டி சுமையை நீக்கு. Primary பள்ளி = அடிப்படை மட்டும்; Primary Deficit = வட்டி இல்லாத அடிப்படை!</div>" },
+
+  { q:"The term 'Hindu Rate of Growth' (≈3.5% before 1991) was coined by:", qta:"'ஹிந்து வளர்ச்சி விகிதம்' (1991க்கு முன் ≈3.5%) என்ற சொல்லை உருவாக்கியவர்:", opts:["Amartya Sen","Raj Krishna","Jagdish Bhagwati","C. Rangarajan"], optsTA:["அமர்த்தியா சென்","ராஜ் கிருஷ்ணா","ஜெகதீஷ் பகவதி","சி. ரங்கராஜன்"], ans:1, diff:"hard",
+    expl:"Economist Raj Krishna coined 'Hindu Rate of Growth' — India's low growth (~3.5%) from 1950s to 1980s, while per capita income grew only 1.3%.<div class='trick-line'>🧠 TRICK: RAJ Krishna — 'Krishna' (a Hindu god name) coined the HINDU rate! Easy divine link.</div>", explTA:"பொருளியலாளர் ராஜ் கிருஷ்ணா 'ஹிந்து வளர்ச்சி விகிதம்' என்ற சொல்லை உருவாக்கினார் — 1950-80களில் இந்தியாவின் குறைந்த வளர்ச்சி (~3.5%), தனிநபர் வருமான வளர்ச்சி 1.3% மட்டுமே.<div class='trick-line'>🧠 டிரிக்: ராஜ் 'கிருஷ்ணா' — கடவுள் பெயர் கொண்டவர்தான் 'ஹிந்து' விகிதம் சொன்னார்! எளிதான இணைப்பு.</div>" },
+
+  { q:"A monthly inflation rate of 20-30% or more is called:", qta:"மாதத்திற்கு 20-30% அல்லது அதற்கு மேல் விலைவாசி உயர்வு:", opts:["Creeping inflation","Trotting inflation","Galloping inflation","Hyperinflation"], optsTA:["ஊர்ந்த பணவீக்கம்","விரைவு பணவீக்கம்","பாய்ச்சல் பணவீக்கம்","மிதமிஞ்சிய பணவீக்கம் (Hyper)"], ans:3, diff:"hard",
+    expl:"Inflation ladder: Creeping 1-5%/yr → Trotting 5-10% → Galloping 10-20% → Runaway → Hyperinflation 20-30%+ PER MONTH (currency loses value).<div class='trick-line'>🧠 TRICK: Horse speed ladder! 🐢Creep(1-5) → 🐎Trot(5-10) → 🏇Gallop(10-20) → 🚀Hyper(20-30%/month). Speed increases with danger!</div>", explTA:"பணவீக்க ஏணி: ஊர்தல் 1-5%/ஆண்டு → விரைவு 5-10% → பாய்ச்சல் 10-20% → கட்டுக்கடங்காதது → Hyper = மாதத்திற்கு 20-30%+ (பணம் மதிப்பிழக்கும்).<div class='trick-line'>🧠 டிரிக்: குதிரை வேக ஏணி! 🐢ஊர்தல்(1-5) → 🐎நடை(5-10) → 🏇பாய்ச்சல்(10-20) → 🚀Hyper(மாதம் 20-30%). வேகம் கூட ஆபத்து கூடும்!</div>" },
+
+  { q:"Special Drawing Rights (SDR), created by IMF in 1969, is valued by a basket of how many currencies (as per this material)?", qta:"IMF 1969இல் உருவாக்கிய SDR-இன் மதிப்பு எத்தனை நாணயங்களின் கூடையால் நிர்ணயிக்கப்படுகிறது (இந்த பாடப்பொருள் படி)?", opts:["2","4","6","10"], optsTA:["2","4","6","10"], ans:1, diff:"hard",
+    expl:"SDR ('paper gold') was created by IMF in 1969. As per this material, its value = weighted basket of 4 currencies: Euro, US Dollar, British Pound, Japanese Yen. (Note: Chinese Yuan was added in 2016, making it 5 now.)<div class='trick-line'>🧠 TRICK: SDR = 'paper gold' of IMF, born 1969 (same era as bank nationalization 1969!).</div>", explTA:"SDR ('காகிதத் தங்கம்') IMF-ஆல் 1969இல் உருவாக்கப்பட்டது. இந்த பாடப்பொருள் படி 4 நாணயக் கூடை: யூரோ, டாலர், பவுண்ட், யென். (குறிப்பு: 2016இல் சீன யுவான் சேர்க்கப்பட்டு இப்போது 5.)<div class='trick-line'>🧠 டிரிக்: SDR = IMF-இன் 'காகிதத் தங்கம்', பிறப்பு 1969 (வங்கி தேசியமயம் ஆண்டும் 1969!).</div>" },
+
+  { q:"Stagflation is a situation of:", qta:"Stagflation என்பது:", opts:["High inflation + High growth","Low inflation + Low unemployment","High inflation + Slow growth + High unemployment","Deflation + High growth"], optsTA:["அதிக பணவீக்கம் + அதிக வளர்ச்சி","குறைந்த பணவீக்கம் + குறைந்த வேலையின்மை","அதிக பணவீக்கம் + மந்த வளர்ச்சி + அதிக வேலையின்மை","பணவாட்டம் + அதிக வளர்ச்சி"], ans:2, diff:"hard",
+    expl:"Stagflation = Stagnation + Inflation → economy slows, unemployment stays high, yet prices keep rising. (Phillips curve normally says low unemployment ↔ high inflation, but stagflation breaks it.)<div class='trick-line'>🧠 TRICK: STAG-FLATION = STAGnant economy + inFLATION together. 'வளர்ச்சி நின்று, விலை ஏறும்' — worst combo!</div>", explTA:"Stagflation = தேக்கம் + பணவீக்கம் → பொருளாதாரம் மந்தம், வேலையின்மை அதிகம், ஆனால் விலைகள் தொடர்ந்து உயரும்.<div class='trick-line'>🧠 டிரிக்: STAG(தேக்கம்) + FLATION(பணவீக்கம்) = 'வளர்ச்சி நின்று, விலை மட்டும் ஏறும்' — மோசமான கலவை!</div>" },
+
+  { q:"The first insurance company in India was:", qta:"இந்தியாவின் முதல் காப்பீட்டு நிறுவனம்:", opts:["LIC, Mumbai (1956)","Oriental Life Insurance Company, Calcutta (1818)","GIC (1972)","Agriculture Insurance Company (2002)"], optsTA:["LIC, மும்பை (1956)","ஓரியண்டல் லைஃப் இன்சூரன்ஸ், கல்கத்தா (1818)","GIC (1972)","வேளாண் காப்பீட்டு நிறுவனம் (2002)"], ans:1, diff:"hard",
+    expl:"First insurance company = Oriental Life Insurance Company, Calcutta, 1818. Insurance nationalized in 1956 → LIC formed 1956 (HQ Mumbai); GIC 1972.<div class='trick-line'>🧠 TRICK: '18-18' — double 18! Oriental started in 1818 in Calcutta (the then capital).</div>", explTA:"முதல் காப்பீட்டு நிறுவனம் = ஓரியண்டல் லைஃப் இன்சூரன்ஸ், கல்கத்தா, 1818. காப்பீடு 1956இல் தேசியமயம் → LIC 1956 (மும்பை); GIC 1972.<div class='trick-line'>🧠 டிரிக்: '18-18' — இரட்டை 18! ஓரியண்டல் தொடங்கியது 1818, கல்கத்தா (அப்போதைய தலைநகர்).</div>" },
+
+  { q:"Disguised unemployment (more people engaged than required) is most prevalent in:", qta:"மறைமுக வேலையின்மை (தேவைக்கு அதிகமானோர் பணியில்) அதிகம் காணப்படும் துறை:", opts:["IT sector","Banking sector","Agriculture sector","Manufacturing sector"], optsTA:["IT துறை","வங்கித் துறை","விவசாயத் துறை","உற்பத்தித் துறை"], ans:2, diff:"medium",
+    expl:"Disguised unemployment = more people in a job than needed — most seen in rural agriculture. Seasonal = only certain months (also agriculture). Frictional = between jobs. Structural = skill mismatch. Cyclical = due to recession.<div class='trick-line'>🧠 TRICK: 'ஒரு ஏக்கர், ஐந்து பேர்' — small farm, whole family works = DISGUISED (மறைமுக). Season முடிஞ்சா வேலை இல்லை = SEASONAL.</div>", explTA:"மறைமுக வேலையின்மை = தேவைக்கு அதிகமானோர் ஒரே வேலையில் — கிராமப்புற விவசாயத்தில் அதிகம். பருவகால = சில மாதங்கள் மட்டும். Frictional = வேலை மாறும் இடைவெளி. Structural = திறன் பொருந்தாமை.<div class='trick-line'>🧠 டிரிக்: 'ஒரு ஏக்கர், ஐந்து பேர்' — சிறு நிலம், முழு குடும்பம் வேலை = மறைமுக! பருவம் முடிந்தால் வேலை இல்லை = பருவகால.</div>" },
+  { q:"M1 (Narrow Money) = ?", qta:"M1 (குறுகிய பணம் / Narrow Money) = ?", opts:["Currency with public + Demand deposits of public","M3 + Post office deposits","Currency + Time deposits","Gold + Forex reserves"], optsTA:["மக்களிடம் உள்ள பணம் + கேட்பு வைப்புகள்","M3 + அஞ்சலக வைப்புகள்","பணம் + கால வைப்புகள்","தங்கம் + அந்நியச் செலாவணி"], ans:0, diff:"hard",
+    expl:"M1 = Currency with public + Demand deposits (Narrow Money). M2 = M1 + Post office savings. M3 = M1 + Net time deposits (Broad Money — RBI's common measure). M4 = M3 + Total post office deposits.<div class='trick-line'>🧠 TRICK: M1 = 'Money in hand + ATM-type deposits' = Narrow (உடனடி). Number goes up (M1→M4) = liquidity goes DOWN.</div>", explTA:"M1 = மக்களிடம் பணம் + கேட்பு வைப்புகள் (குறுகிய பணம்). M2 = M1 + அஞ்சலக சேமிப்பு. M3 = M1 + நிகர கால வைப்புகள் (பரந்த பணம் — RBI அளவீடு). M4 = M3 + மொத்த அஞ்சலக வைப்பு.<div class='trick-line'>🧠 டிரிக்: M1 = 'கையில் பணம் + உடனே எடுக்கும் வைப்பு' = குறுகியது. எண் கூடும்போது (M1→M4) = பணமாக்கும் வேகம் குறையும்.</div>" },
+
+  { q:"Under UNCLOS, the Exclusive Economic Zone (EEZ) extends up to how many nautical miles from the coast?", qta:"UNCLOS படி, பிரத்யேக பொருளாதார மண்டலம் (EEZ) கடற்கரையிலிருந்து எத்தனை கடல் மைல்கள்?", opts:["12","100","200","350"], optsTA:["12","100","200","350"], ans:2, diff:"hard",
+    expl:"EEZ = 200 nautical miles from the coast — special rights over marine resources. India requested UN to expand to 350 nautical miles (the maximum limit).<div class='trick-line'>🧠 TRICK: 'இரு நூறு கடலில் உரிமை' → EEZ = 200; maximum possible = 350 (India's request).</div>", explTA:"EEZ = கடற்கரையிலிருந்து 200 கடல் மைல்கள் — கடல் வளங்களில் சிறப்பு உரிமை. இந்தியா 350 கடல் மைல்களாக (அதிகபட்ச வரம்பு) விரிவாக்க UN-இடம் கோரியுள்ளது.<div class='trick-line'>🧠 டிரிக்: 'இரு நூறு கடலில் உரிமை' → EEZ = 200; அதிகபட்சம் = 350 (இந்தியாவின் கோரிக்கை).</div>" }
+];
+    var QUIZ_BANK={};
+    QUIZ_BANK["economics"]=ECONOMICS_QUIZ_DATA;
+
+function shuffleArray(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function showToast(m){var t=document.getElementById('_toast');if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.3s;';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2500);}
+var QS={cat:null,questions:[],index:0,score:0,answered:false,timer:null,timeLeft:30,startTime:0};
+function startQuiz(catId){
+  var bank=QUIZ_BANK[catId]||[];
+  QS.cat=catId;QS.questions=shuffleArray(bank);
+  QS.index=0;QS.score=0;QS.answered=false;QS.startTime=Date.now();
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('quizEngine').style.display='block';
+  document.getElementById('scoreScreen').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderQ();
+}
+function renderQ(){
+  var cur=QS.questions[QS.index];if(!cur)return;
+  var total=QS.questions.length;
+  document.getElementById('qProg').textContent='கேள்வி '+(QS.index+1)+' / '+total;
+  document.getElementById('qScoreLabel').textContent='மதிப்பெண்: '+QS.score;
+  document.getElementById('progFill').style.width=((QS.index/total)*100)+'%';
+  document.getElementById('nextArea').style.display='none';
+  var nums=['அ','ஆ','இ','ஈ'];
+  var opts=cur.optsTA||cur.opts;
+  var qText=cur.qta?'<div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.q+'</div><div class="q-text">'+cur.qta+'</div>':'<div class="q-text">'+cur.q+'</div>';
+  var diffLabel=cur.diff==='easy'?'🟢 எளிது':cur.diff==='hard'?'🔴 கடினம்':'🟡 நடுத்தரம்';
+  var optHTML='';
+  for(var i=0;i<opts.length;i++){
+    optHTML+='<button class="opt-btn" onclick="checkAnswer(this,'+i+','+cur.ans+')">'+'<span class="ob-num">'+nums[i]+'</span><span>'+opts[i]+'</span></button>';
+  }
+  document.getElementById('questionContainer').innerHTML='<div class="q-card"><div class="q-num">கேள்வி '+(QS.index+1)+'</div>'+qText+'<span class="q-diff diff-'+(cur.diff||'medium')+'">'+diffLabel+'</span><div class="opts-list">'+optHTML+'</div><div class="expl-box" id="explBox"></div></div>';
+  startTimer();
+}
+function startTimer(){
+  QS.timeLeft=30;QS.answered=false;
+  if(QS.timer)clearInterval(QS.timer);
+  updateTimer(30);
+  QS.timer=setInterval(function(){QS.timeLeft--;updateTimer(QS.timeLeft);if(QS.timeLeft<=0){clearInterval(QS.timer);autoSubmit();}},1000);
+}
+function updateTimer(v){var el=document.getElementById('timerDisplay');if(el){el.textContent=v;el.style.background=v<=10?'#dc2626':'var(--accent)';}}
+function showNextBtn(){
+  var na=document.getElementById('nextArea');
+  var nb=document.getElementById('nextBtnEl');
+  var isLast=QS.index+1>=QS.questions.length;
+  nb.textContent=isLast?'📊 முடிவு காண்க':'அடுத்த கேள்வி →';
+  na.style.display='block';
+  setTimeout(function(){na.scrollIntoView({behavior:'smooth',block:'end'});},100);
+}
+function autoSubmit(){
+  var cur=QS.questions[QS.index];QS.answered=true;
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  var btns=document.querySelectorAll('.opt-btn');
+  if(btns[cur.ans])btns[cur.ans].classList.add('correct');
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">⏱️ நேரம் முடிந்தது</div>'+(cur.explTA?'<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function checkAnswer(btn,chosen,correct){
+  if(QS.answered)return;QS.answered=true;clearInterval(QS.timer);
+  var cur=QS.questions[QS.index];
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  document.querySelectorAll('.opt-btn')[correct].classList.add('correct');
+  if(chosen===correct){QS.score++;showToast('✅ சரியான விடை!');}else{btn.classList.add('wrong');showToast('❌ தவறான விடை!');}
+  var eb=document.getElementById('explBox');
+  eb.innerHTML='<div class="expl-title">📖 விளக்கம்</div>'+(cur.explTA?'<div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;font-style:italic;">'+cur.expl+'</div>'+cur.explTA:(cur.expl||''));
+  eb.classList.add('show');
+  showNextBtn();
+}
+function nextQuestion(){
+  QS.index++;
+  if(QS.index<QS.questions.length){renderQ();}else{showScore();}
+}
+function showScore(){
+  var total=QS.questions.length;var wrong=total-QS.score;
+  var pct=Math.round((QS.score/total)*100);var elapsed=Math.round((Date.now()-QS.startTime)/1000);
+  var emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'👍':'💪';
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='block';
+  document.getElementById('scoreEmoji').textContent=emoji;
+  document.getElementById('scoreNum').textContent=QS.score;
+  document.getElementById('scoreTot').textContent=total;
+  document.getElementById('statCorrect').textContent=QS.score;
+  document.getElementById('statWrong').textContent=wrong;
+  document.getElementById('statTime').textContent=elapsed+'s';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function retryQuiz(){document.getElementById('scoreScreen').style.display='none';startQuiz(QS.cat);}
+function exitQuiz(){
+  if(QS.timer)clearInterval(QS.timer);
+  document.getElementById('quizEngine').style.display='none';
+  document.getElementById('scoreScreen').style.display='none';
+  document.getElementById('startScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startThisQuiz(){document.getElementById('startScreen').style.display='none';startQuiz(CURRENT_CAT);}
+function goBack(){
+  if(document.getElementById('quizEngine').style.display!=='none'||document.getElementById('scoreScreen').style.display!=='none'){exitQuiz();}
+  else{window.location.href='index.html';}
+}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme')||'light';
+  var n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('tnpsc-theme',n);
+  document.getElementById('themeBtn').textContent=n==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var t=localStorage.getItem('tnpsc-theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
+});
+  </script>
+</body>
+</html>
